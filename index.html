@@ -8,13 +8,16 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="a new ctfer&apos;s study">
+<meta property="og:type" content="website">
 <meta property="og:title" content="Hexo">
 <meta property="og:url" content="http://yoursite.com/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="a new ctfer&apos;s study">
 <meta property="og:locale" content="default">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="a new ctfer&apos;s study">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -46,7 +49,7 @@
 			<img src="" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/">John Doe</a></h1>
+		  <h1 class="header-author"><a href="/">xf</a></h1>
 		</hgroup>
 		
 
@@ -104,7 +107,7 @@
 				<img src="" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">John Doe</h1>
+			  <h1 class="header-author js-header-author">xf</h1>
 			</hgroup>
 			
 			
@@ -172,7 +175,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>2.web2<a href="http://123.206.87.240:8002/web2/" target="_blank" rel="noopener">http://123.206.87.240:8002/web2/</a><br>点入链接，发现全是滑稽图，很有趣，养成好习惯首先F12,或者ctrl+u查看源代码，源代码中直接显示出了flag.<br>3.web基础$_GET<a href="http://123.206.87.240:8002/get/" title="web基础$_GET" target="_blank" rel="noopener">http://123.206.87.240:8002/get/</a><br>点入链接会发现以下代码，终于开始接触简单的代码审计了，如下所示：<br>$what=$_GET[‘what’];<br>echo $what;<br>if($what==’flag’)<br>echo ‘flag{<strong><strong>}’;<br>my understand：what变量的值由get方法输入得到，并且输出what,如果what的值等于flag就给我们flag，很明显是让我们学习下get的用法，用get这种方式传参数会直接在url栏中看见，因而上传get，也可以直接在url中输入，于是在url中加入？what=flag,flag即出来了。<br>关于这个？为什么要加的问题？之前看到过是文件路径和参数间的一种分隔符用以区别，前面是url文件路径，后面是添加参数所以用？分隔来区分。<br>4.web基础$_POST<a href="http://123.206.87.240:8002/post/" title="web基础$_post" target="_blank" rel="noopener">http://123.206.87.240:8002/post/</a><br>首先点入链接，和上道题很类似，但是这次考的是POST的输入方式，进入后给的代码如下：<br>$what=$_POST[‘what’];<br>echo $what;<br>if($what==’flag’)<br>echo ‘flag{</strong></strong>}’;<br>代码意思和3题类似，但是what变量的值用Post方式输入得到，这时候就要利用工具了，因为Post方式是在Url中看不见的，使用firefox自带的插件hackbar quantum传入，在下面的post data框中直接输入what=flag,flag就出来了。也即满足代码要求。<br>5.矛盾<a href="http://123.206.87.240:8002/get/index1.php" title="矛盾" target="_blank" rel="noopener">http://123.206.87.240:8002/get/index1.php</a><br>进入链接，有以下提示代码：<br>$num=$_GET[‘num’];<br>if(!is_numeric($num))<br>{<br>echo $num;<br>if($num==1)<br>echo ‘flag{<strong><strong>**</strong></strong>}’;<br>}<br>审计代码大致意思是：num由get方式传入，如果num是个数字，就输出它的值，如果num=1的话，就输出flag。<br>阅读完代码后，这的确很矛盾，要等于1又不能是数字，这不是扯淡吗，这时候就要联想到几种表示结果=1的方式了。首先可以采用what=3-2这种等式试试，很遗憾直接输出3-2；之后采用科学记数法试试1e,直接得出flag,学过C语言知道，科学记数法是一种浮点数,而在url中用1e的方式不会被认为是数字，反而会被认为是数字加字符的一种字符串；还可以采用其他方式，使用1与其他字符的组合，比如1%00–%00是空格的url编码，还可以1xxxxxx等等都可以。<br>6.web3<a href="http://123.206.87.240:8002/web3/" title="flag就在这里" target="_blank" rel="noopener">http://123.206.87.240:8002/web3/</a><br>进入链接后有一个弹窗（flag就在这里）并且可以看到页面一直处于刷新状态，打开f12后无果，由于一直读取看不到内容，接着打开burpsuite进行抓包查看，将抓到http发送给repeater中继器进行go，可以看到页面的反馈信息的最后一栏出现了<!--&#75;&#69;&#89;&#123;&#74;&#50;&#115;&#97;&#52;&#50;&#97;&#104;&#74;&#75;&#45;&#72;&#83;&#49;&#49;&#73;&#73;&#73;&#125;-->这是一种编码方式，再进入Bp的decoder中进行解码，这是一种html编码所以采用html解码，即可得出flag.<br>summary:关于这个题，我由于前期只会用火狐的插件或者是查看代码，而受到了一定的限制，在做题方面，关于抓包工具BP的学习对于信安学习是非常重要的，关于它的代理，中继器，解码器以及爆破等等重要操作都要熟练的运用。关于这道题，进去之后F12没有结果可以使用抓包，但其实更简单的还可以采用ctrl+u查看源代码也能发现那些提示编码，之后在浏览器中的在线html解码也可以，只是本人想利用这个简单的小题熟练使用下抓包的过程。<br>7.域名解析（听说把 flag.baidu.com 解析到123.206.87.240 就能拿到flag）<br>关于域名解析这点我百度后是这样的解释：比如，一个域名为abc.com，是想看到这个的HTTP服务,如果要访问网站,就要进行解析,首先在域名注册商如阳光互联等那里通过专门的DNS服务器解析到一个WEB服务器的一个固定IP上:211.214.1.XXX，然后,通过WEB服务器来接收这个域名abc.com这个域名映射到这台服务器上。那么,输入abc.com这个域名就可以实现访问网站内容了.即实现了域名解析的全过程.<br>关于本地的域名解析是在一个文件中进行的（windows/system32/drivers/etc/hosts）在这个文件中以管理员权限输入flag.baidu.com 空格 123.206.87.240即可完成解析。<br>接下来进行方法2的尝试使用BP进行抓包：抓包时一定抓IP地址形式的包这样服务器肯定是可以解析的，之后再BP中将host一栏改为flag.baidu.com即把flag.baidu.com解析到了123.206.87.240，但这个过程交换二者顺序便不行。关于这点个人理解：首先IP地址是服务器可以直接解析的，但域名需要DNS服务器解析成IP地址才能进一步识别，因而可以将IP的HOST改为域名也即达到了手动解析。<br>8.你必须让他停下来<a href="http://123.206.87.240:8002/web12/" title="让他停下来" target="_blank" rel="noopener">http://123.206.87.240:8002/web12/</a><br>进入连接后，发现页面会无限刷新，页面上的提示信息也说了让页面停下来就会给我们flag，直接BP抓包，抓包后会看到页面没有无限刷新了，这时候用f12打开查看器可以看到flag了。那么为什么这种方法可行呢，我个人理解是BP在抓包时后的代理代替了浏览器成为了一个中介，现在这些数据都在我中介这里都停住了等我修改好了才转发出去，因而抓下来后原来的浏览器代理被抢走了，它就只能停住等着我新代理拦截下来的修改后，它才能接收到正确的数据。<br>或者在BP中传入中继器中不断GO（在一次或者多次中会看到返回的响应的数据包中给出了flag）<br>9.</p>
+        <p>2.web2(<a href="http://123.206.87.240:8002/web2/" target="_blank" rel="noopener">http://123.206.87.240:8002/web2/</a>)<br>点入链接，发现全是滑稽图，很有趣，养成好习惯首先F12,或者ctrl+u查看源代码，源代码中直接显示出了flag.<br>3.web基础$_GET(<a href="http://123.206.87.240:8002/get/" title="web基础$_GET" target="_blank" rel="noopener">http://123.206.87.240:8002/get/</a>)<br>点入链接会发现以下代码，终于开始接触简单的代码审计了，如下所示：<br>$what=$_GET[‘what’];<br>echo $what;<br>if($what==’flag’)<br>echo ‘flag{<strong><strong>}’;<br>my understand：what变量的值由get方法输入得到，并且输出what,如果what的值等于flag就给我们flag，很明显是让我们学习下get的用法，用get这种方式传参数会直接在url栏中看见，因而上传get，也可以直接在url中输入，于是在url中加入？what=flag,flag即出来了。<br>关于这个？为什么要加的问题？之前看到过是文件路径和参数间的一种分隔符用以区别，前面是url文件路径，后面是添加参数所以用？分隔来区分。<br>4.web基础$_POST(<a href="http://123.206.87.240:8002/post/" title="web基础$_post" target="_blank" rel="noopener">http://123.206.87.240:8002/post/</a>)<br>首先点入链接，和上道题很类似，但是这次考的是POST的输入方式，进入后给的代码如下：<br>$what=$_POST[‘what’];<br>echo $what;<br>if($what==’flag’)<br>echo ‘flag{</strong></strong>}’;<br>代码意思和3题类似，但是what变量的值用Post方式输入得到，这时候就要利用工具了，因为Post方式是在Url中看不见的，使用firefox自带的插件hackbar quantum传入，在下面的post data框中直接输入what=flag,flag就出来了。也即满足代码要求。<br>5.矛盾(<a href="http://123.206.87.240:8002/get/index1.php" title="矛盾" target="_blank" rel="noopener">http://123.206.87.240:8002/get/index1.php</a>)<br>进入链接，有以下提示代码：<br>$num=$_GET[‘num’];<br>if(!is_numeric($num))<br>{<br>echo $num;<br>if($num==1)<br>echo ‘flag{<strong><strong>**</strong></strong>}’;<br>}<br>审计代码大致意思是：num由get方式传入，如果num是个数字，就输出它的值，如果num=1的话，就输出flag。<br>阅读完代码后，这的确很矛盾，要等于1又不能是数字，这不是扯淡吗，这时候就要联想到几种表示结果=1的方式了。首先可以采用what=3-2这种等式试试，很遗憾直接输出3-2；之后采用科学记数法试试1e,直接得出flag,学过C语言知道，科学记数法是一种浮点数,而在url中用1e的方式不会被认为是数字，反而会被认为是数字加字符的一种字符串；还可以采用其他方式，使用1与其他字符的组合，比如1%00–%00是空格的url编码，还可以1xxxxxx等等都可以。<br>6.web3(<a href="http://123.206.87.240:8002/web3/" title="flag就在这里" target="_blank" rel="noopener">http://123.206.87.240:8002/web3/</a>)<br>进入链接后有一个弹窗（flag就在这里）并且可以看到页面一直处于刷新状态，打开f12后无果，由于一直读取看不到内容，接着打开burpsuite进行抓包查看，将抓到http发送给repeater中继器进行go，可以看到页面的反馈信息的最后一栏出现了<!--&#75;&#69;&#89;&#123;&#74;&#50;&#115;&#97;&#52;&#50;&#97;&#104;&#74;&#75;&#45;&#72;&#83;&#49;&#49;&#73;&#73;&#73;&#125;-->这是一种编码方式，再进入Bp的decoder中进行解码，这是一种html编码所以采用html解码，即可得出flag.<br>summary:关于这个题，我由于前期只会用火狐的插件或者是查看代码，而受到了一定的限制，在做题方面，关于抓包工具BP的学习对于信安学习是非常重要的，关于它的代理，中继器，解码器以及爆破等等重要操作都要熟练的运用。关于这道题，进去之后F12没有结果可以使用抓包，但其实更简单的还可以采用ctrl+u查看源代码也能发现那些提示编码，之后在浏览器中的在线html解码也可以，只是本人想利用这个简单的小题熟练使用下抓包的过程。<br>7.域名解析（听说把 flag.baidu.com 解析到123.206.87.240 就能拿到flag）<br>关于域名解析这点我百度后是这样的解释：比如，一个域名为abc.com，是想看到这个的HTTP服务,如果要访问网站,就要进行解析,首先在域名注册商如阳光互联等那里通过专门的DNS服务器解析到一个WEB服务器的一个固定IP上:211.214.1.XXX，然后,通过WEB服务器来接收这个域名abc.com这个域名映射到这台服务器上。那么,输入abc.com这个域名就可以实现访问网站内容了.即实现了域名解析的全过程.<br>关于本地的域名解析是在一个文件中进行的（windows/system32/drivers/etc/hosts）在这个文件中以管理员权限输入flag.baidu.com 空格 123.206.87.240即可完成解析。<br>接下来进行方法2的尝试使用BP进行抓包：抓包时一定抓IP地址形式的包这样服务器肯定是可以解析的，之后再BP中将host一栏改为flag.baidu.com即把flag.baidu.com解析到了123.206.87.240，但这个过程交换二者顺序便不行。关于这点个人理解：首先IP地址是服务器可以直接解析的，但域名需要DNS服务器解析成IP地址才能进一步识别，因而可以将IP的HOST改为域名也即达到了手动解析。<br>8.你必须让他停下来(<a href="http://123.206.87.240:8002/web12/" title="让他停下来" target="_blank" rel="noopener">http://123.206.87.240:8002/web12/</a>)<br>进入连接后，发现页面会无限刷新，页面上的提示信息也说了让页面停下来就会给我们flag，直接BP抓包，抓包后会看到页面没有无限刷新了，这时候用f12打开查看器可以看到flag了。那么为什么这种方法可行呢，我个人理解是BP在抓包时后的代理代替了浏览器成为了一个中介，现在这些数据都在我中介这里都停住了等我修改好了才转发出去，因而抓下来后原来的浏览器代理被抢走了，它就只能停住等着我新代理拦截下来的修改后，它才能接收到正确的数据。<br>或者在BP中传入中继器中不断GO（在一次或者多次中会看到返回的响应的数据包中给出了flag）</p>
 
       
 
@@ -363,7 +366,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 John Doe
+    		&copy; 2019 xf
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten

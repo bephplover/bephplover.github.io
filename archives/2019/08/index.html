@@ -6,12 +6,12 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Hexo</title>
+  <title>Archives: 2019/8 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="a new ctfer&apos;s study">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="http://yoursite.com/archives/2019/08/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="a new ctfer&apos;s study">
 <meta property="og:locale" content="default">
@@ -155,277 +155,47 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-the-third-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
+  
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/01/the-third-day/">the third day</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/01/the-third-day/" class="archive-article-date">
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2019" class="archive-year">2019</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2019/08/01/the-third-day/" class="archive-article-date">
   	<time datetime="2019-08-01T01:09:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-01</time>
 </a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>9.本地包含(<a href="http://123.206.87.240:8003/" title="本地包含" target="_blank" rel="noopener">http://123.206.87.240:8003/</a>)<br>进入链接后，发现如下代码：<br>  &lt;?php<br>   error_reporting(0);</p>
-<p>   include ‘flag.php’;<br>   $a = @$<em>REQUEST[‘hello’];<br>   eval(“ var_dump( $a );”);<br>   highlight_file(<em>_FILE</em></em>);<br>   ?&gt; </p>
-<p>&emsp;&emsp;又是一道代码审计的题目，第二行的error_reporting(0),是关闭错误报告。第4行使用了include函数包含了一个flag.php.第五行是说变量a是由request方式传入的hello的值。(搜了一下@$_REQUEST 的意思是获得参数，不论是@$_GET还是@$_POST可以得到的参数@$_REQUEST都能得到。)</p>
-<p>&emsp;&emsp;第六行的eval函数还不太熟悉，经查验它的用法是把字符串按照PHP代码来计算，该字符串必须是合法的PHP代码，且必须以分号结尾，如果没有在代码字符串中调用return语句，则返回NULL如果代码中存在解析错误则返回false.其实看到这里我不是很明白他的用法，但括号里面的var_dump是以数组对应的形式输出变量a.最后一行代码是显示<em>FILE</em>.<br>&emsp;&emsp;读完代码依然不是很清楚解题思路,先从其中具体的函数分析，首先是eval里面的var_dump函数，上文说过它是输出变量的数组表示形式，但这个函数还有一个很特殊的地方是它是代码片段执行，也就是说变量a可以是几串代码的组合形式，然后再被var_dump一起显示出来，首先测试了一下？hello=1);print_r(2 —对于这里hello=1后面加的括号我很懵逼，对于新手的我赶紧查阅了资料，原来跟sql注入的引号是一个原理啊，哈哈—默默感到自己蠢了。不说废话了，接下来应该测试将flag.php显示出来，首先任然使用hello=1);进行闭合，之后写入关键语句show_source(‘flag.php’);—show_source即highlight的别名也为高亮度显示文件内容，括号内为文件名。也就是以get形式传给request,在URL中的payload为？hello=1）;show_source(‘flag.php’<br>&emsp;&emsp;以上为阅览多篇wp自己总结下来的，就这样得到了flag.<br>&emsp;&emsp;summary:这次应该做一次很深刻的反省了。第一自己的PHP学习的实在太差了，对于关键的函数掌握的非常浅显，因而还亟需补给一下自己的PHP知识。第二关于代码的审计，其实就几行代码很好理解，但是对于其利用自己还是没有那种意思去构造，去绕过，比如这里的eval函数是执行其中的代码串，由于其中有一个变为输出数组的函数因而采用sql注入中闭合的类似用法括号闭合因而绕过var_dump,之后的；也须使用一个var_dump来闭合，然后中间部分写入payload，即show_source(‘flag.php’),让其直接显示出flag.此题解法还有很多，不同人写出的payload不尽相同，但我更能理解自己的这一种方法。</p>
-<p>要点：<br>eval() 函数存在命令执行漏洞，构造出文件包含会把字符串参数当做代码来执行。<br>file() 函数把整个文件读入一个数组中，并将文件作为一个数组返回。<br>10.变量1（<a href="http://123.206.87.240:8004/index1.php" title="flag in the variable!" target="_blank" rel="noopener">http://123.206.87.240:8004/index1.php</a>）<br>&emsp;&emsp;首先进入链接，会看到提示信息说是flag在变量中。以下是提示代码内容：<br>&lt;?php  </p>
-<p>error_reporting(0);<br>include “flag1.php”;<br>highlight_file(<strong>file</strong>);<br>if(isset($_GET[‘args’])){<br>    $args = $_GET[‘args’];<br>    if(!preg_match(“/^\w+$/“,$args)){<br>        die(“args error!”);<br>    }<br>    eval(“var_dump($$args);”);<br>}<br>?&gt;<br>&emsp;&emsp;第三行就不说了关闭错误报告，也就是不给错误回显。又是一个include函数包含了flag1.php.下一行依旧提示会高亮显示文件内容。之后是关键的条件语句。如果以get方式设置了args这个参数，那么args变量就为那个参数的值，如果args不匹配正则表达式的内容的话，就报错，最后一行任是一个eval函数执行里面的输出数组函数。可以看到很有趣的是var_dump函数中写的是$$args.<br>&emsp;&emsp;接下来去url中进行尝试。首先我输入了？args=args,很明显输出了args的数组对应形式–string(4)”args”,这里设置了args,并且变量args的内容也为args,因而这样条件判断下来输出了args的var_dump形式。这里还须对正则表达式的理解，首先是//这是括号里面的两个分界，也就是说处于这里面的内容是正则表达式需要匹配的内容。^是匹配其首部，而$正好为匹配其尾部，\w代表的是匹配包括下划线的字符串—记忆的话因为w是word的缩写，因而应当为匹配字符。可以看到后面还有个+号，它是匹配前面的子表达式一次或多次。例如zo+能匹配zo以及zoo但不能匹配z。<br>综上也就是args要为一个字符串否则就报错。但是很明显如果args为其他变量，很明显应该在没有设置的情况下都为Null.因而接下来测试采用很特殊的超全局变量$GLOBALS进行测试—对于$GLOBALS的学习，这种全局变量在PHP脚本中的任意位置访问全局变量，从函数或方法中均可，PHP在$GLOBLAS[index]的数组中存储了所有的全局变量。变量的名字就是数组的键。例如如果有变量$x=74,那么采用$GLOBALS[‘x’]就能访问到它。<br>最后在Url中写入payload,为？args=$GLOBALS,得到flag.<br>&emsp;&emsp;summary:这道题我还算做的可以，主要是对正则表达式的理解以及preg_match函数掌握的还可以。最关键的是懂得利用$GLOBALS这个超全局变量，便能显示出所有的变量内容，再根据提示flag在变量中便拿下来了flag.</p>
-<p>关于今天一天的总结:虽然每天的学习只有两个小时，并且今天只做了2道题，并且还是很早前做过的，虽然之前都是跟着WP操作一遍，并没有深刻的理解，但随着自己的博客的记录我觉得自己对于php代码的理解与审计加深了，今天这一天的题都是代码审计，最关键的就是对于PHP函数的重复理解以及利用，对此我还需要下去更深刻的去测试与理解，像C语言一样理解每一个东西都去自己敲一遍，去执行一下看一下结果，去测试那些语言的用法只有这样自己才能记得住，下次遇到才不会一脸懵，然后再去查php手册，that’s all.</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/01/the-third-day/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
         </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-second-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+    	 
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/31/second-day/">second day</a>
+      <a class="archive-article-title" href="/2019/08/01/the-third-day/">the third day</a>
     </h1>
   
 
-        
-        <a href="/2019/07/31/second-day/" class="archive-article-date">
-  	<time datetime="2019-07-31T00:41:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-31</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>2.web2(<a href="http://123.206.87.240:8002/web2/" target="_blank" rel="noopener">http://123.206.87.240:8002/web2/</a>)<br>点入链接，发现全是滑稽图，很有趣，养成好习惯首先F12,或者ctrl+u查看源代码，源代码中直接显示出了flag.<br>3.web基础$_GET(<a href="http://123.206.87.240:8002/get/" title="web基础$_GET" target="_blank" rel="noopener">http://123.206.87.240:8002/get/</a>)<br>点入链接会发现以下代码，终于开始接触简单的代码审计了，如下所示：<br>$what=$_GET[‘what’];<br>echo $what;<br>if($what==’flag’)<br>echo ‘flag{<strong><strong>}’;<br>my understand：what变量的值由get方法输入得到，并且输出what,如果what的值等于flag就给我们flag，很明显是让我们学习下get的用法，用get这种方式传参数会直接在url栏中看见，因而上传get，也可以直接在url中输入，于是在url中加入？what=flag,flag即出来了。<br>关于这个？为什么要加的问题？之前看到过是文件路径和参数间的一种分隔符用以区别，前面是url文件路径，后面是添加参数所以用？分隔来区分。<br>4.web基础$_POST(<a href="http://123.206.87.240:8002/post/" title="web基础$_post" target="_blank" rel="noopener">http://123.206.87.240:8002/post/</a>)<br>首先点入链接，和上道题很类似，但是这次考的是POST的输入方式，进入后给的代码如下：<br>$what=$_POST[‘what’];<br>echo $what;<br>if($what==’flag’)<br>echo ‘flag{</strong></strong>}’;<br>代码意思和3题类似，但是what变量的值用Post方式输入得到，这时候就要利用工具了，因为Post方式是在Url中看不见的，使用firefox自带的插件hackbar quantum传入，在下面的post data框中直接输入what=flag,flag就出来了。也即满足代码要求。<br>5.矛盾(<a href="http://123.206.87.240:8002/get/index1.php" title="矛盾" target="_blank" rel="noopener">http://123.206.87.240:8002/get/index1.php</a>)<br>进入链接，有以下提示代码：<br>$num=$_GET[‘num’];<br>if(!is_numeric($num))<br>{<br>echo $num;<br>if($num==1)<br>echo ‘flag{<strong><strong>**</strong></strong>}’;<br>}<br>审计代码大致意思是：num由get方式传入，如果num是个数字，就输出它的值，如果num=1的话，就输出flag。<br>阅读完代码后，这的确很矛盾，要等于1又不能是数字，这不是扯淡吗，这时候就要联想到几种表示结果=1的方式了。首先可以采用what=3-2这种等式试试，很遗憾直接输出3-2；之后采用科学记数法试试1e,直接得出flag,学过C语言知道，科学记数法是一种浮点数,而在url中用1e的方式不会被认为是数字，反而会被认为是数字加字符的一种字符串；还可以采用其他方式，使用1与其他字符的组合，比如1%00–%00是空格的url编码，还可以1xxxxxx等等都可以。<br>6.web3(<a href="http://123.206.87.240:8002/web3/" title="flag就在这里" target="_blank" rel="noopener">http://123.206.87.240:8002/web3/</a>)<br>进入链接后有一个弹窗（flag就在这里）并且可以看到页面一直处于刷新状态，打开f12后无果，由于一直读取看不到内容，接着打开burpsuite进行抓包查看，将抓到http发送给repeater中继器进行go，可以看到页面的反馈信息的最后一栏出现了<!--&#75;&#69;&#89;&#123;&#74;&#50;&#115;&#97;&#52;&#50;&#97;&#104;&#74;&#75;&#45;&#72;&#83;&#49;&#49;&#73;&#73;&#73;&#125;-->这是一种编码方式，再进入Bp的decoder中进行解码，这是一种html编码所以采用html解码，即可得出flag.<br>summary:关于这个题，我由于前期只会用火狐的插件或者是查看代码，而受到了一定的限制，在做题方面，关于抓包工具BP的学习对于信安学习是非常重要的，关于它的代理，中继器，解码器以及爆破等等重要操作都要熟练的运用。关于这道题，进去之后F12没有结果可以使用抓包，但其实更简单的还可以采用ctrl+u查看源代码也能发现那些提示编码，之后在浏览器中的在线html解码也可以，只是本人想利用这个简单的小题熟练使用下抓包的过程。<br>7.域名解析（听说把 flag.baidu.com 解析到123.206.87.240 就能拿到flag）<br>关于域名解析这点我百度后是这样的解释：比如，一个域名为abc.com，是想看到这个的HTTP服务,如果要访问网站,就要进行解析,首先在域名注册商如阳光互联等那里通过专门的DNS服务器解析到一个WEB服务器的一个固定IP上:211.214.1.XXX，然后,通过WEB服务器来接收这个域名abc.com这个域名映射到这台服务器上。那么,输入abc.com这个域名就可以实现访问网站内容了.即实现了域名解析的全过程.<br>关于本地的域名解析是在一个文件中进行的（windows/system32/drivers/etc/hosts）在这个文件中以管理员权限输入flag.baidu.com 空格 123.206.87.240即可完成解析。<br>接下来进行方法2的尝试使用BP进行抓包：抓包时一定抓IP地址形式的包这样服务器肯定是可以解析的，之后再BP中将host一栏改为flag.baidu.com即把flag.baidu.com解析到了123.206.87.240，但这个过程交换二者顺序便不行。关于这点个人理解：首先IP地址是服务器可以直接解析的，但域名需要DNS服务器解析成IP地址才能进一步识别，因而可以将IP的HOST改为域名也即达到了手动解析。<br>8.你必须让他停下来(<a href="http://123.206.87.240:8002/web12/" title="让他停下来" target="_blank" rel="noopener">http://123.206.87.240:8002/web12/</a>)<br>进入连接后，发现页面会无限刷新，页面上的提示信息也说了让页面停下来就会给我们flag，直接BP抓包，抓包后会看到页面没有无限刷新了，这时候用f12打开查看器可以看到flag了。那么为什么这种方法可行呢，我个人理解是BP在抓包时后的代理代替了浏览器成为了一个中介，现在这些数据都在我中介这里都停住了等我修改好了才转发出去，因而抓下来后原来的浏览器代理被抢走了，它就只能停住等着我新代理拦截下来的修改后，它才能接收到正确的数据。<br>或者在BP中传入中继器中不断GO（在一次或者多次中会看到返回的响应的数据包中给出了flag）</p>
+        <div class="article-info info-on-right">
+          
+          
 
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/07/31/second-day/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
-    <article id="post-my-first-blog" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
+  
+    </div></section>
+  
+
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/25/my-first-blog/">my-first-blog</a>
-    </h1>
-  
-
-        
-        <a href="/2019/07/25/my-first-blog/" class="archive-article-date">
-  	<time datetime="2019-07-25T02:06:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>现在开始小白CTF-travel<br>咱先从最简单的题开始<br>1.计算器<br>进入后会有一个提交框，提交两数字的答案，但输入会发现框中只能输入一个数字，对于前端的学习会想到限制输入框的maxlength，前端可以在控制台看到，F12打开控制台查看源代码，可以看到maxlength=’1’将其修改为大于答案的数目输入正确答案即可拿下flag。<br>summary：对于新学习CTF的小白我来说，这个题告诉了我灵活的运用编程前端知识，然后是遇到题一定要注意打开F12或者查看源代码。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/07/25/my-first-blog/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/05/hello-world/">Hello World</a>
-    </h1>
-  
-
-        
-        <a href="/2019/07/05/hello-world/" class="archive-article-date">
-  	<time datetime="2019-07-05T13:00:51.076Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/07/05/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-  
 
 
           </div>
@@ -447,9 +217,9 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
+		isHome: false,
 		isPost: false,
-		isArchive: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

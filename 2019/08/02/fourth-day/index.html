@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>the third day | Hexo</title>
+  <title>fourth day | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="9.本地包含(http://123.206.87.240:8003/)进入链接后，发现如下代码：  &amp;lt;?php   error_reporting(0);    include ‘flag.php’;   $a = @$REQUEST[‘hello’];   eval(“ var_dump( $a );”);   highlight_file(_FILE);   ?&amp;gt;  &amp;emsp;&amp;">
+  <meta name="description" content="11.web5(http://123.206.87.240:8002/web5/)&amp;emsp;&amp;emsp;进入页面后,会看到JSPFUCK??????的提示，这里只知道一个JSP，先F12打开控制台看一下，看到网页代码中有异常部分，接着CTRL+U更清楚查看代码。可以看到form表单action=index.php，也就是以post方式提交后会转到index.php。在这代码上一行会有一些奇怪的东">
 <meta property="og:type" content="article">
-<meta property="og:title" content="the third day">
-<meta property="og:url" content="http://yoursite.com/2019/08/01/the-third-day/index.html">
+<meta property="og:title" content="fourth day">
+<meta property="og:url" content="http://yoursite.com/2019/08/02/fourth-day/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="9.本地包含(http://123.206.87.240:8003/)进入链接后，发现如下代码：  &amp;lt;?php   error_reporting(0);    include ‘flag.php’;   $a = @$REQUEST[‘hello’];   eval(“ var_dump( $a );”);   highlight_file(_FILE);   ?&amp;gt;  &amp;emsp;&amp;">
+<meta property="og:description" content="11.web5(http://123.206.87.240:8002/web5/)&amp;emsp;&amp;emsp;进入页面后,会看到JSPFUCK??????的提示，这里只知道一个JSP，先F12打开控制台看一下，看到网页代码中有异常部分，接着CTRL+U更清楚查看代码。可以看到form表单action=index.php，也就是以post方式提交后会转到index.php。在这代码上一行会有一些奇怪的东">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-01T02:44:17.219Z">
+<meta property="og:updated_time" content="2019-08-02T01:48:38.355Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="the third day">
-<meta name="twitter:description" content="9.本地包含(http://123.206.87.240:8003/)进入链接后，发现如下代码：  &amp;lt;?php   error_reporting(0);    include ‘flag.php’;   $a = @$REQUEST[‘hello’];   eval(“ var_dump( $a );”);   highlight_file(_FILE);   ?&amp;gt;  &amp;emsp;&amp;">
+<meta name="twitter:title" content="fourth day">
+<meta name="twitter:description" content="11.web5(http://123.206.87.240:8002/web5/)&amp;emsp;&amp;emsp;进入页面后,会看到JSPFUCK??????的提示，这里只知道一个JSP，先F12打开控制台看一下，看到网页代码中有异常部分，接着CTRL+U更清楚查看代码。可以看到form表单action=index.php，也就是以post方式提交后会转到index.php。在这代码上一行会有一些奇怪的东">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -154,33 +154,27 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-the-third-day" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-fourth-day" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      the third day
+      fourth day
     </h1>
   
 
         
-        <a href="/2019/08/01/the-third-day/" class="archive-article-date">
-  	<time datetime="2019-08-01T01:09:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-01</time>
+        <a href="/2019/08/02/fourth-day/" class="archive-article-date">
+  	<time datetime="2019-08-02T00:22:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-02</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>9.本地包含(<a href="http://123.206.87.240:8003/" title="本地包含" target="_blank" rel="noopener">http://123.206.87.240:8003/</a>)<br>进入链接后，发现如下代码：<br>  &lt;?php<br>   error_reporting(0);</p>
-<p>   include ‘flag.php’;<br>   $a = @$<em>REQUEST[‘hello’];<br>   eval(“ var_dump( $a );”);<br>   highlight_file(<em>_FILE</em></em>);<br>   ?&gt; </p>
-<p>&emsp;&emsp;又是一道代码审计的题目，第二行的error_reporting(0),是关闭错误报告。第4行使用了include函数包含了一个flag.php.第五行是说变量a是由request方式传入的hello的值。(搜了一下@$_REQUEST 的意思是获得参数，不论是@$_GET还是@$_POST可以得到的参数@$_REQUEST都能得到。)</p>
-<p>&emsp;&emsp;第六行的eval函数还不太熟悉，经查验它的用法是把字符串按照PHP代码来计算，该字符串必须是合法的PHP代码，且必须以分号结尾，如果没有在代码字符串中调用return语句，则返回NULL如果代码中存在解析错误则返回false.其实看到这里我不是很明白他的用法，但括号里面的var_dump是以数组对应的形式输出变量a.最后一行代码是显示<em>FILE</em>.<br>&emsp;&emsp;读完代码依然不是很清楚解题思路,先从其中具体的函数分析，首先是eval里面的var_dump函数，上文说过它是输出变量的数组表示形式，但这个函数还有一个很特殊的地方是它是代码片段执行，也就是说变量a可以是几串代码的组合形式，然后再被var_dump一起显示出来，首先测试了一下？hello=1);print_r(2 —对于这里hello=1后面加的括号我很懵逼，对于新手的我赶紧查阅了资料，原来跟sql注入的引号是一个原理啊，哈哈—默默感到自己蠢了。不说废话了，接下来应该测试将flag.php显示出来，首先任然使用hello=1);进行闭合，之后写入关键语句show_source(‘flag.php’);—show_source即highlight的别名也为高亮度显示文件内容，括号内为文件名。也就是以get形式传给request,在URL中的payload为？hello=1）;show_source(‘flag.php’<br>&emsp;&emsp;以上为阅览多篇wp自己总结下来的，就这样得到了flag.<br>&emsp;&emsp;summary:这次应该做一次很深刻的反省了。第一自己的PHP学习的实在太差了，对于关键的函数掌握的非常浅显，因而还亟需补给一下自己的PHP知识。第二关于代码的审计，其实就几行代码很好理解，但是对于其利用自己还是没有那种意思去构造，去绕过，比如这里的eval函数是执行其中的代码串，由于其中有一个变为输出数组的函数因而采用sql注入中闭合的类似用法括号闭合因而绕过var_dump,之后的；也须使用一个var_dump来闭合，然后中间部分写入payload，即show_source(‘flag.php’),让其直接显示出flag.此题解法还有很多，不同人写出的payload不尽相同，但我更能理解自己的这一种方法。</p>
-<p>要点：<br>eval() 函数存在命令执行漏洞，构造出文件包含会把字符串参数当做代码来执行。<br>file() 函数把整个文件读入一个数组中，并将文件作为一个数组返回。<br>10.变量1（<a href="http://123.206.87.240:8004/index1.php" title="flag in the variable!" target="_blank" rel="noopener">http://123.206.87.240:8004/index1.php</a>）<br>&emsp;&emsp;首先进入链接，会看到提示信息说是flag在变量中。以下是提示代码内容：<br>&lt;?php  </p>
-<p>error_reporting(0);<br>include “flag1.php”;<br>highlight_file(<strong>file</strong>);<br>if(isset($_GET[‘args’])){<br>    $args = $_GET[‘args’];<br>    if(!preg_match(“/^\w+$/“,$args)){<br>        die(“args error!”);<br>    }<br>    eval(“var_dump($$args);”);<br>}<br>?&gt;<br>&emsp;&emsp;第三行就不说了关闭错误报告，也就是不给错误回显。又是一个include函数包含了flag1.php.下一行依旧提示会高亮显示文件内容。之后是关键的条件语句。如果以get方式设置了args这个参数，那么args变量就为那个参数的值，如果args不匹配正则表达式的内容的话，就报错，最后一行任是一个eval函数执行里面的输出数组函数。可以看到很有趣的是var_dump函数中写的是$$args.<br>&emsp;&emsp;接下来去url中进行尝试。首先我输入了？args=args,很明显输出了args的数组对应形式–string(4)”args”,这里设置了args,并且变量args的内容也为args,因而这样条件判断下来输出了args的var_dump形式。这里还须对正则表达式的理解，首先是//这是括号里面的两个分界，也就是说处于这里面的内容是正则表达式需要匹配的内容。^是匹配其首部，而$正好为匹配其尾部，\w代表的是匹配包括下划线的字符串—记忆的话因为w是word的缩写，因而应当为匹配字符。可以看到后面还有个+号，它是匹配前面的子表达式一次或多次。例如zo+能匹配zo以及zoo但不能匹配z。<br>综上也就是args要为一个字符串否则就报错。但是很明显如果args为其他变量，很明显应该在没有设置的情况下都为Null.因而接下来测试采用很特殊的超全局变量$GLOBALS进行测试—对于$GLOBALS的学习，这种全局变量在PHP脚本中的任意位置访问全局变量，从函数或方法中均可，PHP在$GLOBLAS[index]的数组中存储了所有的全局变量。变量的名字就是数组的键。例如如果有变量$x=74,那么采用$GLOBALS[‘x’]就能访问到它。<br>最后在Url中写入payload,为？args=$GLOBALS,得到flag.<br>&emsp;&emsp;summary:这道题我还算做的可以，主要是对正则表达式的理解以及preg_match函数掌握的还可以。最关键的是懂得利用$GLOBALS这个超全局变量，便能显示出所有的变量内容，再根据提示flag在变量中便拿下来了flag.</p>
-<p>关于今天一天的总结:虽然每天的学习只有两个小时，并且今天只做了2道题，并且还是很早前做过的，虽然之前都是跟着WP操作一遍，并没有深刻的理解，但随着自己的博客的记录我觉得自己对于php代码的理解与审计加深了，今天这一天的题都是代码审计，最关键的就是对于PHP函数的重复理解以及利用，对此我还需要下去更深刻的去测试与理解，像C语言一样理解每一个东西都去自己敲一遍，去执行一下看一下结果，去测试那些语言的用法只有这样自己才能记得住，下次遇到才不会一脸懵，然后再去查php手册，that’s all.</p>
+        <p>11.web5(<a href="http://123.206.87.240:8002/web5/" title="web5" target="_blank" rel="noopener">http://123.206.87.240:8002/web5/</a>)<br>&emsp;&emsp;进入页面后,会看到JSPFUCK??????的提示，这里只知道一个JSP，先F12打开控制台看一下，看到网页代码中有异常部分，接着CTRL+U更清楚查看代码。可以看到form表单action=index.php，也就是以post方式提交后会转到index.php。在这代码上一行会有一些奇怪的东西([][(![]+[])[+[]]+([![]]+[][[]])[+!+[]+[+[]]]这个应该是一种代码的什么运算或者表示形式，百度一下。可以知道这个是JS的一种操作符，对应的应该是一串字符串。回到最先的首页，还有一个表单输入框，输入一个’号先，提示再好好看看，这时候查看源代码任能发现一大长串的JS操作符，那么接下来把他们全部复制下来，尝试破解它。之前在一博文中看见过这种类似的JS操作符可以直接在浏览器F12的控制台经行”翻译”将刚才的代码直接复制上去，便得到了flag.但此时的flag是小写的，将其输入表单框不行，可以看到提示都是大写，那我们就换做大写，成功通过。<br>&emsp;&emsp;summary:这次这个编码，我还不是很了解，之前我认为是JS的一种操作符，后面查了多种资料知道了这是JS的jother编码，而F12里的控制台正好可以解码jother的编码，于是顺利解题。因而知识点的丰富对于CTF的学习尤为重要，一定要同时有前端和后端的熟练知识体系以及运用才能更为清晰方便的解出CTF的题。<br>12.头等舱(<a href="http://123.206.87.240:9009/hd.php" title="头等舱" target="_blank" rel="noopener">http://123.206.87.240:9009/hd.php</a>)<br>&emsp;&emsp;进入页面后，出题人真调皮，提示什么也没有，那就F12。查看了它的网络流量包以及源代码后均无果，还真是什么也没有那就用BP抓包再看一下。欸，抓包也什么都没有，那只有从这个hd.php下手了，我们知道一般网页的主页面应该是叫做index.php,我们进入Index.php试试。404,not found。这会儿陷入死循环了，题目是头等舱，然后进去后什么都没有，按理说这个头等舱应该指的是数据包的头文件之类的应该有什么提示才对。在这个时候我想起了bp还有一个中继器无限转包，我得进行最后的尝试，否则只能去看别人的WP了。哈哈果然在raw的response包中出现了flag.<br>&emsp;&emsp;summary:关于这个题,我做的还是比较迷茫的，就那种不知道怎么回事就出来了flag,因而我上网查询了一下关于这个中继器转发。这之后我明白了自己的问题，在解题是虽然F12以及抓包观察了数据包,但这些都是请求包,我还应该观察该网页的响应数据包,因而去中继器中进行GO便可以对比,并可清晰的观察响应的数据包,到这里我大概有了新一步的解题思路。当然这不仅仅是解题思路，更需要加深的是做黑盒处理时对一个网页的全面分析培养这样的能力才能使得自己以后能有挖洞的机会,咱看了代码审计还是得去尝试下吧。<br>13.网站被黑(<a href="http://123.206.87.240:8002/webshell/" target="_blank" rel="noopener">http://123.206.87.240:8002/webshell/</a>)<br>&emsp;&emsp;点进去后提示是你的网站存在漏洞，请及时修复，还有个什么中国灰客联盟。存在漏洞的话，那就用一个扫漏洞的工具扫扫看下是什么漏洞,这里我用的是御剑。用之前先把各种管家退出，等会儿又给我隔离了。将域名输入上去，开始扫描。果然有收获，扫出来一个index.php和一个shell.php那么查看一下这个shell.php看一下，打开后可以看到一个webshell框，并且让我输入一个PASS。看到这很明显登陆就会有下一步提示了，这让我猜解密码，BP暴力破解打开！抓包后送到intruder然后设置好这些爆破方式，将密码字典加入后开始爆破。欸等一下。。搞忘了还要先随便提交个密码呀，哎呀我这真是傻到家了回去重新一次来。我嫌它太慢，于是线程改了个100哇一下就爆破完了，点击length，可以看到有一个不太一样的hack，回到网页输入它，拿下flag.<br>&emsp;&emsp;summary:这道题我可谓是一帆风顺，一路走到了底。能这么顺利主要应该是以前进行过类似的操作，用过御剑，按它的提示，我直接就想到了用一个扫漏器进行扫后台，并且它的域名中也有webshell这样的提示应该就是后台的问题，存在后台并且进入它便拿下了flag.关于这次的爆破也算是对BP的Intruder功能的熟练使用了,对BP的熟练也是分析网页的一个必须要求。<br>14.管理员系统(<a href="http://123.206.31.85:1003/" title="管理员系统" target="_blank" rel="noopener">http://123.206.31.85:1003/</a>)<br>&emsp;&emsp;进入页面后竟然就是一个像我做的一个登陆框哈哈，够简陋，这都不是重点，等一下这是让我破解账号和密码吗，还是要我SQL注入。emmm…先F12吧在网页源代码中发现了一个提示<!--dGVzdDEyMw==-->这个后面一个==应该是Base64加密去BP里面解密一下。解密出一个test123,应该是用户名吧输入进去再随便输入一个密码爆破试试。但我觉得应该是爆破不出来的，因为前道题才考了爆破应该会换个知识点。 欸果然是这样。再去页面上尝试输入错误的密码试试，欸欸欸IP禁止访问，请联系本地管理员登陆，IP已被记录。看样子这是根据IP来限定登陆次数的验证方式呀欸那我去换个IP来登陆。抓包后添加X-Forwarded-For字段并且用本地127.0.0.1试试。欸没有用，是不是最开始的提示没用对test123是密码吗，那用户名是啥，先随便输入个123再试试变换IP.转发包后还是没用，应该还是需要正确的用户名，管理员的话，，用admin试试，将用户名改为admin后试试，成功！，得到了一串英文和数字的组合体，先试试这是不是flag.OK,拿下Flag.<br>&emsp;&emsp;summary:这道题就涉及到一个新的知识点了,关于http数据包中头文件中修改IP的问题。就是X-Forwarded-For,关于这个我是再代码审计上看到过所以知道的，再根据它的提示IP被锁定因而想到换IP去转发因该会有效，关于账户和密码的猜解，也还算简单，一般很多默认登陆名就为admin,然后密码是源代码中提示的，这道题我收获也还挺大的，关于http头部数据的学习以及对一些弱口令的猜解。<br>&emsp;&emsp;all the summary:今天这一个半小时，总计做了4道CTF题，很多题我以前见过类似的因而很顺利，所以凡事都是熟能生巧，巧能生法，在我们做某些事不是很厉害的时候，那就坚持做它个1W个小时，那我肯定也有一天成为小佬吧，诶诶！</p>
 
       
 
@@ -260,7 +254,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/08/01/the-third-day/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/08/02/fourth-day/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -274,18 +268,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/08/02/fourth-day/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          fourth day
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/07/31/second-day/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">second day</div>
+    <a href="/2019/08/01/the-third-day/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">the third day</div>
       <i class="icon-circle-right"></i>
     </a>
   

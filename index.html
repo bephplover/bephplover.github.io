@@ -155,6 +155,70 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-sixth-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/04/sixth-day/">sixth-day</a>
+    </h1>
+  
+
+        
+        <a href="/2019/08/04/sixth-day/" class="archive-article-date">
+  	<time datetime="2019-08-04T01:00:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>18.输入密码查看flag(<a href="http://123.206.87.240:8002/baopo/" title="输入密码查看flag" target="_blank" rel="noopener">http://123.206.87.240:8002/baopo/</a>)<br>&nmsp;&nmsp;进入页面后是一个输入框，提示请输入5为数密码查看获取密码可联系我，，这道题直接整一个5位数的密码字典暴力破解试试，之前在网上找到了一个生成字典的工具—superdic。先生成一个全是5为数字的字典，打开BP,抓包送入intruder，选中pwd加入字典进行爆破。老规矩，100线程哈哈，好了已经出来了，13579，咱输入进去试试，拿下Flag.<br>&nmsp;&nmsp;summary:这个题。。送分题，爆破常识了，可以当作熟练运用了BP的proxy和Intruder了吧。以及这个工具superdic还挺有意思的，我得了解一下它是用什么语言写的，逻辑处理大概是怎么的，增加自己的编程思维能力。<br>19.备份是个好习惯(<a href="http://123.206.87.240:8002/web16/" title="备份是个好习惯" target="_blank" rel="noopener">http://123.206.87.240:8002/web16/</a>)<br>&nmsp;&nmsp;进入页面后出现了一大长串的数字小写字母的组合，像是加密了什么，先查看F12看看还有没有其他线索。无其他多余提示，题目最开始标题就是备份是个好习惯，那么怎么样才能备份呢，这个我就不知道了，搜索一下，首先我知道了备份文件后缀名是.bak,然后尝试打开index.bak.无果，index.php.bak成功打开，，这我有点奇怪为啥这个备份文件要这样命名。上网后查知大部分的PHP文件的备份文件就是这样命名的，get.输入后发现需要下载一个文件，下载后我用txt打开。<br>发现如下代码：<br>&lt;?php<br>include_once “flag.php”;<br>ini_set(“display_errors”, 0);<br>$str = strstr($_SERVER[‘REQUEST_URI’], ‘?’);<br>$str = substr($str,1);<br>$str = str_replace(‘key’,’’,$str);<br>parse_str($str);<br>echo md5($key1);</p>
+<p>echo md5($key2);<br>if(md5($key1) == md5($key2) &amp;&amp; $key1 !== $key2){<br>    echo $flag.”取得flag”;<br>}<br>?&gt;<br>&nmsp;&nmsp;阅读代码，首先它包含了flag.php,这个不用说肯定包含然后满足条件就能打开，之后是不显示错误，给str变量赋值一个request方式传入的任意值，把str的第一个字符去掉，如果出现了key字符那么将被替代为空格，说明str,输出md5的key1变量，输出md5的key2变量，如果md5key1=md5key2并且，他们两个本身的变量值不相同，则取得flag.这儿很奇怪的是key1和key2的值怎么来的，这儿把str看作是key1和key2,再去url中手动输入，试试。随便试了他们两个相同的情况，无结果。Md5函数有个缺陷，我们可以利用这个缺陷来满足条件，当它加密数组的时候都会返回null,因而任意两个数组都会变为null.但这儿还有个问题就是key会被过滤为空格，这种上课学xss的初级绕过replace函数就知道可以用双写来绕过，那么我们构造?kkeyey1[]=asdf&amp;kkeyey2[]=qwer来试试。拿下flag，对于这道题我想也许还有其他方法，这种方法很特殊利用了md5的缺陷，因而最普遍的其实还应该让0=0，1=1这种构造特殊数字的。1=1显然不可取，选0=0.让一些数Md5后=0e…上网搜索了这样的数字，有QNKCDZO<br>240610708<br>s878926199a<br>s155964671a<br>s214587387a<br>s214587387a<br>这么六个，再次构造?kkeyey1[]=s878926199a&amp;kkeyey2[]=QNKCDZO进行尝试。取得flag.<br>&nmsp;&nmsp;summary:这道题我拿到了有一点儿小懵，首先我尝试了很多次关于那个后缀文件的打开，我没有想到竟然是重叠后缀这样的写法，打开后对于代码的审计要稍微熟悉一点了，之前阅读过很多的一样函数了，因而稍微轻松一点，但其中的细节我任然有些不清楚，比如这个$str = strstr($_SERVER[‘REQUEST_URI’], ‘?’);我还得下去继续搞清楚一下;关于那个.bak文件的得出，看到其他博主还有更高明的方法，那就是用网页后台扫描器，御剑什么的都可以直接就能扫描出这个文件，比我在这里瞎猜好多了。再来说说刚没看到那两行代码，strstr获得URI从’?’往后(包括’?’)的字符串，$str = substr($str,1);行去掉’?’。这儿的意思就是从URI中获取从?后面的字符串。也就是我们构造的语句?后面的。<br>20.成绩单()<a href="http://123.206.87.240:8002/chengjidan/" title="成绩单" target="_blank" rel="noopener">http://123.206.87.240:8002/chengjidan/</a><br>&nmsp;&nmsp;进入页面会看到一个输入框，说是成绩查询，里面还有虚写的1,2,3…这题一看应该是一道sql注入题。用’进行检查，果然出现了下面成绩的显示框，进行’检验有结果应该是字符型的注入题，然后使用id=1’试试任然有下面显示框，那么继续使用id=1’ union select 1,2,3,4 #发现任有正确回显。因而说明大概有四个字段，接下来先是暴库，使用id=0’ union select 1,user(),version(),database() # #这样还可以爆出用户名与版本可以看到数据库名为skctf_flag。接下来开始爆表，id=0’ union select 1,2,3,group_concat(table_name) from information_schema.tables where table_schema=database() #查出表名是fl4g,继续爆字段名id=0’ union select 1,2,3,group_concat(column_name) from information_schema.columns where table_schema=database() #,查出字段名是skctf_flag，获取字段内容id=0’ union select 1,2,3,skctf_flag from fl4g #,拿下flag.<br>&nmsp;&nmsp;summary:这道题也许是我遇到自己的瓶颈了sql注入，这个题原理很简单，也没进行什么过滤，只是我不太清楚这个group_concat的用法，以及我得hackbar出问题了post不上去数据，只能在输入框中手工输入，查看很麻烦，之后我得再去尝试下sqlmap那个工具的使用，这道题暂且放这里了，等后面在多做一些sql注入再谈一下。<br>&nmsp;&nmsp;summary:今天就先到这里了，身体很重要，由于肚子不舒服不能继续了，但今天也到了我得瓶颈期了，之前的题目都太容易动手敲代码的太少导致今天的这道sql注入不是很理想，因而下来还需要多了解相关内容，然后多重复做一下这道sql注入题，sql注入常年占据漏洞排行榜第一，因而其危害性不言而喻，因而学好sql注入对于我的安全还是CTF都是至关重要的，前面两道题都是些补充常识题，例如备份文件后缀名是.bak文件以及，有时候网页内有隐藏提示文件可以用扫描工具或者大佬写的脚本扫描出来帮助解题。我觉得这样比猜解好，不过猜解也好，发挥自己的想象能力，诶诶，over.</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/08/04/sixth-day/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-fifth-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     

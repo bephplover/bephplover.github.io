@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="21.秋名山老司机(http://123.206.87.240:8002/qiumingshan/)&amp;emsp;&amp;emsp;进入页面，提示我在2S内计算老司机的车速是多少，妈耶，十多亿数量级的加法2S内完成。手工肯定不行，这得考计算机，这个就涉及到我的知识盲区了，但我知道应该是能用一个脚本2S内提交其答案。百度吧，学习下其他人的解法。由于此前从未学习过Python对于其脚本的运行报错一大堆，目前正">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-06T02:41:02.820Z">
+<meta property="og:updated_time" content="2019-08-06T02:43:35.268Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="seventh-day">
 <meta name="twitter:description" content="21.秋名山老司机(http://123.206.87.240:8002/qiumingshan/)&amp;emsp;&amp;emsp;进入页面，提示我在2S内计算老司机的车速是多少，妈耶，十多亿数量级的加法2S内完成。手工肯定不行，这得考计算机，这个就涉及到我的知识盲区了，但我知道应该是能用一个脚本2S内提交其答案。百度吧，学习下其他人的解法。由于此前从未学习过Python对于其脚本的运行报错一大堆，目前正">
@@ -192,7 +192,7 @@ class Flag{//flag.php
 <pre><code>$a = new Flag();
 $a-&gt;file = &quot;flag.php&quot;;
 $a = serialize($a);
-print_r($a);</code></pre><p>?&gt;该PHP即为将传入password的值获得的php,运行后得到O:4:”Flag”:1:{s:4:”file”;s:8:”flag.php”;}之后构造：payload:?txt=php://input&amp;file=hint.php&amp;password=O:4:”Flag”:1:{s:4:”file”;s:8:”flag.php”;}转发包即可获得flag.<br>&amp;emsp&amp;emsp:summary:今天一天的题都做得很蒙蔽，前两道到现在依旧没有做出来，死在了不会python上，后一道题，对于这个序列化的问题不是很清楚因而卡了很久，并且参考别人博客自己做着也是似懂非懂，因而下来还需继续努力将其搞懂，在完全明白后我还会来继续修改这一天博客的内容，修改我错误的理解，新增我所知道了的。</p>
+print_r($a);</code></pre><p>?&gt;该PHP即为将传入password的值获得的php,运行后得到O:4:”Flag”:1:{s:4:”file”;s:8:”flag.php”;}之后构造：payload:?txt=php://input&amp;file=hint.php&amp;password=O:4:”Flag”:1:{s:4:”file”;s:8:”flag.php”;}转发包即可获得flag.<br>&emsp;&emsp;:summary:今天一天的题都做得很蒙蔽，前两道到现在依旧没有做出来，死在了不会python上，后一道题，对于这个序列化的问题不是很清楚因而卡了很久，并且参考别人博客自己做着也是似懂非懂，因而下来还需继续努力将其搞懂，在完全明白后我还会来继续修改这一天博客的内容，修改我错误的理解，新增我所知道了的。</p>
 
       
 

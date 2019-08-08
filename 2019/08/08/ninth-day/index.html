@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>ninth-day | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="26.过狗一句话(http://123.206.87.240:8010/)&amp;emsp;&amp;emsp;进入页面后提示，，此站没有flag,flag被人删了，不用在做了。这逗我呢。之前有这样的一句话提示:送给大家一个过狗一句话$poc=”a#s#s#e#r#t”; $poc_1=explode(“#”,$poc); $poc_2=$poc_1[0].$poc_1[1].$poc_1[2].$poc_1[">
+  <meta name="description" content="26.过狗一句话(http://123.206.87.240:8010/)&amp;emsp;&amp;emsp;进入页面后提示，，此站没有flag,flag被人删了，不用在做了。这逗我呢。之前有这样的一句话提示:送给大家一个过狗一句话$poc=”a#s#s#e#r#t”; $poc1=explode(“#”,$poc); $poc2=$poc1[0].$poc1[1].$poc1[2].$poc1[3].$po">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ninth-day">
 <meta property="og:url" content="http://yoursite.com/2019/08/08/ninth-day/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="26.过狗一句话(http://123.206.87.240:8010/)&amp;emsp;&amp;emsp;进入页面后提示，，此站没有flag,flag被人删了，不用在做了。这逗我呢。之前有这样的一句话提示:送给大家一个过狗一句话$poc=”a#s#s#e#r#t”; $poc_1=explode(“#”,$poc); $poc_2=$poc_1[0].$poc_1[1].$poc_1[2].$poc_1[">
+<meta property="og:description" content="26.过狗一句话(http://123.206.87.240:8010/)&amp;emsp;&amp;emsp;进入页面后提示，，此站没有flag,flag被人删了，不用在做了。这逗我呢。之前有这样的一句话提示:送给大家一个过狗一句话$poc=”a#s#s#e#r#t”; $poc1=explode(“#”,$poc); $poc2=$poc1[0].$poc1[1].$poc1[2].$poc1[3].$po">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-08T03:15:14.003Z">
+<meta property="og:updated_time" content="2019-08-08T03:24:33.579Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ninth-day">
-<meta name="twitter:description" content="26.过狗一句话(http://123.206.87.240:8010/)&amp;emsp;&amp;emsp;进入页面后提示，，此站没有flag,flag被人删了，不用在做了。这逗我呢。之前有这样的一句话提示:送给大家一个过狗一句话$poc=”a#s#s#e#r#t”; $poc_1=explode(“#”,$poc); $poc_2=$poc_1[0].$poc_1[1].$poc_1[2].$poc_1[">
+<meta name="twitter:description" content="26.过狗一句话(http://123.206.87.240:8010/)&amp;emsp;&amp;emsp;进入页面后提示，，此站没有flag,flag被人删了，不用在做了。这逗我呢。之前有这样的一句话提示:送给大家一个过狗一句话$poc=”a#s#s#e#r#t”; $poc1=explode(“#”,$poc); $poc2=$poc1[0].$poc1[1].$poc1[2].$poc1[3].$po">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -174,14 +174,14 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>26.过狗一句话(<a href="http://123.206.87.240:8010/" title="过狗一句话" target="_blank" rel="noopener">http://123.206.87.240:8010/</a>)<br>&emsp;&emsp;进入页面后提示，，此站没有flag,flag被人删了，不用在做了。这逗我呢。之前有这样的一句话提示:<br>送给大家一个过狗一句话<br>$poc=”a#s#s#e#r#t”;<br> $poc_1=explode(“#”,$poc);<br> $poc_2=$poc_1[0].$poc_1[1].$poc_1[2].$poc_1[3].$poc_1[4].$poc_1[5];<br> $poc_2($_GET[‘s’])<br>&emsp;&emsp;这个应该是让我们上传一句话，但是上传点在哪，它又是怎么执行的呢。再打开页面与F12中均未发现有用部分，我们打开BP抓包试试。任无果，因而只能分析这个一句话了。首先可以看到poc变量是一个被#分隔开的assert,而assert函数是判断一个表达式是否成立。下一段是让&amp;poc_1=打散后成为数组的&amp;poc.数组中从0-&gt;5分别是assert六个字母。下一段是让poc_2=assert.最后是assert($_GET[‘s’]).感觉最后拼凑了一句话木马出来。进行百度后发现存在这种一句话木马的可以使用?s=print_r(scandir(‘./‘))进行目录扫描以发现代码的执行漏洞，还可以利用此漏洞查询其他文件，例如hosts.为什么这种方式可行呢。首先$_GET[s]确保了s能直接从url中输入值，其次是assert会执行输入的值，导致了用户的输入恶意代码被执行，现在去试试相关查询。使用payload：?s=print_r(scandir(‘./‘))  扫描目录使用这会看到f14g.txt访问便拿下了.如果要读区hosts里面的内容也就应该扫描上级目录scandir(‘../‘).而再次使用fopen与readfile()函数就能读取文件?s=print_r(readfile(‘../etc/hosts’))fopen写法类似，后面还需加个,”r”但此题有些问题无法访问。就这样读取到了hosts文件。<br>&emsp;&emsp;summary:这道题，我是被不熟悉的函数卡住了，我看到了这种很想一句话木马，但我只想到上传，没有想到直接URL上构造导致任意文件读取。以及文件目录相关函数也不是很熟悉，通过这道题让我又收获了许许多多的新知识。<br>&emsp;&emsp;小记录：<br>scandir()   //作用能扫描文件夹下的目录和文件，返回值为所有文件名组成的一个数组<br>show_source()  //显示文件源码<br>highlight_file()   //和show_source()函数是一个意思<br>27.字符，正则？(<a href="http://123.206.87.240:8002/web10/" title="字符正则？" target="_blank" rel="noopener">http://123.206.87.240:8002/web10/</a>)<br>&emsp;&emsp;进入页面有如下提示代码:<br> <?php 
-highlight_file('2.php');
-$key='KEY{********************************}';
-$IM= preg_match("/key.*key.{4,7}key:\/.\/(.*key)[a-z][[:punct:]]/i", trim($_GET["id"]), $match);
+        <p>26.过狗一句话(<a href="http://123.206.87.240:8010/" title="过狗一句话" target="_blank" rel="noopener">http://123.206.87.240:8010/</a>)<br>&emsp;&emsp;进入页面后提示，，此站没有flag,flag被人删了，不用在做了。这逗我呢。之前有这样的一句话提示:<br>送给大家一个过狗一句话<br>$poc=”a#s#s#e#r#t”;<br> $poc1=explode(“#”,$poc);<br> $poc2=$poc1[0].$poc1[1].$poc1[2].$poc1[3].$poc1[4].$poc1[5];<br> $poc2($GET[‘s’])<br>&emsp;&emsp;这个应该是让我们上传一句话，但是上传点在哪，它又是怎么执行的呢。再打开页面与F12中均未发现有用部分，我们打开BP抓包试试。任无果，因而只能分析这个一句话了。首先可以看到poc变量是一个被#分隔开的assert,而assert函数是判断一个表达式是否成立。下一段是让&amp;poc1=打散后成为数组的&amp;poc.数组中从0-&gt;5分别是assert六个字母。下一段是让poc2=assert.最后是assert($GET_[‘s’]).感觉最后拼凑了一句话木马出来。进行百度后发现存在这种一句话木马的可以使用?s=print_r(scan_dir(‘./‘))进行目录扫描以发现代码的执行漏洞，还可以利用此漏洞查询其他文件，例如hosts.为什么这种方式可行呢。首先$_GET[s]确保了s能直接从url中输入值，其次是assert会执行输入的值，导致了用户的输入恶意代码被执行，现在去试试相关查询。使用payload：?s=printr(scan_dir(‘./‘))  扫描目录使用这会看到f14g.txt访问便拿下了.如果要读区hosts里面的内容也就应该扫描上级目录scandir(‘../‘).而再次使用fopen与readfile()函数就能读取文件?s=printr(readfile(‘../etc/hosts’))fopen写法类似，后面还需加个,”r”但此题有些问题无法访问。就这样读取到了hosts文件。<br>&emsp;&emsp;summary:这道题，我是被不熟悉的函数卡住了，我看到了这种很想一句话木马，但我只想到上传，没有想到直接URL上构造导致任意文件读取。以及文件目录相关函数也不是很熟悉，通过这道题让我又收获了许许多多的新知识。<br>&emsp;&emsp;小记录：<br>scandir()   //作用能扫描文件夹下的目录和文件，返回值为所有文件名组成的一个数组<br>show_source()  //显示文件源码<br>highlight_file()   //和show_source()函数是一个意思<br>27.字符，正则？(<a href="http://123.206.87.240:8002/web10/" title="字符正则？" target="_blank" rel="noopener">http://123.206.87.240:8002/web10/</a>)<br>&emsp;&emsp;进入页面有如下提示代码:<br> <?php 
+highlight\_file('2.php');
+$key='KEY{\********************************}';
+$IM= preg\_match("/key.\*key.{4,7}key:\/.\/(.\*key)[a-z][[:punct:]]/i", trim($\_GET["id"]), $match);
 if( $IM ){ 
   die('key is: '.$key);
 }
-?><br>&emsp;&emsp;简单来说就是IM变量符合要求就不为null这样就能得到flag.直接看preg_much里面的内容，<br>首先是[:punct:]：<br>匹配其中一个字符： !”#$%&amp;’()<em>+,-./:;&lt;=&gt;?@[]^_`{|}~.<br>[:punct:] 子字符类不能包括当前归类中可用的非 ASCII 标点字符。<br>按照正则表达式，直接写下来的英文字母记录下来,还有一个.就1：key1<br>然后是key.{4,7}表示.的出现4-7次,而.代表除\n以外的所有字符那就：key1111<br>然后是:key:/2/key<br>接着是：【a-z】那就a<br>最后是：[:punct:]，就$<br>最后i是规定大小写不敏感<br>按照正则表达式构造payload:?id=key1key1111key:/2/keya$,拿下flag.<br>&emsp;&emsp;summary:这道题是我先去php中文网学习了正则表达式再一点一点读构造出来的，成功的那一刻心情很舒畅,感觉自己的收获没有白费，也许那就是学习的动力吧，那是一种成就感。不扯这些鸡汤了。说一下这道题给我的收获，一就是我读正则表达式的速度太慢了，对于正则表达式的元符号也还是记不清楚特别是其中多次出现的.之前我就搞忘记这里要任意构造一个，哪怕是1都可以然后就是【：punct：】这个是比较特殊的，它表示匹配这些常用符号集合。还有就是{4，7}这个代表的是前面的字符出现4-7次这道题中前面是个.因而直接构造1111就可以。</em> 的话按理说前面的就可以不构造的我去试试去掉前面的key1key中的1,任然得出了flag验证了我得猜想因为 * 表示匹配前面的0次或者是多次，这里前面是个.因而可以忽略这个.号而.我构造的是1因而可以去掉1.最后的i是代表不区分大小写。<br>&emsp;&emsp;summary:总的来说今天学习的正则表达式对我影响较深，然后是过狗一句话里面造成的任意文件读取，扫描文件目录使用的scandir()函数我也get到了，然后就是’./‘与’../‘的区别一个代表本目录另外一个是上级目录。</p>
+?><br>&emsp;&emsp;简单来说就是IM变量符合要求就不为null这样就能得到flag.直接看preg_much里面的内容，<br>首先是[:punct:]：<br>匹配其中一个字符： !”#$%&amp;’()*+,-./:;&lt;=&gt;?@[]^_`{|}~.<br>[:punct:] 子字符类不能包括当前归类中可用的非 ASCII 标点字符。<br>按照正则表达式，直接写下来的英文字母记录下来,还有一个.就1：key1<br>然后是key.{4,7}表示.的出现4-7次,而.代表除\n以外的所有字符那就：key1111<br>然后是:key:/2/key<br>接着是：【a-z】那就a<br>最后是：[:punct:]，就$<br>最后i是规定大小写不敏感<br>按照正则表达式构造payload:?id=key1key1111key:/2/keya$,拿下flag.<br>&emsp;&emsp;summary:这道题是我先去php中文网学习了正则表达式再一点一点读构造出来的，成功的那一刻心情很舒畅,感觉自己的收获没有白费，也许那就是学习的动力吧，那是一种成就感。不扯这些鸡汤了。说一下这道题给我的收获.一就是我读正则表达式的速度太慢了，对于正则表达式的元符号也还是记不清楚特别是其中多次出现的.之前我就搞忘记这里要任意构造一个，哪怕是1都可以然后就是【：punct：】这个是比较特殊的，它表示匹配这些常用符号集合。还有就是{4，7}这个代表的是前面的字符出现4-7次这道题中前面是个.因而直接构造1111就可以。*的话按理说前面的就可以不构造的我去试试去掉前面的key1key中的1,任然得出了flag验证了我得猜想因为*表示匹配前面的0次或者是多次，这里前面是个.因而可以忽略这个.号而.我构造的是1因而可以去掉1.最后的i是代表不区分大小写。<br>&emsp;&emsp;summary:总的来说今天学习的正则表达式对我影响较深，然后是过狗一句话里面造成的任意文件读取，扫描文件目录使用的scandir()函数我也get到了，然后就是’./‘与’../‘的区别一个代表本目录另外一个是上级目录。</p>
 
       
 

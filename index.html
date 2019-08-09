@@ -155,6 +155,81 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-tenth-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/09/tenth-day/">tenth day</a>
+    </h1>
+  
+
+        
+        <a href="/2019/08/09/tenth-day/" class="archive-article-date">
+  	<time datetime="2019-08-09T01:12:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>28.前女友(<a href="http://123.206.31.85:49162/" title="前女友" target="_blank" rel="noopener">http://123.206.31.85:49162/</a>)<br>&emsp;&emsp;进入页面后竟然讲起了小故事，前女友给他看了什么东西让他不能平静。。。。F12先，从源代码中可以看到一个code.txt，进去看一下。<br>发现提示代码如下:<br><?php
+if(isset($\_GET['v1']) && isset($\_GET['v2']) && isset($\_GET['v3'])){
+    $v1 = $\_GET['v1'];
+    $v2 = $\_GET['v2'];
+    $v3 = $\_GET['v3'];
+    if($v1 != $v2 && md5($v1) == md5($v2)){
+        if(!strcmp($v3, $flag)){
+            echo $flag;
+        }
+    }
+}
+?><br>上面意思是如果以get方式设置了v1,v2,v3的话，就把这些值赋给v1,v2,v3变量。如果v1不等于v2但他们的md5相同的情况下，并且如果v3与flag变量相同就输出flag。。。这儿有点奇怪，v3不是也是我们自己设置的吗。根据md5的缺陷，无法md5数组因而v1与v2可以同时为数组绕过。<br>构造Payload：index.php?v1[]=1132&amp;v2[]=3213&amp;v3[]=flag<br>这里说明一下数组后面的内容可以为任意值，因为md5在处理数组时得到结果都为null因而使得条件相等，另外关于strcmp有一个漏洞。当它接受了不符合字符串的类型时这个函数会发生错误，并且在5.3版本前的php会返回0，因而这里传入数组导致其返回零并绕过条件获取到flag.<br>&emsp;&emsp;summary:md5绕过还有科学记数法，让几个数得到的md5都是0e开头的就也可以使得md5相等，另外关于这个strcmp需要多多掌握，关于其错误，这道题也算是有了新的学习与认识，但相比之前的题略显简单。<br>29.你从哪里来(<a href="http://123.206.87.240:9009/from.php" title="你从哪里来" target="_blank" rel="noopener">http://123.206.87.240:9009/from.php</a>)<br>&emsp;&emsp;进入页面后提示are you from google，难道让我把浏览器代理变成google？f12看一下无重要信息，把from.php改为index.php看一下。没有信息，我直接用google浏览器打开试试，一样的欸。那我就改一下浏览器代理。改为google任无变化，用BP抓包试试。然后把包的user-agent换成google的。没用。。经过百度后发现http包中的http referer是用来告诉我们这个是从哪个网页点击进去的，因而应当修改的是这个部分。改为<a href="http://www.google.com这下来试试。这个不行那换标准一点https://www.google.com，拿下flag" target="_blank" rel="noopener">www.google.com这下来试试。这个不行那换标准一点https://www.google.com，拿下flag</a>.<br>&emsp;&emsp;summary:这道题思路挺简单的就是让他判断出我们是goole点进来的，但具体这个修改方式呢必须要知道http Referer这个字段不然的话就做不出来，有给自己的http头文件的referer字段加深了影响。<br>30.md5 collision(<a href="http://123.206.87.240:9009/md5.php" title="md5 collision" target="_blank" rel="noopener">http://123.206.87.240:9009/md5.php</a>)<br>&emsp;&emsp;进入页面后让我们输入一个a,先f12看一下，无其他提示，信息但这道题我们知道是关于md5碰撞的，先任意输入a=1此时返回false!!!那就给他整个数组a[]还是错误。那就整个0e的，拿下flag.哈哈这个题md5为0e就还是0条件判断多半是！然后就变成了1通过条件，拿下flag.<br>&emsp;&emsp;summary:这道题总的来说十分简单，因为之前做过很多类似的了，因而也总结出有些事第一次做很难但之后再让你做N次它就会越来越轻松。<br>31.程序员本地网站(<a href="http://123.206.87.240:8002/localhost/" title="请从本地访问" target="_blank" rel="noopener">http://123.206.87.240:8002/localhost/</a>)<br>&emsp;&emsp;进入页面让我从本地访问，那我就抓包改X-Forwarded-For为127.0.0.1试试。拿下flag…这也太没技术含量了。<br>&emsp;&emsp;summary:这道题太简单了，诶诶。我这不叫自大吧，不过bugku上的确适合我这种新手做一步一步由简入难。<br>32.各种绕过(<a href="http://123.206.87.240:8002/web7/" title="各种绕过" target="_blank" rel="noopener">http://123.206.87.240:8002/web7/</a>)<br>&emsp;&emsp;进入页面直接就是一个php代码，我只复制关键句子<br> else if (sha1($_GET[‘uname’]) === sha1($_POST[‘passwd’])&amp;($_GET[‘id’]==’margin’))</p>
+<pre><code>die(&apos;Flag: &apos;.$flag);</code></pre><p>如果uname get传入的sha1与post的passwd的sha1相同并且get方式的id=margin就给flag.打开hackbar,构造?id=margin&amp;uname=123<br>然后在post框中构造passwd[]=313.拿下flag.<br>&emsp;&emsp;summary:我发现分越多这些题反而变简单了。然后这道题与前题类似由于sha1处理数组会返回false而绕过判断，再以需求的方式提交参数即拿下flag.总的来说给自己这方面知识温习了一遍吧，做了很多次了。<br>&emsp;&emsp;all:今天一天做了很多道题，并且也采用1个小时13分钟，但题目跟前两天比略显简单，但也给我又温习了一遍知识吧，好了明天加油。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/08/09/tenth-day/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-ninth-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -784,81 +859,10 @@ eval(unescape(p1) + unescape('%35%34%61%61%32' + p2));
 
 
   
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/05/hello-world/">Hello World</a>
-    </h1>
-  
-
-        
-        <a href="/2019/07/05/hello-world/" class="archive-article-date">
-  	<time datetime="2019-07-05T13:00:51.076Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/07/05/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    </nav>
   
 
 

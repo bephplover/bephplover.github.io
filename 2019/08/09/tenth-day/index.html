@@ -6,18 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2019/8 | Hexo</title>
+  <title>tenth day | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="a new ctfer&apos;s study">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/2019/08/index.html">
+  <meta name="description" content="28.前女友(http://123.206.31.85:49162/)&amp;emsp;&amp;emsp;进入页面后竟然讲起了小故事，前女友给他看了什么东西让他不能平静。。。。F12先，从源代码中可以看到一个code.txt，进去看一下。发现提示代码如下:上面意思是如果以get方式设置了v1,v2,v3的话，就把这些值赋给v1,v2,v3变量。如果v1不等于v2但他们的md5相同的情况下，并且如果v3与fla">
+<meta property="og:type" content="article">
+<meta property="og:title" content="tenth day">
+<meta property="og:url" content="http://yoursite.com/2019/08/09/tenth-day/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="a new ctfer&apos;s study">
+<meta property="og:description" content="28.前女友(http://123.206.31.85:49162/)&amp;emsp;&amp;emsp;进入页面后竟然讲起了小故事，前女友给他看了什么东西让他不能平静。。。。F12先，从源代码中可以看到一个code.txt，进去看一下。发现提示代码如下:上面意思是如果以get方式设置了v1,v2,v3的话，就把这些值赋给v1,v2,v3变量。如果v1不等于v2但他们的md5相同的情况下，并且如果v3与fla">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-08-09T02:24:33.823Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
-<meta name="twitter:description" content="a new ctfer&apos;s study">
+<meta name="twitter:title" content="tenth day">
+<meta name="twitter:description" content="28.前女友(http://123.206.31.85:49162/)&amp;emsp;&amp;emsp;进入页面后竟然讲起了小故事，前女友给他看了什么东西让他不能平静。。。。F12先，从源代码中可以看到一个code.txt，进去看一下。发现提示代码如下:上面意思是如果以get方式设置了v1,v2,v3的话，就把这些值赋给v1,v2,v3变量。如果v1不等于v2但他们的md5相同的情况下，并且如果v3与fla">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -153,238 +154,168 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-tenth-day" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      tenth day
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/09/tenth-day/" class="archive-article-date">
+
+        
+        <a href="/2019/08/09/tenth-day/" class="archive-article-date">
   	<time datetime="2019-08-09T01:12:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-09</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/09/tenth-day/">tenth day</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>28.前女友(<a href="http://123.206.31.85:49162/" title="前女友" target="_blank" rel="noopener">http://123.206.31.85:49162/</a>)<br>&emsp;&emsp;进入页面后竟然讲起了小故事，前女友给他看了什么东西让他不能平静。。。。F12先，从源代码中可以看到一个code.txt，进去看一下。<br>发现提示代码如下:<br><?php
+if(isset($\_GET['v1']) && isset($\_GET['v2']) && isset($\_GET['v3'])){
+    $v1 = $\_GET['v1'];
+    $v2 = $\_GET['v2'];
+    $v3 = $\_GET['v3'];
+    if($v1 != $v2 && md5($v1) == md5($v2)){
+        if(!strcmp($v3, $flag)){
+            echo $flag;
+        }
+    }
+}
+?><br>上面意思是如果以get方式设置了v1,v2,v3的话，就把这些值赋给v1,v2,v3变量。如果v1不等于v2但他们的md5相同的情况下，并且如果v3与flag变量相同就输出flag。。。这儿有点奇怪，v3不是也是我们自己设置的吗。根据md5的缺陷，无法md5数组因而v1与v2可以同时为数组绕过。<br>构造Payload：index.php?v1[]=1132&amp;v2[]=3213&amp;v3[]=flag<br>这里说明一下数组后面的内容可以为任意值，因为md5在处理数组时得到结果都为null因而使得条件相等，另外关于strcmp有一个漏洞。当它接受了不符合字符串的类型时这个函数会发生错误，并且在5.3版本前的php会返回0，因而这里传入数组导致其返回零并绕过条件获取到flag.<br>&emsp;&emsp;summary:md5绕过还有科学记数法，让几个数得到的md5都是0e开头的就也可以使得md5相等，另外关于这个strcmp需要多多掌握，关于其错误，这道题也算是有了新的学习与认识，但相比之前的题略显简单。<br>29.你从哪里来(<a href="http://123.206.87.240:9009/from.php" title="你从哪里来" target="_blank" rel="noopener">http://123.206.87.240:9009/from.php</a>)<br>&emsp;&emsp;进入页面后提示are you from google，难道让我把浏览器代理变成google？f12看一下无重要信息，把from.php改为index.php看一下。没有信息，我直接用google浏览器打开试试，一样的欸。那我就改一下浏览器代理。改为google任无变化，用BP抓包试试。然后把包的user-agent换成google的。没用。。经过百度后发现http包中的http referer是用来告诉我们这个是从哪个网页点击进去的，因而应当修改的是这个部分。改为<a href="http://www.google.com这下来试试。这个不行那换标准一点https://www.google.com，拿下flag" target="_blank" rel="noopener">www.google.com这下来试试。这个不行那换标准一点https://www.google.com，拿下flag</a>.<br>&emsp;&emsp;summary:这道题思路挺简单的就是让他判断出我们是goole点进来的，但具体这个修改方式呢必须要知道http Referer这个字段不然的话就做不出来，有给自己的http头文件的referer字段加深了影响。<br>30.md5 collision(<a href="http://123.206.87.240:9009/md5.php" title="md5 collision" target="_blank" rel="noopener">http://123.206.87.240:9009/md5.php</a>)<br>&emsp;&emsp;进入页面后让我们输入一个a,先f12看一下，无其他提示，信息但这道题我们知道是关于md5碰撞的，先任意输入a=1此时返回false!!!那就给他整个数组a[]还是错误。那就整个0e的，拿下flag.哈哈这个题md5为0e就还是0条件判断多半是！然后就变成了1通过条件，拿下flag.<br>&emsp;&emsp;summary:这道题总的来说十分简单，因为之前做过很多类似的了，因而也总结出有些事第一次做很难但之后再让你做N次它就会越来越轻松。<br>31.程序员本地网站(<a href="http://123.206.87.240:8002/localhost/" title="请从本地访问" target="_blank" rel="noopener">http://123.206.87.240:8002/localhost/</a>)<br>&emsp;&emsp;进入页面让我从本地访问，那我就抓包改X-Forwarded-For为127.0.0.1试试。拿下flag…这也太没技术含量了。<br>&emsp;&emsp;summary:这道题太简单了，诶诶。我这不叫自大吧，不过bugku上的确适合我这种新手做一步一步由简入难。<br>32.各种绕过(<a href="http://123.206.87.240:8002/web7/" title="各种绕过" target="_blank" rel="noopener">http://123.206.87.240:8002/web7/</a>)<br>&emsp;&emsp;进入页面直接就是一个php代码，我只复制关键句子<br> else if (sha1($_GET[‘uname’]) === sha1($_POST[‘passwd’])&amp;($_GET[‘id’]==’margin’))</p>
+<pre><code>die(&apos;Flag: &apos;.$flag);</code></pre><p>如果uname get传入的sha1与post的passwd的sha1相同并且get方式的id=margin就给flag.打开hackbar,构造?id=margin&amp;uname=123<br>然后在post框中构造passwd[]=313.拿下flag.<br>&emsp;&emsp;summary:我发现分越多这些题反而变简单了。然后这道题与前题类似由于sha1处理数组会返回false而绕过判断，再以需求的方式提交参数即拿下flag.总的来说给自己这方面知识温习了一遍吧，做了很多次了。<br>&emsp;&emsp;all:今天一天做了很多道题，并且也采用1个小时13分钟，但题目跟前两天比略显简单，但也给我又温习了一遍知识吧，好了明天加油。</p>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/08/09/tenth-day/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/08/ninth-day/" class="archive-article-date">
-  	<time datetime="2019-08-08T01:06:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-08</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/08/08/ninth-day/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ninth-day</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/08/ninth-day/">ninth-day</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/07/eighth-day/" class="archive-article-date">
-  	<time datetime="2019-08-07T00:33:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/07/eighth-day/">eighth-day</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/05/seventh-day/" class="archive-article-date">
-  	<time datetime="2019-08-05T02:01:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/05/seventh-day/">seventh-day</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/04/sixth-day/" class="archive-article-date">
-  	<time datetime="2019-08-04T01:00:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/04/sixth-day/">sixth-day</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/03/fifth-day/" class="archive-article-date">
-  	<time datetime="2019-08-03T01:35:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/03/fifth-day/">fifth-day</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/02/fourth-day/" class="archive-article-date">
-  	<time datetime="2019-08-02T00:22:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/02/fourth-day/">fourth day</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/01/the-third-day/" class="archive-article-date">
-  	<time datetime="2019-08-01T01:09:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/01/the-third-day/">the third day</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -407,8 +338,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

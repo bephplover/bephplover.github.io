@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="21.秋名山老司机(http://123.206.87.240:8002/qiumingshan/)&amp;emsp;&amp;emsp;进入页面，提示我在2S内计算老司机的车速是多少，妈耶，十多亿数量级的加法2S内完成。手工肯定不行，这得考计算机，这个就涉及到我的知识盲区了，但我知道应该是能用一个脚本2S内提交其答案。百度吧，学习下其他人的解法。由于此前从未学习过Python对于其脚本的运行报错一大堆，目前正">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-06T02:43:35.268Z">
+<meta property="og:updated_time" content="2019-08-11T01:17:13.547Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="seventh-day">
 <meta name="twitter:description" content="21.秋名山老司机(http://123.206.87.240:8002/qiumingshan/)&amp;emsp;&amp;emsp;进入页面，提示我在2S内计算老司机的车速是多少，妈耶，十多亿数量级的加法2S内完成。手工肯定不行，这得考计算机，这个就涉及到我的知识盲区了，但我知道应该是能用一个脚本2S内提交其答案。百度吧，学习下其他人的解法。由于此前从未学习过Python对于其脚本的运行报错一大堆，目前正">
@@ -174,7 +174,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>21.秋名山老司机(<a href="http://123.206.87.240:8002/qiumingshan/" title="秋名山老司机" target="_blank" rel="noopener">http://123.206.87.240:8002/qiumingshan/</a>)<br>&emsp;&emsp;进入页面，提示我在2S内计算老司机的车速是多少，妈耶，十多亿数量级的加法2S内完成。手工肯定不行，这得考计算机，这个就涉及到我的知识盲区了，但我知道应该是能用一个脚本2S内提交其答案。百度吧，学习下其他人的解法。由于此前从未学习过Python对于其脚本的运行报错一大堆，目前正下载重装最新版本以求解决方案，先做下一道题。<br>22.速度要快(<a href="http://123.206.87.240:8002/web6/" title="速度要快" target="_blank" rel="noopener">http://123.206.87.240:8002/web6/</a>)<br>&emsp;&emsp;进入页面。。提示我感觉你得快点，不会又让我用python脚本吧饶了我吧！！！，先F12看看，欸在网络中发现一个flag,6LeR55qE6L+Y5LiN6ZSZ77yM57uZ5L2gZmxhZ+WQpzogT1RBNE9UYzE=,base64解码试试,欸速度要快行吧，又是一道Python提交题，换下一道。<br>23.welcome the bugkuctf(<a href="http://123.206.87.240:8006/test1/" title="welcome the bugku ctf" target="_blank" rel="noopener">http://123.206.87.240:8006/test1/</a>)<br>&emsp;&emsp;进入页面,说我不是bugku的成员，这，先F12,可以看到如下注释中的提示：<br>$user = $_GET[“txt”];<br>$file = $_GET[“file”];<br>$pass = $_GET[“password”];  </p>
+        <p>21.秋名山老司机(<a href="http://123.206.87.240:8002/qiumingshan/" title="秋名山老司机" target="_blank" rel="noopener">http://123.206.87.240:8002/qiumingshan/</a>)<br>&emsp;&emsp;进入页面，提示我在2S内计算老司机的车速是多少，妈耶，十多亿数量级的加法2S内完成。手工肯定不行，这得考计算机，这个就涉及到我的知识盲区了，但我知道应该是能用一个脚本2S内提交其答案。百度吧，学习下其他人的解法。由于此前从未学习过Python对于其脚本的运行报错一大堆，目前正下载重装最新版本以求解决方案，先做下一道题。<a id="more"></a><br>22.速度要快(<a href="http://123.206.87.240:8002/web6/" title="速度要快" target="_blank" rel="noopener">http://123.206.87.240:8002/web6/</a>)<br>&emsp;&emsp;进入页面。。提示我感觉你得快点，不会又让我用python脚本吧饶了我吧！！！，先F12看看，欸在网络中发现一个flag,6LeR55qE6L+Y5LiN6ZSZ77yM57uZ5L2gZmxhZ+WQpzogT1RBNE9UYzE=,base64解码试试,欸速度要快行吧，又是一道Python提交题，换下一道。<br>23.welcome the bugkuctf(<a href="http://123.206.87.240:8006/test1/" title="welcome the bugku ctf" target="_blank" rel="noopener">http://123.206.87.240:8006/test1/</a>)<br>&emsp;&emsp;进入页面,说我不是bugku的成员，这，先F12,可以看到如下注释中的提示：<br>$user = $_GET[“txt”];<br>$file = $_GET[“file”];<br>$pass = $_GET[“password”];  </p>
 <p>if(isset($user)&amp;&amp;(file_get_contents($user,’r’)===”welcome to the bugkuctf”)){<br>    echo “hello admin!<br>“;<br>    include($file); //hint.php<br>}else{<br>    echo “you are not admin ! “;<br>}<br>代码意思大致是先从get中设置了user,file,pass变量，然后判断语句是如果设置了user变量并且从文件中采用读取方式得到的成分为welcome to the bugkuctf 就输出hello admin并且给我们打开提示的php文件。这道题考的就是一个文件流的打开，试试php流。使用之前类似的payload:?txt=php://input&amp;file=php://filter/read=convert.base64-encode/resource=hint.php&amp;password=尝试打开hint.php.等一下这种流的方式好像要post方式才可以，修改一下。<br>由于hackbar出了些问题，post不了因而采用BP提交上述payload得到以下代码。(得到的都是base64的值进行解码后为以下代码)<br><?php   
 class Flag{//flag.php  
     public $file;  

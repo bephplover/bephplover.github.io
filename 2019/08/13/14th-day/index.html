@@ -6,18 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | Hexo</title>
+  <title>14th-day | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="a new ctfer&apos;s study">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="39.文件包含2(http://123.206.31.85:49166/index.php?file=hello.php)&amp;emsp;&amp;emsp;进入页面后，是一个hello.php提示里面也说过文件包含，并且可以看到url中有个file=因而应该可以用php流读取文件，先最基本的看一下源代码和网络有没有其他提示。无其他提示，因而直接php流，payload:?file=php://filter/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="14th-day">
+<meta property="og:url" content="http://yoursite.com/2019/08/13/14th-day/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="a new ctfer&apos;s study">
+<meta property="og:description" content="39.文件包含2(http://123.206.31.85:49166/index.php?file=hello.php)&amp;emsp;&amp;emsp;进入页面后，是一个hello.php提示里面也说过文件包含，并且可以看到url中有个file=因而应该可以用php流读取文件，先最基本的看一下源代码和网络有没有其他提示。无其他提示，因而直接php流，payload:?file=php://filter/">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-08-13T02:25:12.330Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
-<meta name="twitter:description" content="a new ctfer&apos;s study">
+<meta name="twitter:title" content="14th-day">
+<meta name="twitter:description" content="39.文件包含2(http://123.206.31.85:49166/index.php?file=hello.php)&amp;emsp;&amp;emsp;进入页面后，是一个hello.php提示里面也说过文件包含，并且可以看到url中有个file=因而应该可以用php流读取文件，先最基本的看一下源代码和网络有没有其他提示。无其他提示，因而直接php流，payload:?file=php://filter/">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -153,295 +154,155 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-14th-day" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      14th-day
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/13/14th-day/" class="archive-article-date">
+
+        
+        <a href="/2019/08/13/14th-day/" class="archive-article-date">
   	<time datetime="2019-08-13T01:05:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-13</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/13/14th-day/">14th-day</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>39.文件包含2(<a href="http://123.206.31.85:49166/index.php?file=hello.php" title="文件包含2" target="_blank" rel="noopener">http://123.206.31.85:49166/index.php?file=hello.php</a>)<br>&emsp;&emsp;进入页面后，是一个hello.php提示里面也说过文件包含，并且可以看到url中有个file=因而应该可以用php流读取文件，先最基本的看一下源代码和网络有没有其他提示。无其他提示，因而直接php流，payload:?file=php://filter/read=convert.base64-encode/resource=hello.php  链接回车后会出现h1标记的naive，说我幼稚哼哼，查看源代码发现注释的upload.php，打开它发现了文件上传的页面，任然是只允许上传Jpg gif png 格式的文件。那就接着上传我的yijuhua.jpg，再用bp抓包看看，跟上次的那个包长得一模一样，那我先一模一样改着试试。回忆一下这种上传过滤会过滤掉不对的文件类型以及会过率掉content-type头文件中的。Content-Type: multipart/form-data;这儿mUltipart采用大小写绕过它。然后上传的文件肯定得改成php才能解析先试试上次得php5.还是说只允许上传jpg，我把数据部分得content-type也改为php试试，也不行，试试0x0截断，采用yijuhua.php.jpg得方式中间用0x0相连，采用0x0截断任然被读取出是上传非法，这道题应当是白名单机制，因而在我尝试其他各种php4，php5等都是非法的，再试试其他途径绕过。在其他人的wp上看到了构造命令执行:<script language="php">system("ls")</script>上传文件的后缀名为.php;.jpg这里我有些疑惑等会儿解决我先试试这种方式。上传后，打开图片路径的网页，显示了一串this_is_flag.txt的文件直接打开拿下flag.这道题我做的懵懵懂懂的现在来一探究竟。<br>&emsp;&emsp;这种方式是用来列出当前目录的。采用script标签。<br>文件包含的漏洞原理:在通过服务器脚本的函数引入文件时，由于传入的文件名没有经过合理的校验，从而操作了预想之外的文件，导致任意的文件泄露甚至恶意的代码注入。<br>require()<br>require_once()<br>include()<br>include_once() 这些都是容易产生文件包含漏洞的函数，其他的相关原理下来接着掌握，先到这里，等会儿接着做。</p>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/08/13/14th-day/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/12/13th-day/" class="archive-article-date">
-  	<time datetime="2019-08-12T00:44:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-12</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/08/12/13th-day/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">thirdth-day</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/12/13th-day/">thirdth-day</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/11/twelfth-day/" class="archive-article-date">
-  	<time datetime="2019-08-11T00:32:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/11/twelfth-day/">twelfth-day</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/10/eleventh-day/" class="archive-article-date">
-  	<time datetime="2019-08-10T01:48:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/10/eleventh-day/">eleventh-day</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/09/tenth-day/" class="archive-article-date">
-  	<time datetime="2019-08-09T01:12:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/09/tenth-day/">tenth day</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/08/ninth-day/" class="archive-article-date">
-  	<time datetime="2019-08-08T01:06:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/08/ninth-day/">ninth-day</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/07/eighth-day/" class="archive-article-date">
-  	<time datetime="2019-08-07T00:33:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/07/eighth-day/">eighth-day</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/05/seventh-day/" class="archive-article-date">
-  	<time datetime="2019-08-05T02:01:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/05/seventh-day/">seventh-day</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/04/sixth-day/" class="archive-article-date">
-  	<time datetime="2019-08-04T01:00:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/04/sixth-day/">sixth-day</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/03/fifth-day/" class="archive-article-date">
-  	<time datetime="2019-08-03T01:35:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/03/fifth-day/">fifth-day</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -465,8 +326,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

@@ -155,19 +155,82 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-thirdth-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-14th-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/12/thirdth-day/">thirdth-day</a>
+      <a class="article-title" href="/2019/08/13/14th-day/">14th-day</a>
     </h1>
   
 
         
-        <a href="/2019/08/12/thirdth-day/" class="archive-article-date">
+        <a href="/2019/08/13/14th-day/" class="archive-article-date">
+  	<time datetime="2019-08-13T01:05:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>39.文件包含2(<a href="http://123.206.31.85:49166/index.php?file=hello.php" title="文件包含2" target="_blank" rel="noopener">http://123.206.31.85:49166/index.php?file=hello.php</a>)<br>&emsp;&emsp;进入页面后，是一个hello.php提示里面也说过文件包含，并且可以看到url中有个file=因而应该可以用php流读取文件，先最基本的看一下源代码和网络有没有其他提示。无其他提示，因而直接php流，payload:?file=php://filter/read=convert.base64-encode/resource=hello.php  链接回车后会出现h1标记的naive，说我幼稚哼哼，查看源代码发现注释的upload.php，打开它发现了文件上传的页面，任然是只允许上传Jpg gif png 格式的文件。那就接着上传我的yijuhua.jpg，再用bp抓包看看，跟上次的那个包长得一模一样，那我先一模一样改着试试。回忆一下这种上传过滤会过滤掉不对的文件类型以及会过率掉content-type头文件中的。Content-Type: multipart/form-data;这儿mUltipart采用大小写绕过它。然后上传的文件肯定得改成php才能解析先试试上次得php5.还是说只允许上传jpg，我把数据部分得content-type也改为php试试，也不行，试试0x0截断，采用yijuhua.php.jpg得方式中间用0x0相连，采用0x0截断任然被读取出是上传非法，这道题应当是白名单机制，因而在我尝试其他各种php4，php5等都是非法的，再试试其他途径绕过。在其他人的wp上看到了构造命令执行:<script language="php">system("ls")</script>上传文件的后缀名为.php;.jpg这里我有些疑惑等会儿解决我先试试这种方式。上传后，打开图片路径的网页，显示了一串this_is_flag.txt的文件直接打开拿下flag.这道题我做的懵懵懂懂的现在来一探究竟。<br>&emsp;&emsp;这种方式是用来列出当前目录的。采用script标签。<br>文件包含的漏洞原理:在通过服务器脚本的函数引入文件时，由于传入的文件名没有经过合理的校验，从而操作了预想之外的文件，导致任意的文件泄露甚至恶意的代码注入。<br>require()<br>require_once()<br>include()<br>include_once() 这些都是容易产生文件包含漏洞的函数，其他的相关原理下来接着掌握，先到这里，等会儿接着做。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/08/13/14th-day/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-13th-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/12/13th-day/">thirdth-day</a>
+    </h1>
+  
+
+        
+        <a href="/2019/08/12/13th-day/" class="archive-article-date">
   	<time datetime="2019-08-12T00:44:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-12</time>
 </a>
         
@@ -211,7 +274,7 @@ $KEY='ISecer:www.isecer.com';
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/12/thirdth-day/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/08/12/13th-day/">展开全文 >></a>
         </p>
       
 
@@ -746,71 +809,6 @@ echo "<p>sorry!</p>";
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/08/03/fifth-day/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-fourth-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/02/fourth-day/">fourth day</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/02/fourth-day/" class="archive-article-date">
-  	<time datetime="2019-08-02T00:22:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>11.web5(<a href="http://123.206.87.240:8002/web5/" title="web5" target="_blank" rel="noopener">http://123.206.87.240:8002/web5/</a>)<br>&emsp;&emsp;进入页面后,会看到JSPFUCK??????的提示，这里只知道一个JSP，先F12打开控制台看一下，看到网页代码中有异常部分，接着CTRL+U更清楚查看代码。
-        
-          <a class="article-more-a" href="/2019/08/02/fourth-day/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/02/fourth-day/">展开全文 >></a>
         </p>
       
 

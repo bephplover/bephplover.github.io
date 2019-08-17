@@ -6,18 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Hexo</title>
+  <title>18th-day | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="a new ctfer&apos;s study">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+  <meta name="description" content="43.what a fuck 这是什么鬼东西(http://ctf5.shiyanbar.com/DUTCTF/1.html)&amp;emsp;&amp;emsp;进入页面就是熟悉的javascript jother编码，直接f12控制台复制进去解码，回车后弹出对话框，密码是：ihatejs.接下来按惯例没有其他提示访问一下它的主页面也就是index.php。提示让我打开index.php.txt。打开后发现如">
+<meta property="og:type" content="article">
+<meta property="og:title" content="18th-day">
+<meta property="og:url" content="http://yoursite.com/2019/08/17/18th-day/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="a new ctfer&apos;s study">
+<meta property="og:description" content="43.what a fuck 这是什么鬼东西(http://ctf5.shiyanbar.com/DUTCTF/1.html)&amp;emsp;&amp;emsp;进入页面就是熟悉的javascript jother编码，直接f12控制台复制进去解码，回车后弹出对话框，密码是：ihatejs.接下来按惯例没有其他提示访问一下它的主页面也就是index.php。提示让我打开index.php.txt。打开后发现如">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-08-17T02:02:50.097Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
-<meta name="twitter:description" content="a new ctfer&apos;s study">
+<meta name="twitter:title" content="18th-day">
+<meta name="twitter:description" content="43.what a fuck 这是什么鬼东西(http://ctf5.shiyanbar.com/DUTCTF/1.html)&amp;emsp;&amp;emsp;进入页面就是熟悉的javascript jother编码，直接f12控制台复制进去解码，回车后弹出对话框，密码是：ihatejs.接下来按惯例没有其他提示访问一下它的主页面也就是index.php。提示让我打开index.php.txt。打开后发现如">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -153,34 +154,52 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-eighth-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-18th-day" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/07/eighth-day/">eighth-day</a>
+    <h1 class="article-title" itemprop="name">
+      18th-day
     </h1>
   
 
         
-        <a href="/2019/08/07/eighth-day/" class="archive-article-date">
-  	<time datetime="2019-08-07T00:33:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-07</time>
+        <a href="/2019/08/17/18th-day/" class="archive-article-date">
+  	<time datetime="2019-08-17T01:18:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-17</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>24.cookies欺骗<a href="http://123.206.87.240:8002/web11/index.php?line=&filename=a2V5cy50eHQ=" title="cookies欺骗" target="_blank" rel="noopener">http://123.206.87.240:8002/web11/index.php?line=&amp;filename=a2V5cy50eHQ=</a><br>&emsp;&emsp;进入页面后,发现一大长串不知所以然的英文与数字组合，先不管它，F12看一下;无其他可用信息,但我们在URL看到filename后面的filename=a2V5cy50eHQ=应该是个base64加密的，并且前面的line=这后面没有写任何数字，是不是可以看到些什么，先解码那个base64。解码后是keys.txt,改为解码后的试试。为空白页，此时给Line赋值再看看，任无信息，返回最开始链接。直接给Line赋值，任无信息。一般信息存储在Index.php中我们给Index.php base64加密后放filename,再给line赋值试试。发现内容，不断修改line的值可以发现不同的内容。这里应该可以用代码实现，奈何本人能力太差，先手工记录代码，等会儿去寻找代码实现方法。
-        
-          <a class="article-more-a" href="/2019/08/07/eighth-day/#more">more >></a>
-        
+        <p>43.what a fuck 这是什么鬼东西(<a href="http://ctf5.shiyanbar.com/DUTCTF/1.html" title="什么鬼东西" target="_blank" rel="noopener">http://ctf5.shiyanbar.com/DUTCTF/1.html</a>)<br>&emsp;&emsp;进入页面就是熟悉的javascript jother编码，直接f12控制台复制进去解码，回车后弹出对话框，密码是：ihatejs.接下来按惯例没有其他提示访问一下它的主页面也就是index.php。提示让我打开index.php.txt。打开后发现如下代码:<br>&lt;?php<br>if(eregi(“hackerDJ”,$_GET[id])) {<br>  echo(“</p><p>not allowed!</p>“);<br>  exit();<br>}<p></p>
+<p>$_GET[id] = urldecode($_GET[id]);<br>if($_GET[id] == “hackerDJ”)<br>{<br>  echo “</p><p>Access granted!</p>“;<br>  echo “<p>flag: <strong><strong><strong>*****</strong></strong></strong>} </p>“;<br>}<br>?&gt;<br>其中的eregi函数用于匹配字符串，也就是如果get传入的id为hackDJ就输出not allowed.接下来是对id进行urldecode 这时候如果id等于hackerDJ就给出flag.试试hackerDJ进行Urlencode.然后由于url本身要解码因而需要编码两次然后给id get进去得到flag.但它一直重复:Can you authenticate to this website?最后提交这个flag.错误，错误。之前还有个密码直接提交密码，成功提交。妈耶这道题气死我了。这坑人真的是。恶心。<br>&emsp;&emsp;自己还是太嫩了本来一早就做出了但总感觉还有其他地方因为这个格式就不像flag…然后就。。真是。。被耍得团团转。<p></p>
+
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -189,16 +208,75 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/07/eighth-day/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/08/17/18th-day/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2019/08/16/17th-day/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">17th-day</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -218,469 +296,14 @@
 
 
 
-
-  
-    <article id="post-seventh-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/05/seventh-day/">seventh-day</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/05/seventh-day/" class="archive-article-date">
-  	<time datetime="2019-08-05T02:01:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>21.秋名山老司机(<a href="http://123.206.87.240:8002/qiumingshan/" title="秋名山老司机" target="_blank" rel="noopener">http://123.206.87.240:8002/qiumingshan/</a>)<br>&emsp;&emsp;进入页面，提示我在2S内计算老司机的车速是多少，妈耶，十多亿数量级的加法2S内完成。手工肯定不行，这得考计算机，这个就涉及到我的知识盲区了，但我知道应该是能用一个脚本2S内提交其答案。百度吧，学习下其他人的解法。由于此前从未学习过Python对于其脚本的运行报错一大堆，目前正下载重装最新版本以求解决方案，先做下一道题。
-        
-          <a class="article-more-a" href="/2019/08/05/seventh-day/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/05/seventh-day/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-sixth-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/04/sixth-day/">sixth-day</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/04/sixth-day/" class="archive-article-date">
-  	<time datetime="2019-08-04T01:00:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>18.输入密码查看flag(<a href="http://123.206.87.240:8002/baopo/" title="输入密码查看flag" target="_blank" rel="noopener">http://123.206.87.240:8002/baopo/</a>)<br>&nmsp;&nmsp;进入页面后是一个输入框，提示请输入5为数密码查看获取密码可联系我，，这道题直接整一个5位数的密码字典暴力破解试试，之前在网上找到了一个生成字典的工具—superdic。先生成一个全是5为数字的字典，打开BP,抓包送入intruder，选中pwd加入字典进行爆破。老规矩，100线程哈哈，好了已经出来了，13579，咱输入进去试试，拿下Flag.
-        
-          <a class="article-more-a" href="/2019/08/04/sixth-day/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/04/sixth-day/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-fifth-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/03/fifth-day/">fifth-day</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/03/fifth-day/" class="archive-article-date">
-  	<time datetime="2019-08-03T01:35:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>16.web4(<a href="http://123.206.87.240:8002/web4/" title="web4" target="_blank" rel="noopener">http://123.206.87.240:8002/web4/</a>)<br>&emsp;&emsp;进入页面后，提示我们查看源代码？那好咱先查看源代码。<br>在script标签中发现如下所示的代码：
-        
-          <a class="article-more-a" href="/2019/08/03/fifth-day/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/03/fifth-day/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-fourth-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/02/fourth-day/">fourth day</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/02/fourth-day/" class="archive-article-date">
-  	<time datetime="2019-08-02T00:22:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>11.web5(<a href="http://123.206.87.240:8002/web5/" title="web5" target="_blank" rel="noopener">http://123.206.87.240:8002/web5/</a>)<br>&emsp;&emsp;进入页面后,会看到JSPFUCK??????的提示，这里只知道一个JSP，先F12打开控制台看一下，看到网页代码中有异常部分，接着CTRL+U更清楚查看代码。
-        
-          <a class="article-more-a" href="/2019/08/02/fourth-day/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/02/fourth-day/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-the-third-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/01/the-third-day/">the third day</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/01/the-third-day/" class="archive-article-date">
-  	<time datetime="2019-08-01T01:09:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>9.本地包含(<a href="http://123.206.87.240:8003/" title="本地包含" target="_blank" rel="noopener">http://123.206.87.240:8003/</a>)<br>进入链接后，发现如下代码：<br>  &lt;?php<br>   error_reporting(0);</p>
-<p>   include ‘flag.php’;<br>   $a = @$<em>REQUEST[‘hello’];<br>   eval(“ var_dump( $a );”);<br>   highlight_file(<em>_FILE</em></em>);<br>   ?&gt; </p>
-<p>&emsp;&emsp;又是一道代码审计的题目，第二行的error_reporting(0),是关闭错误报告。
-        
-          <a class="article-more-a" href="/2019/08/01/the-third-day/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/01/the-third-day/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-second-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/31/second-day/">second day</a>
-    </h1>
-  
-
-        
-        <a href="/2019/07/31/second-day/" class="archive-article-date">
-  	<time datetime="2019-07-31T00:41:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-31</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>2.web2(<a href="http://123.206.87.240:8002/web2/" target="_blank" rel="noopener">http://123.206.87.240:8002/web2/</a>)<br>点入链接，发现全是滑稽图，很有趣，养成好习惯首先F12,或者ctrl+u查看源代码，源代码中直接显示出了flag.
-        
-          <a class="article-more-a" href="/2019/07/31/second-day/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/07/31/second-day/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-my-first-blog" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/25/my-first-blog/">my-first-blog</a>
-    </h1>
-  
-
-        
-        <a href="/2019/07/25/my-first-blog/" class="archive-article-date">
-  	<time datetime="2019-07-25T02:06:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>现在开始小白CTF-travel<br>咱先从最简单的题开始<br>1.计算器<br>进入后会有一个提交框，提交两数字的答案，但输入会发现框中只能输入一个数字，对于前端的学习会想到限制输入框的maxlength，前端可以在控制台看到，F12打开控制台查看源代码，可以看到maxlength=’1’将其修改为大于答案的数目输入正确答案即可拿下flag。<br>summary：对于新学习CTF的小白我来说，这个题告诉了我灵活的运用编程前端知识，然后是遇到题一定要注意打开F12或者查看源代码。
-        
-          <a class="article-more-a" href="/2019/07/25/my-first-blog/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/07/25/my-first-blog/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-    </nav>
+  
+
+  
+
+  
+
   
 
 
@@ -703,8 +326,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

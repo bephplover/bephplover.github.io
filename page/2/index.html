@@ -155,6 +155,85 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-eleventh-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/10/eleventh-day/">eleventh-day</a>
+    </h1>
+  
+
+        
+        <a href="/2019/08/10/eleventh-day/" class="archive-article-date">
+  	<time datetime="2019-08-10T01:48:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>33.web8(<a href="http://123.206.87.240:8002/web8/" title="web8" target="_blank" rel="noopener">http://123.206.87.240:8002/web8/</a>)<br>&emsp;&emsp;进入页面后直接给出了php代码如下:<br><?php
+extract($\_GET);
+if (!empty($ac))
+{
+$f = trim(file\_get\_contents($fn));
+if ($ac === $f)
+{
+echo "<p>This is flag:" ." $flag</p>";
+}
+else
+{
+echo "<p>sorry!</p>";
+}
+}
+?><br>一分析就是一个不认识的函数，extract() 函数从数组中将变量导入到当前的符号表。该函数返回成功导入到符号表中的变量数目。
+        
+          <a class="article-more-a" href="/2019/08/10/eleventh-day/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/08/10/eleventh-day/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-tenth-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -742,74 +821,9 @@
 
 
   
-    <article id="post-my-first-blog" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/25/my-first-blog/">my-first-blog</a>
-    </h1>
-  
-
-        
-        <a href="/2019/07/25/my-first-blog/" class="archive-article-date">
-  	<time datetime="2019-07-25T02:06:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>现在开始小白CTF-travel<br>咱先从最简单的题开始<br>1.计算器<br>进入后会有一个提交框，提交两数字的答案，但输入会发现框中只能输入一个数字，对于前端的学习会想到限制输入框的maxlength，前端可以在控制台看到，F12打开控制台查看源代码，可以看到maxlength=’1’将其修改为大于答案的数目输入正确答案即可拿下flag。<br>summary：对于新学习CTF的小白我来说，这个题告诉了我灵活的运用编程前端知识，然后是遇到题一定要注意打开F12或者查看源代码。
-        
-          <a class="article-more-a" href="/2019/07/25/my-first-blog/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/07/25/my-first-blog/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
     </nav>
   
 

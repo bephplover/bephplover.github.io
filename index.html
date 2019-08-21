@@ -155,6 +155,69 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-22-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/21/22-day/">22-day</a>
+    </h1>
+  
+
+        
+        <a href="/2019/08/21/22-day/" class="archive-article-date">
+  	<time datetime="2019-08-21T01:20:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>53.忘记密码了(<a href="http://ctf5.shiyanbar.com/10/upload/step1.php" title="忘记密码了" target="_blank" rel="noopener">http://ctf5.shiyanbar.com/10/upload/step1.php</a>)<br>&emsp;&emsp;进入页面是一个找回密码的输入框，让我们输入邮箱，先随便输入一个<a href="mailto:12345678@qq.com" target="_blank" rel="noopener">12345678@qq.com</a>,提交试试，提交后弹出了一个提示框：你邮箱收到的重置密码链接为 ./step2.php?email=youmail@mail.com&amp;check=???????<br>那就进入这个链接看看，任然返回主页面，step2的页面只有一瞬间，因而直接前面输入view-source:<a href="http://ctf5.shiyanbar.com/10/upload/step2.php查看step2页面的源代码。发现了一些特殊的地方" target="_blank" rel="noopener">http://ctf5.shiyanbar.com/10/upload/step2.php查看step2页面的源代码。发现了一些特殊的地方</a><meta name="editor" content="Vim">它告诉了我们编辑器是Vim，而这个编辑器在对某个文件编辑后，如果非正常退出，会产生一个该文件的临时文件，名字为.原文件名.swp。（还有一种获取源码的方式是其备份文件名：原文件名~）从它的表单还可以看到<form action="submit.php" method="GET">因而访问submit.php.swp试试这样访问不行但访问.submit.php.swp就会接受一个文件，打开后发现如下代码：<br>if(!empty($token)&amp;&amp;!empty($emailAddress)){<br>    if(strlen($token)!=10) die(‘fail’);<br>    if($token!=’0’) die(‘fail’);<br>    $sql = “SELECT count(*) as num from <code>user</code> where token=’$token’ AND email=’$emailAddress’”;<br>    $r = mysql_query($sql) or die(‘db error’);<br>    $r = mysql_fetch_assoc($r);<br>    $r = $r[‘num’];<br>    if($r&gt;0){<br>        echo $flag;<br>    }else{<br>        echo “失败了呀”;<br>    }<br>这道题看代码能够明白需要提交一个token长度必须等于10然后值为0，可以10个0或者0e8个其他数字就可以，还有提交一个emailAddress，在step2的源码中我们发现了管理员的邮箱<a href="mailto:admin@simplexue.com" target="_blank" rel="noopener">admin@simplexue.com</a>，因而在submit.php页面构造payload:?token=0e00000000&amp;emailAddress=admin@simplexue.com就得到了flag.<br>&emsp;&emsp;这道题主要必须得对vim编辑器有一定掌握，这个还需我下去接着了解与学习，只有这样才能继续下一步，不然只能一直打转没有前进，还需要学习更多我不知道得小知识呀。</form></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/08/21/22-day/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-21st-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -706,71 +769,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/08/12/13th-day/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-twelfth-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/11/twelfth-day/">twelfth-day</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/11/twelfth-day/" class="archive-article-date">
-  	<time datetime="2019-08-11T00:32:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>36.多次(<a href="http://123.206.87.240:9004/1ndex.php?id=1" title="多次" target="_blank" rel="noopener">http://123.206.87.240:9004/1ndex.php?id=1</a>)<br>&emsp;&emsp;进入链接后会看到 there is nothing.可以看到url上面有个？id=1猜测可能是sql注入，但没有输入框又不像。先F12看一下，无任何线索，本题有2个flag，flag均为小写，flag格式 flag{}这是题目本身自带的提示。感觉没啥用.现在回到url上,试试url上的id.</p>
-        
-          <a class="article-more-a" href="/2019/08/11/twelfth-day/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/11/twelfth-day/">展开全文 >></a>
         </p>
       
 

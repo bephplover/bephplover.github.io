@@ -6,18 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2019 | Hexo</title>
+  <title>24-day | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="a new ctfer&apos;s study">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/2019/page/3/index.html">
+  <meta name="description" content="55.猫抓老鼠(http://ctf5.shiyanbar.com/basic/catch/)&amp;emsp;&amp;emsp;进入页面后就是一个输入框，先F12看一下，在网络中的Content-Row中发现Base64解码试试，得到：1566637974试试这一串数字输入输入框，等一下搜索以下Content-Row的含义和用处，很奇怪这个东西搜索不出来，难道是作者自己加的。而且可以发现页面每次刷新这个数字">
+<meta property="og:type" content="article">
+<meta property="og:title" content="24-day">
+<meta property="og:url" content="http://yoursite.com/2019/08/24/24-day/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="a new ctfer&apos;s study">
+<meta property="og:description" content="55.猫抓老鼠(http://ctf5.shiyanbar.com/basic/catch/)&amp;emsp;&amp;emsp;进入页面后就是一个输入框，先F12看一下，在网络中的Content-Row中发现Base64解码试试，得到：1566637974试试这一串数字输入输入框，等一下搜索以下Content-Row的含义和用处，很奇怪这个东西搜索不出来，难道是作者自己加的。而且可以发现页面每次刷新这个数字">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-08-24T01:54:41.685Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
-<meta name="twitter:description" content="a new ctfer&apos;s study">
+<meta name="twitter:title" content="24-day">
+<meta name="twitter:description" content="55.猫抓老鼠(http://ctf5.shiyanbar.com/basic/catch/)&amp;emsp;&amp;emsp;进入页面后就是一个输入框，先F12看一下，在网络中的Content-Row中发现Base64解码试试，得到：1566637974试试这一串数字输入输入框，等一下搜索以下Content-Row的含义和用处，很奇怪这个东西搜索不出来，难道是作者自己加的。而且可以发现页面每次刷新这个数字">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -153,133 +154,155 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-24-day" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      24-day
+    </h1>
+  
+
+        
+        <a href="/2019/08/24/24-day/" class="archive-article-date">
+  	<time datetime="2019-08-24T01:11:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-24</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>55.猫抓老鼠(<a href="http://ctf5.shiyanbar.com/basic/catch/" title="猫抓老鼠" target="_blank" rel="noopener">http://ctf5.shiyanbar.com/basic/catch/</a>)<br>&emsp;&emsp;进入页面后就是一个输入框，先F12看一下，在网络中的Content-Row中发现Base64解码试试，得到：1566637974试试这一串数字输入输入框，等一下搜索以下Content-Row的含义和用处，很奇怪这个东西搜索不出来，难道是作者自己加的。而且可以发现页面每次刷新这个数字就会随机变化。难道需要用脚本获取解码提交吗？这儿先放这里，拿BP尝试爆破，无果。在查看他人WP后说是直接提交pass_key=Content-Row的值拿下flag,但这样出不来flag,应该是题坏了换下一道题。<br>56.头有点大(<a href="http://ctf5.shiyanbar.com/sHeader/" title="头有点大" target="_blank" rel="noopener">http://ctf5.shiyanbar.com/sHeader/</a>)<br>&emsp;&emsp;这道题进去是一长串英文，意思是我没有权限进入，请保证我安装了.net framework 9.9，以及我必须是英文人，并且只能用IE浏览器。首先我去浏览器的设置中将语言调为了英式英语。这道题在考虑下还是去BP里面直接改http头文件就可以了，满足英式英语直接添加Accept-Language: en-gb,其次直接User-Agent构造User-Agent: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0;.NET CLR 9.9)然后发包即可获取flag.<br>&emsp;&emsp;这道题主要让我们掌握头文件中各个成分的构造以及作用，特别是User-Agent的含义与构造需要掌握。而关于.net的9.9框架还是没有的，因而构造它的写法:.Net CLR 9.9而IE浏览器我去百度了各个浏览器的user-agent随便构造的一句。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/02/fourth-day/" class="archive-article-date">
-  	<time datetime="2019-08-02T00:22:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/02/fourth-day/">fourth day</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/08/24/24-day/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/01/the-third-day/" class="archive-article-date">
-  	<time datetime="2019-08-01T01:09:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-01</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/08/22/23-day/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">23-day</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/01/the-third-day/">the third day</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/31/second-day/" class="archive-article-date">
-  	<time datetime="2019-07-31T00:41:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/31/second-day/">second day</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/25/my-first-blog/" class="archive-article-date">
-  	<time datetime="2019-07-25T02:06:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/25/my-first-blog/">my-first-blog</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2019/page/2/">&laquo; Prev</a><a class="page-number" href="/archives/2019/">1</a><a class="page-number" href="/archives/2019/page/2/">2</a><span class="page-number current">3</span>
-    </nav>
   
 
 
@@ -303,8 +326,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

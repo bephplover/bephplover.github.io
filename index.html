@@ -155,6 +155,136 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-24-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/24/24-day/">24-day</a>
+    </h1>
+  
+
+        
+        <a href="/2019/08/24/24-day/" class="archive-article-date">
+  	<time datetime="2019-08-24T01:11:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>55.猫抓老鼠(<a href="http://ctf5.shiyanbar.com/basic/catch/" title="猫抓老鼠" target="_blank" rel="noopener">http://ctf5.shiyanbar.com/basic/catch/</a>)<br>&emsp;&emsp;进入页面后就是一个输入框，先F12看一下，在网络中的Content-Row中发现Base64解码试试，得到：1566637974试试这一串数字输入输入框，等一下搜索以下Content-Row的含义和用处，很奇怪这个东西搜索不出来，难道是作者自己加的。而且可以发现页面每次刷新这个数字就会随机变化。难道需要用脚本获取解码提交吗？这儿先放这里，拿BP尝试爆破，无果。在查看他人WP后说是直接提交pass_key=Content-Row的值拿下flag,但这样出不来flag,应该是题坏了换下一道题。<br>56.头有点大(<a href="http://ctf5.shiyanbar.com/sHeader/" title="头有点大" target="_blank" rel="noopener">http://ctf5.shiyanbar.com/sHeader/</a>)<br>&emsp;&emsp;这道题进去是一长串英文，意思是我没有权限进入，请保证我安装了.net framework 9.9，以及我必须是英文人，并且只能用IE浏览器。首先我去浏览器的设置中将语言调为了英式英语。这道题在考虑下还是去BP里面直接改http头文件就可以了，满足英式英语直接添加Accept-Language: en-gb,其次直接User-Agent构造User-Agent: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0;.NET CLR 9.9)然后发包即可获取flag.<br>&emsp;&emsp;这道题主要让我们掌握头文件中各个成分的构造以及作用，特别是User-Agent的含义与构造需要掌握。而关于.net的9.9框架还是没有的，因而构造它的写法:.Net CLR 9.9而IE浏览器我去百度了各个浏览器的user-agent随便构造的一句。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/08/24/24-day/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-23-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/22/23-day/">23-day</a>
+    </h1>
+  
+
+        
+        <a href="/2019/08/22/23-day/" class="archive-article-date">
+  	<time datetime="2019-08-22T00:57:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>54.让我进去(<a href="http://ctf5.shiyanbar.com/web/kzhan.php" title="让我进去" target="_blank" rel="noopener">http://ctf5.shiyanbar.com/web/kzhan.php</a>)<br>&emsp;&emsp;进入页面前有提示：Hint:你可能希望知道服务器端发生了什么。。这个服务器端怎么才能进到呢，进入页面后显示admins only然后是一个登陆框还显示：If you have the correct credentials, log in below. If not, please LEAVE.F12看一下，没有其他重要线索，现在用BP抓包看一下，在cookie中发现了一个奇怪的参数source=0把它改为1发包出去后得到提示代码：<br>$flag = “XXXXXXXXXXXXXXXXXXXXXXX”;<br>$secret = “XXXXXXXXXXXXXXX”; // This secret is 15 characters long for security!</p>
+<p>$username = $_POST[“username”];<br>$password = $_POST[“password”];</p>
+<p>if (!empty($_COOKIE[“getmein”])) {<br>    if (urldecode($username) === “admin” &amp;&amp; urldecode($password) != “admin”) {<br>        if ($COOKIE[“getmein”] === md5($secret . urldecode($username . $password))) {<br>            echo “Congratulations! You are a registered user.\n”;<br>            die (“The flag is “. $flag);<br>        }<br>        else {<br>            die (“Your cookies don’t match up! STOP HACKING THIS SITE.”);<br>        }<br>    }<br>    else {<br>        die (“You are not an admin! LEAVE.”);<br>    }<br>}</p>
+<p>setcookie(“sample-hash”, md5($secret . urldecode(“admin” . “admin”)), time() + (60 * 60 * 24 * 7));</p>
+<p>if (empty($_COOKIE[“source”])) {<br>    setcookie(“source”, 0, time() + (60 * 60 * 24 * 7));<br>}<br>else {<br>    if ($_COOKIE[“source”] != 0) {<br>        echo “”; // This source code is outputted here<br>    }<br>}<br>阅读代码可以发现首先必须要求一个cookie叫getmein,其次username的urldecode需要等于admin,password的Urldecode不能等于admin,其次cookie getmein需要等于md5的($secret . urldecode($username . $password)).现在就需要构造了，首先构造一个叫getmein的cookie,其次这个getmein的值为md5的这一串。username=admin,password=12345将他们Url编码后为：%61%64%6d%69%6e%2e%31%32%33%34%35，secret=15个1，用.链接之后再md5传入cookie看一下。getmein=2861c306fc5e3dd08048dd533eaabddc这样得不到正确答案，应该还有什么问题没有注意到。setcookie(“sample-hash”, md5($secret . urldecode(“admin” . “admin”)), time() + (60 * 60 * 24 * 7));这儿它的setcookie的方式值得注意编码的时候明明都是admin admin意思是password必须也为admin也就是password应该是admin+绕过判断的东西。从他人的WP中学习到了一种叫哈希长度扩展攻击。关于什么叫md5扩展攻击，只能留一个博文慢慢学习了：<a href="https://www.cnblogs.com/p00mj/p/6288337.html" title="hash扩展攻击" target="_blank" rel="noopener">https://www.cnblogs.com/p00mj/p/6288337.html</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/08/22/23-day/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-22-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -639,136 +769,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/08/14/15th-day/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-14th-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/13/14th-day/">14th-day</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/13/14th-day/" class="archive-article-date">
-  	<time datetime="2019-08-13T01:05:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>39.文件包含2(<a href="http://123.206.31.85:49166/index.php?file=hello.php" title="文件包含2" target="_blank" rel="noopener">http://123.206.31.85:49166/index.php?file=hello.php</a>)<br>&emsp;&emsp;进入页面后，是一个hello.php提示里面也说过文件包含，并且可以看到url中有个file=因而应该可以用php流读取文件，先最基本的看一下源代码和网络有没有其他提示。无其他提示，因而直接php流
-        
-          <a class="article-more-a" href="/2019/08/13/14th-day/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/13/14th-day/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-13th-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/12/13th-day/">13th-day</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/12/13th-day/" class="archive-article-date">
-  	<time datetime="2019-08-12T00:44:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>&emsp;&emsp;关于报错注入的一些小总结:MySQL 5.1.5版本中添加了对XML文档进行查询和修改的两个函数：extractvalue、updatexml.ExtractValue() 使用XPath表示法从XML字符串中提取值<br>UpdateXML()     返回替换的XML片段<br>举例其用法:<br>emsp;&emsp;先从爆库开始
-        
-          <a class="article-more-a" href="/2019/08/12/13th-day/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/12/13th-day/">展开全文 >></a>
         </p>
       
 

@@ -6,18 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2019 | Hexo</title>
+  <title>23-day | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="a new ctfer&apos;s study">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/2019/page/3/index.html">
+  <meta name="description" content="54.让我进去(http://ctf5.shiyanbar.com/web/kzhan.php)&amp;emsp;&amp;emsp;进入页面前有提示：Hint:你可能希望知道服务器端发生了什么。。这个服务器端怎么才能进到呢，进入页面后显示admins only然后是一个登陆框还显示：If you have the correct credentials, log in below. If not, pleas">
+<meta property="og:type" content="article">
+<meta property="og:title" content="23-day">
+<meta property="og:url" content="http://yoursite.com/2019/08/22/23-day/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="a new ctfer&apos;s study">
+<meta property="og:description" content="54.让我进去(http://ctf5.shiyanbar.com/web/kzhan.php)&amp;emsp;&amp;emsp;进入页面前有提示：Hint:你可能希望知道服务器端发生了什么。。这个服务器端怎么才能进到呢，进入页面后显示admins only然后是一个登陆框还显示：If you have the correct credentials, log in below. If not, pleas">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-08-22T01:36:02.903Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
-<meta name="twitter:description" content="a new ctfer&apos;s study">
+<meta name="twitter:title" content="23-day">
+<meta name="twitter:description" content="54.让我进去(http://ctf5.shiyanbar.com/web/kzhan.php)&amp;emsp;&amp;emsp;进入页面前有提示：Hint:你可能希望知道服务器端发生了什么。。这个服务器端怎么才能进到呢，进入页面后显示admins only然后是一个登陆框还显示：If you have the correct credentials, log in below. If not, pleas">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -153,133 +154,168 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-23-day" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      23-day
+    </h1>
+  
+
+        
+        <a href="/2019/08/22/23-day/" class="archive-article-date">
+  	<time datetime="2019-08-22T00:57:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-22</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>54.让我进去(<a href="http://ctf5.shiyanbar.com/web/kzhan.php" title="让我进去" target="_blank" rel="noopener">http://ctf5.shiyanbar.com/web/kzhan.php</a>)<br>&emsp;&emsp;进入页面前有提示：Hint:你可能希望知道服务器端发生了什么。。这个服务器端怎么才能进到呢，进入页面后显示admins only然后是一个登陆框还显示：If you have the correct credentials, log in below. If not, please LEAVE.F12看一下，没有其他重要线索，现在用BP抓包看一下，在cookie中发现了一个奇怪的参数source=0把它改为1发包出去后得到提示代码：<br>$flag = “XXXXXXXXXXXXXXXXXXXXXXX”;<br>$secret = “XXXXXXXXXXXXXXX”; // This secret is 15 characters long for security!</p>
+<p>$username = $_POST[“username”];<br>$password = $_POST[“password”];</p>
+<p>if (!empty($_COOKIE[“getmein”])) {<br>    if (urldecode($username) === “admin” &amp;&amp; urldecode($password) != “admin”) {<br>        if ($COOKIE[“getmein”] === md5($secret . urldecode($username . $password))) {<br>            echo “Congratulations! You are a registered user.\n”;<br>            die (“The flag is “. $flag);<br>        }<br>        else {<br>            die (“Your cookies don’t match up! STOP HACKING THIS SITE.”);<br>        }<br>    }<br>    else {<br>        die (“You are not an admin! LEAVE.”);<br>    }<br>}</p>
+<p>setcookie(“sample-hash”, md5($secret . urldecode(“admin” . “admin”)), time() + (60 * 60 * 24 * 7));</p>
+<p>if (empty($_COOKIE[“source”])) {<br>    setcookie(“source”, 0, time() + (60 * 60 * 24 * 7));<br>}<br>else {<br>    if ($_COOKIE[“source”] != 0) {<br>        echo “”; // This source code is outputted here<br>    }<br>}<br>阅读代码可以发现首先必须要求一个cookie叫getmein,其次username的urldecode需要等于admin,password的Urldecode不能等于admin,其次cookie getmein需要等于md5的($secret . urldecode($username . $password)).现在就需要构造了，首先构造一个叫getmein的cookie,其次这个getmein的值为md5的这一串。username=admin,password=12345将他们Url编码后为：%61%64%6d%69%6e%2e%31%32%33%34%35，secret=15个1，用.链接之后再md5传入cookie看一下。getmein=2861c306fc5e3dd08048dd533eaabddc这样得不到正确答案，应该还有什么问题没有注意到。setcookie(“sample-hash”, md5($secret . urldecode(“admin” . “admin”)), time() + (60 * 60 * 24 * 7));这儿它的setcookie的方式值得注意编码的时候明明都是admin admin意思是password必须也为admin也就是password应该是admin+绕过判断的东西。从他人的WP中学习到了一种叫哈希长度扩展攻击。关于什么叫md5扩展攻击，只能留一个博文慢慢学习了：<a href="https://www.cnblogs.com/p00mj/p/6288337.html" title="hash扩展攻击" target="_blank" rel="noopener">https://www.cnblogs.com/p00mj/p/6288337.html</a></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/02/fourth-day/" class="archive-article-date">
-  	<time datetime="2019-08-02T00:22:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/02/fourth-day/">fourth day</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/08/22/23-day/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/01/the-third-day/" class="archive-article-date">
-  	<time datetime="2019-08-01T01:09:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-01</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2019/08/24/24-day/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          24-day
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/08/21/22-day/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">22-day</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/01/the-third-day/">the third day</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/31/second-day/" class="archive-article-date">
-  	<time datetime="2019-07-31T00:41:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/31/second-day/">second day</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/25/my-first-blog/" class="archive-article-date">
-  	<time datetime="2019-07-25T02:06:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/25/my-first-blog/">my-first-blog</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2019/page/2/">&laquo; Prev</a><a class="page-number" href="/archives/2019/">1</a><a class="page-number" href="/archives/2019/page/2/">2</a><span class="page-number current">3</span>
-    </nav>
   
 
 
@@ -303,8 +339,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="54.让我进去(http://ctf5.shiyanbar.com/web/kzhan.php)&amp;emsp;&amp;emsp;进入页面前有提示：Hint:你可能希望知道服务器端发生了什么。。这个服务器端怎么才能进到呢，进入页面后显示admins only然后是一个登陆框还显示：If you have the correct credentials, log in below. If not, pleas">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-22T01:36:02.903Z">
+<meta property="og:updated_time" content="2019-08-24T02:09:58.829Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="23-day">
 <meta name="twitter:description" content="54.让我进去(http://ctf5.shiyanbar.com/web/kzhan.php)&amp;emsp;&amp;emsp;进入页面前有提示：Hint:你可能希望知道服务器端发生了什么。。这个服务器端怎么才能进到呢，进入页面后显示admins only然后是一个登陆框还显示：If you have the correct credentials, log in below. If not, pleas">
@@ -174,7 +174,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>54.让我进去(<a href="http://ctf5.shiyanbar.com/web/kzhan.php" title="让我进去" target="_blank" rel="noopener">http://ctf5.shiyanbar.com/web/kzhan.php</a>)<br>&emsp;&emsp;进入页面前有提示：Hint:你可能希望知道服务器端发生了什么。。这个服务器端怎么才能进到呢，进入页面后显示admins only然后是一个登陆框还显示：If you have the correct credentials, log in below. If not, please LEAVE.F12看一下，没有其他重要线索，现在用BP抓包看一下，在cookie中发现了一个奇怪的参数source=0把它改为1发包出去后得到提示代码：<br>$flag = “XXXXXXXXXXXXXXXXXXXXXXX”;<br>$secret = “XXXXXXXXXXXXXXX”; // This secret is 15 characters long for security!</p>
+        <p>54.让我进去(<a href="http://ctf5.shiyanbar.com/web/kzhan.php" title="让我进去" target="_blank" rel="noopener">http://ctf5.shiyanbar.com/web/kzhan.php</a>)<br>&emsp;&emsp;进入页面前有提示：Hint:你可能希望知道服务器端发生了什么。。这个服务器端怎么才能进到呢，进入页面后显示admins only然后是一个登陆框还显示：If you have the correct credentials, log in below. If not, please LEAVE.F12看一下，没有其他重要线索，现在用BP抓包看一下，在cookie中发现了一个奇怪的参数source=0把它改为1发包出去后得到提示代码<a id="more"></a>：<br>$flag = “XXXXXXXXXXXXXXXXXXXXXXX”;<br>$secret = “XXXXXXXXXXXXXXX”; // This secret is 15 characters long for security!</p>
 <p>$username = $_POST[“username”];<br>$password = $_POST[“password”];</p>
 <p>if (!empty($_COOKIE[“getmein”])) {<br>    if (urldecode($username) === “admin” &amp;&amp; urldecode($password) != “admin”) {<br>        if ($COOKIE[“getmein”] === md5($secret . urldecode($username . $password))) {<br>            echo “Congratulations! You are a registered user.\n”;<br>            die (“The flag is “. $flag);<br>        }<br>        else {<br>            die (“Your cookies don’t match up! STOP HACKING THIS SITE.”);<br>        }<br>    }<br>    else {<br>        die (“You are not an admin! LEAVE.”);<br>    }<br>}</p>
 <p>setcookie(“sample-hash”, md5($secret . urldecode(“admin” . “admin”)), time() + (60 * 60 * 24 * 7));</p>

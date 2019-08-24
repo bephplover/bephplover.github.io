@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="55.猫抓老鼠(http://ctf5.shiyanbar.com/basic/catch/)&amp;emsp;&amp;emsp;进入页面后就是一个输入框，先F12看一下，在网络中的Content-Row中发现Base64解码试试，得到：1566637974试试这一串数字输入输入框，等一下搜索以下Content-Row的含义和用处，很奇怪这个东西搜索不出来，难道是作者自己加的。而且可以发现页面每次刷新这个数字">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-24T01:54:41.685Z">
+<meta property="og:updated_time" content="2019-08-24T02:10:13.132Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="24-day">
 <meta name="twitter:description" content="55.猫抓老鼠(http://ctf5.shiyanbar.com/basic/catch/)&amp;emsp;&amp;emsp;进入页面后就是一个输入框，先F12看一下，在网络中的Content-Row中发现Base64解码试试，得到：1566637974试试这一串数字输入输入框，等一下搜索以下Content-Row的含义和用处，很奇怪这个东西搜索不出来，难道是作者自己加的。而且可以发现页面每次刷新这个数字">
@@ -174,7 +174,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>55.猫抓老鼠(<a href="http://ctf5.shiyanbar.com/basic/catch/" title="猫抓老鼠" target="_blank" rel="noopener">http://ctf5.shiyanbar.com/basic/catch/</a>)<br>&emsp;&emsp;进入页面后就是一个输入框，先F12看一下，在网络中的Content-Row中发现Base64解码试试，得到：1566637974试试这一串数字输入输入框，等一下搜索以下Content-Row的含义和用处，很奇怪这个东西搜索不出来，难道是作者自己加的。而且可以发现页面每次刷新这个数字就会随机变化。难道需要用脚本获取解码提交吗？这儿先放这里，拿BP尝试爆破，无果。在查看他人WP后说是直接提交pass_key=Content-Row的值拿下flag,但这样出不来flag,应该是题坏了换下一道题。<br>56.头有点大(<a href="http://ctf5.shiyanbar.com/sHeader/" title="头有点大" target="_blank" rel="noopener">http://ctf5.shiyanbar.com/sHeader/</a>)<br>&emsp;&emsp;这道题进去是一长串英文，意思是我没有权限进入，请保证我安装了.net framework 9.9，以及我必须是英文人，并且只能用IE浏览器。首先我去浏览器的设置中将语言调为了英式英语。这道题在考虑下还是去BP里面直接改http头文件就可以了，满足英式英语直接添加Accept-Language: en-gb,其次直接User-Agent构造User-Agent: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0;.NET CLR 9.9)然后发包即可获取flag.<br>&emsp;&emsp;这道题主要让我们掌握头文件中各个成分的构造以及作用，特别是User-Agent的含义与构造需要掌握。而关于.net的9.9框架还是没有的，因而构造它的写法:.Net CLR 9.9而IE浏览器我去百度了各个浏览器的user-agent随便构造的一句。</p>
+        <p>55.猫抓老鼠(<a href="http://ctf5.shiyanbar.com/basic/catch/" title="猫抓老鼠" target="_blank" rel="noopener">http://ctf5.shiyanbar.com/basic/catch/</a>)<br>&emsp;&emsp;进入页面后就是一个输入框，先F12看一下，在网络中的Content-Row中发现Base64解码试试，得到：1566637974试试这一串数字输入输入框，等一下搜索以下Content-Row的含义和用处，很奇怪这个东西搜索不出来，难道是作者自己加的。而且可以发现页面每次刷新这个数字就会随机变化。难道需要用脚本获取解码提交吗？<a id="more"></a>这儿先放这里，拿BP尝试爆破，无果。在查看他人WP后说是直接提交pass_key=Content-Row的值拿下flag,但这样出不来flag,应该是题坏了换下一道题。<br>56.头有点大(<a href="http://ctf5.shiyanbar.com/sHeader/" title="头有点大" target="_blank" rel="noopener">http://ctf5.shiyanbar.com/sHeader/</a>)<br>&emsp;&emsp;这道题进去是一长串英文，意思是我没有权限进入，请保证我安装了.net framework 9.9，以及我必须是英文人，并且只能用IE浏览器。首先我去浏览器的设置中将语言调为了英式英语。这道题在考虑下还是去BP里面直接改http头文件就可以了，满足英式英语直接添加Accept-Language: en-gb,其次直接User-Agent构造User-Agent: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0;.NET CLR 9.9)然后发包即可获取flag.<br>&emsp;&emsp;这道题主要让我们掌握头文件中各个成分的构造以及作用，特别是User-Agent的含义与构造需要掌握。而关于.net的9.9框架还是没有的，因而构造它的写法:.Net CLR 9.9而IE浏览器我去百度了各个浏览器的user-agent随便构造的一句。</p>
 
       
 

@@ -6,18 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2019 | Hexo</title>
+  <title>25-day | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="a new ctfer&apos;s study">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/2019/index.html">
+  <meta name="description" content="57.貌似有点难(http://ctf5.shiyanbar.com/phpaudit/)&amp;emsp;&amp;emsp;进入页面提示PHP代码审计，并说明我得IP不在允许列表之内。点击view the source code查看到如下提示代码：function GetIP(){if(!empty($_SERVER[“HTTP_CLIENT_IP”]))    $cip = $_SERVER[“HTTP_">
+<meta property="og:type" content="article">
+<meta property="og:title" content="25-day">
+<meta property="og:url" content="http://yoursite.com/2019/08/26/25-day/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="a new ctfer&apos;s study">
+<meta property="og:description" content="57.貌似有点难(http://ctf5.shiyanbar.com/phpaudit/)&amp;emsp;&amp;emsp;进入页面提示PHP代码审计，并说明我得IP不在允许列表之内。点击view the source code查看到如下提示代码：function GetIP(){if(!empty($_SERVER[“HTTP_CLIENT_IP”]))    $cip = $_SERVER[“HTTP_">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="https://raw.githubusercontent.com/houhuiting/image/master/1-2.png">
+<meta property="og:updated_time" content="2019-08-26T02:07:52.497Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
-<meta name="twitter:description" content="a new ctfer&apos;s study">
+<meta name="twitter:title" content="25-day">
+<meta name="twitter:description" content="57.貌似有点难(http://ctf5.shiyanbar.com/phpaudit/)&amp;emsp;&amp;emsp;进入页面提示PHP代码审计，并说明我得IP不在允许列表之内。点击view the source code查看到如下提示代码：function GetIP(){if(!empty($_SERVER[“HTTP_CLIENT_IP”]))    $cip = $_SERVER[“HTTP_">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/houhuiting/image/master/1-2.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -153,295 +156,160 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-25-day" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      25-day
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/26/25-day/" class="archive-article-date">
+
+        
+        <a href="/2019/08/26/25-day/" class="archive-article-date">
   	<time datetime="2019-08-26T00:58:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-26</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/26/25-day/">25-day</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>57.貌似有点难(<a href="http://ctf5.shiyanbar.com/phpaudit/" title="貌似有点难" target="_blank" rel="noopener">http://ctf5.shiyanbar.com/phpaudit/</a>)<br>&emsp;&emsp;进入页面提示PHP代码审计，并说明我得IP不在允许列表之内。点击view the source code查看到如下提示代码：<br>function GetIP(){<br>if(!empty($_SERVER[“HTTP_CLIENT_IP”]))<br>    $cip = $_SERVER[“HTTP_CLIENT_IP”];<br>else if(!empty($_SERVER[“HTTP_X_FORWARDED_FOR”]))<br>    $cip = $_SERVER[“HTTP_X_FORWARDED_FOR”];<br>else if(!empty($_SERVER[“REMOTE_ADDR”]))<br>    $cip = $_SERVER[“REMOTE_ADDR”];<br>else<br>    $cip = “0.0.0.0”;<br>return $cip;<br>}</p>
+<p>$GetIPs = GetIP();<br>if ($GetIPs==”1.1.1.1”){<br>echo “Great! Key is <strong>*****</strong>“;<br>}<br>else{<br>echo “错误！你的IP不在访问列表之内！”;<br>}<br>从如上代码可以看到几乎所有的伪造IP方式都可以使用，因而抓包直接伪造IP。这里记录以下伪造IP的方法：<br>    Client-Ip: 127.0.0.1<br>    X-Forwarded-For: 127.0.0.1<br>    Host: 127.0.0.1<br>    Referer: <a href="http://www.google.com" target="_blank" rel="noopener">www.google.com</a><br>在Http包中直接构造payload:Client-Ip: 1.1.1.1拿下flag.<br>剩下大部分题都是SQL注入的了，由于本人SQL学的较差，需要先下去补补，这里继续做一些密码学或者杂项的CTF。<br>58.滴答~滴<br>&emsp;&emsp;-… -.- -.-. - ..-. – .. … -.-. 这种应该是摩斯密码直接百度在线解密，拿下flag.<br>&emsp;&emsp;summary:密码学的题第一要知道它是什么加密方式，然后要知道加密的原理，这样才能更好的解密。<br>59.聪明的小羊<br>&emsp;&emsp;一只小羊翻过了2个栅栏</p>
+<p>KYsd3js2E{a2jda}<br>栅栏密码：栅栏数为2.在线解密后为：KEY{sad23jjdsa2}<br>这里手工解密以下：<br>首先把密码分为两组也就是栅栏数如下所示：<br>KYsd3js2<br>E{a2jda}<br>然后从上往下从右往左的顺序读：<br>1.K 3.Y<br>2.E 4.{<br>就按照这个顺序读就得到了：KEY{sad23jjdsa2}<br>60.ok<br>&emsp;&emsp;只有如下提示：<br>Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook.<br>此处省去多行，那就直接百度Ook发现这是一种编码方式，找到了一个在线解码的拿下flag.<br>&emsp;&emsp;在不知道是什么加密方式可以先百度进行了解再寻找一个解码的在线网站。这个过程主要提高了检索的能力。<br>61.这不是摩斯密码<br>&emsp;&emsp;+++++ +++++ [-&gt;++ +++++ +++&lt;] &gt;++.+ +++++ .&lt;+++ [-&gt;– -&lt;]&gt;- -.+++ +++.&lt;<br>++++[ -&gt;+++ +&lt;]&gt;+ +++.&lt; +++[- &gt;—&lt; ]&gt;— .—- .&lt;+++ ++++[ -&gt;— —-&lt;<br>]&gt;— —– —– .&lt;+++ ++++[ -&gt;+++ ++++&lt; ]&gt;+++ ++.&lt;+ +++++ +[-&gt;- —–<br>-&lt;]&gt;. &lt;++++ ++++[ -&gt;+++ +++++ &lt;]&gt;++ .&lt;+++ [-&gt;– -&lt;]&gt;- —-. &lt;++++ +++[-</p>
+<blockquote>
+<p>—- —&lt;] &gt;—- —-. +++++ +..++ +++.+ .&lt;+++ [-&gt;– -&lt;]&gt;- –.&lt;+ +++++<br>+[-&gt;+ +++++ +&lt;]&gt;+ ++.++ +.+++ +++++ +.— -.+++ ++.&lt;+ ++[-&gt; +++&lt;] &gt;++++<br>++.&lt;<br>这个百度后是brainfuck<a href="https://www.splitbrain.org/services/ook" title="Ook和Brainfuck在线解码" target="_blank" rel="noopener">https://www.splitbrain.org/services/ook</a><br>这个是在线解码地址。<br>62.easy_crypto<br>&emsp;&emsp;这个显示如下内容：<br>0010 0100 01 110 1111011 11 11111 010 000 0 001101 1010 111 100 0 001101 01111 000 001101 00 10 1 0 010 0 000 1 01111 10 11110 101011 1111101<br>这个是摩斯密码与AScii的一个对照：<img src="https://raw.githubusercontent.com/houhuiting/image/master/1-2.png" alt><br>按照这个表查找即可得到flag.当然这样很复制也可以用程序直接跑出来。</p>
+</blockquote>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/08/26/25-day/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/24/24-day/" class="archive-article-date">
-  	<time datetime="2019-08-24T01:11:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-24</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/08/24/24-day/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">24-day</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/24/24-day/">24-day</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/22/23-day/" class="archive-article-date">
-  	<time datetime="2019-08-22T00:57:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/22/23-day/">23-day</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/21/22-day/" class="archive-article-date">
-  	<time datetime="2019-08-21T01:20:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/21/22-day/">22-day</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/20/21st-day/" class="archive-article-date">
-  	<time datetime="2019-08-20T00:51:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/20/21st-day/">21st-day</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/19/20th-day/" class="archive-article-date">
-  	<time datetime="2019-08-19T00:49:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/19/20th-day/">20th-day</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/18/19th-day/" class="archive-article-date">
-  	<time datetime="2019-08-18T01:31:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/18/19th-day/">19th-day</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/17/18th-day/" class="archive-article-date">
-  	<time datetime="2019-08-17T01:18:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-17</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/17/18th-day/">18th-day</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/16/17th-day/" class="archive-article-date">
-  	<time datetime="2019-08-16T00:41:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/16/17th-day/">17th-day</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/15/16th-day/" class="archive-article-date">
-  	<time datetime="2019-08-15T01:12:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/15/16th-day/">16th-day</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2019/page/2/">2</a><a class="page-number" href="/archives/2019/page/3/">3</a><a class="extend next" rel="next" href="/archives/2019/page/2/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -465,8 +333,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

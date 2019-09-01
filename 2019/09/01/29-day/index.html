@@ -6,18 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | Hexo</title>
+  <title>29-day | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="a new ctfer&apos;s study">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="73.闪的好快&amp;emsp;&amp;emsp;如图可以看到是一个闪的贼快的GIF二维码，很明显扫描二维码就能得到flag,这里就需要用到stegsolve了让这些GIF图分解为一张一张的图片，最后逐个扫描二维码就能得到flag.我觉得应该还有个什么自动扫描图片工具然后收集扫描出来的信息，逐个扫描太慢了。这里再详细介绍下stegsolve:File Format:文件格式，这个主要是查看图片的具体信息 Da">
+<meta property="og:type" content="article">
+<meta property="og:title" content="29-day">
+<meta property="og:url" content="http://yoursite.com/2019/09/01/29-day/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="a new ctfer&apos;s study">
+<meta property="og:description" content="73.闪的好快&amp;emsp;&amp;emsp;如图可以看到是一个闪的贼快的GIF二维码，很明显扫描二维码就能得到flag,这里就需要用到stegsolve了让这些GIF图分解为一张一张的图片，最后逐个扫描二维码就能得到flag.我觉得应该还有个什么自动扫描图片工具然后收集扫描出来的信息，逐个扫描太慢了。这里再详细介绍下stegsolve:File Format:文件格式，这个主要是查看图片的具体信息 Da">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="https://ctf.bugku.com/files/6dcac03199e58749725cbcd9cc958a9b/masterGO.gif">
+<meta property="og:updated_time" content="2019-09-01T02:17:52.028Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
-<meta name="twitter:description" content="a new ctfer&apos;s study">
+<meta name="twitter:title" content="29-day">
+<meta name="twitter:description" content="73.闪的好快&amp;emsp;&amp;emsp;如图可以看到是一个闪的贼快的GIF二维码，很明显扫描二维码就能得到flag,这里就需要用到stegsolve了让这些GIF图分解为一张一张的图片，最后逐个扫描二维码就能得到flag.我觉得应该还有个什么自动扫描图片工具然后收集扫描出来的信息，逐个扫描太慢了。这里再详细介绍下stegsolve:File Format:文件格式，这个主要是查看图片的具体信息 Da">
+<meta name="twitter:image" content="https://ctf.bugku.com/files/6dcac03199e58749725cbcd9cc958a9b/masterGO.gif">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -153,295 +156,158 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-29-day" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      29-day
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/01/29-day/" class="archive-article-date">
+
+        
+        <a href="/2019/09/01/29-day/" class="archive-article-date">
   	<time datetime="2019-09-01T00:42:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-01</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/01/29-day/">29-day</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>73.闪的好快<br>&emsp;&emsp;<img src="https://ctf.bugku.com/files/6dcac03199e58749725cbcd9cc958a9b/masterGO.gif" alt="闪的好快"><br>如图可以看到是一个闪的贼快的GIF二维码，很明显扫描二维码就能得到flag,这里就需要用到stegsolve了让这些GIF图分解为一张一张的图片，最后逐个扫描二维码就能得到flag.我觉得应该还有个什么自动扫描图片工具然后收集扫描出来的信息，逐个扫描太慢了。<br>这里再详细介绍下stegsolve:<br>File Format:文件格式，这个主要是查看图片的具体信息</p>
+<p>Data Extract:数据抽取，图片中隐藏数据的抽取</p>
+<p>Frame Browser:帧浏览器，主要是对GIF之类的动图进行分解，动图变成一张张图片，便于查看</p>
+<p>Image Combiner:拼图，图片拼接<br>74.come_game<br>&emsp;&emsp;下载后是一个小游戏，玩了之后感觉好难第一关都通不过，出来后有一个save1文件，应该是存档，当把数字改大了后发现对应关卡也变了，当改为5时发现直接通关获得flag.<br>这道题的原理我不是很明白，我得弄清楚这到底是什么意思。大致都说这个存档文件保存的就是关卡数，而这样就可以直接跳过关卡走到最后一关。<br>75.白哥的鸽子<br>&emsp;&emsp;首先把下载下来的文件改后缀为jpg,然后用foremost分离，无其他文件，接着用winhex分析。在最后的地方发现了：fg2ivyo}l{2s3_o@aw__rcl@<br>现在来排下顺序：<br>fg2ivyo}l{2s<br>3_o@aw__rcl@<br>fl@g{2s3_o@aw__rc2ivyo},这个不对，应该是一个栅栏密码在线解密下试试。最后得出每组字数为3时获得flag,这里面得两个@是干扰项，一开始我一位flag中的a会用@表示看样子不是。<br>76.linux<br>&emsp;&emsp;这道题会下载一个.tar.gz文件，题目名称linux很明显应当去Linux中完成，先使用命令tar -xvf解压这个文件，之后会得到一个flag文件，使用strings命令查看文件内容最后看到了flag.<br>&emsp;&emsp;这道题主要让我们了解Linux得两个基本命令一个是tar一个是strings.对Linux的熟练使用也是学习信安得必备之路，至此开始学习一下Linux.</p>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/09/01/29-day/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/30/28-day/" class="archive-article-date">
-  	<time datetime="2019-08-30T00:24:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-30</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/08/30/28-day/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">28-day</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/30/28-day/">28-day</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/29/27-day/" class="archive-article-date">
-  	<time datetime="2019-08-29T00:48:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/29/27-day/">27-day</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/28/26-day/" class="archive-article-date">
-  	<time datetime="2019-08-28T00:52:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/28/26-day/">26-day</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/26/25-day/" class="archive-article-date">
-  	<time datetime="2019-08-26T00:58:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-26</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/26/25-day/">25-day</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/22/23-day/" class="archive-article-date">
-  	<time datetime="2019-08-22T00:57:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/22/23-day/">23-day</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/21/22-day/" class="archive-article-date">
-  	<time datetime="2019-08-21T01:20:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/21/22-day/">22-day</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/20/21st-day/" class="archive-article-date">
-  	<time datetime="2019-08-20T00:51:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/20/21st-day/">21st-day</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/19/20th-day/" class="archive-article-date">
-  	<time datetime="2019-08-19T00:49:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/19/20th-day/">20th-day</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/18/19th-day/" class="archive-article-date">
-  	<time datetime="2019-08-18T01:31:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/18/19th-day/">19th-day</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -465,8 +331,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

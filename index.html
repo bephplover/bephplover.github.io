@@ -155,6 +155,72 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-29-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/01/29-day/">29-day</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/01/29-day/" class="archive-article-date">
+  	<time datetime="2019-09-01T00:42:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>73.闪的好快<br>&emsp;&emsp;<img src="https://ctf.bugku.com/files/6dcac03199e58749725cbcd9cc958a9b/masterGO.gif" alt="闪的好快"><br>如图可以看到是一个闪的贼快的GIF二维码，很明显扫描二维码就能得到flag,这里就需要用到stegsolve了让这些GIF图分解为一张一张的图片，最后逐个扫描二维码就能得到flag.我觉得应该还有个什么自动扫描图片工具然后收集扫描出来的信息，逐个扫描太慢了。<br>这里再详细介绍下stegsolve:<br>File Format:文件格式，这个主要是查看图片的具体信息</p>
+<p>Data Extract:数据抽取，图片中隐藏数据的抽取</p>
+<p>Frame Browser:帧浏览器，主要是对GIF之类的动图进行分解，动图变成一张张图片，便于查看</p>
+<p>Image Combiner:拼图，图片拼接<br>74.come_game<br>&emsp;&emsp;下载后是一个小游戏，玩了之后感觉好难第一关都通不过，出来后有一个save1文件，应该是存档，当把数字改大了后发现对应关卡也变了，当改为5时发现直接通关获得flag.<br>这道题的原理我不是很明白，我得弄清楚这到底是什么意思。大致都说这个存档文件保存的就是关卡数，而这样就可以直接跳过关卡走到最后一关。<br>75.白哥的鸽子<br>&emsp;&emsp;首先把下载下来的文件改后缀为jpg,然后用foremost分离，无其他文件，接着用winhex分析。在最后的地方发现了：fg2ivyo}l{2s3_o@aw__rcl@<br>现在来排下顺序：<br>fg2ivyo}l{2s<br>3_o@aw__rcl@<br>fl@g{2s3_o@aw__rc2ivyo},这个不对，应该是一个栅栏密码在线解密下试试。最后得出每组字数为3时获得flag,这里面得两个@是干扰项，一开始我一位flag中的a会用@表示看样子不是。<br>76.linux<br>&emsp;&emsp;这道题会下载一个.tar.gz文件，题目名称linux很明显应当去Linux中完成，先使用命令tar -xvf解压这个文件，之后会得到一个flag文件，使用strings命令查看文件内容最后看到了flag.<br>&emsp;&emsp;这道题主要让我们了解Linux得两个基本命令一个是tar一个是strings.对Linux的熟练使用也是学习信安得必备之路，至此开始学习一下Linux.</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/01/29-day/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-28-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -715,70 +781,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/08/18/19th-day/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-18th-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/17/18th-day/">18th-day</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/17/18th-day/" class="archive-article-date">
-  	<time datetime="2019-08-17T01:18:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>43.what a fuck 这是什么鬼东西(<a href="http://ctf5.shiyanbar.com/DUTCTF/1.html" title="什么鬼东西" target="_blank" rel="noopener">http://ctf5.shiyanbar.com/DUTCTF/1.html</a>)<br>&emsp;&emsp;进入页面就是熟悉的javascript jother编码，直接f12控制台复制进去解码，回车后弹出对话框，密码是：ihatejs.接下来按惯例没有其他提示访问一下它的主页面也就是index.php。提示让我打开index.php.txt。打开后发现如下代码:<br>&lt;?php<br>if(eregi(“hackerDJ”,$_GET[id])) {<br>  echo(“</p><p>not allowed!</p>“);<br>  exit();<br>}<p></p>
-<p>$_GET[id] = urldecode($_GET[id]);<br>if($_GET[id] == “hackerDJ”)<br>{<br>  echo “</p><p>Access granted!</p>“;<br>  echo “<p>flag: <strong><strong><strong>*****</strong></strong></strong>} </p>“;<br>}<br>?&gt;<br>其中的eregi函数用于匹配字符串，也就是如果get传入的id为hackDJ就输出not allowed.接下来是对id进行urldecode 这时候如果id等于hackerDJ就给出flag.试试hackerDJ进行Urlencode.然后由于url本身要解码因而需要编码两次然后给id get进去得到flag.但它一直重复:Can you authenticate to this website?最后提交这个flag.错误，错误。之前还有个密码直接提交密码，成功提交。妈耶这道题气死我了。这坑人真的是。恶心。<br>&emsp;&emsp;自己还是太嫩了本来一早就做出了但总感觉还有其他地方因为这个格式就不像flag…然后就。。真是。。被耍得团团转。<p></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/17/18th-day/">展开全文 >></a>
         </p>
       
 

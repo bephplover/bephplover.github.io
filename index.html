@@ -175,13 +175,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Linux的学习"><a href="#Linux的学习" class="headerlink" title="Linux的学习"></a>Linux的学习</h1><p>1.Linux的版本分为内核版本和发行版本<br>2.Linux中所有的内容都以文件形式保存(保存硬件)<br>3.Windows中以扩展名来区分文件，而Linux不靠扩展名来区分文件类型，而是靠权限区分文件类型<br>但Linux也有一些约定俗成的扩展名<br>一般来说：<br>压缩包：*.gz *.bz2 *.tar.bz2 *.tgz<br>二进制软件包:.rpm<br>网页文件：*.html *.php<br>脚本文件：*.sh<br>配置文件： *.conf<br>其实完全可以不用写扩展名系统也能识别，但写了能使系统管理员更好的识别文件类型。<br>4.Windows下的程序不能直接在Linux中安装和运行<br>5.字符界面占用的系统资源更少，会让操作系统更稳定<br>6.格式化的目的是为了写入文件系统，并附带清空(不是我们理解的清空磁盘)<br>7.硬件设备文件名<br>IDE硬盘： /dev/hd[a-d] 其中第一个/代表根目录<br>SCSI/SATA/USB: /dev/sd[a-p]<br>8.<br>分区设备文件名：/dev/hda1(IDE硬盘接口)其中hd代表IDE接口，a代表第一块硬盘，1代表第一个分区。<br>/dev/sda1(SCSI硬盘接口，SATA硬盘接口)其中sd代表SATA接口<br>9.主分区和扩展分区可以为1234号码，但逻辑分区只能以5开始</p>
-<h2 id="挂载"><a href="#挂载" class="headerlink" title="挂载"></a>挂载</h2><p>1.必须分区的有：/(根分区)<br>swap分区(交换分区，内存2倍，不超过2GB)，也可以叫虚拟内存<br>它的分区主要看内存，一定为内存两倍，实验中2GB足够。<br>推荐分区：/boot(启动分区,200MB)<br>2.分区：把大硬盘分为小的逻辑分区<br>3.分区设备文件名：给每个分区定义设备文件名<br>4.挂载：给每个分区分配挂载点–挂载点就是Linux中的磁盘文件系统的入口目录，类似于windows中的C、D、E等盘符</p>
-<h2 id="安装日志"><a href="#安装日志" class="headerlink" title="安装日志"></a>安装日志</h2><p>/root/install.log:存储了安装在系统中的软件及其版本信息<br>/root/install.log.syslog：存储了安装过程中留下的事件记录<br>/root/anaconda-ks.cfg:以Kickstart配置文件的格式记录安装过程中设置的选项信息<br>CentOS 6.x的默认文件系统类型是ext4<br>Linux安装时至少划分根分区/和SWAP两个分区才能正常安装使用</p>
-<h2 id="Linux常用命令"><a href="#Linux常用命令" class="headerlink" title="Linux常用命令"></a>Linux常用命令</h2><p>1.Linux命令格式<br>[root@localhost ~]#<br>root:当前登陆用户<br>~:当前所在目录(家目录)<br>#：超级用户<br>$:普通用户<br>localhost代表当前Linux的主机名<br>Linux的管理员叫root<br>超级用户的家目录就是/root<br>pwd可以显示当前所在位置<br>2.命令 [选项] [参数]<br>注意:个别命令使用不遵循此格式<br>当有多个选项时，可以写在一起<br>简化选项与完整选项 -a  等于–all<br>3.查询目录中内容：ls [选项] [参数]<br>-a 显示所有文件<br>-l 显示详细信息<br>-d 查看目录属性<br>-h 人性化显示文件大小<br>-i 显示inode<br>其中-rw-r–r–表示权限<br>-文件类型(-文件 d目录 l 软链接文件)软链接就是快捷方式<br>rw-          r–          r–<br>u所有者        g所属组        o其他人<br>r读 w写 x执行<br>备注:Linux系统中还存在块设备文件、字符设备文件、套接字文件和管道文件</p>
-<h2 id="目录处理命令"><a href="#目录处理命令" class="headerlink" title="目录处理命令"></a>目录处理命令</h2><p>mkdir 创建目录<br>mkdir -p[目录名]<br>-p递归创建<br>英文原意：make directories<br>切换目录：cd(change directories)<br>cd [目录]<br>简化操作<br>cd <del>回到当前用户的家目录 =直接 cd<br>其中</del>代表家目录<br>cd -进入上次目录<br>cd ..进入上级目录，比如我在家目录切换后进入根目录<br>cd .进入当前目录</p>
-<h2 id="相对路径与绝对路径"><a href="#相对路径与绝对路径" class="headerlink" title="相对路径与绝对路径"></a>相对路径与绝对路径</h2><p>相对路径：参照当前所在目录，进行查找<br>如：[root@imooc~]# cd../usr/local/src/</p>
-
+        <h1 id="Linux的学习"><a href="#Linux的学习" class="headerlink" title="Linux的学习"></a>Linux的学习</h1><p>1.Linux的版本分为内核版本和发行版本<br>2.Linux中所有的内容都以文件形式保存(保存硬件)<br>3.Windows中以扩展名来区分文件，而Linux不靠扩展名来区分文件类型，而是靠权限区分文件类型<br>但Linux也有一些约定俗成的扩展名
+        
+          <a class="article-more-a" href="/2019/09/06/32-day/#more">more >></a>
+        
       
 
       
@@ -306,8 +303,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>由于忙着准备计算机考试，因而暂放CTF题目的刷新，接下来记录一下三级的知识点记忆。<br>&emsp;&emsp;本文由作者xf所有，网址：<a href="https://bephplover.github.io" target="_blank" rel="noopener">https://bephplover.github.io</a><br>如需采纳请附上原文网址<br>提供用户访问internet所需要的路由服务是核心交换层<br>汇聚层的基本功能是<br>1.汇聚接入层的用户流量进行数据转发和交换<br>2.根据接入层的用户流量，进行流量均衡安全控制等处理<br>3.根据处理结果把用户流量转到核心交换层或用户本地进行路由处理<br>无源光纤网PON按照ITU标准可分为两个部分<br>（1）0C-3     155.520Mbps的对称业务<br>（2）0C-12    622.080Mbps的不对称业务<br>在802.11b中将传输速率提高到54Mbps的是802.11a和802.11g而b只是将传输速率提高到11Mbps<br>ADSL技术具有非对称带宽特性<br>Cable Modem利用频分复用，将信道分为上行信道和下行信道<br>光纤传输系统的中继距离可达100km以上<br>采用对称多处理器（SMP）技术的服务器总体性能不仅仅取决于CPU的数量，而且与CPU主频系统内存，网络速度等都有关系。<br>集群系统中一台主机出现故障时不会影响系统的正常服务。<br>OSPF在一个区域内的路由器数一般不超过200个<br>VLAN00XXX建立系统自动缺省vlan名xxx是其ID号<br>直线广播地址是IP地址网络位不变主机位置1的地址<br>每一个OSPF区域拥有一个32位的区域标识符，每一个区域内的路由器数不超过200个<br>RPR将沿顺时针传输的光纤环叫做外环，逆时针的叫内环。内环和外环都采用统计复用的方法传输IP分组。<br>802.16a用于固定结点接入<br>被动扫描方式类似于IDS<br>ICMP消息封装在IP数据包中<br>适配器具有转换不同数据速率的功能<br>STP,FTP,SFTP都比UTP防止对外点辐射的能力更强。<br>子网内的最后一个可用的IP地址是直接广播地址的前一个地址。<br>DHCP的广播方式采用的是UDP连接<br>配置异步串行接口的命令async default ip address<br>常用ICMP报文类型主要有0 Echo应答<br>3 目标不可达<br>4 源抑制<br>5 重定向<br>8 Echo 请求<br>9 路由器通告<br>11 超时<br>12 参数失灵<br>SDH对应s1s0 2<br>在全局配置模式下，使用ip route命令配置静态路由，命令格式ip route&lt;目的网络&gt;&lt;子网掩码&gt;&lt;下一跳路由器IP地址&gt;<br>在OSPF配置模式下，使用命令area 数字 range IP地址 子网掩码定义某一特定子网的聚合<br>如果图a中防火墙FW为Cisco PIX525,并且部分内网需要访问外网使用命令nat和global<br>建立VLAN10的完整配置语句为：vlan 10 name vlan10<br>vlan <vlan_id> name <vlan_name><br>为端口f0/1分配VLAN的完整配置语句为 switchport access vlan 10<br>Cisco 3500系列交换机设置VLAN工作模式为透明(Trunk)模式的命令格式是 switchport mode trunk<br>为端口配置允许中继的VLAN的完整配置语句是 switchport trunk allowed vlan 10,11 或后面数字写为10-11<br>除了流量镜像方式外还可以采用新增集线器或TAR分流方式来部署入侵检测探测器<br>关于子网划分的例子：<br>使用IP地址212.103.10.128/25划分为4个相同大小的子网，每个子网中能够容纳30台主机，请写出子网掩码，各个子网网络地址以及可用的IP地址段<br>每个子网容纳30台计算机：由2的n次-2则可以算出主机数位至少为5.<br>那么网络号就为27位，子网掩码/27或者255.255.255.224<br>分四个子网时候有以下规律，第一个子网直接是IP地址—212.103.10.128<br>第二个子网+32——–212.103.10.160<br>212.103.10.192<br>212.103.10.224<br>那么分别可用IP段就为：各个子网网络地址先最后一位+1然后30个IP就可以了<br>例如第一个就该为：212.103.10.129-212.103.10.158之后的以此类推<br>交换机的优先级增量值是4096<br>POS命令中SONET帧pos flag s1s0 0<br>SDH:pos flag s1s0 2<br>当路由信息发生变化时，BGP发言人使用Update分组通知相邻的自治系统<br>而notification分组用来发送检测到的差错<br>入侵防护系统IPS<br>高性能路由器一般采用可交换式的结构<br>一个BGP使用TCP与其他自治系统的BGP发言人交换信息<br>OSPF通过划分区域来提高路由更新收敛速度，每一个区域OSPF区域拥有一个32位的区域标识符<br>网络系统分层设计中层次之间的上联带宽与下一级带宽之比一般控制在1：20<br>Catalyst-6500交换机配置缺省路由的格式是:set ip route 0.0.0.0 路由地址<br>配置设备管理地址：set interface sc0 IP地址 子网掩码<br>snmp-server命令中使用UDP端口默认端口号162<br>loopback接口掩码为255.255.255.255<br>POS接口如果是SONET,则pos framing sonet<br>蓝牙对称连接的异步信道率是433.9kbit/s,非对称连接的异步信道率是723.2kbit/s/57.6Kbit/s<br>多介质信息插座是用来连接光纤和同轴电缆<br>NIPS对攻击的误报会导致合法通信被阻断<br>访问Web站点时除了使用站点外的域名外，还可以使用网站的IP地址访问<br>permit|deny 协议名 源端地址 源端反掩码|目的端地址 目的端反掩码<br>STP运行在交换机和网桥上<br>BGP-4采用路由向量协议</vlan_name></vlan_id></p>
-
+        <p>由于忙着准备计算机考试，因而暂放CTF题目的刷新，接下来记录一下三级的知识点记忆。<br>&emsp;&emsp;本文由作者xf所有，网址：<a href="https://bephplover.github.io" target="_blank" rel="noopener">https://bephplover.github.io</a><br>如需采纳请附上原文网址<br>提供用户访问internet所需要的路由服务是核心交换层
+        
+          <a class="article-more-a" href="/2019/09/02/30-day/#more">more >></a>
+        
       
 
       

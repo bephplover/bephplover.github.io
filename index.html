@@ -155,6 +155,260 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-36-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/25/36-day/">36-day</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/25/36-day/" class="archive-article-date">
+  	<time datetime="2019-09-25T12:39:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>脚本关<br>1.key又又找不到了(<a href="http://lab1.xseclab.com/xss1_30ac8668cd453e7e387c76b132b140bb/index.php" target="_blank" rel="noopener">http://lab1.xseclab.com/xss1_30ac8668cd453e7e387c76b132b140bb/index.php</a>)<br>&emsp;&emsp;进入页面后有个链接，点进去后，说key不在这里。直接用BP抓包看过程。抓到包后送去repeater点击go后出现了提示：href=”./search_key.php”&gt;_到这里找key_<br>直接在链接上将Index.php改为search_key.php再发包试试。拿下了key.<br>&emsp;&emsp;summary:为什么直接点链接进去什么都看不到，但是通过BP转发缺能看到key呢。再仔细重新弄一下过程。首先正常进去网页，然后点入链接，可以看到此时文件名为：no_key_is_here_forever.php，提示很明显了，key不在这个php下面。回到主页面，打开源代码可以看见，这个链接的确是到no_key_is_here_forever.php下的，但链接的名字却是search_key.php，因而看源代码可以清晰看出key应该在这个php下面，所以自己改php路径到这个下面，从而拿到了key.<br>2.快速口算(<a href="http://lab1.xseclab.com/xss2\_0d557e6d2a4ac08b749b61473a075be1/index.php" target="_blank" rel="noopener">http://lab1.xseclab.com/xss2\_0d557e6d2a4ac08b749b61473a075be1/index.php</a>)<br>&emsp;&emsp;又是一道python题，很明显要在两s内口算出并提交人根本算不出，更何况这是随机数，那么只有试试python了，我还没学过。（连运行别人的都不会）在学会了python的运行以及环境配置之后。借鉴了某大佬的脚本。运行后直接跑出了key.<br>3.怎么就是弹不出key呢<br>&emsp;&emsp;进入页面后会看到一个蓝色的疑似跳转链接，但点击后没有反应，ctrl+u查看源代码，发现了提示：<br>var d=eval(b);<br>alert(“key is first 14 chars”+d).在这上面还有3个函数，都是返回false。要知道返回false后那么输出key这个函数就被掩盖掉了。因而这里直接删除上面的返回false的三个函数。<br>然后保存代码到本地，打开后就会弹窗，得到：key is first 14 charsslakfjteslkjsdflkslakfjteslkjsdflkslakfjteslkjsdflkslakfjteslkjsdflkslakfjteslkjsdflkslakfjteslkjsdflkslakfjteslkjsdflkslakfjteslkjsdflkslakfjteslkjsdflkslakfjteslkjsdflk<br>这儿，我刚开始就截取了14个char:sslakfjteslkjs,这样上传key不对，因而仔细看会发现这儿14 char,char应该为chars，因而截取14个char应该为：slakfjteslkjsd.然后上传key就OK了。这里直接截取14个chars是很容易的，但如果长度多了人眼看就麻烦了。因而用php的substr这个简单的函数操作一下：payload:substr($str,0,14).<br>&emsp;&emsp;这道题首先要对script代码有一定了解，以及对于函数的执行结果要清楚的认识，最开始我想直接读取程序弹框的内容，但是人脑在面对大量数据以及正则表达式时的确无能为力，但应懂得利用电脑，人会利用这个工具才能做更多复杂的操作。因而保存到本地里面，运行输出结果。然后就是对截取字符串函数substr的复习吧。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/25/36-day/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-35-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/22/35-day/">35-day</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/22/35-day/" class="archive-article-date">
+  	<time datetime="2019-09-22T02:17:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>首先记录一下以后实验的IP对象，202.115.32.43–scu<br>210.41.224.132–cuit</p>
+<h2 id="Nmap"><a href="#Nmap" class="headerlink" title="Nmap"></a>Nmap</h2><p>命令<br>nmap IP<br>扫描多个：nmap IP ip<br>扫描网络并排除特定的目标<br>nmap IP/子网掩码数目 –exclude IP</p>
+<p>rot13是一种明文加密会得到密文，而密文加密会得到明文的加密算法<br>assert判断一个表达式是否成立。返回true or false<br>谷歌黑语法<br>site:可以限制你搜索范围的域名<br>inurl:用于搜索网页上包含的url，这个语法对寻找网页上的搜索，帮助之类的很有用。<br>intitle:查包含关键词的页面，一般用于社工别人的webshell密码<br>查找后台地址：site:域名<br>inurl:login|admin|manage|member|admin_login|login_admin|system|login|user|main|cms<br>查找文本内容：site:域名 intext:管理|后台|登陆|用户名|密码|验证码|系统|账号|admin|login|sys|managetem|password|username<br>link:可以得到一个所有包含了某个制定url的页面列表<br>filetype:搜索文件的后缀或者扩展名<br>查找可注入点：site:域名 inurl:asps|jsp|php|asp<br>查找上传漏洞：site:域名 inurl:file|load|editor|files<br>存在的数据库：site:域名 filetype:mdb|asp#|<br>迂回策略入侵：inurl:cms/data/templates/images/index</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/22/35-day/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-34-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/16/34-day/">34-day</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/16/34-day/" class="archive-article-date">
+  	<time datetime="2019-09-16T12:35:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>爆破的条件：登陆数据包不存在token验证或是验证码验证一次验证</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/16/34-day/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-33-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/15/33-day/">33-day</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/15/33-day/" class="archive-article-date">
+  	<time datetime="2019-09-15T03:03:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="SQL学习"><a href="#SQL学习" class="headerlink" title="SQL学习"></a>SQL学习</h2><p>1.这是一个神奇的登陆框(<a href="http://123.206.87.240:9001/sql/" title="神奇的登陆框" target="_blank" rel="noopener">http://123.206.87.240:9001/sql/</a>)<br>&emsp;&emsp;提示了是sql的题目，但我对如何注入没有半点思路，首先f12看一下。源代码部分注释了一个UserName和Password这里不知道是干什么的，可以看到登陆的表单框是由post方式提交的，因而这道题注入是post注入提交。那么就随便输入密码和用户然后用BP抓包。抓包后，右键copy to file将它保存为一个1.txt存在D盘。直接用sqlmap跑。<br>首先猜测注入点应当是admin_name也就是提交的用户，构造payload:sqlmap.py -r “D:\1.txt” -p admin_name –dbs<br>-r是读文件，后面是保存的绝对路径 -p是跑的参数，也就是注入点是admin_name –dbs代表爆库<br>跑出来库名是bugkusql1<br>继续爆表，payload:sqlmap.py -r “D:\1.txt” -D bugkusql1 -p admin_name –tables<br>跑出来表名是flag1<br>继续爆列名：payload:sqlmap.py -r “D:\1.txt” -D bugkusql1 -T flag1 -p admin_name –columns<br>爆出来列名是flag1<br>接着是爆字段内容了：payload:sqlmap.py -r “D:\1.txt” -D bugkusql1 -T flag1 -C flag1 -p admin_name –dump<br>最后拿下了flag.<br>&emsp;&emsp;summary:唯一的收获是熟练使用了一下sqlmap吧，不过我对这道题的原理以及它所掌握的知识没有半点收获，flag的确跑出来了，我得去其他大佬那看一下这道题所掌握的sql知识。<br>接下来对这道题进行手工注入：（尝试掌握其SQL知识点）<br>首先在用户框输入0’无报错，输入0”发现报错：Try Again!<br>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ‘“0”” and w_passwd=””‘ at line 1<br>说明的确可以注入，并且是字符型注入，接下来猜测字段长度构造payload:0” order by 2,无错误回显 猜测3，发现报错，说明字段长度为2.<br>接下来开始爆库：payload:0” union select database(),2#得到数据库名为bugkusql1<br>接下来是获取表名：payload：0” union select table_name,2 from information_schema.tables where table_schema=’bugkusql1’ #<br>获取表名为flag1.<br>接下来获取字段名：payload:0” union select column_name,2 from information_schema.columns where table_schema=’bugkusql1’ #<br>获取字段名也为flag1.<br>最后获取字段内容，构造payload:0” union select flag1 from flag1 #.拿下flag.<br>&emsp;&emsp;在手工注入后发现这道题还是蛮简单的，属于最基础的sql注入，没有过滤任何的select,or,and之类的，直接利用爆库爆表语句就能获取到数据。就当一次最基本的sql注入的熟练吧。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/15/33-day/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-32-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -518,267 +772,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/08/29/27-day/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-26-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/28/26-day/">26-day</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/28/26-day/" class="archive-article-date">
-  	<time datetime="2019-08-28T00:52:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>今天开始做一下杂项，综合哈其他知识。<br>63.这是一张单纯的图片<br><img src="http://123.206.87.240:8002/misc/1.jpg" alt><br>&emsp;&emsp;用winhex打开这张图片，在右边区域可以看见一些html编码，&#107;&#101;&#121;&#123;&#121;&#111;&#117;&#32;&#97;&#114;&#101;&#32;&#114;&#105;&#103;&#104;&#116;&#125;<br>拿去解码看一下，拿下Key.<br>&emsp;&emsp;这算一道misc的入门题吧，了解具体隐写术的原理与利用，以及工具winhex的使用。<br>64.隐写<br>&emsp;&emsp;这张图片用winhex打开后没有发现直接的有用信息，首先它是一张PNG形式的图片，在它的IHDR后面的16bit前8bit是高值，后8bit是宽，将宽改为和高一样的值，再打开图片发现了flag.<br>&emsp;&emsp;summary:这算是对隐写术的初步掌握，知道了再IHDR后面的是它的高与宽，然后加以利用，能够让隐写的数据得以显现出来。<br>65.telnet<br>&emsp;&emsp;将压缩包解压后用wireshark打开后直接右键追踪tcp流就拿下了flag.为什么要这么做呢，因为大部分类似文件得重要信息应当都是用tcp来传递的，因而直接查看tcp流应当会有重要信息。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/28/26-day/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-25-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/26/25-day/">25-day</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/26/25-day/" class="archive-article-date">
-  	<time datetime="2019-08-26T00:58:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>57.貌似有点难(<a href="http://ctf5.shiyanbar.com/phpaudit/" title="貌似有点难" target="_blank" rel="noopener">http://ctf5.shiyanbar.com/phpaudit/</a>)<br>&emsp;&emsp;进入页面提示PHP代码审计，并说明我得IP不在允许列表之内。点击view the source code查看到如下提示代码：<br>function GetIP(){<br>if(!empty($_SERVER[“HTTP_CLIENT_IP”]))<br>    $cip = $_SERVER[“HTTP_CLIENT_IP”];<br>else if(!empty($_SERVER[“HTTP_X_FORWARDED_FOR”]))<br>    $cip = $_SERVER[“HTTP_X_FORWARDED_FOR”];<br>else if(!empty($_SERVER[“REMOTE_ADDR”]))<br>    $cip = $_SERVER[“REMOTE_ADDR”];<br>else<br>    $cip = “0.0.0.0”;<br>return $cip;<br>}</p>
-<p>$GetIPs = GetIP();<br>if ($GetIPs==”1.1.1.1”){<br>echo “Great! Key is <strong>*****</strong>“;<br>}<br>else{<br>echo “错误！你的IP不在访问列表之内！”;<br>}<br>从如上代码可以看到几乎所有的伪造IP方式都可以使用，因而抓包直接伪造IP。这里记录以下伪造IP的方法：<br>    Client-Ip: 127.0.0.1<br>    X-Forwarded-For: 127.0.0.1<br>    Host: 127.0.0.1<br>    Referer: <a href="http://www.google.com" target="_blank" rel="noopener">www.google.com</a><br>在Http包中直接构造payload:Client-Ip: 1.1.1.1拿下flag.<br>剩下大部分题都是SQL注入的了，由于本人SQL学的较差，需要先下去补补，这里继续做一些密码学或者杂项的CTF。<br>58.滴答~滴<br>&emsp;&emsp;-… -.- -.-. - ..-. – .. … -.-. 这种应该是摩斯密码直接百度在线解密，拿下flag.<br>&emsp;&emsp;summary:密码学的题第一要知道它是什么加密方式，然后要知道加密的原理，这样才能更好的解密。<br>59.聪明的小羊<br>&emsp;&emsp;一只小羊翻过了2个栅栏</p>
-<p>KYsd3js2E{a2jda}<br>栅栏密码：栅栏数为2.在线解密后为：KEY{sad23jjdsa2}<br>这里手工解密以下：<br>首先把密码分为两组也就是栅栏数如下所示：<br>KYsd3js2<br>E{a2jda}<br>然后从上往下从右往左的顺序读：<br>1.K 3.Y<br>2.E 4.{<br>就按照这个顺序读就得到了：KEY{sad23jjdsa2}<br>60.ok<br>&emsp;&emsp;只有如下提示：<br>Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook.<br>此处省去多行，那就直接百度Ook发现这是一种编码方式，找到了一个在线解码的拿下flag.<br>&emsp;&emsp;在不知道是什么加密方式可以先百度进行了解再寻找一个解码的在线网站。这个过程主要提高了检索的能力。<br>61.这不是摩斯密码<br>&emsp;&emsp;+++++ +++++ [-&gt;++ +++++ +++&lt;] &gt;++.+ +++++ .&lt;+++ [-&gt;– -&lt;]&gt;- -.+++ +++.&lt;<br>++++[ -&gt;+++ +&lt;]&gt;+ +++.&lt; +++[- &gt;—&lt; ]&gt;— .—- .&lt;+++ ++++[ -&gt;— —-&lt;<br>]&gt;— —– —– .&lt;+++ ++++[ -&gt;+++ ++++&lt; ]&gt;+++ ++.&lt;+ +++++ +[-&gt;- —–<br>-&lt;]&gt;. &lt;++++ ++++[ -&gt;+++ +++++ &lt;]&gt;++ .&lt;+++ [-&gt;– -&lt;]&gt;- —-. &lt;++++ +++[-</p>
-<blockquote>
-<p>—- —&lt;] &gt;—- —-. +++++ +..++ +++.+ .&lt;+++ [-&gt;– -&lt;]&gt;- –.&lt;+ +++++<br>+[-&gt;+ +++++ +&lt;]&gt;+ ++.++ +.+++ +++++ +.— -.+++ ++.&lt;+ ++[-&gt; +++&lt;] &gt;++++<br>++.&lt;<br>这个百度后是brainfuck<a href="https://www.splitbrain.org/services/ook" title="Ook和Brainfuck在线解码" target="_blank" rel="noopener">https://www.splitbrain.org/services/ook</a><br>这个是在线解码地址。<br>62.easy_crypto<br>&emsp;&emsp;这个显示如下内容：<br>0010 0100 01 110 1111011 11 11111 010 000 0 001101 1010 111 100 0 001101 01111 000 001101 00 10 1 0 010 0 000 1 01111 10 11110 101011 1111101<br>这个是摩斯密码与AScii的一个对照：<img src="https://raw.githubusercontent.com/houhuiting/image/master/1-2.png" alt><br>按照这个表查找即可得到flag.当然这样很复制也可以用程序直接跑出来。</p>
-</blockquote>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/26/25-day/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-23-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/22/23-day/">23-day</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/22/23-day/" class="archive-article-date">
-  	<time datetime="2019-08-22T00:57:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>54.让我进去(<a href="http://ctf5.shiyanbar.com/web/kzhan.php" title="让我进去" target="_blank" rel="noopener">http://ctf5.shiyanbar.com/web/kzhan.php</a>)<br>&emsp;&emsp;进入页面前有提示：Hint:你可能希望知道服务器端发生了什么。。这个服务器端怎么才能进到呢，进入页面后显示admins only然后是一个登陆框还显示：If you have the correct credentials, log in below. If not, please LEAVE.F12看一下，没有其他重要线索，现在用BP抓包看一下，在cookie中发现了一个奇怪的参数source=0把它改为1发包出去后得到提示代码
-        
-          <a class="article-more-a" href="/2019/08/22/23-day/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/22/23-day/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-22-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/21/22-day/">22-day</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/21/22-day/" class="archive-article-date">
-  	<time datetime="2019-08-21T01:20:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>53.忘记密码了(<a href="http://ctf5.shiyanbar.com/10/upload/step1.php" title="忘记密码了" target="_blank" rel="noopener">http://ctf5.shiyanbar.com/10/upload/step1.php</a>)<br>&emsp;&emsp;进入页面是一个找回密码的输入框，让我们输入邮箱，先随便输入一个<a href="mailto:12345678@qq.com" target="_blank" rel="noopener">12345678@qq.com</a>,提交试试，提交后弹出了一个提示框：你邮箱收到的重置密码链接为 ./step2.php?email=youmail@mail.com&amp;check=???????<br>那就进入这个链接看看，任然返回主页面，step2的页面只有一瞬间，因而直接前面输入view-source:<a href="http://ctf5.shiyanbar.com/10/upload/step2.php查看step2页面的源代码。" target="_blank" rel="noopener">http://ctf5.shiyanbar.com/10/upload/step2.php查看step2页面的源代码。</a>
-        
-          <a class="article-more-a" href="/2019/08/21/22-day/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/21/22-day/">展开全文 >></a>
         </p>
       
 

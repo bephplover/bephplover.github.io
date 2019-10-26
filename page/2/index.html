@@ -155,6 +155,206 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-37-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/26/37-day/">37-day</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/26/37-day/" class="archive-article-date">
+  	<time datetime="2019-09-26T08:25:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>发现的钓鱼网站：<a href="http://hl-5.com" target="_blank" rel="noopener">http://hl-5.com</a>  其IP地址为222.187.224.55<br>IP物理地址江苏省宿迁市 电信</p>
+<h2 id="Nmap的学习"><a href="#Nmap的学习" class="headerlink" title="Nmap的学习"></a>Nmap的学习</h2><p>&emsp;&emsp;Nmap是一个网路连接端扫描软件，用来扫描网上电脑开放的网络连接端。确定哪些服务运行在哪些连接端，并且推断计算机运行哪个操作系统。被网络管理员用以评估网络系统安全。<br>&emsp;&emsp;他的基本功能有三个，一是探测一组主机是否在线；其次是扫描主机端口，嗅探所提供的网络服务，还可以推断主机所用的操作系统。Nmap可用于扫描仅有的两个节点LAN，直至500个节点以上的网络。Nmap还允许用户定制扫描技巧。通常，一个简单的使用ICMP协议的Ping操作可以满足一般需求；也可以深入探测UDP或者TCP端口，直到主机所使用的操作系统；还可以将所有探测结果记录到各种格式的日志中，供进一步分析操作。<br>Nmap可以完成以下任务：<br>主机探测，端口扫描，版本检测，系统检测，支持探测脚本的编写<br>1.nmap <target ip address><br>nmap默认发送一个ARP的PING数据包，来探测目标主机1-10000范围内所开放的所有端口<br>例如：nmap 222.187.224.55<br><img src="https://i.imgur.com/6h2QrvJ.png" alt><br>2.nmap -w ip<br>介绍： -w参数设置对结果的详细输出<br>3.nmap自定义扫描<br>命令语法:nmap -p(range) <target ip><br>介绍：(range)为要扫描的端口范围，端口大小不能超过65535<br>例如：nmap -p50-80 222.187.224.55<br>4.nmap指定端口扫描<br>命令语法:nmap -p(port1,port2…)<target ip><br>介绍：port1,port2..为想要扫描的端口号<br>例子:扫描目标主机的80，443，801端口<br>nmap -p80,443,801 222.187.224.55<br>由于一直扫描钓鱼网址导致他警惕而开启了一些防火墙拦截了我的扫描，故之后的学习还是采用一些正常的IP地址进行学习<br>5.nmap -O ip<br>操作系统检测<br>6nmap -A ip 扫描Android手机</target></target></target></p>
+<h2 id="AWVS的学习"><a href="#AWVS的学习" class="headerlink" title="AWVS的学习"></a>AWVS的学习</h2><h2 id="SSH的学习"><a href="#SSH的学习" class="headerlink" title="SSH的学习"></a>SSH的学习</h2><p>0x00：SSH（安全外壳协议），全Secure Shell，由IETF的网络小组所指定，SSH为建立在应用层基础上的安全协议。SSH是目前较可靠，专为远程登录会话和其他网络服务提供安全性的协议。利用SSH协议可以有效防止远程管理过程中的信息泄露问题。SSH最初是UNIX系统上的一个程序。<br>0x01:SSH(远程连接工具)，连接原理：ssh服务是一个守护进程（demon）,系统后台监听客户端的连接，ssh服务端的进程名为sshd,负责实时监听客户端的请求（IP 22端口），包括公共密钥等交换等信息。<br>ssh服务端由两部分组成：openssh(提供ssh服务) openssl(提供加密的服务)<br>ssh的客户端可以用XSHELL,Securecrt,Mobaxterm等工具进行连接。<br>0x02: 1.SSH是安全的加密协议，用于远程连接Linux服务器<br>   2.SSH的默认端口是22，安全协议版本是SSH2<br>   3.SSH服务器端主要包含2个服务功能SSH连接和SFTP服务器<br>   4.SSH客户端包含ssh连接命令和远程拷贝scp命令等<br>虚拟机IP（192.168.30.128）ssh</p>
+<h2 id="kali上安装ssh服务"><a href="#kali上安装ssh服务" class="headerlink" title="kali上安装ssh服务"></a>kali上安装ssh服务</h2><p>1.修改源：vi /etc/apt/source.list<br>添加：deb <a href="http://http.kali.org/kali" target="_blank" rel="noopener">http://http.kali.org/kali</a> kali-rolling main non-free contrib<br>2.更新一下源<br>apt-get update<br>3.下载ssh服务包<br>apt-get install ssh<br>4.打开ssh服务<br>service ssh start 打开ssh服务q<br>service ssh status 查看状态<br>service ssh stop 停止ssh服务<br>默认不允许root直接连接ssh<br>修改ssh配置文件<br>vi /etc/ssh/sshd_config<br>把32行注释取消：并把把PermitRootLogin prohibit-password改成PermitRootLogin yes<br>然后就可以root登录了</p>
+<h2 id="端口号记忆"><a href="#端口号记忆" class="headerlink" title="端口号记忆"></a>端口号记忆</h2><p>http 80<br>https 443<br>telnet 23<br>ftp 21<br>ssh、scp、端口重定向 22<br>SMTP 25<br>POP3 110<br>Weblogic 7001<br>TOMCAT 8080<br>WIN2003远程登陆 3389<br>Oracle数据库 1521<br>MS SQL*SEVER数据库server 1433<br>MYSQL 数据库server 3306</p>
+<h2 id="hosts学习"><a href="#hosts学习" class="headerlink" title="hosts学习"></a>hosts学习</h2><p>hosts是一个没有扩展名的系统文件，它并不是软件或者工具。<br>hosts所在文件夹：<br>Windows系统hosts位于C:\Windows\System32\drivers\etc\hosts<br>Android(安卓)系统hosts位于/etc/hosts<br>Mac(苹果电脑)系统hosts位于/etc/hosts<br>iPhone(IOS)系统hosts位于/etc/hosts<br>Linux系统hosts位于/etc/hosts<br>绝大多数Unix系统都是在/etc/hosts</p>
+<h2 id="端口状态学习"><a href="#端口状态学习" class="headerlink" title="端口状态学习"></a>端口状态学习</h2><p>open: 端口是开放的<br>closed: 端口是关闭的<br>filtered: 端口被防火墙IDS/IPS屏蔽，无法确定其状态<br>unfiltered:端口没有被屏蔽，但是否开放需要进一步确定<br>open|filtered:端口是开放的或被屏蔽<br>closed|filtered:端口是关闭的或被屏蔽</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/26/37-day/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-36-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/25/36-day/">36-day</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/25/36-day/" class="archive-article-date">
+  	<time datetime="2019-09-25T12:39:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>脚本关<br>1.key又又找不到了(<a href="http://lab1.xseclab.com/xss1_30ac8668cd453e7e387c76b132b140bb/index.php" target="_blank" rel="noopener">http://lab1.xseclab.com/xss1_30ac8668cd453e7e387c76b132b140bb/index.php</a>)<br>&emsp;&emsp;进入页面后有个链接，点进去后，说key不在这里。直接用BP抓包看过程。抓到包后送去repeater点击go后出现了提示：href=”./search_key.php”&gt;_到这里找key_<br>直接在链接上将Index.php改为search_key.php再发包试试。拿下了key.<br>&emsp;&emsp;summary:为什么直接点链接进去什么都看不到，但是通过BP转发缺能看到key呢。再仔细重新弄一下过程。首先正常进去网页，然后点入链接，可以看到此时文件名为：no_key_is_here_forever.php，提示很明显了，key不在这个php下面。回到主页面，打开源代码可以看见，这个链接的确是到no_key_is_here_forever.php下的，但链接的名字却是search_key.php，因而看源代码可以清晰看出key应该在这个php下面，所以自己改php路径到这个下面，从而拿到了key.<br>2.快速口算(<a href="http://lab1.xseclab.com/xss2\_0d557e6d2a4ac08b749b61473a075be1/index.php" target="_blank" rel="noopener">http://lab1.xseclab.com/xss2\_0d557e6d2a4ac08b749b61473a075be1/index.php</a>)<br>&emsp;&emsp;又是一道python题，很明显要在两s内口算出并提交人根本算不出，更何况这是随机数，那么只有试试python了，我还没学过。（连运行别人的都不会）在学会了python的运行以及环境配置之后。借鉴了某大佬的脚本。运行后直接跑出了key.<br>3.怎么就是弹不出key呢<br>&emsp;&emsp;进入页面后会看到一个蓝色的疑似跳转链接，但点击后没有反应，ctrl+u查看源代码，发现了提示：<br>var d=eval(b);<br>alert(“key is first 14 chars”+d).在这上面还有3个函数，都是返回false。要知道返回false后那么输出key这个函数就被掩盖掉了。因而这里直接删除上面的返回false的三个函数。<br>然后保存代码到本地，打开后就会弹窗，得到：key is first 14 charsslakfjteslkjsdflkslakfjteslkjsdflkslakfjteslkjsdflkslakfjteslkjsdflkslakfjteslkjsdflkslakfjteslkjsdflkslakfjteslkjsdflkslakfjteslkjsdflkslakfjteslkjsdflkslakfjteslkjsdflk<br>这儿，我刚开始就截取了14个char:sslakfjteslkjs,这样上传key不对，因而仔细看会发现这儿14 char,char应该为chars，因而截取14个char应该为：slakfjteslkjsd.然后上传key就OK了。这里直接截取14个chars是很容易的，但如果长度多了人眼看就麻烦了。因而用php的substr这个简单的函数操作一下：payload:substr($str,0,14).<br>&emsp;&emsp;这道题首先要对script代码有一定了解，以及对于函数的执行结果要清楚的认识，最开始我想直接读取程序弹框的内容，但是人脑在面对大量数据以及正则表达式时的确无能为力，但应懂得利用电脑，人会利用这个工具才能做更多复杂的操作。因而保存到本地里面，运行输出结果。然后就是对截取字符串函数substr的复习吧。<br>4.逗比验证码第一期(<a href="http://lab1.xseclab.com/vcode1_bcfef7eacf7badc64aaf18844cdb1c46/index.php" target="_blank" rel="noopener">http://lab1.xseclab.com/vcode1_bcfef7eacf7badc64aaf18844cdb1c46/index.php</a>)<br>&emsp;&emsp;进入页面后是一个登录框，提示登陆密码是4位纯数字数，第一位不为0，先用superdic生成字典，抓包到BP后，验证码输对，直接爆破密码。爆破出来是1238，在Repeator中改密码为1238，再点击转发，就拿下了key.<br>5.逗比验证码第二期（<a href="http://lab1.xseclab.com/vcode2_a6e6bac0b47c8187b09deb20babc0e85/index.php" target="_blank" rel="noopener">http://lab1.xseclab.com/vcode2_a6e6bac0b47c8187b09deb20babc0e85/index.php</a>）<br>&emsp;&emsp;进入页面后任然是登陆框，不过有一句提示：程序猿：“该死的黑客，我让你绕！我验证一次就让你的验证码失效，看你怎么绕！”<br>Tips:密码是4位数字，首位不是0。<br>也就是说验证码可能会失效，不管先按常爆破一次，很明显没有用了，没有爆破出密码。接下来试试验证码与密码一起爆破。数量太大，不可取。最后试试不输入验证码，输入密码。居然提示的是密码错误，有搞头，直接把验证码清零，然后爆破密码，拿下key.<br>6.逗比验证码第三期(<a href="http://lab1.xseclab.com/vcode3_9d1ea7ad52ad93c04a837e0808b17097/index.php" target="_blank" rel="noopener">http://lab1.xseclab.com/vcode3_9d1ea7ad52ad93c04a837e0808b17097/index.php</a>)<br>&emsp;&emsp;进入页面后，依旧是登陆框。提示如下：Tips:密码是4位数字，首位不是0<br>Tips2: SESSION<br>也就是这一次绕过登陆得在session下手了。还是先抓包，按照第二期做法，还是验证码清0然后居然任然是报错pwd error,哎，那么直接爆破密码，拿下key。<br>7.微笑一下就能过关了(<a href="http://lab1.xseclab.com/base13_ead1b12e47ec7cc5390303831b779d47/index.php" target="_blank" rel="noopener">http://lab1.xseclab.com/base13_ead1b12e47ec7cc5390303831b779d47/index.php</a>)<br>&emsp;&emsp;首先ctrl+u查看源代码，发现href有一个提示，打开这个后缀文件，发现是php代码，接下来进行代码审计。<br>header(“Content-type: text/html; charset=utf-8”);<br>    if (isset($_GET[‘view-source’])) {<br>        show_source(_<em>FILE_</em>);<br>        exit();<br>    } </p>
+<pre><code>include(&apos;flag.php&apos;); 
+
+$smile = 1;  </code></pre><p>   if (!isset ($_GET[‘^<em>^’])) $smile = 0;<br>    if (preg_match (‘/./‘, $_GET[‘^</em>^’])) $smile = 0;<br>    if (preg_match (‘/%/‘, $_GET[‘^<em>^’])) $smile = 0;<br>    if (preg_match (‘/[0-9]/‘, $_GET[‘^</em>^’])) $smile = 0;<br>    if (preg_match (‘/http/‘, $_GET[‘^<em>^’]) ) $smile = 0;<br>    if (preg_match (‘/https/‘, $_GET[‘^</em>^’]) ) $smile = 0;<br>    if (preg_match (‘/ftp/‘, $_GET[‘^<em>^’])) $smile = 0;<br>    if (preg_match (‘/telnet/‘, $_GET[‘^</em>^’])) $smile = 0;<br>    if (preg_match (‘/_/‘, $_SERVER[‘QUERY_STRING’])) $smile = 0;<br>    if ($smile) {<br>        if (@file_exists ($_GET[‘^<em>^’])) $smile = 0;<br>    }<br>    if ($smile) {<br>        $smile = @file_get_contents ($_GET[‘^</em>^’]);<br>        if ($smile === “(●’◡’●)”) die($flag);<br>    }<br>首先可以看到，其包含了flag.php.那么可以用php的协议流直接看一下flag.php中的内容构造payload:file=php://filter/read=convert.base64-encode/recource=flag.php.等一下。这里没有定义file变量，也并不存在文件包含漏洞，因而该方法无效。还是得按代码内容进行构造Url.这里我想错了，重新构造。首先需要设置^<em>^,其次它得内容必须为(●’◡’●)，并且有一段很关键得代码$smile = @file_get_contents ($_GET[‘^</em>^’]);<br>也就是说还得利用file_get_contents得特性才可以，因而构造payload:<br>^<em>^=(●’◡’●),但是这样的代码在Url中肯定是不能出现的，再查询了一下file_get_contents(),这个函数里面的参数可以是data:,&lt;文本数据&gt;。也就是应该构造：^</em>^=data:,&lt;文本数据&gt;，这里还需要看一下代码。因为正则表达式过滤的内容还没有考虑，首先它的内容不能有a-z,0-9,http(s),<em>,telnet,ftp,%.这里这个笑脸中就包含了_所以应当对_进行编码。%5f，这里为什么%5f不会被过滤呢？问题先留这里<br>构造payload:^%5f^=data:,(●’◡’●),拿下flag.<br>&emsp;&emsp;经过对get取参的复习后，我发现了自己的一个错误，这里代码的意思应当是对参数的值进行过滤，而不是对参数本身进行过滤处理。if (preg_match (‘/\</em>/‘, $_SERVER[‘QUERY_STRING’]))其次这里的这一句中的$SERVER这一个变量才是对get本身的参数进行过滤的。所以才会把_转化为%5f.</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/25/36-day/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-35-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/22/35-day/">35-day</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/22/35-day/" class="archive-article-date">
+  	<time datetime="2019-09-22T02:17:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>首先记录一下以后实验的IP对象，202.115.32.43–scu<br>210.41.224.132–cuit</p>
+<h2 id="Nmap"><a href="#Nmap" class="headerlink" title="Nmap"></a>Nmap</h2><p>命令<br>nmap IP<br>扫描多个：nmap IP ip<br>扫描网络并排除特定的目标<br>nmap IP/子网掩码数目 –exclude IP</p>
+<p>rot13是一种明文加密会得到密文，而密文加密会得到明文的加密算法<br>assert判断一个表达式是否成立。返回true or false<br>谷歌黑语法<br>site:可以限制你搜索范围的域名<br>inurl:用于搜索网页上包含的url，这个语法对寻找网页上的搜索，帮助之类的很有用。<br>intitle:查包含关键词的页面，一般用于社工别人的webshell密码<br>查找后台地址：site:域名<br>inurl:login|admin|manage|member|admin_login|login_admin|system|login|user|main|cms<br>查找文本内容：site:域名 intext:管理|后台|登陆|用户名|密码|验证码|系统|账号|admin|login|sys|managetem|password|username<br>link:可以得到一个所有包含了某个制定url的页面列表<br>filetype:搜索文件的后缀或者扩展名<br>查找可注入点：site:域名 inurl:asps|jsp|php|asp<br>查找上传漏洞：site:域名 inurl:file|load|editor|files<br>存在的数据库：site:域名 filetype:mdb|asp#|<br>迂回策略入侵：inurl:cms/data/templates/images/index</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/22/35-day/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-34-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -578,205 +778,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/08/30/28-day/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-27-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/29/27-day/">27-day</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/29/27-day/" class="archive-article-date">
-  	<time datetime="2019-08-29T00:48:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>66.眼见非实<br>&emsp;&emsp;这道题首先会下载一个zip无后缀文件，下载后，既然它叫zip就改后缀为zip,解压后是一个word文件叫眼见非实。这个word打开后发现了一些xml后缀还有很多PK标识，因而猜测这应该还是一个压缩文件。<br>这是因为zip压缩软件的发明者叫Phil Katz。因而有PK在开头应当是一个ZIP文件。果然压缩出来后有很多xml文件。这里就要猜测在哪个里面了。这里我们首先看到了word文档，点进去后就发现了一个document.xml.这个文档是很重要的应当在这里面。点进去后用记事本打开这个xml就拿下了flag.<br>&emsp;&emsp;这里解释一下为什么直接访问这个文件，Document 对象是一棵文档树的根，可为我们提供对文档数据的最初（或最顶层）的访问入口。也就是说这个document文件就像网页中的index一样重要，这里主要要了解xml文件的具体构造。<br>67.啊哒<br>&emsp;&emsp;解压包下载后是一个啊哒的一个Jpg的表情包，还是先用winhex打开看哈。在最后的地方发现了一个flag.txt文件，说明这个文件应该有隐藏的文件。这里使用foremost进行分离，分离开后有一个压缩文件里面就是flag.txt(猜测)因为这个压缩文件压缩需要密码，那么密码在哪呢？<br>一般来说jpg的属性中会有一些隐藏提示，果然打开它的属性发现了：照相机型号：73646E6973635F32303138这是一些十六进制的数字，将它转文本后得到：sdnisc_2018这个应该就是密码了，成功解压得到flag.txt.拿下flag.<br>&emsp;&emsp;summary:总的来说杂项的题大部分需要对工具的详细利用，就像这道题又教会了我使用一个叫foremost的工具。这里介绍一下这个工具—Foremost可以处理图像文件，例如由dd，Safeback，Encase等生成的图像文件，或直接在驱动器上。页眉和页脚可以由配置文件指定，也可以使用命令行开关指定内置文件类型。这些内置类型查看给定文件格式的数据结构，从而实现更可靠，更快速的恢复。在数字取证中和CTF中常用来恢复、分离文件。它默认支持19种类型文件(jpg, gif, png, bmp, avi, exe, mpg, mp4, wav, riff, wmv, mov, pdf, ole, doc, zip, rar, html, cpp 等文件)的扫描识别恢复，还可以通过(通过配置它的配置文件foremost.conf)增加新的支持类型。<br>&emsp;&emsp;按我理解就是一个处理图像文件的一个小工具，可以实现恢复分离等等操作，还支持19种类型的文件。<br>&emsp;&emsp;杂项：<br>隐写术（steganography）：将信息隐藏在其他载体中，不让计划的接收者之外的人获取到信息</p>
-<p>常见载体：</p>
-<p>图片：细微颜色差别，GIF图多帧隐藏，exif信息隐藏，图片修复等    —-解题工具 Stegsolve</p>
-<p>音频：信息隐藏在声音里(逆序)，信息隐藏在数据里(分析音频数据)  —-解题工具 Audition，Matlab</p>
-<p>视频：信息隐藏在视频的某个或多个帧里   —解题工具 Premiere</p>
-<p>文件隐写：把多个文件拼接成一个   —解题工具 binwalk</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/29/27-day/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-26-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/28/26-day/">26-day</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/28/26-day/" class="archive-article-date">
-  	<time datetime="2019-08-28T00:52:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>今天开始做一下杂项，综合哈其他知识。<br>63.这是一张单纯的图片<br><img src="http://123.206.87.240:8002/misc/1.jpg" alt><br>&emsp;&emsp;用winhex打开这张图片，在右边区域可以看见一些html编码，&#107;&#101;&#121;&#123;&#121;&#111;&#117;&#32;&#97;&#114;&#101;&#32;&#114;&#105;&#103;&#104;&#116;&#125;<br>拿去解码看一下，拿下Key.<br>&emsp;&emsp;这算一道misc的入门题吧，了解具体隐写术的原理与利用，以及工具winhex的使用。<br>64.隐写<br>&emsp;&emsp;这张图片用winhex打开后没有发现直接的有用信息，首先它是一张PNG形式的图片，在它的IHDR后面的16bit前8bit是高值，后8bit是宽，将宽改为和高一样的值，再打开图片发现了flag.<br>&emsp;&emsp;summary:这算是对隐写术的初步掌握，知道了再IHDR后面的是它的高与宽，然后加以利用，能够让隐写的数据得以显现出来。<br>65.telnet<br>&emsp;&emsp;将压缩包解压后用wireshark打开后直接右键追踪tcp流就拿下了flag.为什么要这么做呢，因为大部分类似文件得重要信息应当都是用tcp来传递的，因而直接查看tcp流应当会有重要信息。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/28/26-day/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-25-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/26/25-day/">25-day</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/26/25-day/" class="archive-article-date">
-  	<time datetime="2019-08-26T00:58:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>57.貌似有点难(<a href="http://ctf5.shiyanbar.com/phpaudit/" title="貌似有点难" target="_blank" rel="noopener">http://ctf5.shiyanbar.com/phpaudit/</a>)<br>&emsp;&emsp;进入页面提示PHP代码审计，并说明我得IP不在允许列表之内。点击view the source code查看到如下提示代码：<br>function GetIP(){<br>if(!empty($_SERVER[“HTTP_CLIENT_IP”]))<br>    $cip = $_SERVER[“HTTP_CLIENT_IP”];<br>else if(!empty($_SERVER[“HTTP_X_FORWARDED_FOR”]))<br>    $cip = $_SERVER[“HTTP_X_FORWARDED_FOR”];<br>else if(!empty($_SERVER[“REMOTE_ADDR”]))<br>    $cip = $_SERVER[“REMOTE_ADDR”];<br>else<br>    $cip = “0.0.0.0”;<br>return $cip;<br>}</p>
-<p>$GetIPs = GetIP();<br>if ($GetIPs==”1.1.1.1”){<br>echo “Great! Key is <strong>*****</strong>“;<br>}<br>else{<br>echo “错误！你的IP不在访问列表之内！”;<br>}<br>从如上代码可以看到几乎所有的伪造IP方式都可以使用，因而抓包直接伪造IP。这里记录以下伪造IP的方法：<br>    Client-Ip: 127.0.0.1<br>    X-Forwarded-For: 127.0.0.1<br>    Host: 127.0.0.1<br>    Referer: <a href="http://www.google.com" target="_blank" rel="noopener">www.google.com</a><br>在Http包中直接构造payload:Client-Ip: 1.1.1.1拿下flag.<br>剩下大部分题都是SQL注入的了，由于本人SQL学的较差，需要先下去补补，这里继续做一些密码学或者杂项的CTF。<br>58.滴答~滴<br>&emsp;&emsp;-… -.- -.-. - ..-. – .. … -.-. 这种应该是摩斯密码直接百度在线解密，拿下flag.<br>&emsp;&emsp;summary:密码学的题第一要知道它是什么加密方式，然后要知道加密的原理，这样才能更好的解密。<br>59.聪明的小羊<br>&emsp;&emsp;一只小羊翻过了2个栅栏</p>
-<p>KYsd3js2E{a2jda}<br>栅栏密码：栅栏数为2.在线解密后为：KEY{sad23jjdsa2}<br>这里手工解密以下：<br>首先把密码分为两组也就是栅栏数如下所示：<br>KYsd3js2<br>E{a2jda}<br>然后从上往下从右往左的顺序读：<br>1.K 3.Y<br>2.E 4.{<br>就按照这个顺序读就得到了：KEY{sad23jjdsa2}<br>60.ok<br>&emsp;&emsp;只有如下提示：<br>Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook.<br>此处省去多行，那就直接百度Ook发现这是一种编码方式，找到了一个在线解码的拿下flag.<br>&emsp;&emsp;在不知道是什么加密方式可以先百度进行了解再寻找一个解码的在线网站。这个过程主要提高了检索的能力。<br>61.这不是摩斯密码<br>&emsp;&emsp;+++++ +++++ [-&gt;++ +++++ +++&lt;] &gt;++.+ +++++ .&lt;+++ [-&gt;– -&lt;]&gt;- -.+++ +++.&lt;<br>++++[ -&gt;+++ +&lt;]&gt;+ +++.&lt; +++[- &gt;—&lt; ]&gt;— .—- .&lt;+++ ++++[ -&gt;— —-&lt;<br>]&gt;— —– —– .&lt;+++ ++++[ -&gt;+++ ++++&lt; ]&gt;+++ ++.&lt;+ +++++ +[-&gt;- —–<br>-&lt;]&gt;. &lt;++++ ++++[ -&gt;+++ +++++ &lt;]&gt;++ .&lt;+++ [-&gt;– -&lt;]&gt;- —-. &lt;++++ +++[-</p>
-<blockquote>
-<p>—- —&lt;] &gt;—- —-. +++++ +..++ +++.+ .&lt;+++ [-&gt;– -&lt;]&gt;- –.&lt;+ +++++<br>+[-&gt;+ +++++ +&lt;]&gt;+ ++.++ +.+++ +++++ +.— -.+++ ++.&lt;+ ++[-&gt; +++&lt;] &gt;++++<br>++.&lt;<br>这个百度后是brainfuck<a href="https://www.splitbrain.org/services/ook" title="Ook和Brainfuck在线解码" target="_blank" rel="noopener">https://www.splitbrain.org/services/ook</a><br>这个是在线解码地址。<br>62.easy_crypto<br>&emsp;&emsp;这个显示如下内容：<br>0010 0100 01 110 1111011 11 11111 010 000 0 001101 1010 111 100 0 001101 01111 000 001101 00 10 1 0 010 0 000 1 01111 10 11110 101011 1111101<br>这个是摩斯密码与AScii的一个对照：<img src="https://raw.githubusercontent.com/houhuiting/image/master/1-2.png" alt><br>按照这个表查找即可得到flag.当然这样很复制也可以用程序直接跑出来。</p>
-</blockquote>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/26/25-day/">展开全文 >></a>
         </p>
       
 

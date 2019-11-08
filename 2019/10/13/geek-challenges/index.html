@@ -6,18 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2019 | Hexo</title>
+  <title>geek-challenges | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="a new ctfer&apos;s study">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/2019/page/2/index.html">
+  <meta name="description" content="下面开始Syc的极客大挑战的writeup由于本校的网站即将关闭，因而以下不给出链接了1.打比赛前先撸一只猫">
+<meta property="og:type" content="article">
+<meta property="og:title" content="geek-challenges">
+<meta property="og:url" content="http://yoursite.com/2019/10/13/geek-challenges/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="a new ctfer&apos;s study">
+<meta property="og:description" content="下面开始Syc的极客大挑战的writeup由于本校的网站即将关闭，因而以下不给出链接了1.打比赛前先撸一只猫">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-11-08T12:32:40.015Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
-<meta name="twitter:description" content="a new ctfer&apos;s study">
+<meta name="twitter:title" content="geek-challenges">
+<meta name="twitter:description" content="下面开始Syc的极客大挑战的writeup由于本校的网站即将关闭，因而以下不给出链接了1.打比赛前先撸一只猫">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -153,295 +154,185 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-geek-challenges" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      geek-challenges
+    </h1>
+  
+
+        
+        <a href="/2019/10/13/geek-challenges/" class="archive-article-date">
+  	<time datetime="2019-10-13T03:14:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-13</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>下面开始Syc的极客大挑战的writeup<br>由于本校的网站即将关闭，因而以下不给出链接了<br>1.打比赛前先撸一只猫<a id="more"></a><br>&emsp;&emsp;这道题算是web的签到题，进入页面后，ctrl+u查看源代码，发现以下代码：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">echo $cat;</span><br><span class="line">if($cat==&apos;dog&apos;)&#123;</span><br><span class="line">    echo &apos;Syc&#123;cat_cat_cat_cat&#125;&apos;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>因而直接在url上构造cat=dog即可拿到flag.<br>2.你看过我的菜刀么<br>&emsp;&emsp;进入页面后，直接提示了一句：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">直接用菜刀连接，最后找到flag.php拿到flag.</span><br><span class="line">3.BurpSuiiiiiit!!!</span><br><span class="line">&amp;emsp;&amp;emsp;这题会给一个BP的插件，在BP的插件添加进这个jar之后，会给出相关内容，仔细阅读就能得到flag.</span><br><span class="line">4.性感潇文清，在线算卦</span><br><span class="line">&amp;emsp;&amp;emsp;这道题有个提示，动作快点才能算到好卦，猜测可能会用到BP的itrunder或者是使用python脚本。先进入页面，发现了一个算卦post框，像登录框一样。ctrl+u查看源代码：</span><br><span class="line">```$savepath = &quot;uploads/&quot; . sha1($_SERVER[&apos;REMOTE_ADDR&apos;]) . &quot;/&quot;;</span><br><span class="line">    if (!is_dir($savepath)) &#123;</span><br><span class="line">        $oldmask = umask(0);</span><br><span class="line">        mkdir($savepath);</span><br><span class="line">        umask($oldmask);</span><br><span class="line">    &#125;</span><br><span class="line">    if ((@$_GET[&apos;u&apos;]) &amp;&amp; (@$_GET[&apos;p&apos;])) &#123;</span><br><span class="line">        $content = &apos;***************&apos;;</span><br><span class="line">        file_put_contents(&quot;$savepath&quot; . sha1($_GET[&apos;u&apos;]), $content);</span><br><span class="line">        $msg = &apos;Ding!你的算卦结果就在这儿啦！ &apos; . $savepath . htmlspecialchars(sha1($_GET[&apos;u&apos;])) . &quot;&quot;;</span><br><span class="line">        echo $msg;</span><br><span class="line">        usleep(100000);</span><br><span class="line">        @$content = &quot;you are too slow&quot;;</span><br><span class="line">        file_put_contents(&quot;$savepath&quot; . sha1($_GET[&apos;u&apos;]), $content);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">试试条件竞争吧？</span><br></pre></td></tr></table></figure></p>
+<p>这里提到了条件竞争，于是先学习一波条件竞争<br>这里先不说定义，我看到一个例子特别深刻，说的是当你取钱的时候，你已经申请了取2000快，也就是下单了，如果你足够快，系统还没有反应过来，而你再次申请取两千快，而你的账户里面只有2千块，而刚刚第一次申请的提款机已经准备好了，这时候它处理不过来了，就会给你两次2千块，而你的账户余额就会变成-2000.<br>这里存一个讲条件竞争漏洞的链接（<a href="https://www.jianshu.com/p/09d0eb938e6a" target="_blank" rel="noopener">https://www.jianshu.com/p/09d0eb938e6a</a>）</p>
+<p>&emsp;&emsp;这下再来看一下定义：条件竞争发生在多个线程同时访问同一个共享代码、变量、文件等没有进行锁操作或者同步操作的场景中。开发者在进行代码开发时常常倾向于认为代码会以线性的方式执行，而且他们忽视了并行服务器会并发执行多个线程，这就会导致意想不到的结果。线程同步机制确保两个及以上的并发进程或线程不同时执行某些特定的程序段，也被称之为临界区，如果没有应用好同步技术则会发生竞争条件问题。。以后还是不写定义了，麻烦，知道大概意思就行了。<br>意思就是在一个可以上传的页面，如果我们一边大量的上传，另一边大量的访问，那么系统总会出错，有些不能上传的shell文件，就被系统所识别并且执行了，成功传入了shell文件。<br>这道题也类似，在百度了其他同样类型题之后，我有了思路。首先使用BP抓包，然后送入Intruder中然后清除标识，再在payloads选项中设置type为Null payloads，然后下面的数量就输入3000，并把线程调为50，然后开始爆破，这样就可以一直上传空数据包。然后呢，在Repeater中进行go，然后把回应中的上传路径复制到url中进行访问再转发，就得到了flag,也就是成功执行了条件竞争漏洞。<br>关于之前截取的代码意思，是讲的这个输入框的处理过程，以及上传路径的一个加密，也就是这样才能实现条件竞争，因为知道了上传的路径才能进行访问。<br>&emsp;&emsp;summary:可以看出来，上传文件的路径，应该是保密起来的，要进行加密对其复杂化，最好能分隔不同文件的上传路径，或者是先不保存到服务器中，在中间再进行一次处理检测，再保存，以防上传类的漏洞。</p>
+<p>5.简单的sql(<a href="http://118.25.14.40:8100/" target="_blank" rel="noopener">http://118.25.14.40:8100/</a>)<br>&emsp;&emsp;首先进入页面后会看到一个登陆框，由于题目是sql注入因而直接开始注入，首先输入用户名：admin,输入密码：or ‘1’=’1<br>首先猜测其检测方式，如果是用户名和密码分开检测，则不好注入，至少我现在还不是很会。在我输入了以上内容后出现：check.php:You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ‘1’=’1’’ at line 1<br>也就是说这是一行，大致猜想判断语句select<br> username and password from DB where username = ‘<strong><strong>‘ and password = ‘</strong></strong>‘ 故继续尝试注入。<br>由于之前误解为了万能密码，后面发现就是简单的没有过滤的sql注入，直接按照常规走，这里注入点在username,直接构造0’ 就会报错。之后获取字段数量，</p>
+<figure class="highlight plain"><figcaption><span>order by 3 ```页面回显错误，故字段数量为3.</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">```0&apos; order union select 1,2,database()# ```获取数据库名</span><br><span class="line">```0&apos; order union select 1,2,table_name from information_schema.tables where database()=&quot;geek&quot;# ```即可获取表名，当然可以在后面加上limit 1,1 然后修改,前面的数字即可获取更多的表名。</span><br><span class="line">获取字段内容类似，其他的payload相似就不一一构造了，拿下flag.</span><br><span class="line">6.lovesql</span><br><span class="line">&amp;emsp;&amp;emsp;这道题和简单的sql一样因为做了很久了，可能wp写混了，简单sql好像直接就出flag了，然后lovesql要把流程都走一遍，上面还有一个很小的用sqlmap是没有灵魂的。我的Py环境一样，同样纯手工，payload为上题一样，也没有过滤些什么，就是表有点多，可以几十几十个表的在limit里面加。</span><br><span class="line"></span><br><span class="line">7.代码审计（[http://ctf1.redteam.today:8081/](http://ctf1.redteam.today:8081/)）</span><br><span class="line">&amp;emsp;&amp;emsp;进入页面后一大堆不认识的代码，其中有两行关键得代码：$password = &quot;If I knew where I would die, I would never go there.&quot;;</span><br><span class="line">    $arr = explode(&apos; &apos;, $password);</span><br><span class="line">因而我得去学习一下explode函数，这个函数是把字符串打散为数组。其中是按照空格来存储的，那么我用本地输出一下它的值。</span><br><span class="line">接下来算一下它的长度,count($arr)=12;</span><br><span class="line">startsWith($url,&quot;http://&quot;)这个函数是用来比较后面那个字符串在前一个变量中是否存在，存在则返回true.</span><br><span class="line">// 创建一个新cURL资源</span><br><span class="line">$ch = curl_init();</span><br><span class="line">PHP中使用cURL实现Get和Post请求的方法</span><br><span class="line">php中==是比较值是否相等，例如’1‘=1，而===不仅要求值相等，还要求类型也相等.在多种实验以及测试后，最终放弃了这道题，联系到了大佬说是SSRF，仔细学习后任然解不出来，，等待大佬的WP吧。。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">8.Syc柳暗花明([http://118.25.14.40:8108/](http://118.25.14.40:8108/))</span><br><span class="line">&amp;esmp;&amp;esmp;进入页面后，是一大段Syc的小介绍还给了招新群，CTRL+U看下源代码。发现有个href=Secret.php进入到这个PHP下面，页面提示了不是来自www.Sycsecret.com.抓包到BP中，修改Referer: www.Sycsecret.com,提示不是来自Syclover浏览器的.故改User-Agent为这个，之后提示要在本地才能查看，再次添加XFF： 127.0.0.1.最后拿下flag.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">9.Babysql</span><br><span class="line">&amp;emsp;&amp;emsp;这道题和简单的sql类似，但是注入点在password,然后过滤了union,table,and这些关键字，过滤掉的关键字可以加\*\*这样就可以正常的显示出来了.</span><br><span class="line">payload:0&apos; or un\*\*ion se\*\*lect 1,2,ta\*\*ble_name from info\*\*rmation_sch\*\*ema.ta\*\*bles wh**ere database()=&apos;greek&apos;#</span><br><span class="line">其他的类似，同样后面需要加limit 1,1 我记得好像有159个表，字段也挺多的，很想用sqlmap跑的，但是我得py环境有点异常，老是跑不出来，最后还是手工注入了。拿下flag.其他的payload类似就不一一书写了。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">10.Jiang&apos;s Secret</span><br><span class="line">&amp;emsp;&amp;emsp;进入页面后直接查看源代码，发现了一个./Archive_room.php,然后进去后再查看源代码，又发现一个action.php。这么多跳转页面，直接用BP抓包看，最后在action.php转发时，发现了secr3t.php，进去页面后，说flag在flag.php页面，于是访问flag.php页面回显找不到我，，，.然后页面还有一段php代码</span><br><span class="line">```highlight_file(__FILE__);</span><br><span class="line">    error_reporting(0);</span><br><span class="line">    $file=$_GET[&apos;file&apos;];</span><br><span class="line">    if(strstr($file,&quot;../&quot;)||stristr($file, &quot;tp&quot;)||stristr($file,&quot;input&quot;)||stristr($file,&quot;data&quot;))&#123;</span><br><span class="line">        echo &quot;Oh no!&quot;;</span><br><span class="line">        exit();</span><br><span class="line">    &#125;</span><br><span class="line">    include($file);</span><br></pre></td></tr></table></figure>
+
+<p>从上可以看出来，这个php存在着任意文件的读取，因为把用户可控制的file文件名使用了include包含。因而可以使用payload:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">获取到的flag.php是base64加密的解码即可拿下flag.</span><br><span class="line">最后拿下了flag.</span><br><span class="line"></span><br><span class="line">11.反序列化</span><br><span class="line">&amp;emsp;&amp;emsp;进入页面后直接ctrl+U查看源代码。</span><br><span class="line">```class Student</span><br><span class="line">&#123;</span><br><span class="line">    public $score = 0;</span><br><span class="line">    public function __destruct()</span><br><span class="line">    &#123;</span><br><span class="line">        echo &quot;__destruct working&quot;;</span><br><span class="line">        if($this-&gt;score==10000) &#123;</span><br><span class="line">            $flag = &quot;******************&quot;;</span><br><span class="line">            echo $flag;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">$exp = $_GET[&apos;exp&apos;];</span><br><span class="line">echo &quot;&lt;br&gt;&quot;;</span><br><span class="line">unserialize($exp);</span><br></pre></td></tr></table></figure>
+
+<p>代码审计可以知道，直接构造一个Student类的序列化，其中包含$score=10000.就可以拿下flag.</p>
+<figure class="highlight plain"><figcaption><span>class Student</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    public $score = 10000;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"> $class1=new Student;</span><br><span class="line">	echo serialize($class1);</span><br></pre></td></tr></table></figure>
+
+<p>本地输出反序列化的一串然后exp=这一串就拿到了flag.</p>
+<p>12.又来一只猫<br>&emsp;&emsp;进入页面说有个备份的好习惯，我马上想到了是不是index.php.bak文件，打开没有，因而直接使用御剑扫描一下，发现了一个zip。打开解压后便出现了源码，源码过多就不一一粘贴了。这里只粘贴关键性的几句。</p>
+<figure class="highlight plain"><figcaption><span>'flag.php';</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">error_reporting(0);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class Name&#123;</span><br><span class="line">    private $username = &apos;nonono&apos;;</span><br><span class="line">    private $password = &apos;yesyes&apos;;</span><br><span class="line"></span><br><span class="line">    public function __construct($username,$password)&#123;</span><br><span class="line">        $this-&gt;username = $username;</span><br><span class="line">        $this-&gt;password = $password;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function __wakeup()&#123;</span><br><span class="line">        $this-&gt;username = &apos;guest&apos;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function __destruct()&#123;</span><br><span class="line">        if ($this-&gt;password != 100) &#123;</span><br><span class="line">            echo &quot;&lt;/br&gt;NO!!!hacker!!!&lt;/br&gt;&quot;;</span><br><span class="line">            echo &quot;You name is: &quot;;</span><br><span class="line">            echo $this-&gt;username;echo &quot;&lt;/br&gt;&quot;;</span><br><span class="line">            echo &quot;You password is: &quot;;</span><br><span class="line">            echo $this-&gt;password;echo &quot;&lt;/br&gt;&quot;;</span><br><span class="line">            die();</span><br><span class="line">        &#125;</span><br><span class="line">        if ($this-&gt;username === &apos;admin&apos;) &#123;</span><br><span class="line">            global $flag;</span><br><span class="line">            echo $flag;</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">			echo $username;</span><br><span class="line">            echo &quot;&lt;/br&gt;hello my friend~~&lt;/br&gt;sorry i can&apos;t give you the flag!&quot;;</span><br><span class="line">            die();</span><br></pre></td></tr></table></figure>
+
+<p>上面是test.php的内容，下面</p>
+<figure class="highlight plain"><figcaption><span>'class.php';</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$select = $_GET[&apos;select&apos;];</span><br><span class="line">$res=unserialize(@$select);</span><br></pre></td></tr></table></figure>
+
+<p>查看源代码，发现又是一个关于序列化漏洞的题。所谓序列化漏洞是指构造序列化的字符串后会触发魔术方法或者称为魔术函数的自动执行。这可能是程序本身不想看到的结果。其中魔术方法就包括toString(),<strong>construct(),以及</strong>destruct()方法。其中con和de是相反的两个，前面那个是对象建立时会自动调用，后面那个是对象销毁时会自动调用。这里我在构造了与之前的题一样的类的序列化后，发现绕不过，没有满足条件，主要是test.php中定义的变量为私有类，在这里采用同样的方法不行了。在百度了各种资料后，主要搜索关于序列化的漏洞，在这里面发现了几个特别的方法，payload:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">这里使用直接构造的payload不行，其中Name后面的参数代表构造里面变量的数量，privete的参数被序列化后应当添加\00类名，public的序列化不变，protected的参数需要添加\00*\00类名。在class.php中有个__weakup需要绕过，需要将成员属性修改大于实际数目即可绕过。为什么要绕过__wakeup()方法呢，因为它会在unserialize()时会自动调用这个方法，而题目的index.php就调用了。因而它会最先被调用，那么username就变成了guest。为了构造admin那么必须绕过它。最后拿下flag.</span><br><span class="line"></span><br><span class="line">13.你有初恋吗</span><br><span class="line">&amp;emsp;&amp;emsp;页面上面提示了Hash，要Hash出同样的感觉。查看源代码又是一个代码审计题：</span><br><span class="line">```$adore=&apos;***************&apos;;</span><br><span class="line">$now = $_POST[&apos;lover&apos;];</span><br><span class="line">setcookie(&quot;Heart&quot;, md5($adore.&apos;syclover&apos;));</span><br><span class="line">if(isset($now)&amp;&amp;$now!=syclover) &#123;</span><br><span class="line">	if($_COOKIE[&apos;Heart&apos;] === md5($adore. urldecode($now)))&#123;</span><br><span class="line">		die ($flag);</span><br><span class="line">		&#125;else &#123;</span><br><span class="line">			die(&apos;I do not love you! You are not in my heart!&apos;);</span><br><span class="line">			&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></p>
+<p>可以看到，绕过很简单，由于会自动urldecode一次，故将syclover两次urldecode就可以了。最后post提交拿下flag</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/29/38-day/" class="archive-article-date">
-  	<time datetime="2019-09-29T00:53:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/29/38-day/">38-day</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/10/13/geek-challenges/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/26/python-study/" class="archive-article-date">
-  	<time datetime="2019-09-26T11:37:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-26</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2019/10/15/JS-study/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          JS-study
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/10/13/jk-challenges/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">geek-challenges</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/26/python-study/">python-study</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/26/37-day/" class="archive-article-date">
-  	<time datetime="2019-09-26T08:25:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-26</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/26/37-day/">37-day</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/25/36-day/" class="archive-article-date">
-  	<time datetime="2019-09-25T12:39:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/25/36-day/">36-day</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/22/35-day/" class="archive-article-date">
-  	<time datetime="2019-09-22T02:17:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/22/35-day/">35-day</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/16/34-day/" class="archive-article-date">
-  	<time datetime="2019-09-16T12:35:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/16/34-day/">34-day</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/15/33-day/" class="archive-article-date">
-  	<time datetime="2019-09-15T03:03:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/15/33-day/">33-day</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/06/32-day/" class="archive-article-date">
-  	<time datetime="2019-09-06T01:08:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/06/32-day/">32-day</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/05/31-day/" class="archive-article-date">
-  	<time datetime="2019-09-05T00:44:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/05/31-day/">31-day</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/02/30-day/" class="archive-article-date">
-  	<time datetime="2019-09-02T12:57:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/02/30-day/">30-day</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2019/">&laquo; Prev</a><a class="page-number" href="/archives/2019/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/2019/page/3/">3</a><a class="page-number" href="/archives/2019/page/4/">4</a><a class="page-number" href="/archives/2019/page/5/">5</a><a class="extend next" rel="next" href="/archives/2019/page/3/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -465,8 +356,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>37-day | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="发现的钓鱼网站：http://hl-5.com  其IP地址为222.187.224.55IP物理地址江苏省宿迁市 电信 Nmap的学习&amp;emsp;&amp;emsp;Nmap是一个网路连接端扫描软件，用来扫描网上电脑开放的网络连接端。确定哪些服务运行在哪些连接端，并且推断计算机运行哪个操作系统。被网络管理员用以评估网络系统安全。&amp;emsp;&amp;emsp;他的基本功能有三个，一是探测一组主机是否在线；其次是">
+  <meta name="description" content="Nmap的学习&amp;emsp;&amp;emsp;Nmap是一个网路连接端扫描软件，用来扫描网上电脑开放的网络连接端。确定哪些服务运行在哪些连接端，并且推断计算机运行哪个操作系统。被网络管理员用以评估网络系统安全。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="37-day">
 <meta property="og:url" content="http://yoursite.com/2019/09/26/37-day/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="发现的钓鱼网站：http://hl-5.com  其IP地址为222.187.224.55IP物理地址江苏省宿迁市 电信 Nmap的学习&amp;emsp;&amp;emsp;Nmap是一个网路连接端扫描软件，用来扫描网上电脑开放的网络连接端。确定哪些服务运行在哪些连接端，并且推断计算机运行哪个操作系统。被网络管理员用以评估网络系统安全。&amp;emsp;&amp;emsp;他的基本功能有三个，一是探测一组主机是否在线；其次是">
+<meta property="og:description" content="Nmap的学习&amp;emsp;&amp;emsp;Nmap是一个网路连接端扫描软件，用来扫描网上电脑开放的网络连接端。确定哪些服务运行在哪些连接端，并且推断计算机运行哪个操作系统。被网络管理员用以评估网络系统安全。">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://i.imgur.com/6h2QrvJ.png">
-<meta property="og:updated_time" content="2019-09-29T08:43:58.968Z">
+<meta property="og:updated_time" content="2019-11-11T14:13:49.117Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="37-day">
-<meta name="twitter:description" content="发现的钓鱼网站：http://hl-5.com  其IP地址为222.187.224.55IP物理地址江苏省宿迁市 电信 Nmap的学习&amp;emsp;&amp;emsp;Nmap是一个网路连接端扫描软件，用来扫描网上电脑开放的网络连接端。确定哪些服务运行在哪些连接端，并且推断计算机运行哪个操作系统。被网络管理员用以评估网络系统安全。&amp;emsp;&amp;emsp;他的基本功能有三个，一是探测一组主机是否在线；其次是">
+<meta name="twitter:description" content="Nmap的学习&amp;emsp;&amp;emsp;Nmap是一个网路连接端扫描软件，用来扫描网上电脑开放的网络连接端。确定哪些服务运行在哪些连接端，并且推断计算机运行哪个操作系统。被网络管理员用以评估网络系统安全。">
 <meta name="twitter:image" content="https://i.imgur.com/6h2QrvJ.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -176,8 +176,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>发现的钓鱼网站：<a href="http://hl-5.com" target="_blank" rel="noopener">http://hl-5.com</a>  其IP地址为222.187.224.55<br>IP物理地址江苏省宿迁市 电信</p>
-<h2 id="Nmap的学习"><a href="#Nmap的学习" class="headerlink" title="Nmap的学习"></a>Nmap的学习</h2><p>&emsp;&emsp;Nmap是一个网路连接端扫描软件，用来扫描网上电脑开放的网络连接端。确定哪些服务运行在哪些连接端，并且推断计算机运行哪个操作系统。被网络管理员用以评估网络系统安全。<br>&emsp;&emsp;他的基本功能有三个，一是探测一组主机是否在线；其次是扫描主机端口，嗅探所提供的网络服务，还可以推断主机所用的操作系统。Nmap可用于扫描仅有的两个节点LAN，直至500个节点以上的网络。Nmap还允许用户定制扫描技巧。通常，一个简单的使用ICMP协议的Ping操作可以满足一般需求；也可以深入探测UDP或者TCP端口，直到主机所使用的操作系统；还可以将所有探测结果记录到各种格式的日志中，供进一步分析操作。<br>Nmap可以完成以下任务：<br>主机探测，端口扫描，版本检测，系统检测，支持探测脚本的编写<br>1.nmap <target ip address><br>nmap默认发送一个ARP的PING数据包，来探测目标主机1-10000范围内所开放的所有端口<br>例如：nmap 222.187.224.55<br><img src="https://i.imgur.com/6h2QrvJ.png" alt><br>2.nmap -w ip<br>介绍： -w参数设置对结果的详细输出<br>3.nmap自定义扫描<br>命令语法:nmap -p(range) <target ip><br>介绍：(range)为要扫描的端口范围，端口大小不能超过65535<br>例如：nmap -p50-80 222.187.224.55<br>4.nmap指定端口扫描<br>命令语法:nmap -p(port1,port2…)<target ip><br>介绍：port1,port2..为想要扫描的端口号<br>例子:扫描目标主机的80，443，801端口<br>nmap -p80,443,801 222.187.224.55<br>由于一直扫描钓鱼网址导致他警惕而开启了一些防火墙拦截了我的扫描，故之后的学习还是采用一些正常的IP地址进行学习<br>5.nmap -O ip<br>操作系统检测<br>6nmap -A ip 扫描Android手机</target></target></target></p>
+        <h2 id="Nmap的学习"><a href="#Nmap的学习" class="headerlink" title="Nmap的学习"></a>Nmap的学习</h2><p>&emsp;&emsp;Nmap是一个网路连接端扫描软件，用来扫描网上电脑开放的网络连接端。确定哪些服务运行在哪些连接端，并且推断计算机运行哪个操作系统。被网络管理员用以评估网络系统安全。<a id="more"></a><br>&emsp;&emsp;他的基本功能有三个，一是探测一组主机是否在线；其次是扫描主机端口，嗅探所提供的网络服务，还可以推断主机所用的操作系统。Nmap可用于扫描仅有的两个节点LAN，直至500个节点以上的网络。Nmap还允许用户定制扫描技巧。通常，一个简单的使用ICMP协议的Ping操作可以满足一般需求；也可以深入探测UDP或者TCP端口，直到主机所使用的操作系统；还可以将所有探测结果记录到各种格式的日志中，供进一步分析操作。</p>
+<p>发现的钓鱼网站：<a href="http://hl-5.com" target="_blank" rel="noopener">http://hl-5.com</a>  其IP地址为222.187.224.55</p>
+<p>IP物理地址江苏省宿迁市 电信</p>
+<p>Nmap可以完成以下任务：<br>主机探测，端口扫描，版本检测，系统检测，支持探测脚本的编写<br>1.nmap <target ip address><br>nmap默认发送一个ARP的PING数据包，来探测目标主机1-10000范围内所开放的所有端口<br>例如：nmap 222.187.224.55<br><img src="https://i.imgur.com/6h2QrvJ.png" alt><br>2.nmap -w ip<br>介绍： -w参数设置对结果的详细输出<br>3.nmap自定义扫描<br>命令语法:nmap -p(range) <target ip><br>介绍：(range)为要扫描的端口范围，端口大小不能超过65535<br>例如：nmap -p50-80 222.187.224.55<br>4.nmap指定端口扫描<br>命令语法:nmap -p(port1,port2…)<target ip><br>介绍：port1,port2..为想要扫描的端口号<br>例子:扫描目标主机的80，443，801端口<br>nmap -p80,443,801 222.187.224.55<br>由于一直扫描钓鱼网址导致他警惕而开启了一些防火墙拦截了我的扫描，故之后的学习还是采用一些正常的IP地址进行学习<br>5.nmap -O ip<br>操作系统检测<br>6nmap -A ip 扫描Android手机</target></target></target></p>
 <h2 id="AWVS的学习"><a href="#AWVS的学习" class="headerlink" title="AWVS的学习"></a>AWVS的学习</h2><h2 id="SSH的学习"><a href="#SSH的学习" class="headerlink" title="SSH的学习"></a>SSH的学习</h2><p>0x00：SSH（安全外壳协议），全Secure Shell，由IETF的网络小组所指定，SSH为建立在应用层基础上的安全协议。SSH是目前较可靠，专为远程登录会话和其他网络服务提供安全性的协议。利用SSH协议可以有效防止远程管理过程中的信息泄露问题。SSH最初是UNIX系统上的一个程序。<br>0x01:SSH(远程连接工具)，连接原理：ssh服务是一个守护进程（demon）,系统后台监听客户端的连接，ssh服务端的进程名为sshd,负责实时监听客户端的请求（IP 22端口），包括公共密钥等交换等信息。<br>ssh服务端由两部分组成：openssh(提供ssh服务) openssl(提供加密的服务)<br>ssh的客户端可以用XSHELL,Securecrt,Mobaxterm等工具进行连接。<br>0x02: 1.SSH是安全的加密协议，用于远程连接Linux服务器<br>   2.SSH的默认端口是22，安全协议版本是SSH2<br>   3.SSH服务器端主要包含2个服务功能SSH连接和SFTP服务器<br>   4.SSH客户端包含ssh连接命令和远程拷贝scp命令等<br>虚拟机IP（192.168.30.128）ssh</p>
 <h2 id="kali上安装ssh服务"><a href="#kali上安装ssh服务" class="headerlink" title="kali上安装ssh服务"></a>kali上安装ssh服务</h2><p>1.修改源：vi /etc/apt/source.list<br>添加：deb <a href="http://http.kali.org/kali" target="_blank" rel="noopener">http://http.kali.org/kali</a> kali-rolling main non-free contrib<br>2.更新一下源<br>apt-get update<br>3.下载ssh服务包<br>apt-get install ssh<br>4.打开ssh服务<br>service ssh start 打开ssh服务q<br>service ssh status 查看状态<br>service ssh stop 停止ssh服务<br>默认不允许root直接连接ssh<br>修改ssh配置文件<br>vi /etc/ssh/sshd_config<br>把32行注释取消：并把把PermitRootLogin prohibit-password改成PermitRootLogin yes<br>然后就可以root登录了</p>
 <h2 id="端口号记忆"><a href="#端口号记忆" class="headerlink" title="端口号记忆"></a>端口号记忆</h2><p>http 80<br>https 443<br>telnet 23<br>ftp 21<br>ssh、scp、端口重定向 22<br>SMTP 25<br>POP3 110<br>Weblogic 7001<br>TOMCAT 8080<br>WIN2003远程登陆 3389<br>Oracle数据库 1521<br>MS SQL*SEVER数据库server 1433<br>MYSQL 数据库server 3306</p>

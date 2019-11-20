@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>the FTP&#39;s config of Linux | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Linux下的FTP服务器配置环境：服务器：Centos 7客户机： WINDOWS10采用工具:8UFTP 1.安装vsftpd服务使用yum install vsftpd可以在线安装vsftpd服务,当然很多Linux系统在安装时候勾选了ftp可能已经装过了。这时候可以使用rpm -q 服务名  这里所有安装的服务都可以这样检查这里服务名为vsftpd 再用rpm -ql vsftpd就可以看">
+  <meta name="description" content="Linux下的FTP服务器配置环境：服务器：Centos 7客户机： WINDOWS10采用工具:8UFTP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="the FTP&#39;s config of Linux">
 <meta property="og:url" content="http://yoursite.com/2019/11/19/the-FTP-s-config-of-Linux/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Linux下的FTP服务器配置环境：服务器：Centos 7客户机： WINDOWS10采用工具:8UFTP 1.安装vsftpd服务使用yum install vsftpd可以在线安装vsftpd服务,当然很多Linux系统在安装时候勾选了ftp可能已经装过了。这时候可以使用rpm -q 服务名  这里所有安装的服务都可以这样检查这里服务名为vsftpd 再用rpm -ql vsftpd就可以看">
+<meta property="og:description" content="Linux下的FTP服务器配置环境：服务器：Centos 7客户机： WINDOWS10采用工具:8UFTP">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-11-19T15:05:23.836Z">
+<meta property="og:updated_time" content="2019-11-20T16:23:17.571Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="the FTP&#39;s config of Linux">
-<meta name="twitter:description" content="Linux下的FTP服务器配置环境：服务器：Centos 7客户机： WINDOWS10采用工具:8UFTP 1.安装vsftpd服务使用yum install vsftpd可以在线安装vsftpd服务,当然很多Linux系统在安装时候勾选了ftp可能已经装过了。这时候可以使用rpm -q 服务名  这里所有安装的服务都可以这样检查这里服务名为vsftpd 再用rpm -ql vsftpd就可以看">
+<meta name="twitter:description" content="Linux下的FTP服务器配置环境：服务器：Centos 7客户机： WINDOWS10采用工具:8UFTP">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -175,6 +175,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="Linux下的FTP服务器配置"><a href="#Linux下的FTP服务器配置" class="headerlink" title="Linux下的FTP服务器配置"></a>Linux下的FTP服务器配置</h1><p>环境：服务器：Centos 7<br>客户机： WINDOWS10<br>采用工具:8UFTP</p>
+<a id="more"></a>
 <h3 id="1-安装vsftpd服务"><a href="#1-安装vsftpd服务" class="headerlink" title="1.安装vsftpd服务"></a>1.安装vsftpd服务</h3><p>使用yum install vsftpd可以在线安装vsftpd服务,当然很多Linux系统在安装时候勾选了ftp可能已经装过了。<br>这时候可以使用rpm -q 服务名  这里所有安装的服务都可以这样检查<br>这里服务名为vsftpd</p>
 <p>再用rpm -ql vsftpd就可以看到其相关的文件的文件路径</p>
 <h3 id="2-启停vsftpd服务"><a href="#2-启停vsftpd服务" class="headerlink" title="2.启停vsftpd服务"></a>2.启停vsftpd服务</h3><p>vsftpd服务相对比较简单，在安装完后无需配置即可启动服务，启动和停止的相关命令如下所示：<br>启动vsftpd守护进程:systemctl start vsftpd 或service vsftpd start<br>重启vsftpd守护进程:systemctl restart vsftpd 或service vsftpd restart<br>停止vsftpd守护进程:systemctl stop vsftpd 或service vsftpd stop<br>开放ftp端口:firewall-cmd –add-service = ftp<br>firewall-cmd –add-service = ftp-permanent<br>关闭防火墙:systemctl stop firewalld<br>说明：为什么以上给出了两条命令呢？<br>由于Centos在7之前的版本只有service命令开启服务，在Centos7以后的版本都改为使用systemctl来启停服务了<br>为什么要关闭防火墙？<br>是为了方便客户机与之进行连接通信</p>

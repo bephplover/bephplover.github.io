@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>25-day | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="57.貌似有点难(http://ctf5.shiyanbar.com/phpaudit/)&amp;emsp;&amp;emsp;进入页面提示PHP代码审计，并说明我得IP不在允许列表之内。点击view the source code查看到如下提示代码：function GetIP(){if(!empty($_SERVER[“HTTP_CLIENT_IP”]))    $cip = $_SERVER[“HTTP_">
+  <meta name="description" content="57.貌似有点难(http://ctf5.shiyanbar.com/phpaudit/)&amp;emsp;&amp;emsp;进入页面提示PHP代码审计，并说明我得IP不在允许列表之内。点击view the source code查看到如下提示代码：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="25-day">
 <meta property="og:url" content="http://yoursite.com/2019/08/26/25-day/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="57.貌似有点难(http://ctf5.shiyanbar.com/phpaudit/)&amp;emsp;&amp;emsp;进入页面提示PHP代码审计，并说明我得IP不在允许列表之内。点击view the source code查看到如下提示代码：function GetIP(){if(!empty($_SERVER[“HTTP_CLIENT_IP”]))    $cip = $_SERVER[“HTTP_">
+<meta property="og:description" content="57.貌似有点难(http://ctf5.shiyanbar.com/phpaudit/)&amp;emsp;&amp;emsp;进入页面提示PHP代码审计，并说明我得IP不在允许列表之内。点击view the source code查看到如下提示代码：">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://raw.githubusercontent.com/houhuiting/image/master/1-2.png">
-<meta property="og:updated_time" content="2019-08-26T02:07:52.497Z">
+<meta property="og:updated_time" content="2019-11-11T16:08:09.767Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="25-day">
-<meta name="twitter:description" content="57.貌似有点难(http://ctf5.shiyanbar.com/phpaudit/)&amp;emsp;&amp;emsp;进入页面提示PHP代码审计，并说明我得IP不在允许列表之内。点击view the source code查看到如下提示代码：function GetIP(){if(!empty($_SERVER[“HTTP_CLIENT_IP”]))    $cip = $_SERVER[“HTTP_">
+<meta name="twitter:description" content="57.貌似有点难(http://ctf5.shiyanbar.com/phpaudit/)&amp;emsp;&amp;emsp;进入页面提示PHP代码审计，并说明我得IP不在允许列表之内。点击view the source code查看到如下提示代码：">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/houhuiting/image/master/1-2.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -176,7 +176,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>57.貌似有点难(<a href="http://ctf5.shiyanbar.com/phpaudit/" title="貌似有点难" target="_blank" rel="noopener">http://ctf5.shiyanbar.com/phpaudit/</a>)<br>&emsp;&emsp;进入页面提示PHP代码审计，并说明我得IP不在允许列表之内。点击view the source code查看到如下提示代码：<br>function GetIP(){<br>if(!empty($_SERVER[“HTTP_CLIENT_IP”]))<br>    $cip = $_SERVER[“HTTP_CLIENT_IP”];<br>else if(!empty($_SERVER[“HTTP_X_FORWARDED_FOR”]))<br>    $cip = $_SERVER[“HTTP_X_FORWARDED_FOR”];<br>else if(!empty($_SERVER[“REMOTE_ADDR”]))<br>    $cip = $_SERVER[“REMOTE_ADDR”];<br>else<br>    $cip = “0.0.0.0”;<br>return $cip;<br>}</p>
+        <p>57.貌似有点难(<a href="http://ctf5.shiyanbar.com/phpaudit/" title="貌似有点难" target="_blank" rel="noopener">http://ctf5.shiyanbar.com/phpaudit/</a>)<br>&emsp;&emsp;进入页面提示PHP代码审计，并说明我得IP不在允许列表之内。点击view the source code查看到如下提示代码：<a id="more"></a><br>function GetIP(){<br>if(!empty($_SERVER[“HTTP_CLIENT_IP”]))<br>    $cip = $_SERVER[“HTTP_CLIENT_IP”];<br>else if(!empty($_SERVER[“HTTP_X_FORWARDED_FOR”]))<br>    $cip = $_SERVER[“HTTP_X_FORWARDED_FOR”];<br>else if(!empty($_SERVER[“REMOTE_ADDR”]))<br>    $cip = $_SERVER[“REMOTE_ADDR”];<br>else<br>    $cip = “0.0.0.0”;<br>return $cip;<br>}</p>
 <p>$GetIPs = GetIP();<br>if ($GetIPs==”1.1.1.1”){<br>echo “Great! Key is <strong>*****</strong>“;<br>}<br>else{<br>echo “错误！你的IP不在访问列表之内！”;<br>}<br>从如上代码可以看到几乎所有的伪造IP方式都可以使用，因而抓包直接伪造IP。这里记录以下伪造IP的方法：<br>    Client-Ip: 127.0.0.1<br>    X-Forwarded-For: 127.0.0.1<br>    Host: 127.0.0.1<br>    Referer: <a href="http://www.google.com" target="_blank" rel="noopener">www.google.com</a><br>在Http包中直接构造payload:Client-Ip: 1.1.1.1拿下flag.<br>剩下大部分题都是SQL注入的了，由于本人SQL学的较差，需要先下去补补，这里继续做一些密码学或者杂项的CTF。<br>58.滴答~滴<br>&emsp;&emsp;-… -.- -.-. - ..-. – .. … -.-. 这种应该是摩斯密码直接百度在线解密，拿下flag.<br>&emsp;&emsp;summary:密码学的题第一要知道它是什么加密方式，然后要知道加密的原理，这样才能更好的解密。<br>59.聪明的小羊<br>&emsp;&emsp;一只小羊翻过了2个栅栏</p>
 <p>KYsd3js2E{a2jda}<br>栅栏密码：栅栏数为2.在线解密后为：KEY{sad23jjdsa2}<br>这里手工解密以下：<br>首先把密码分为两组也就是栅栏数如下所示：<br>KYsd3js2<br>E{a2jda}<br>然后从上往下从右往左的顺序读：<br>1.K 3.Y<br>2.E 4.{<br>就按照这个顺序读就得到了：KEY{sad23jjdsa2}<br>60.ok<br>&emsp;&emsp;只有如下提示：<br>Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook.<br>此处省去多行，那就直接百度Ook发现这是一种编码方式，找到了一个在线解码的拿下flag.<br>&emsp;&emsp;在不知道是什么加密方式可以先百度进行了解再寻找一个解码的在线网站。这个过程主要提高了检索的能力。<br>61.这不是摩斯密码<br>&emsp;&emsp;+++++ +++++ [-&gt;++ +++++ +++&lt;] &gt;++.+ +++++ .&lt;+++ [-&gt;– -&lt;]&gt;- -.+++ +++.&lt;<br>++++[ -&gt;+++ +&lt;]&gt;+ +++.&lt; +++[- &gt;—&lt; ]&gt;— .—- .&lt;+++ ++++[ -&gt;— —-&lt;<br>]&gt;— —– —– .&lt;+++ ++++[ -&gt;+++ ++++&lt; ]&gt;+++ ++.&lt;+ +++++ +[-&gt;- —–<br>-&lt;]&gt;. &lt;++++ ++++[ -&gt;+++ +++++ &lt;]&gt;++ .&lt;+++ [-&gt;– -&lt;]&gt;- —-. &lt;++++ +++[-</p>
 <blockquote>

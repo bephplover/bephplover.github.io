@@ -6,18 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Hexo</title>
+  <title>the FTP&#39;s config of Linux | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="a new ctfer&apos;s study">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/page/4/index.html">
+  <meta name="description" content="Linux下的FTP服务器配置环境：服务器：Centos 7客户机： WINDOWS10采用工具:8UFTP 1.安装vsftpd服务使用yum install vsftpd可以在线安装vsftpd服务,当然很多Linux系统在安装时候勾选了ftp可能已经装过了。这时候可以使用rpm -q 服务名  这里所有安装的服务都可以这样检查这里服务名为vsftpd 再用rpm -ql vsftpd就可以看">
+<meta property="og:type" content="article">
+<meta property="og:title" content="the FTP&#39;s config of Linux">
+<meta property="og:url" content="http://yoursite.com/2019/11/19/the-FTP-s-config-of-Linux/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="a new ctfer&apos;s study">
+<meta property="og:description" content="Linux下的FTP服务器配置环境：服务器：Centos 7客户机： WINDOWS10采用工具:8UFTP 1.安装vsftpd服务使用yum install vsftpd可以在线安装vsftpd服务,当然很多Linux系统在安装时候勾选了ftp可能已经装过了。这时候可以使用rpm -q 服务名  这里所有安装的服务都可以这样检查这里服务名为vsftpd 再用rpm -ql vsftpd就可以看">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-11-19T15:05:23.836Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
-<meta name="twitter:description" content="a new ctfer&apos;s study">
+<meta name="twitter:title" content="the FTP&#39;s config of Linux">
+<meta name="twitter:description" content="Linux下的FTP服务器配置环境：服务器：Centos 7客户机： WINDOWS10采用工具:8UFTP 1.安装vsftpd服务使用yum install vsftpd可以在线安装vsftpd服务,当然很多Linux系统在安装时候勾选了ftp可能已经装过了。这时候可以使用rpm -q 服务名  这里所有安装的服务都可以这样检查这里服务名为vsftpd 再用rpm -ql vsftpd就可以看">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -153,34 +154,65 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-20th-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-the-FTP-s-config-of-Linux" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/19/20th-day/">20th-day</a>
+    <h1 class="article-title" itemprop="name">
+      the FTP&#39;s config of Linux
     </h1>
   
 
         
-        <a href="/2019/08/19/20th-day/" class="archive-article-date">
-  	<time datetime="2019-08-19T00:49:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-19</time>
+        <a href="/2019/11/19/the-FTP-s-config-of-Linux/" class="archive-article-date">
+  	<time datetime="2019-11-19T00:50:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-19</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>46.php大法(<a href="http://ctf5.shiyanbar.com/DUTCTF/index.php" title="php大法" target="_blank" rel="noopener">http://ctf5.shiyanbar.com/DUTCTF/index.php</a>)<br>&emsp;&emsp;这道题进入页面后正好是那次什么鬼那道题串题了，打开它的提示index.php.txt发现如下代码
-        
-          <a class="article-more-a" href="/2019/08/19/20th-day/#more">more >></a>
-        
+        <h1 id="Linux下的FTP服务器配置"><a href="#Linux下的FTP服务器配置" class="headerlink" title="Linux下的FTP服务器配置"></a>Linux下的FTP服务器配置</h1><p>环境：服务器：Centos 7<br>客户机： WINDOWS10<br>采用工具:8UFTP</p>
+<h3 id="1-安装vsftpd服务"><a href="#1-安装vsftpd服务" class="headerlink" title="1.安装vsftpd服务"></a>1.安装vsftpd服务</h3><p>使用yum install vsftpd可以在线安装vsftpd服务,当然很多Linux系统在安装时候勾选了ftp可能已经装过了。<br>这时候可以使用rpm -q 服务名  这里所有安装的服务都可以这样检查<br>这里服务名为vsftpd</p>
+<p>再用rpm -ql vsftpd就可以看到其相关的文件的文件路径</p>
+<h3 id="2-启停vsftpd服务"><a href="#2-启停vsftpd服务" class="headerlink" title="2.启停vsftpd服务"></a>2.启停vsftpd服务</h3><p>vsftpd服务相对比较简单，在安装完后无需配置即可启动服务，启动和停止的相关命令如下所示：<br>启动vsftpd守护进程:systemctl start vsftpd 或service vsftpd start<br>重启vsftpd守护进程:systemctl restart vsftpd 或service vsftpd restart<br>停止vsftpd守护进程:systemctl stop vsftpd 或service vsftpd stop<br>开放ftp端口:firewall-cmd –add-service = ftp<br>firewall-cmd –add-service = ftp-permanent<br>关闭防火墙:systemctl stop firewalld<br>说明：为什么以上给出了两条命令呢？<br>由于Centos在7之前的版本只有service命令开启服务，在Centos7以后的版本都改为使用systemctl来启停服务了<br>为什么要关闭防火墙？<br>是为了方便客户机与之进行连接通信</p>
+<h3 id="3-vsftpd相关配置文件说明"><a href="#3-vsftpd相关配置文件说明" class="headerlink" title="3.vsftpd相关配置文件说明"></a>3.vsftpd相关配置文件说明</h3><p>服务器vsftpd被安装后,主要的相关文件和目录包括：<br>(1)/etc/vsftpd/目录为vsftpd服务器配置的主目录<br>(2)/etc/vsftpd/vsftpd.conf文件为vsftpd服务器的主要配置文件，缺省情况下其主目录为/var/ftp,任何配置参数修改需要操作此文件<br>(3)/etc/vsftpd/ftpusers定义哪些用户不能登录ftp服务器的用户列表文件<br>(4) /etc/pam.d/vsftpd 定义vsftpd的PAM认证文件。<br>(5) /etc/vsftpd/user_list与/etc/vsftpd/ftpusers一样，不过需要与主配置文件中的<br>vsftpd.conf的”userlist_deny=YES”参数选项配合使用。<br>(6) /var/ftp目录为vsftpd服务器的匿名缺省共享主目录。<br>(7) /usr/doc/vsftpd-3.0.2目录下所有的文档作为vsftpd的帮助文档。<br>(8) /etc/logrotate.d/vsftpd是完成vsftpd运行日志的配置文件。<br>(9) /etc/pam.d/vsftpd为vsftpd指出vsftpd进行PAM认证时所使用的PAM配置文件名，<br>没有该文件，将无法使本地用户登录FTP服务器。<br>(10)/usr/sbin/vsftpd为vsftpd服务器的主程序。<br>(11) /user/lib/system/vsftpd.sevice为CentOS的sytend管理vsftpd服务器所运<br>行的配置脚本。</p>
+<h4 id="3-1vsftpd-conf文件说明"><a href="#3-1vsftpd-conf文件说明" class="headerlink" title="3.1vsftpd.conf文件说明"></a>3.1vsftpd.conf文件说明</h4><p>其位于/etc/vsftpd目录下，通常我们都修改这个文件的各项参数来配置vsftpd。当主机IP固定后，缺省情况下，不需要做任何的修改就可以直接启动vsftpd作为ftp服务器。此时，ftp服务器允许匿名(Anonymous)和Linux系统中的本地账号登录，当不允许匿名上传。</p>
+<h3 id="4-配置vsftp服务器"><a href="#4-配置vsftp服务器" class="headerlink" title="4.配置vsftp服务器"></a>4.配置vsftp服务器</h3><p>vsFTP服务器大致分为三类用户:匿名用户(anonymous)、本地用户(local user)以及虚拟用户(guest)</p>
+<h4 id="4-1匿名用户服务器"><a href="#4-1匿名用户服务器" class="headerlink" title="4.1匿名用户服务器"></a>4.1匿名用户服务器</h4><h4 id="4-2本地用户服务器"><a href="#4-2本地用户服务器" class="headerlink" title="4.2本地用户服务器"></a>4.2本地用户服务器</h4><h3 id="5-配置FTP服务器的实例"><a href="#5-配置FTP服务器的实例" class="headerlink" title="5.配置FTP服务器的实例"></a>5.配置FTP服务器的实例</h3><p>1、建立一台Linux下的FTP服务器，IP地址为192.168.XX.16(XX为学号后两位)。<br>2、允许匿名访问FTP服务器；匿名用户访问的根目录为/var/ftp/doc<br>3、匿名用户不能上传文件，只可以下载文件的权限；<br>4、FTP服务器能够接受最大的连接数为100，同一IP的连接数为2；<br>5、允许本地用户访问FTP服务器；设定本地用户test被约束在自己的主目录；</p>
+<p>1.可以直接使用 ifconfig 网络接口 IP地址 这条命令更改IP为想要的，也可以去网络设置中修改IP为192.168.23.16这里23是我的学号</p>
+<p>2.默认是允许匿名用户访问的，这里说一下主要在/etc/vsftpd/vsftpd.conf配置的几条信息<br>anonymous_enable=YES 这一条便是允许匿名用户访问<br>anon_root =/var/ftp/doc  这是设置匿名用户访问的根目录<br>这样第二个条件就满足了</p>
+<p>3.然后需要修改配置使得匿名用户不能上传文件，只可以下载文件<br>anon_upload_enable=NO</p>
+<p>默认为NO，也就是默认是把=YES注释掉的就为NO</p>
+<p>4.设置ftp最大连接数：max_clients=100<br>设置同一IP的连接数：max_per_ip=2</p>
+<p>5.设置本地用户可以访问FTP服务器：local_enable=YES<br>这里要求锁定本地用户test被约束在自己的主目录，设置chroot_list_enable=YES<br>chroot_list_file设置值为/etc/vsftpd/chroot_list文件，文件中的用户被约束在根目录下，根目录为用户的主目录。<br>这里chroot_local_user=NO让其他的账户不锁定在自己家目录<br>设置local_root=test用户的目录<br>运行以下命令创建test用户<br>useradd test<br>删除用户使用sudo userdel -r newuser<br>运行以下命令修改test用户密码<br>passwd test<br>密码设置为:xf199962<br>接下来使用8UFTP验证试验即可。</p>
+<p>文章地址：<a href="http://bephplover.github.io" target="_blank" rel="noopener">http://bephplover.github.io</a></p>
+
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -189,16 +221,75 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/19/20th-day/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/11/19/the-FTP-s-config-of-Linux/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2019/11/17/Git-study/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Git-study</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -218,608 +309,14 @@
 
 
 
-
-  
-    <article id="post-19th-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/18/19th-day/">19th-day</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/18/19th-day/" class="archive-article-date">
-  	<time datetime="2019-08-18T01:31:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>44.程序逻辑问题(<a href="http://ctf5.shiyanbar.com/web/5/index.php" title="程序逻辑问题" target="_blank" rel="noopener">http://ctf5.shiyanbar.com/web/5/index.php</a>)<br>&emsp;&emsp;进入页面后是一个提交框并且可以看到框中已经有数据了，然后有个welcome to simplexue.点提交查询试试，然后是登陆失败。F12看一下，在源代码中发现一个Index.txt点进去看一下，可以看到如下代码
-        
-          <a class="article-more-a" href="/2019/08/18/19th-day/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/18/19th-day/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-18th-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/17/18th-day/">18th-day</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/17/18th-day/" class="archive-article-date">
-  	<time datetime="2019-08-17T01:18:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>43.what a fuck 这是什么鬼东西(<a href="http://ctf5.shiyanbar.com/DUTCTF/1.html" title="什么鬼东西" target="_blank" rel="noopener">http://ctf5.shiyanbar.com/DUTCTF/1.html</a>)<br>&emsp;&emsp;进入页面就是熟悉的javascript jother编码，直接f12控制台复制进去解码，回车后弹出对话框，密码是：ihatejs.接下来按惯例没有其他提示访问一下它的主页面也就是index.php。提示让我打开index.php.txt。打开后发现如下代码:<br>&lt;?php<br>if(eregi(“hackerDJ”,$_GET[id])) {<br>  echo(“</p><p>not allowed!</p>“);<br>  exit();<br>}<p></p>
-<p>$_GET[id] = urldecode($_GET[id]);<br>if($_GET[id] == “hackerDJ”)<br>{<br>  echo “</p><p>Access granted!</p>“;<br>  echo “<p>flag: <strong><strong><strong>*****</strong></strong></strong>} </p>“;<br>}<br>?&gt;<br>其中的eregi函数用于匹配字符串，也就是如果get传入的id为hackDJ就输出not allowed.接下来是对id进行urldecode 这时候如果id等于hackerDJ就给出flag.试试hackerDJ进行Urlencode.然后由于url本身要解码因而需要编码两次然后给id get进去得到flag.但它一直重复:Can you authenticate to this website?最后提交这个flag.错误，错误。之前还有个密码直接提交密码，成功提交。妈耶这道题气死我了。这坑人真的是。恶心。<br>&emsp;&emsp;自己还是太嫩了本来一早就做出了但总感觉还有其他地方因为这个格式就不像flag…然后就。。真是。。被耍得团团转。<p></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/17/18th-day/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-17th-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/16/17th-day/">17th-day</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/16/17th-day/" class="archive-article-date">
-  	<time datetime="2019-08-16T00:41:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>42.简单的sql注入(<a href="http://ctf5.shiyanbar.com/423/web/" title="简单的sql注入" target="_blank" rel="noopener">http://ctf5.shiyanbar.com/423/web/</a>)<br>&emsp;&emsp;进入页面后,直接就是一个提交框，上面还提示了过滤了什么东西,现在就来尝试一下,先输入id=1,显示出了ID=1，name:baloteli，继续id=1’,爆错了，说明注入点就是id=1并且是数字型注入。<br>&emsp;&emsp;这下来尝试有些什么被过滤掉了，先使用联合查询，payload：?id=1 union select database() 页面上ID部分直接显示出了id:1 database()说明union和select都被过滤了。用双写绕过试试：<br>payload:?id=1’  unionunion  selectselect  database()’显示出了数据库名，这里Union与select都是双写绕过的并且空格需要打两个空格，我不太清楚这里的过滤机制。继续<br>&emsp;&emsp;爆表:payload:?id=1’  unionunion  selectselect  table_name  fromfrom  information_schema.tables  wherewhere  ‘1’=’1<br>查出表名flag.<br>&emsp;&emsp;爆字段名：关于字段名的获取现在输入正解都得到的是Got error 28 from storage engine，因而直接猜解字段名是flag.<br>&emsp;&emsp;爆取flag内容：1’  unionunion  selectselect  flag  fromfrom  flag  wherewhere  ‘1’=’1<br>采用sqlmap跑,爆库:sqlmap.py -u <a href="http://ctf5.shiyanbar.com/423/web/?id=1" target="_blank" rel="noopener">http://ctf5.shiyanbar.com/423/web/?id=1</a> –dbs<br>&emsp;&emsp;关于sqlmap的用法之后再写了，关于sql注入1的学习先到这里，这次练题可谓惨败，sql注入学的太差了，还需要重新去做一下之前上课做过的sql实验。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/16/17th-day/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-16th-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/15/16th-day/">16th-day</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/15/16th-day/" class="archive-article-date">
-  	<time datetime="2019-08-15T01:12:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>41.你真的会PHP吗(<a href="http://ctf5.shiyanbar.com/web/PHP/index.php" title="你怎的会PHP吗" target="_blank" rel="noopener">http://ctf5.shiyanbar.com/web/PHP/index.php</a>)<br>&emsp;&emsp;进入页面后,只有一个have fun.F12看一下，在网络的响应头中发现了一个Hint：6c525af4059b4fe7d8c33a.txt打开这个txt看一下发现一大串php代码，一道代码审计类题目。若果没有post设置Number就在头文件中给出hint提示并且现实hava a fun。
-        
-          <a class="article-more-a" href="/2019/08/15/16th-day/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/15/16th-day/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-15th-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/14/15th-day/">15th-day</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/14/15th-day/" class="archive-article-date">
-  	<time datetime="2019-08-14T01:03:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>40.SKCTF管理系统(<a href="http://123.206.31.85:49163/" title="SKCTF管理系统()" target="_blank" rel="noopener">http://123.206.31.85:49163/</a>)<br>&emsp;&emsp;进入页面后是一个管理系统的登陆界面，这里没有账号和密码先去注册一个，任意注册一个后提示不是管理员还想得到flag,太真实了，这里可以想到题目中提示了是约束攻击因而先去了解一下约束攻击
-        
-          <a class="article-more-a" href="/2019/08/14/15th-day/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/14/15th-day/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-14th-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/13/14th-day/">14th-day</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/13/14th-day/" class="archive-article-date">
-  	<time datetime="2019-08-13T01:05:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>39.文件包含2(<a href="http://123.206.31.85:49166/index.php?file=hello.php" title="文件包含2" target="_blank" rel="noopener">http://123.206.31.85:49166/index.php?file=hello.php</a>)<br>&emsp;&emsp;进入页面后，是一个hello.php提示里面也说过文件包含，并且可以看到url中有个file=因而应该可以用php流读取文件，先最基本的看一下源代码和网络有没有其他提示。无其他提示，因而直接php流
-        
-          <a class="article-more-a" href="/2019/08/13/14th-day/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/13/14th-day/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-13th-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/12/13th-day/">13th-day</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/12/13th-day/" class="archive-article-date">
-  	<time datetime="2019-08-12T00:44:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>&emsp;&emsp;关于报错注入的一些小总结:MySQL 5.1.5版本中添加了对XML文档进行查询和修改的两个函数：extractvalue、updatexml.ExtractValue() 使用XPath表示法从XML字符串中提取值<br>UpdateXML()     返回替换的XML片段<br>举例其用法:<br>emsp;&emsp;先从爆库开始
-        
-          <a class="article-more-a" href="/2019/08/12/13th-day/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/12/13th-day/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-twelfth-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/11/twelfth-day/">twelfth-day</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/11/twelfth-day/" class="archive-article-date">
-  	<time datetime="2019-08-11T00:32:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>36.多次(<a href="http://123.206.87.240:9004/1ndex.php?id=1" title="多次" target="_blank" rel="noopener">http://123.206.87.240:9004/1ndex.php?id=1</a>)<br>&emsp;&emsp;进入链接后会看到 there is nothing.可以看到url上面有个？id=1猜测可能是sql注入，但没有输入框又不像。先F12看一下，无任何线索，本题有2个flag，flag均为小写，flag格式 flag{}这是题目本身自带的提示。感觉没啥用.现在回到url上,试试url上的id.</p>
-        
-          <a class="article-more-a" href="/2019/08/11/twelfth-day/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/11/twelfth-day/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-eleventh-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/10/eleventh-day/">eleventh-day</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/10/eleventh-day/" class="archive-article-date">
-  	<time datetime="2019-08-10T01:48:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>33.web8(<a href="http://123.206.87.240:8002/web8/" title="web8" target="_blank" rel="noopener">http://123.206.87.240:8002/web8/</a>)<br>&emsp;&emsp;进入页面后直接给出了php代码如下:<br><?php
-extract($\_GET);
-if (!empty($ac))
-{
-$f = trim(file\_get\_contents($fn));
-if ($ac === $f)
-{
-echo "<p>This is flag:" ." $flag</p>";
-}
-else
-{
-echo "<p>sorry!</p>";
-}
-}
-?><br>一分析就是一个不认识的函数，extract() 函数从数组中将变量导入到当前的符号表。该函数返回成功导入到符号表中的变量数目。
-        
-          <a class="article-more-a" href="/2019/08/10/eleventh-day/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/10/eleventh-day/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
-    </nav>
+  
+
+  
+
+  
+
   
 
 
@@ -842,8 +339,8 @@ echo "<p>sorry!</p>";
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

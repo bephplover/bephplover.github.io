@@ -155,6 +155,71 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-30-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/02/30-day/">30-day</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/02/30-day/" class="archive-article-date">
+  	<time datetime="2019-09-02T12:57:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>由于忙着准备计算机考试，因而暂放CTF题目的刷新，接下来记录一下三级的知识点记忆。<br>&emsp;&emsp;本文由作者xf所有，网址：<a href="https://bephplover.github.io" target="_blank" rel="noopener">https://bephplover.github.io</a><br>如需采纳请附上原文网址<br>提供用户访问internet所需要的路由服务是核心交换层
+        
+          <a class="article-more-a" href="/2019/09/02/30-day/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/02/30-day/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-29-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -437,13 +502,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>57.貌似有点难(<a href="http://ctf5.shiyanbar.com/phpaudit/" title="貌似有点难" target="_blank" rel="noopener">http://ctf5.shiyanbar.com/phpaudit/</a>)<br>&emsp;&emsp;进入页面提示PHP代码审计，并说明我得IP不在允许列表之内。点击view the source code查看到如下提示代码：<br>function GetIP(){<br>if(!empty($_SERVER[“HTTP_CLIENT_IP”]))<br>    $cip = $_SERVER[“HTTP_CLIENT_IP”];<br>else if(!empty($_SERVER[“HTTP_X_FORWARDED_FOR”]))<br>    $cip = $_SERVER[“HTTP_X_FORWARDED_FOR”];<br>else if(!empty($_SERVER[“REMOTE_ADDR”]))<br>    $cip = $_SERVER[“REMOTE_ADDR”];<br>else<br>    $cip = “0.0.0.0”;<br>return $cip;<br>}</p>
-<p>$GetIPs = GetIP();<br>if ($GetIPs==”1.1.1.1”){<br>echo “Great! Key is <strong>*****</strong>“;<br>}<br>else{<br>echo “错误！你的IP不在访问列表之内！”;<br>}<br>从如上代码可以看到几乎所有的伪造IP方式都可以使用，因而抓包直接伪造IP。这里记录以下伪造IP的方法：<br>    Client-Ip: 127.0.0.1<br>    X-Forwarded-For: 127.0.0.1<br>    Host: 127.0.0.1<br>    Referer: <a href="http://www.google.com" target="_blank" rel="noopener">www.google.com</a><br>在Http包中直接构造payload:Client-Ip: 1.1.1.1拿下flag.<br>剩下大部分题都是SQL注入的了，由于本人SQL学的较差，需要先下去补补，这里继续做一些密码学或者杂项的CTF。<br>58.滴答~滴<br>&emsp;&emsp;-… -.- -.-. - ..-. – .. … -.-. 这种应该是摩斯密码直接百度在线解密，拿下flag.<br>&emsp;&emsp;summary:密码学的题第一要知道它是什么加密方式，然后要知道加密的原理，这样才能更好的解密。<br>59.聪明的小羊<br>&emsp;&emsp;一只小羊翻过了2个栅栏</p>
-<p>KYsd3js2E{a2jda}<br>栅栏密码：栅栏数为2.在线解密后为：KEY{sad23jjdsa2}<br>这里手工解密以下：<br>首先把密码分为两组也就是栅栏数如下所示：<br>KYsd3js2<br>E{a2jda}<br>然后从上往下从右往左的顺序读：<br>1.K 3.Y<br>2.E 4.{<br>就按照这个顺序读就得到了：KEY{sad23jjdsa2}<br>60.ok<br>&emsp;&emsp;只有如下提示：<br>Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook.<br>此处省去多行，那就直接百度Ook发现这是一种编码方式，找到了一个在线解码的拿下flag.<br>&emsp;&emsp;在不知道是什么加密方式可以先百度进行了解再寻找一个解码的在线网站。这个过程主要提高了检索的能力。<br>61.这不是摩斯密码<br>&emsp;&emsp;+++++ +++++ [-&gt;++ +++++ +++&lt;] &gt;++.+ +++++ .&lt;+++ [-&gt;– -&lt;]&gt;- -.+++ +++.&lt;<br>++++[ -&gt;+++ +&lt;]&gt;+ +++.&lt; +++[- &gt;—&lt; ]&gt;— .—- .&lt;+++ ++++[ -&gt;— —-&lt;<br>]&gt;— —– —– .&lt;+++ ++++[ -&gt;+++ ++++&lt; ]&gt;+++ ++.&lt;+ +++++ +[-&gt;- —–<br>-&lt;]&gt;. &lt;++++ ++++[ -&gt;+++ +++++ &lt;]&gt;++ .&lt;+++ [-&gt;– -&lt;]&gt;- —-. &lt;++++ +++[-</p>
-<blockquote>
-<p>—- —&lt;] &gt;—- —-. +++++ +..++ +++.+ .&lt;+++ [-&gt;– -&lt;]&gt;- –.&lt;+ +++++<br>+[-&gt;+ +++++ +&lt;]&gt;+ ++.++ +.+++ +++++ +.— -.+++ ++.&lt;+ ++[-&gt; +++&lt;] &gt;++++<br>++.&lt;<br>这个百度后是brainfuck<a href="https://www.splitbrain.org/services/ook" title="Ook和Brainfuck在线解码" target="_blank" rel="noopener">https://www.splitbrain.org/services/ook</a><br>这个是在线解码地址。<br>62.easy_crypto<br>&emsp;&emsp;这个显示如下内容：<br>0010 0100 01 110 1111011 11 11111 010 000 0 001101 1010 111 100 0 001101 01111 000 001101 00 10 1 0 010 0 000 1 01111 10 11110 101011 1111101<br>这个是摩斯密码与AScii的一个对照：<img src="https://raw.githubusercontent.com/houhuiting/image/master/1-2.png" alt><br>按照这个表查找即可得到flag.当然这样很复制也可以用程序直接跑出来。</p>
-</blockquote>
-
+        <p>57.貌似有点难(<a href="http://ctf5.shiyanbar.com/phpaudit/" title="貌似有点难" target="_blank" rel="noopener">http://ctf5.shiyanbar.com/phpaudit/</a>)<br>&emsp;&emsp;进入页面提示PHP代码审计，并说明我得IP不在允许列表之内。点击view the source code查看到如下提示代码：
+        
+          <a class="article-more-a" href="/2019/08/26/25-day/#more">more >></a>
+        
       
 
       
@@ -716,71 +778,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/08/20/21st-day/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-20th-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/19/20th-day/">20th-day</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/19/20th-day/" class="archive-article-date">
-  	<time datetime="2019-08-19T00:49:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>46.php大法(<a href="http://ctf5.shiyanbar.com/DUTCTF/index.php" title="php大法" target="_blank" rel="noopener">http://ctf5.shiyanbar.com/DUTCTF/index.php</a>)<br>&emsp;&emsp;这道题进入页面后正好是那次什么鬼那道题串题了，打开它的提示index.php.txt发现如下代码
-        
-          <a class="article-more-a" href="/2019/08/19/20th-day/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/19/20th-day/">展开全文 >></a>
         </p>
       
 

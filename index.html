@@ -155,6 +155,148 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-the-FTP-s-config-of-Linux" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/19/the-FTP-s-config-of-Linux/">the FTP&#39;s config of Linux</a>
+    </h1>
+  
+
+        
+        <a href="/2019/11/19/the-FTP-s-config-of-Linux/" class="archive-article-date">
+  	<time datetime="2019-11-19T00:50:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Linux下的FTP服务器配置"><a href="#Linux下的FTP服务器配置" class="headerlink" title="Linux下的FTP服务器配置"></a>Linux下的FTP服务器配置</h1><p>环境：服务器：Centos 7<br>客户机： WINDOWS10<br>采用工具:8UFTP</p>
+<h3 id="1-安装vsftpd服务"><a href="#1-安装vsftpd服务" class="headerlink" title="1.安装vsftpd服务"></a>1.安装vsftpd服务</h3><p>使用yum install vsftpd可以在线安装vsftpd服务,当然很多Linux系统在安装时候勾选了ftp可能已经装过了。<br>这时候可以使用rpm -q 服务名  这里所有安装的服务都可以这样检查<br>这里服务名为vsftpd</p>
+<p>再用rpm -ql vsftpd就可以看到其相关的文件的文件路径</p>
+<h3 id="2-启停vsftpd服务"><a href="#2-启停vsftpd服务" class="headerlink" title="2.启停vsftpd服务"></a>2.启停vsftpd服务</h3><p>vsftpd服务相对比较简单，在安装完后无需配置即可启动服务，启动和停止的相关命令如下所示：<br>启动vsftpd守护进程:systemctl start vsftpd 或service vsftpd start<br>重启vsftpd守护进程:systemctl restart vsftpd 或service vsftpd restart<br>停止vsftpd守护进程:systemctl stop vsftpd 或service vsftpd stop<br>开放ftp端口:firewall-cmd –add-service = ftp<br>firewall-cmd –add-service = ftp-permanent<br>关闭防火墙:systemctl stop firewalld<br>说明：为什么以上给出了两条命令呢？<br>由于Centos在7之前的版本只有service命令开启服务，在Centos7以后的版本都改为使用systemctl来启停服务了<br>为什么要关闭防火墙？<br>是为了方便客户机与之进行连接通信</p>
+<h3 id="3-vsftpd相关配置文件说明"><a href="#3-vsftpd相关配置文件说明" class="headerlink" title="3.vsftpd相关配置文件说明"></a>3.vsftpd相关配置文件说明</h3><p>服务器vsftpd被安装后,主要的相关文件和目录包括：<br>(1)/etc/vsftpd/目录为vsftpd服务器配置的主目录<br>(2)/etc/vsftpd/vsftpd.conf文件为vsftpd服务器的主要配置文件，缺省情况下其主目录为/var/ftp,任何配置参数修改需要操作此文件<br>(3)/etc/vsftpd/ftpusers定义哪些用户不能登录ftp服务器的用户列表文件<br>(4) /etc/pam.d/vsftpd 定义vsftpd的PAM认证文件。<br>(5) /etc/vsftpd/user_list与/etc/vsftpd/ftpusers一样，不过需要与主配置文件中的<br>vsftpd.conf的”userlist_deny=YES”参数选项配合使用。<br>(6) /var/ftp目录为vsftpd服务器的匿名缺省共享主目录。<br>(7) /usr/doc/vsftpd-3.0.2目录下所有的文档作为vsftpd的帮助文档。<br>(8) /etc/logrotate.d/vsftpd是完成vsftpd运行日志的配置文件。<br>(9) /etc/pam.d/vsftpd为vsftpd指出vsftpd进行PAM认证时所使用的PAM配置文件名，<br>没有该文件，将无法使本地用户登录FTP服务器。<br>(10)/usr/sbin/vsftpd为vsftpd服务器的主程序。<br>(11) /user/lib/system/vsftpd.sevice为CentOS的sytend管理vsftpd服务器所运<br>行的配置脚本。</p>
+<h4 id="3-1vsftpd-conf文件说明"><a href="#3-1vsftpd-conf文件说明" class="headerlink" title="3.1vsftpd.conf文件说明"></a>3.1vsftpd.conf文件说明</h4><p>其位于/etc/vsftpd目录下，通常我们都修改这个文件的各项参数来配置vsftpd。当主机IP固定后，缺省情况下，不需要做任何的修改就可以直接启动vsftpd作为ftp服务器。此时，ftp服务器允许匿名(Anonymous)和Linux系统中的本地账号登录，当不允许匿名上传。</p>
+<h3 id="4-配置vsftp服务器"><a href="#4-配置vsftp服务器" class="headerlink" title="4.配置vsftp服务器"></a>4.配置vsftp服务器</h3><p>vsFTP服务器大致分为三类用户:匿名用户(anonymous)、本地用户(local user)以及虚拟用户(guest)</p>
+<h4 id="4-1匿名用户服务器"><a href="#4-1匿名用户服务器" class="headerlink" title="4.1匿名用户服务器"></a>4.1匿名用户服务器</h4><h4 id="4-2本地用户服务器"><a href="#4-2本地用户服务器" class="headerlink" title="4.2本地用户服务器"></a>4.2本地用户服务器</h4><h3 id="5-配置FTP服务器的实例"><a href="#5-配置FTP服务器的实例" class="headerlink" title="5.配置FTP服务器的实例"></a>5.配置FTP服务器的实例</h3><p>1、建立一台Linux下的FTP服务器，IP地址为192.168.XX.16(XX为学号后两位)。<br>2、允许匿名访问FTP服务器；匿名用户访问的根目录为/var/ftp/doc<br>3、匿名用户不能上传文件，只可以下载文件的权限；<br>4、FTP服务器能够接受最大的连接数为100，同一IP的连接数为2；<br>5、允许本地用户访问FTP服务器；设定本地用户test被约束在自己的主目录；</p>
+<p>1.可以直接使用 ifconfig 网络接口 IP地址 这条命令更改IP为想要的，也可以去网络设置中修改IP为192.168.23.16这里23是我的学号</p>
+<p>2.默认是允许匿名用户访问的，这里说一下主要在/etc/vsftpd/vsftpd.conf配置的几条信息<br>anonymous_enable=YES 这一条便是允许匿名用户访问<br>anon_root =/var/ftp/doc  这是设置匿名用户访问的根目录<br>这样第二个条件就满足了</p>
+<p>3.然后需要修改配置使得匿名用户不能上传文件，只可以下载文件<br>anon_upload_enable=NO</p>
+<p>默认为NO，也就是默认是把=YES注释掉的就为NO</p>
+<p>4.设置ftp最大连接数：max_clients=100<br>设置同一IP的连接数：max_per_ip=2</p>
+<p>5.设置本地用户可以访问FTP服务器：local_enable=YES<br>这里要求锁定本地用户test被约束在自己的主目录，设置chroot_list_enable=YES<br>chroot_list_file设置值为/etc/vsftpd/chroot_list文件，文件中的用户被约束在根目录下，根目录为用户的主目录。<br>这里chroot_local_user=NO让其他的账户不锁定在自己家目录<br>设置local_root=test用户的目录<br>运行以下命令创建test用户<br>useradd test<br>删除用户使用sudo userdel -r newuser<br>运行以下命令修改test用户密码<br>passwd test<br>密码设置为:xf199962<br>接下来使用8UFTP验证试验即可。</p>
+<p>文章地址：<a href="http://bephplover.github.io" target="_blank" rel="noopener">http://bephplover.github.io</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/11/19/the-FTP-s-config-of-Linux/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Git-study" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/17/Git-study/">Git-study</a>
+    </h1>
+  
+
+        
+        <a href="/2019/11/17/Git-study/" class="archive-article-date">
+  	<time datetime="2019-11-17T15:06:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Git是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。git是Linus Torvalds为了帮助管理Linux内核开发而开发的一个开放源码的版本控制软件。<br>Git与常用的版本控制工具CVS，Subversion等不同，它采用了分布式版本库的方式，不必服务器端软件支持。<br>Git不仅仅是个版本控制系统，也是一个内容管理系统（CMS），工作管理系统。
+        
+          <a class="article-more-a" href="/2019/11/17/Git-study/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/11/17/Git-study/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Http-study" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -606,71 +748,6 @@
 
 
   
-    <article id="post-jk-challenges" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/13/jk-challenges/">geek-challenges</a>
-    </h1>
-  
-
-        
-        <a href="/2019/10/13/jk-challenges/" class="archive-article-date">
-  	<time datetime="2019-10-13T03:14:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>下面开始Syc的极客大挑战的writeup<br>由于本校的网站即将关闭，因而以下不给出链接了<br>1.打比赛前先撸一只猫
-        
-          <a class="article-more-a" href="/2019/10/13/jk-challenges/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/13/jk-challenges/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-geek-challenges" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -707,69 +784,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/10/13/geek-challenges/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-review-of-AES" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/04/review-of-AES/">review of AES</a>
-    </h1>
-  
-
-        
-        <a href="/2019/10/04/review-of-AES/" class="archive-article-date">
-  	<time datetime="2019-10-04T13:48:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="AES"><a href="#AES" class="headerlink" title="AES"></a>AES</h2><p>AES(Advanced Encryption Standard)<br>对称加密算法也就是加密和解密用相同的密钥。<br>AES是一种分组密码，分组密码也就是把明文分成一组一组的，每组长度相等，每次加密一组数据，直到加密完整个明文。再AES标准规范中，分组长度只能是128位，也就是说，每个分组为16个字节（每个字节8位）。密钥的长度可以使用128位、192位、256位。密钥长度不同，推荐加密轮数也不同。<br>AES     密钥长度  分组长度    加密轮数<br>AES-128 4         4          10<br>AES-192 6         4          12<br>AES-256 8         4          14<br>AES的处理单位是字节，一般地，明文分组用字节单位的正方形矩阵描述，称为状态矩阵。在算法的每一轮，状态矩阵的内容不断发生变化，最后的结果作为密文输出。<br>AES-192解决办法<br>首先采用自己设计的扩展方法扩展随机生成的明文与密钥。然后在类之中写入方法，分别是密钥扩展，轮密钥加，字节替代，行移位（这里解密就不说了类似的）。然后用明文所存储的变量调用这些方法，并采用循环，最后达到12轮的加密。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/04/review-of-AES/">展开全文 >></a>
         </p>
       
 

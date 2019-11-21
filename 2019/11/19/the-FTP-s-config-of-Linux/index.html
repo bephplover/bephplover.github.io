@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="Linux下的FTP服务器配置环境：服务器：Centos 7客户机： WINDOWS10采用工具:8UFTP">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-11-20T16:23:17.571Z">
+<meta property="og:updated_time" content="2019-11-21T12:52:42.922Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="the FTP&#39;s config of Linux">
 <meta name="twitter:description" content="Linux下的FTP服务器配置环境：服务器：Centos 7客户机： WINDOWS10采用工具:8UFTP">
@@ -189,7 +189,6 @@
 <p>默认为NO，也就是默认是把=YES注释掉的就为NO</p>
 <p>4.设置ftp最大连接数：max_clients=100<br>设置同一IP的连接数：max_per_ip=2</p>
 <p>5.设置本地用户可以访问FTP服务器：local_enable=YES<br>这里要求锁定本地用户test被约束在自己的主目录，设置chroot_list_enable=YES<br>chroot_list_file设置值为/etc/vsftpd/chroot_list文件，文件中的用户被约束在根目录下，根目录为用户的主目录。<br>这里chroot_local_user=NO让其他的账户不锁定在自己家目录<br>设置local_root=test用户的目录<br>运行以下命令创建test用户<br>useradd test<br>删除用户使用sudo userdel -r newuser<br>运行以下命令修改test用户密码<br>passwd test<br>密码设置为:xf199962<br>接下来使用8UFTP验证试验即可。</p>
-<p>文章地址：<a href="http://bephplover.github.io" target="_blank" rel="noopener">http://bephplover.github.io</a></p>
 
       
 

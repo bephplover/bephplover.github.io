@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="Git简介Git是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。git是Linus Torvalds为了帮助管理Linux内核开发而开发的一个开放源码的版本控制软件。Git与常用的版本控制工具CVS，Subversion等不同，它采用了分布式版本库的方式，不必服务器端软件支持。Git不仅仅是个版本控制系统，也是一个内容管理系统（CMS），工作管理系统。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-11-18T15:52:20.923Z">
+<meta property="og:updated_time" content="2019-11-21T13:40:50.282Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git-study">
 <meta name="twitter:description" content="Git简介Git是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。git是Linus Torvalds为了帮助管理Linux内核开发而开发的一个开放源码的版本控制软件。Git与常用的版本控制工具CVS，Subversion等不同，它采用了分布式版本库的方式，不必服务器端软件支持。Git不仅仅是个版本控制系统，也是一个内容管理系统（CMS），工作管理系统。">
@@ -50,7 +50,7 @@
 			<img src="/uploads/namei.png" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/">Darker</a></h1>
+		  <h1 class="header-author"><a href="/">Cupid</a></h1>
 		</hgroup>
 		
 
@@ -108,7 +108,7 @@
 				<img src="/uploads/namei.png" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">Darker</h1>
+			  <h1 class="header-author js-header-author">Cupid</h1>
 			</hgroup>
 			
 			
@@ -192,8 +192,10 @@
 <h2 id="Git使用"><a href="#Git使用" class="headerlink" title="Git使用"></a>Git使用</h2><h3 id="Git的全局配置"><a href="#Git的全局配置" class="headerlink" title="Git的全局配置"></a>Git的全局配置</h3><p>第一次安装完成git后，我们在全局环境下配置基本信息：我是谁？<br>git config -l 查看配置信息<br>git config –global -l查看全局配置信息<br>配置全局信息，用户名和邮箱<br>git config –global user.name=’xxx’<br>git config –global user.email=’xxx@xx.xx’<br>2.创建仓库完成版本控制<br>创建本地git仓库<br>git init<br>会生成一个隐藏文件夹，.git文件夹千万不能删，因为暂存区和历史区还有一些其他的信息都在这里，删了就不是一个完整的git仓库</p>
 <p>在本地编写完成代码后(工作区)，把一些文件提交到暂存区<br>git add XXX 把某一个文件或者文件夹提交到暂存区<br>git add . 把所有最新修改的文件都提交到暂存区<br>git add -A 同上<br>git stattus 查看当前文件的状态(红色代表在工作区，绿色代表在暂存区，看不见东西证明所有修改的信息都已经提交到历史区)<br>git rm -cached 1.html 把刚传入到暂存区的内容删除</p>
 <p>把暂存区内容提交到历史区<br>git commit -m’描述信息：本次提交内容的一个描述’<br>查看历史版本信息<br>git log<br>git reflog<br>从工作区提交到暂存区，从暂存区提交到版本区：是把内容复制一份传过去的，本区域中依然存在这些信息(只有这样才能对比出哪些文件在某个区)<br>git reset –hard 版本号 即可替换工作区的历史版本</p>
-<h2 id="Github"><a href="#Github" class="headerlink" title="Github"></a>Github</h2><p>Github: <a href="http://www.github.com" target="_blank" rel="noopener">http://www.github.com</a><br>一个开源的源代码管理平台，用户注册后可以在自己账户下创建仓库，用来管理项目源代码(源代码是基于Git传到仓库中)<br>我们所熟知的插件、类库、框架等都在这个平台上有托管，可以下载观看和研究源码等<br>1.Settings用户设置<br>Profile 修改自己的基本信息<br>Account 可以修改用户名<br>Security 可以修改密码<br>Emails 可以增加修改邮箱(必须进行邮箱校验)<br>。。。。。。<br>2.创建仓库<br>new Repository</p>
-<p>public 公共仓库作为开源的项目<br>private 私有仓库作为内部团队协作管理的项目</p>
+<h2 id="Github"><a href="#Github" class="headerlink" title="Github"></a>Github</h2><p>Github: <a href="http://www.github.com" target="_blank" rel="noopener">http://www.github.com</a><br>一个开源的源代码管理平台，用户注册后可以在自己账户下创建仓库，用来管理项目源代码(源代码是基于Git传到仓库中)<br>我们所熟知的插件、类库、框架等都在这个平台上有托管，可以下载观看和研究源码等<br>1.Settings用户设置<br>Profile 修改自己的基本信息<br>Account 可以修改用户名<br>Security 可以修改密码<br>Emails 可以增加修改邮箱(必须进行邮箱校验)<br>。。。。。。<br>2.创建仓库<br>new Repository-&gt;填写信息-&gt;Create repostity</p>
+<p>public 公共仓库作为开源的项目<br>private 私有仓库作为内部团队协作管理的项目<br>Settings-&gt;删除仓库Delete this repository<br>    -&gt;Collaborators设置协作开发的人员</p>
+<p>####基本概念####<br>仓库（Repository）<br>仓库用来存放项目代码，每个项目对应一个仓库，多个开源项目则有多个仓库<br>收藏(Star)<br>收藏项目，方便下次看<br>复制克隆项目(Fork)<br>该fork的项目是独立存在的</p>
+<p>Pull Request(发起请求)</p>
 
       
 
@@ -341,7 +343,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 Darker
+    		&copy; 2019 Cupid
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten

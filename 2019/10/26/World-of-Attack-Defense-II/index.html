@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="攻防世界进阶区1.upload1(http://111.198.29.45:52414)">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-11-11T13:03:50.494Z">
+<meta property="og:updated_time" content="2019-11-26T15:07:43.567Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="World-of-Attack-Defense-II">
 <meta name="twitter:description" content="攻防世界进阶区1.upload1(http://111.198.29.45:52414)">
@@ -203,6 +203,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if(e.match(/^be0f23/)!=null)</span><br><span class="line">if(e.match(/233ac/)!=null)</span><br><span class="line">if(e.match(/e98aa$/)!=null)</span><br><span class="line">if(e.match(/c7be9/)!=null)</span><br></pre></td></tr></table></figure>
 
 <p>也就是这几个正则都匹配就给flag.仔细看，要求总长度是16但下面的数字和字母一共有21个，然后第三后加了$说明是匹配前面的数字，猜测第三行匹配的应该在最后。第一行包含^说明第一行的应该是开始，那么拼接16个字母数字就应该是：be0f233ac7be98aa.将其输入进输入框，拿到flag.</p>
+<p>13.baby_web(<a href="http://111.198.29.45:43019/1.php" target="_blank" rel="noopener">http://111.198.29.45:43019/1.php</a>)<br>&emsp;&emsp;进入页面后，就只有一个hello,world,然后提示了最初的页面在哪里，最初的页面理解应该就是默认页面,那么就应该是进入111.198.29.45这个页面内。但是直接浏览器这么访问，进入不了，可能被直接强制送到了1.php下，那么就抓包去。最后在response中看到了flag.</p>
 
       
 

@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>resolve the question | Hexo</title>
+  <title>BUUCTF-WP | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Hack the box邀请码和注册问题总结">
+  <meta name="description" content="Web部分1.[HCTF 2018]WarmUp&amp;emsp;&amp;emsp;进入页面后是一个大大的滑稽，查看源代码，提示了一个source.php，打开发现是php代码审计。代码如下">
 <meta property="og:type" content="article">
-<meta property="og:title" content="resolve the question">
-<meta property="og:url" content="http://yoursite.com/2019/10/19/resolve-the-question/index.html">
+<meta property="og:title" content="BUUCTF-WP">
+<meta property="og:url" content="http://yoursite.com/2019/11/22/BUUCTF-WP/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Hack the box邀请码和注册问题总结">
+<meta property="og:description" content="Web部分1.[HCTF 2018]WarmUp&amp;emsp;&amp;emsp;进入页面后是一个大大的滑稽，查看源代码，提示了一个source.php，打开发现是php代码审计。代码如下">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-11-22T06:04:56.445Z">
+<meta property="og:updated_time" content="2019-11-25T14:28:56.999Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="resolve the question">
-<meta name="twitter:description" content="Hack the box邀请码和注册问题总结">
+<meta name="twitter:title" content="BUUCTF-WP">
+<meta name="twitter:description" content="Web部分1.[HCTF 2018]WarmUp&amp;emsp;&amp;emsp;进入页面后是一个大大的滑稽，查看源代码，提示了一个source.php，打开发现是php代码审计。代码如下">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -154,37 +154,40 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-resolve-the-question" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-BUUCTF-WP" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      resolve the question
+      BUUCTF-WP
     </h1>
   
 
         
-        <a href="/2019/10/19/resolve-the-question/" class="archive-article-date">
-  	<time datetime="2019-10-19T12:18:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-19</time>
+        <a href="/2019/11/22/BUUCTF-WP/" class="archive-article-date">
+  	<time datetime="2019-11-22T11:56:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-22</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Hack-the-box邀请码和注册问题总结"><a href="#Hack-the-box邀请码和注册问题总结" class="headerlink" title="Hack the box邀请码和注册问题总结"></a>Hack the box邀请码和注册问题总结</h2><a id="more"></a>
-<p>注意下，有3个坑，</p>
-<ol>
-<li><p>解码方式是随机的，记得看DATA下面提示用哪种</p>
-</li>
-<li><p>post时候可以直接用f12里的console，命令是：$.post(‘https:/<a href="http://www.hackthebox.eu/api/invite/generate&#39;,function(data){console.log(data)}" target="_blank" rel="noopener">www.hackthebox.eu/api/invite/generate&#39;,function(data){console.log(data)}</a>)<br>（懒的话，直接在invite页面打开F12控制台 输入上面那句，得到data再去base64解密下就得到邀请码了）</p>
-</li>
-<li><p>获得邀请码了注册时候，一直跟你说验证通不过，是因为要开VPN！！！没开VPN，我换了几个浏览器都不行，一开VPN就出来点图片验证了。<br>##虚拟机问题总结##<br>&emsp;关于虚拟机无法联网的问题，很有可能是禁用了相关VMWARE的服务导致NAT无法联网 。<br>&emsp;虚拟机联网最好使用NAT转换，网桥还需要下载一些其他东西.</p>
-</li>
-</ol>
-<p>LFI:local file include 本地文件包含</p>
+        <h1 id="Web部分"><a href="#Web部分" class="headerlink" title="Web部分"></a>Web部分</h1><p>1.[HCTF 2018]WarmUp<br>&emsp;&emsp;进入页面后是一个大大的滑稽，查看源代码，提示了一个source.php，打开发现是php代码审计。代码如下<a id="more"></a>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">    highlight_file(__FILE__);</span><br><span class="line">    class emmm</span><br><span class="line">    &#123;</span><br><span class="line">        public static function checkFile(&amp;$page)</span><br><span class="line">        &#123;</span><br><span class="line">            $whitelist = [&quot;source&quot;=&gt;&quot;source.php&quot;,&quot;hint&quot;=&gt;&quot;hint.php&quot;];</span><br><span class="line">            if (! isset($page) || !is_string($page)) &#123;</span><br><span class="line">                echo &quot;you can&apos;t see it&quot;;</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            if (in_array($page, $whitelist)) &#123;</span><br><span class="line">                return true;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            $_page = mb_substr(</span><br><span class="line">                $page,</span><br><span class="line">                0,</span><br><span class="line">                mb_strpos($page . &apos;?&apos;, &apos;?&apos;)</span><br><span class="line">            );</span><br><span class="line">            if (in_array($_page, $whitelist)) &#123;</span><br><span class="line">                return true;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            $_page = urldecode($page);</span><br><span class="line">            $_page = mb_substr(</span><br><span class="line">                $_page,</span><br><span class="line">                0,</span><br><span class="line">                mb_strpos($_page . &apos;?&apos;, &apos;?&apos;)</span><br><span class="line">            );</span><br><span class="line">            if (in_array($_page, $whitelist)) &#123;</span><br><span class="line">                return true;</span><br><span class="line">            &#125;</span><br><span class="line">            echo &quot;you can&apos;t see it&quot;;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (! empty($_REQUEST[&apos;file&apos;])</span><br><span class="line">        &amp;&amp; is_string($_REQUEST[&apos;file&apos;])</span><br><span class="line">        &amp;&amp; emmm::checkFile($_REQUEST[&apos;file&apos;])</span><br><span class="line">    ) &#123;</span><br><span class="line">        include $_REQUEST[&apos;file&apos;];</span><br><span class="line">        exit;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        echo &quot;&lt;br&gt;&lt;img src=\&quot;https://i.loli.net/2018/11/01/5bdb0d93dc794.jpg\&quot; /&gt;&quot;;</span><br><span class="line">    &#125;  </span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>阅读上面代码可知可以request方式传递一个file参数，并且这个file参数需要携带whilelist数组中的hint.php或者是source.php并且用了substr函数进行截取判断也就是如果传入的file中带有？那么？前面的内容必须带有hint.php或者是source.php。到这里先停一下，这个页面是source.php,我们看一下hint.php的内容，有了提示：flag not here, and flag in ffffllllaaaagggg。也就是flag是在ffffllllaaaagggg下面。对于这个应该是个目录，那么这个目录又在哪个目录下呢，这里的源代码中直接把用户可控参数file给include了，也就是文件包含漏洞，那么可以访问到任意目录，构造</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">最后拿下flag.</span><br><span class="line">这里采用/../进行目录穿越，../可以回到上一个目录，正好？截取掉前面的内容满足条件，可以include进来，就去到了flag目录下。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">2.随便注入</span><br><span class="line">在输入一些关键字后提示：return preg_match(&quot;/select|update|delete|drop|insert|where|\./i&quot;,$inject);这里在关键词中间添加/\*\*/注释符进行绕过,实测用**就够了</span><br><span class="line">```1 un**ion se**lect 1,group_concat(table_name) fr**om information_schema.tables</span><br><span class="line">whe**re database()=&quot;hahahah&quot;#</span><br></pre></td></tr></table></figure>
+
+<p>和显然，上面这一句过滤规则不管我怎么绕过，都不能产生出这些关键字，也就是完全不能用了。<br>补充一下，读表的语句是1’;show columns from <code>1919810931114514</code>; # 博主用的markdown自动把<code>符号转码了。对以数字为表名的表进行操作时，需要加上</code>符号</p>
+<p>3.Fake XML cookbook<br>&emsp;&emsp;进入页面后是一个登陆框，抓包登陆，可以看到有xml的东西，怀疑是XXE，直接构造payload:</p>
+<figure class="highlight plain"><figcaption><span>version</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE root[</span><br><span class="line">	&lt;!ENTITY xxe SYSTEM &quot;file:///flag&quot;&gt;</span><br><span class="line">]&gt;</span><br><span class="line">&lt;user&gt;&lt;username&gt;&amp;xxe;&lt;/username&gt;&lt;password&gt;123&lt;/password&gt;&lt;/user&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这里用file协议是因为提示了flag在flag文件下，直接就拿到了flag.</p>
+<p>#Misc部分#<br>签到题就不说了，直接粘贴</p>
+<p>1.金三胖<br>&emsp;&emsp;这个题有意思啊，三胖的标准鼓掌表情包，送到Stegslove.jar里面把他分成一张张图片来看，即可发现flag.</p>
+<p>2.二维码<br>&emsp;&emsp;下载后看到是一张二维码，没有扫，先试试formost，然后发现藏了一个zip文件，密码是4位数字，用AARP暴力破解密码，拿到flag,这里注意哈，题目提示了要改为flag格式，我傻愣愣的以为这是个假flag,又去分析二维码，后来看提示才发现，直接把拿到的CTF改为flag即正确了。</p>
 
       
 
@@ -264,7 +267,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/10/19/resolve-the-question/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/11/22/BUUCTF-WP/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -278,18 +281,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/10/20/WeBug-study/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/11/25/NCTF-2019/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          WeBug-study
+          NCTF-2019
         
       </div>
     </a>
   
   
-    <a href="/2019/10/16/study-of-minglingzhixing/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">study of minglingzhixing</div>
+    <a href="/2019/11/19/the-FTP-s-config-of-Linux/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">the FTP&#39;s config of Linux</div>
       <i class="icon-circle-right"></i>
     </a>
   

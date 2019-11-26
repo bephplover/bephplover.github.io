@@ -6,19 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>resolve the question | Hexo</title>
+  <title>NCTF-2019 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Hack the box邀请码和注册问题总结">
+  <meta name="description" content="MISC1.a_good_idea&amp;emsp;&amp;emsp;下载后是一个TOM猫的图片，用foremost分离，可以得到jpg和zip，zip解压后有两张tom猫图片，用wenhex打开会发现它们的十六进制有所不同，还有一个hint.txt提示秘密在像素中，猜测可能要将两张图片综合或是比较，这里使用Beyond Compare这个工具可以直接比较两个的区别并进行合并处理，如下图所示：扫描二维码即可得">
 <meta property="og:type" content="article">
-<meta property="og:title" content="resolve the question">
-<meta property="og:url" content="http://yoursite.com/2019/10/19/resolve-the-question/index.html">
+<meta property="og:title" content="NCTF-2019">
+<meta property="og:url" content="http://yoursite.com/2019/11/25/NCTF-2019/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Hack the box邀请码和注册问题总结">
+<meta property="og:description" content="MISC1.a_good_idea&amp;emsp;&amp;emsp;下载后是一个TOM猫的图片，用foremost分离，可以得到jpg和zip，zip解压后有两张tom猫图片，用wenhex打开会发现它们的十六进制有所不同，还有一个hint.txt提示秘密在像素中，猜测可能要将两张图片综合或是比较，这里使用Beyond Compare这个工具可以直接比较两个的区别并进行合并处理，如下图所示：扫描二维码即可得">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-11-22T06:04:56.445Z">
+<meta property="og:image" content="https://github.com/bephplover/bephplover.github.io/blob/master/img/Tom.png">
+<meta property="og:updated_time" content="2019-11-25T15:55:21.883Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="resolve the question">
-<meta name="twitter:description" content="Hack the box邀请码和注册问题总结">
+<meta name="twitter:title" content="NCTF-2019">
+<meta name="twitter:description" content="MISC1.a_good_idea&amp;emsp;&amp;emsp;下载后是一个TOM猫的图片，用foremost分离，可以得到jpg和zip，zip解压后有两张tom猫图片，用wenhex打开会发现它们的十六进制有所不同，还有一个hint.txt提示秘密在像素中，猜测可能要将两张图片综合或是比较，这里使用Beyond Compare这个工具可以直接比较两个的区别并进行合并处理，如下图所示：扫描二维码即可得">
+<meta name="twitter:image" content="https://github.com/bephplover/bephplover.github.io/blob/master/img/Tom.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -154,37 +156,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-resolve-the-question" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-NCTF-2019" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      resolve the question
+      NCTF-2019
     </h1>
   
 
         
-        <a href="/2019/10/19/resolve-the-question/" class="archive-article-date">
-  	<time datetime="2019-10-19T12:18:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-19</time>
+        <a href="/2019/11/25/NCTF-2019/" class="archive-article-date">
+  	<time datetime="2019-11-25T15:33:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-25</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Hack-the-box邀请码和注册问题总结"><a href="#Hack-the-box邀请码和注册问题总结" class="headerlink" title="Hack the box邀请码和注册问题总结"></a>Hack the box邀请码和注册问题总结</h2><a id="more"></a>
-<p>注意下，有3个坑，</p>
-<ol>
-<li><p>解码方式是随机的，记得看DATA下面提示用哪种</p>
-</li>
-<li><p>post时候可以直接用f12里的console，命令是：$.post(‘https:/<a href="http://www.hackthebox.eu/api/invite/generate&#39;,function(data){console.log(data)}" target="_blank" rel="noopener">www.hackthebox.eu/api/invite/generate&#39;,function(data){console.log(data)}</a>)<br>（懒的话，直接在invite页面打开F12控制台 输入上面那句，得到data再去base64解密下就得到邀请码了）</p>
-</li>
-<li><p>获得邀请码了注册时候，一直跟你说验证通不过，是因为要开VPN！！！没开VPN，我换了几个浏览器都不行，一开VPN就出来点图片验证了。<br>##虚拟机问题总结##<br>&emsp;关于虚拟机无法联网的问题，很有可能是禁用了相关VMWARE的服务导致NAT无法联网 。<br>&emsp;虚拟机联网最好使用NAT转换，网桥还需要下载一些其他东西.</p>
-</li>
-</ol>
-<p>LFI:local file include 本地文件包含</p>
+        <p>MISC<br>1.a_good_idea<br>&emsp;&emsp;下载后是一个TOM猫的图片，用foremost分离，可以得到jpg和zip，zip解压后有两张tom猫图片，用wenhex打开会发现它们的十六进制有所不同，还有一个hint.txt提示秘密在像素中，猜测可能要将两张图片综合或是比较，这里使用Beyond Compare这个工具可以直接比较两个的区别并进行合并处理，如下图所示：<br><img src="https://github.com/bephplover/bephplover.github.io/blob/master/img/Tom.png" alt><br>扫描二维码即可得到flag</p>
+<p>2.pipinstall<br>&emsp;&emps;先进入linux下下载题目所给pip，<br><code>pip install --user nctf-2019-installme</code><br>在下载过程中会给出一个链接，我们在windows下打开那个链接，<br>然后会下载一个压缩包，打开后会有一个setup.py文件，用记事本打开后有一段奇怪的像BASE64的一段字符串，解码即可拿下flag.</p>
 
       
 
@@ -264,7 +257,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/10/19/resolve-the-question/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/11/25/NCTF-2019/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -278,18 +271,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/10/20/WeBug-study/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/11/26/The-XXe/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          WeBug-study
+          The-XXe
         
       </div>
     </a>
   
   
-    <a href="/2019/10/16/study-of-minglingzhixing/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">study of minglingzhixing</div>
+    <a href="/2019/11/22/BUUCTF-WP/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">BUUCTF-WP</div>
       <i class="icon-circle-right"></i>
     </a>
   

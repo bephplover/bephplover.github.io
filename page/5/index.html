@@ -155,6 +155,215 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-13th-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/12/13th-day/">13th-day</a>
+    </h1>
+  
+
+        
+        <a href="/2019/08/12/13th-day/" class="archive-article-date">
+  	<time datetime="2019-08-12T00:44:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&emsp;&emsp;关于报错注入的一些小总结:MySQL 5.1.5版本中添加了对XML文档进行查询和修改的两个函数：extractvalue、updatexml.ExtractValue() 使用XPath表示法从XML字符串中提取值<br>UpdateXML()     返回替换的XML片段<br>举例其用法:<br>emsp;&emsp;先从爆库开始
+        
+          <a class="article-more-a" href="/2019/08/12/13th-day/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/08/12/13th-day/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-twelfth-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/11/twelfth-day/">twelfth-day</a>
+    </h1>
+  
+
+        
+        <a href="/2019/08/11/twelfth-day/" class="archive-article-date">
+  	<time datetime="2019-08-11T00:32:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>36.多次(<a href="http://123.206.87.240:9004/1ndex.php?id=1" title="多次" target="_blank" rel="noopener">http://123.206.87.240:9004/1ndex.php?id=1</a>)<br>&emsp;&emsp;进入链接后会看到 there is nothing.可以看到url上面有个？id=1猜测可能是sql注入，但没有输入框又不像。先F12看一下，无任何线索，本题有2个flag，flag均为小写，flag格式 flag{}这是题目本身自带的提示。感觉没啥用.现在回到url上,试试url上的id.</p>
+        
+          <a class="article-more-a" href="/2019/08/11/twelfth-day/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/08/11/twelfth-day/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-eleventh-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/10/eleventh-day/">eleventh-day</a>
+    </h1>
+  
+
+        
+        <a href="/2019/08/10/eleventh-day/" class="archive-article-date">
+  	<time datetime="2019-08-10T01:48:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>33.web8(<a href="http://123.206.87.240:8002/web8/" title="web8" target="_blank" rel="noopener">http://123.206.87.240:8002/web8/</a>)<br>&emsp;&emsp;进入页面后直接给出了php代码如下:<br><?php
+extract($\_GET);
+if (!empty($ac))
+{
+$f = trim(file\_get\_contents($fn));
+if ($ac === $f)
+{
+echo "<p>This is flag:" ." $flag</p>";
+}
+else
+{
+echo "<p>sorry!</p>";
+}
+}
+?><br>一分析就是一个不认识的函数，extract() 函数从数组中将变量导入到当前的符号表。该函数返回成功导入到符号表中的变量数目。
+        
+          <a class="article-more-a" href="/2019/08/10/eleventh-day/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/08/10/eleventh-day/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-tenth-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -610,206 +819,9 @@
 
 
   
-    <article id="post-the-third-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/01/the-third-day/">the third day</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/01/the-third-day/" class="archive-article-date">
-  	<time datetime="2019-08-01T01:09:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>9.本地包含(<a href="http://123.206.87.240:8003/" title="本地包含" target="_blank" rel="noopener">http://123.206.87.240:8003/</a>)<br>进入链接后，发现如下代码：<br>  &lt;?php<br>   error_reporting(0);</p>
-<p>   include ‘flag.php’;<br>   $a = @$<em>REQUEST[‘hello’];<br>   eval(“ var_dump( $a );”);<br>   highlight_file(<em>_FILE</em></em>);<br>   ?&gt; </p>
-<p>&emsp;&emsp;又是一道代码审计的题目，第二行的error_reporting(0),是关闭错误报告。
-        
-          <a class="article-more-a" href="/2019/08/01/the-third-day/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/01/the-third-day/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-second-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/31/second-day/">second day</a>
-    </h1>
-  
-
-        
-        <a href="/2019/07/31/second-day/" class="archive-article-date">
-  	<time datetime="2019-07-31T00:41:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-31</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>2.web2(<a href="http://123.206.87.240:8002/web2/" target="_blank" rel="noopener">http://123.206.87.240:8002/web2/</a>)<br>点入链接，发现全是滑稽图，很有趣，养成好习惯首先F12,或者ctrl+u查看源代码，源代码中直接显示出了flag.
-        
-          <a class="article-more-a" href="/2019/07/31/second-day/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/07/31/second-day/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-my-first-blog" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/25/my-first-blog/">my-first-blog</a>
-    </h1>
-  
-
-        
-        <a href="/2019/07/25/my-first-blog/" class="archive-article-date">
-  	<time datetime="2019-07-25T02:06:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>现在开始小白CTF-travel<br>咱先从最简单的题开始<br>1.计算器<br>进入后会有一个提交框，提交两数字的答案，但输入会发现框中只能输入一个数字，对于前端的学习会想到限制输入框的maxlength，前端可以在控制台看到，F12打开控制台查看源代码，可以看到maxlength=’1’将其修改为大于答案的数目输入正确答案即可拿下flag。<br>summary：对于新学习CTF的小白我来说，这个题告诉了我灵活的运用编程前端知识，然后是遇到题一定要注意打开F12或者查看源代码。
-        
-          <a class="article-more-a" href="/2019/07/25/my-first-blog/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/07/25/my-first-blog/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
+      <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/">Next &raquo;</a>
     </nav>
   
 

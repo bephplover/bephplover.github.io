@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="XXE1.What is the XXE?XXE(XML External Entity Injection)中文名为XML外部实体注入。要充分了解这个注入方式，得先了解XML的构造。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-11-26T15:12:31.997Z">
+<meta property="og:updated_time" content="2019-11-26T15:15:39.882Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="The-XXe">
 <meta name="twitter:description" content="XXE1.What is the XXE?XXE(XML External Entity Injection)中文名为XML外部实体注入。要充分了解这个注入方式，得先了解XML的构造。">
@@ -220,7 +220,7 @@
 <!DOCTYPE XXE[
 <!ENTITY xxe SYSTEM "http://192.168.1.8">
 <p>]&gt;<br><user><br><username>&xxe;</username><br><password>21412</password><br></user></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">可以看到response的回应：</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">可以看到response的回应：</span><br></pre></td></tr></table></figure>
 
 <result>
 <code>0</code>

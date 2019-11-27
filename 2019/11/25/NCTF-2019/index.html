@@ -16,7 +16,7 @@
 <meta property="og:description" content="MISC1.a_good_idea&amp;emsp;&amp;emsp;下载后是一个TOM猫的图片，用foremost分离，可以得到jpg和zip，zip解压后有两张tom猫图片，用wenhex打开会发现它们的十六进制有所不同，还有一个hint.txt提示秘密在像素中">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://github.com/bephplover/bephplover.github.io/blob/master/img/Tom.png">
-<meta property="og:updated_time" content="2019-11-27T14:07:47.296Z">
+<meta property="og:updated_time" content="2019-11-27T15:57:09.139Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NCTF-2019">
 <meta name="twitter:description" content="MISC1.a_good_idea&amp;emsp;&amp;emsp;下载后是一个TOM猫的图片，用foremost分离，可以得到jpg和zip，zip解压后有两张tom猫图片，用wenhex打开会发现它们的十六进制有所不同，还有一个hint.txt提示秘密在像素中">
@@ -178,97 +178,35 @@
       
         <p>MISC<br>1.a_good_idea<br>&emsp;&emsp;下载后是一个TOM猫的图片，用foremost分离，可以得到jpg和zip，zip解压后有两张tom猫图片，用wenhex打开会发现它们的十六进制有所不同，还有一个hint.txt提示秘密在像素中<a id="more"></a>，猜测可能要将两张图片综合或是比较，这里使用Beyond Compare这个工具可以直接比较两个的区别并进行合并处理，如下图所示：<br><img src="https://github.com/bephplover/bephplover.github.io/blob/master/img/Tom.png" alt><br>扫描二维码即可得到flag</p>
 <p>2.pipinstall<br>&emsp;&emps;先进入linux下下载题目所给pip，</p>
-<figure class="highlight plain"><figcaption><span>install --user nctf-2019-installme```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">在下载过程中会给出一个链接，我们在windows下打开那个链接，</span><br><span class="line">然后会下载一个压缩包，打开后会有一个setup.py文件，用记事本打开后有一段奇怪的像BASE64的一段字符串，解码即可拿下flag.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Web</span><br><span class="line">两道XML的XXE在XXE文章中写了WP了，故这里不写了，下面写一下其他题的WP。</span><br><span class="line"></span><br><span class="line">1.Upload your Shell</span><br><span class="line">&amp;emsp;&amp;emsp;一进入这个花哨的界面，就看见头像那个向黑客致敬的表情包，点击它，跟换头像即可上传图片，找到上传点。接下来使用BP抓包，并上传一个一句话木马试试。虽然上传了个1.jpg,内容为：</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install --user nctf-2019-installme</span><br></pre></td></tr></table></figure>
 
-<p>GIF98a<script language="php">system("Is")</script></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">就得到了一个上传路径，访问一下，给出了如下提示：</span><br></pre></td></tr></table></figure>
+<p>在下载过程中会给出一个链接，我们在windows下打开那个链接，<br>然后会下载一个压缩包，打开后会有一个setup.py文件，用记事本打开后有一段奇怪的像BASE64的一段字符串，解码即可拿下flag.</p>
+<p>Web<br>两道XML的XXE在XXE文章中写了WP了，故这里不写了，下面写一下其他题的WP。</p>
+<p>1.Upload your Shell<br>&emsp;&emsp;一进入这个花哨的界面，就看见头像那个向黑客致敬的表情包，点击它，跟换头像即可上传图片，找到上传点。接下来使用BP抓包，并上传一个一句话木马试试。虽然上传了个1.jpg,内容为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GIF98a&lt;script language=&quot;php&quot;&gt;system(&quot;Is&quot;)&lt;/script&gt;</span><br></pre></td></tr></table></figure>
 
-<script language="php">
-eval(system('cat /flag'));
-</script>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">回到页面，发现访问路径采用的是action=文件，那么我们直接访问</span><br></pre></td></tr></table></figure>
+<p>就得到了一个上传路径，访问一下，给出了如下提示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;script language=&quot;php&quot;&gt;</span><br><span class="line">eval(system(&apos;cat /flag&apos;));</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
 
-<p>filepath:/var/www/html/upload-imgs/0b5b907c20528edfadb855745911f998/Th1s_is_a_fl4g.jpg</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">这个路径。访问这个页面便拿到了flag:NCTF&#123;upload\_1s\_s0\_funn7&#125;</span><br><span class="line">.这里我们需要掌握其访问页面的规则，这个页面是用$\_GET[&apos;action&apos;]或者是$\_REQUEST[&apos;action&apos;] 这样定义的变量来充当访问文件的路径的，于是，我们在访问最后flag路径的时候不是直接在地址栏中输入路径，而是采用这个action变量去访问。</span><br><span class="line">&amp;emsp;&amp;emsp;summary:这道题考点挺简单的，就只考了文件的内容中不能包括&apos;&lt;?&apos;这样的成分，并且文件头要以图片类的开头，这里我使用了gif的GIF98a开头来绕过，这里并没有让我们上传真正的一句话木马，因为最终上传的任然只是一个jpg文件，可能只是让我们学习一下上传绕过文件内容的检测吧。</span><br><span class="line">2.easy_php</span><br><span class="line">&amp;emsp;&amp;emsp;这是一道代码审计题目，下面粘贴出代码：</span><br></pre></td></tr></table></figure>
+<p>回到页面，发现访问路径采用的是action=文件，那么我们直接访问</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">filepath:/var/www/html/upload-imgs/0b5b907c20528edfadb855745911f998/Th1s_is_a_fl4g.jpg</span><br></pre></td></tr></table></figure>
 
-<?php
-error_reporting(0);
-highlight_file(__file__);
-$string_1 = $_GET['str1'];
-$string_2 = $_GET['str2'];
-$cmd = $_GET['q_w_q'];
+<p>这个路径。访问这个页面便拿到了flag:NCTF{upload_1s_s0_funn7}<br>.这里我们需要掌握其访问页面的规则，这个页面是用$_GET[‘action’]或者是$_REQUEST[‘action’] 这样定义的变量来充当访问文件的路径的，于是，我们在访问最后flag路径的时候不是直接在地址栏中输入路径，而是采用这个action变量去访问。<br>&emsp;&emsp;summary:这道题考点挺简单的，就只考了文件的内容中不能包括’&lt;?’这样的成分，并且文件头要以图片类的开头，这里我使用了gif的GIF98a开头来绕过，这里并没有让我们上传真正的一句话木马，因为最终上传的任然只是一个jpg文件，可能只是让我们学习一下上传绕过文件内容的检测吧。<br>2.easy_php<br>&emsp;&emsp;这是一道代码审计题目，下面粘贴出代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">error_reporting(0);</span><br><span class="line">highlight_file(__file__);</span><br><span class="line">$string_1 = $_GET[&apos;str1&apos;];</span><br><span class="line">$string_2 = $_GET[&apos;str2&apos;];</span><br><span class="line">$cmd = $_GET[&apos;q_w_q&apos;];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//1st</span><br><span class="line">if($_GET[&apos;num&apos;] !== &apos;23333&apos; &amp;&amp; preg_match(&apos;/^23333$/&apos;, $_GET[&apos;num&apos;]))&#123;</span><br><span class="line">    echo &apos;1st ok&apos;.&quot;&lt;br&gt;&quot;;</span><br><span class="line">&#125;</span><br><span class="line">else&#123;</span><br><span class="line">    die(&apos;23333333&apos;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//2nd</span><br><span class="line">if(is_numeric($string_1))&#123;</span><br><span class="line">    $md5_1 = md5($string_1);</span><br><span class="line">    $md5_2 = md5($string_2);</span><br><span class="line">    if($md5_1 != $md5_2)&#123;</span><br><span class="line">        $a = strtr($md5_1, &apos;cxhp&apos;, &apos;0123&apos;);</span><br><span class="line">        $b = strtr($md5_2, &apos;cxhp&apos;, &apos;0123&apos;);</span><br><span class="line">        if($a == $b)&#123;</span><br><span class="line">            echo &apos;2nd ok&apos;.&quot;&lt;br&gt;&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        else&#123;</span><br><span class="line">            die(&quot;can u give me the right str???&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; </span><br><span class="line">    else&#123;</span><br><span class="line">        die(&quot;no!!!!!!!!&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">else&#123;</span><br><span class="line">    die(&apos;is str1 numeric??????&apos;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//3rd</span><br><span class="line">$query = $_SERVER[&apos;QUERY_STRING&apos;];</span><br><span class="line">if (strlen($cmd) &gt; 8)&#123;</span><br><span class="line">    die(&quot;too long :(&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if( substr_count($query, &apos;_&apos;) === 0 &amp;&amp; substr_count($query, &apos;%5f&apos;) === 0 )&#123;</span><br><span class="line">    $arr = explode(&apos; &apos;, $cmd);</span><br><span class="line">    if($arr[0] !== &apos;ls&apos; || $arr[0] !== &apos;pwd&apos;)&#123;</span><br><span class="line">        if(substr_count($cmd, &apos;cat&apos;) === 0)&#123;</span><br><span class="line">            system($cmd);</span><br><span class="line">        &#125;</span><br><span class="line">        else&#123;</span><br><span class="line">            die(&apos;ban cat :) &apos;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    else&#123;</span><br><span class="line">        die(&apos;bad guy!&apos;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">else&#123;</span><br><span class="line">    die(&apos;nonono _ is bad&apos;);</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
 
+<p>这里要满足三个条件，也就是get提交三个合法参数就会给flag,我们一一来构造，第一个要让num的值不为23333但正则匹配又必须为23333，这不是难为我吗，但我知道这个preg_match是可以绕过的，在仔细搜索了各种资料后查到%0a是换行符‘\n’的URL编码，这里使用%0a可以绕过第一个条件。因为在它匹配的时候，由于换行了，所以匹配第一行成功，但实际上我们输入的num又不为23333故绕过了第一个条件。</p>
+<p>接下来构造第二个条件，这里先温习一下strtr这个函数的用法，给出一个例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">echo strtr(&quot;Hilla Warld&quot;,&quot;ia&quot;,&quot;eo&quot;);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
 
-//1st
-if($_GET['num'] !== '23333' && preg_match('/^23333$/', $_GET['num'])){
-    echo '1st ok'."<br>";
-}
-else{
-    die('23333333');
-}
+<p>这里输出为Hello warld,也就是在第一个参数里面搜索第二个参数的内容，如果有就替换为第三个参数。这里我们知道md5函数处理不了数组，因而构造str1[]与str2[]可满足其相等，但这里反过来了，先让其md5不相等，再让他们两个经过strtr处理过后的值相等，这里采用寻找md5后为0e的数字即可满足条件，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$b=2120624;</span><br><span class="line">	$a=240610708;</span><br></pre></td></tr></table></figure>
 
+<p>上面两个变量刚好就是满足条件的，但是为什么他们俩的md5值不相等呢，</p>
+<p>接下来是第三个条件，构造q.w.q=tac%20f*,这里的下划线可以直接用.绕过，这是什么原理，在笑师傅的帮助下，理解到了，在PHP中有这么一个规则，变量名中是不允许有.和空格的，如果存在就会被转换成下划线<br>这里记录一下tac命令是从最后一行倒叙显示内容，并将所有内容输出，跟cat命令刚好相反，cat是由第一行开始显示内容，并将所有内容输出.这里可以使用l${x}s绕过这里的判断条件依然可以执行ls命令，原理看下面的例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$str = &apos;l$&#123;x&#125;s&apos;;</span><br></pre></td></tr></table></figure>
 
-//2nd
-if(is_numeric($string_1)){
-    $md5_1 = md5($string_1);
-    $md5_2 = md5($string_2);
-    if($md5_1 != $md5_2){
-        $a = strtr($md5_1, 'cxhp', '0123');
-        $b = strtr($md5_2, 'cxhp', '0123');
-        if($a == $b){
-            echo '2nd ok'."<br>";
-        }
-        else{
-            die("can u give me the right str???");
-        }
-    } 
-    else{
-        die("no!!!!!!!!");
-    }
-}
-else{
-    die('is str1 numeric??????');
-}
+<p>这个输出为ls,原因是$x会解析为一个变量，加上{}是为了分界，解析为$x而不是$xs变量，然后由于$x变量不存在，故其为null,然后整个字符串最后结果为ls.{}还可以表示字符串的下标例如一个字符串$str{1}代表其第二个字母。<br>最后拿下flag:NCTF{t3is_So_siiimpppllleeee_to_u} </p>
 
-
-//3rd
-$query = $_SERVER['QUERY_STRING'];
-if (strlen($cmd) > 8){
-    die("too long :(");
-}
-
-if( substr_count($query, '_') === 0 && substr_count($query, '%5f') === 0 ){
-    $arr = explode(' ', $cmd);
-    if($arr[0] !== 'ls' || $arr[0] !== 'pwd'){
-        if(substr_count($cmd, 'cat') === 0){
-            system($cmd);
-        }
-        else{
-            die('ban cat :) ');
-        }
-    }
-    else{
-        die('bad guy!');
-    }
-}
-else{
-    die('nonono _ is bad');
-}
-?><p> </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">这里要满足三个条件，也就是get提交三个合法参数就会给flag,我们一一来构造，第一个要让num的值不为23333但正则匹配又必须为23333，这不是难为我吗，但我知道这个preg_match是可以绕过的，在仔细搜索了各种资料后查到%0a是换行符‘\n’的URL编码，这里使用%0a可以绕过第一个条件。因为在它匹配的时候，由于换行了，所以匹配第一行成功，但实际上我们输入的num又不为23333故绕过了第一个条件。</span><br><span class="line"></span><br><span class="line">接下来构造第二个条件，这里先温习一下strtr这个函数的用法，给出一个例子</span><br></pre></td></tr></table></figure>
-
-<?php
-echo strtr("Hilla Warld","ia","eo");
-?>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">这里输出为Hello warld,也就是在第一个参数里面搜索第二个参数的内容，如果有就替换为第三个参数。这里我们知道md5函数处理不了数组，因而构造str1[]与str2[]可满足其相等，但这里反过来了，先让其md5不相等，再让他们两个经过strtr处理过后的值相等，这里采用寻找md5后为0e的数字即可满足条件，</span><br></pre></td></tr></table></figure>
-
-<p>$b=2120624;<br>    $a=240610708;</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">上面两个变量刚好就是满足条件的，但是为什么他们俩的md5值不相等呢，</span><br><span class="line"></span><br><span class="line">接下来是第三个条件，构造q.w.q=tac%20f*,这里的下划线可以直接用.绕过，这是什么原理，在笑师傅的帮助下，理解到了，在PHP中有这么一个规则，变量名中是不允许有.和空格的，如果存在就会被转换成下划线</span><br><span class="line">这里记录一下tac命令是从最后一行倒叙显示内容，并将所有内容输出，跟cat命令刚好相反，cat是由第一行开始显示内容，并将所有内容输出.这里可以使用l$&#123;x&#125;s绕过这里的判断条件依然可以执行ls命令，原理看下面的例子：</span><br></pre></td></tr></table></figure>
-
-<p>$str = ‘l${x}s’;</p>
-<pre><code>这个输出为ls,原因是$x会解析为一个变量，加上{}是为了分界，解析为$x而不是$xs变量，然后由于$x变量不存在，故其为null,然后整个字符串最后结果为ls.{}还可以表示字符串的下标例如一个字符串$str{1}代表其第二个字母。
-最后拿下flag:NCTF{t3is_So_siiimpppllleeee_to_u} 
-</code></pre>
       
 
       

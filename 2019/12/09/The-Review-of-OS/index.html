@@ -6,18 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2019 | Hexo</title>
+  <title>The-Review-of-OS | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="a new ctfer&apos;s study">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/2019/page/5/index.html">
+  <meta name="description" content="Chapter 1###操作系统引论###什么是OS（Operating Systems）？操作系统是用来组织和管理计算机的软件和硬件资源，合理的对各类作业进行调度，方便用户使用的程序的集合。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The-Review-of-OS">
+<meta property="og:url" content="http://yoursite.com/2019/12/09/The-Review-of-OS/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="a new ctfer&apos;s study">
+<meta property="og:description" content="Chapter 1###操作系统引论###什么是OS（Operating Systems）？操作系统是用来组织和管理计算机的软件和硬件资源，合理的对各类作业进行调度，方便用户使用的程序的集合。">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-12-10T01:16:47.220Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
-<meta name="twitter:description" content="a new ctfer&apos;s study">
+<meta name="twitter:title" content="The-Review-of-OS">
+<meta name="twitter:description" content="Chapter 1###操作系统引论###什么是OS（Operating Systems）？操作系统是用来组织和管理计算机的软件和硬件资源，合理的对各类作业进行调度，方便用户使用的程序的集合。">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -153,295 +154,180 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-The-Review-of-OS" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      The-Review-of-OS
+    </h1>
+  
+
+        
+        <a href="/2019/12/09/The-Review-of-OS/" class="archive-article-date">
+  	<time datetime="2019-12-09T14:16:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-09</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Chapter-1"><a href="#Chapter-1" class="headerlink" title="Chapter 1"></a>Chapter 1</h2><p>###操作系统引论###<br>什么是OS（Operating Systems）？<br>操作系统是用来组织和管理计算机的软件和硬件资源，合理的对各类作业进行调度，方便用户使用的程序的集合。<a id="more"></a><br>OS的目标？<br>方便性，有效性，可扩充性，开放性<br>研究OS作用的几种角度(OS的作用)<br>资源管理的角度—OS是计算机资源的管理者<br>用户的角度——是用户的接口<br>机器扩充的角度—虚拟机<br>经OS提供的资源管理功能和各种服务功能把裸机改造成为功能更强使用更方便的机器，称为虚拟机。<br>再多用户系统中，对每一位用户而言都独占一台处理机。</p>
+<p>操作系统发展的动力</p>
+<blockquote>
+<p>提高计算机资源利用率<br>方便用户<br>器件的不断更新换代<br>计算机体系结构的不断发展<br>不断提出新的应用需求</p>
+</blockquote>
+<p>操作系统的发展过程</p>
+<p>无操作系统的计算机系统<br>    人工操作方式<br>批处理系统<br>    单道批处理系统<br>    多道批处理系统<br>分时系统<br>实时系统<br>微机操作系统<br>多处理机操作系统<br>网络操作系统<br>分布式操作系统<br>嵌入式操作系统<br>。。。。。。<br>早期计算机系统（手工操作–人机矛盾）</p>
+<p>脱机输入/输出方式(缓和了人机矛盾)</p>
+<p>晶体管批处理系统</p>
+<p>多道程序系统(多道批处理系统)</p>
+<p>吞吐量：单位时间(1小时)内系统所处理的作业个数<br>周转时间：从作业进入系统到作业退出系统所有的时间<br>平均周转时间：同时参与系统运行的几个作业的周转时间的平均值</p>
+<p>分时系统（Time-Sharing System）<br>分时系统的产生<br>    &gt;推动分时系统形成和发展的主要动力是用户的需求<br>    &gt;人机交互<br>    &gt;共享主机<br>    &gt;便于用户上机</p>
+<p>实时系统：计算机能及时响应外部事件的请求，在规定的时间内对该事件的处理，并控制所有实时设备和实时任务协同一致的运行<br>    &gt;按是否呈现周期性分为<br>        &gt;周期性和非周期性<br>    &gt;对截止时间的要求划分<br>        &gt;硬实时任务和软实时任务<br>实时系统的功能要求<br>    &gt;实时时钟管理  定时任务，延迟任务<br>    &gt;连续人–机对话<br>    &gt;过载的保护<br>    &gt;高可靠性<br>现代OS的特征和服务<br>    并发<br>        &gt;并发性<br>            在一段时间内，有多道程序在宏观上同时执行，多道程序设计导致多个程序并发执行<br>        &gt;并行性(多处理机的情况下发生)<br>    共享<br>        &gt;多道程序，多个用户作业共享有限的计算机系统资源<br>    虚拟(Virtual)<br>        &gt;把物理上的一个变成逻辑上的多个或扩大容量<br>        &gt;常见OS中的虚拟技术<br>            虚拟处理机，虚拟内存，虚拟外部设备，虚拟信道等<br>        &gt;虚拟的主要实现方法<br>            分时使用<br>    异步性<br>        &gt;在OS控制下的多个作业的执行顺序和每个作业的执行顺序时间是不确定的。而不是OS本身的功能不确定或用户程序的结果不确定。<br>OS的功能</p>
+<blockquote>
+<p>处理机管理<br>存储管理<br>设备管理<br>信息管理<br>用户接口<br>OS的层次模型<br>用户接口(命令接口、程序接口、图形用户接口)<br>对对象操纵和管理的软件集合(处理机管理软件、存储器管理软件、设备管理软件、文件管理软件)<br>操作系统对象(处理机、存储器、设备、文件)</p>
+</blockquote>
+<p>微内核OS结构<br>    &gt;采用基于客户/服务器模式的微内核结构<br>    &gt;操作系统被分为:微内核和多个服务器两部分<br>    &gt;足够小的内核:微内核并非是一个完整的OS而是将操作系统最基本的部分放入微内核<br>        &gt;与硬件紧密相关的部分<br>        &gt;一些较基本的功能<br>        &gt;客户与服务器之间的通信<br>微内核的基本功能<br>    &gt;进程管理<br>    &gt;低级存储器管理<br>    &gt;中断和陷入处理<br>微内核操作系统的优点<br>    &gt;提高系统的可扩展性<br>    &gt;增强了系统的可靠性<br>    &gt;可移植性强<br>    &gt;提供分布式系统的支持<br>    &gt;融入了面向对象技术<br>存在的问题<br>    &gt;增加了上下文切换次数0</p>
+<h2 id="Chapter8-磁盘存储器的管理"><a href="#Chapter8-磁盘存储器的管理" class="headerlink" title="Chapter8  磁盘存储器的管理"></a>Chapter8  磁盘存储器的管理</h2><p>外存分配方法<br>连续分配(为每个文件分配一组相邻接的盘块，这种文件叫物理上的顺序文件)</p>
+<p>外存的链接分配分为显示链接与隐式链接<br>    &gt;隐式链接：在文件的目录项中记录该文件的第一和最后一个盘块的指针，每个块中的指针指向文件的下一物理块号<br>    &gt;改进:将几个盘块组成簇，以簇为单位分配</p>
+<pre><code>&gt;显示链接：将链接文件各物理块的指针显示地放在内存的一一张链接表中，该表再整个磁盘仅有一张。在FCB的物理地址中填写其首指针所对应的盘块号。
+&gt;FAT（File Allocation Table）：文件分配表，整个磁盘设置一张，放在内存中,在FAT表中有所有盘块的记录项,在每个记录项末尾记录有下一个盘块在FAT表中的位置。
+&gt;缺点：不能直接存取；FAT占较大内存空间。</code></pre><p>文件分配表空间开销计算(FAT12)<br>FAT表中最多允许4096个表项<br>每个盘块的大小为512字节<br>磁盘分区的总量4096*512B=2MB<br>一个磁盘支持4个逻辑分区，所以磁盘最大容量为：8MB<br>不再以盘块进行分配，而是以簇为基本单位。簇是一组连续的扇区，在FAT中，簇的大小一般为2n个盘块。<br>同理FAT16与FAT32分别最大表项数目是2的16次个</p>
+<p>NTFS（new technology file system）<br>特点:<br>    &gt;使用64位磁盘地址<br>    支持长文件名，单个文件名限制在255个字节，全路径名为32767个字节<br>    具有系统容错功能<br>    提供了数据的一致性<br>    还提供了文件加密、文件压缩等功能<br>索引组织方式<br>索引文件:要求为每一文件建立一张索引块(表),其中记录了分配给该文件的所有盘块号。<br>两级/多级索引分配<br>    &gt;两级索引、盘块大小1KB、盘块号占4B<br>    则一个索引块可含 1KB/4B=256个盘块号，于是两级索引最多可含256×256 = 64K个盘块号，允许文件最大长度为64MB</p>
+<p>文件存储空间管理<br>空闲表法，属于连续分配方式，适用于对换空间，对于文件系统，当文件较小时(1~4个盘块)，对于多媒体文件，为了减少磁头寻道时间，也采用连续分配方式。<br>空闲盘区的分配<br>    首次适应算法<br>    循环首次适应算法<br>    最佳适应算法<br>    最坏适应算法</p>
+<pre><code>&gt;空闲盘块链:将磁盘上所有空闲空间，以盘块为单位拉成一条链。
+&gt;分配和释放顺序:从头分配，从尾回收。</code></pre><p>位示图<br>利用位示图(即二维数组Map[m,n])的一位(0/1)来表示磁盘中的一个盘块的使用情况，磁盘上所有盘块都与一个二进制位相对应<br>    Var Map: array [1..m, 1..n] of bit;<br>    顺序扫描位示图，找出一个或一组其值均为空闲的二进制位<br>    将所找到的一个或一组二进制位Map[i, j]的行/列号转换为与之对应的盘块号b：b = n(i-1) + j<br>    按盘块号分配盘块，同时修改位示图，令map[i,j]=1</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/14/15th-day/" class="archive-article-date">
-  	<time datetime="2019-08-14T01:03:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/14/15th-day/">15th-day</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/12/09/The-Review-of-OS/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/13/14th-day/" class="archive-article-date">
-  	<time datetime="2019-08-13T01:05:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-13</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/12/03/ISOON-2019/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ISOON-2019</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/13/14th-day/">14th-day</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/12/13th-day/" class="archive-article-date">
-  	<time datetime="2019-08-12T00:44:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/12/13th-day/">13th-day</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/11/twelfth-day/" class="archive-article-date">
-  	<time datetime="2019-08-11T00:32:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/11/twelfth-day/">twelfth-day</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/10/eleventh-day/" class="archive-article-date">
-  	<time datetime="2019-08-10T01:48:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/10/eleventh-day/">eleventh-day</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/09/tenth-day/" class="archive-article-date">
-  	<time datetime="2019-08-09T01:12:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/09/tenth-day/">tenth day</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/08/ninth-day/" class="archive-article-date">
-  	<time datetime="2019-08-08T01:06:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/08/ninth-day/">ninth-day</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/07/eighth-day/" class="archive-article-date">
-  	<time datetime="2019-08-07T00:33:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/07/eighth-day/">eighth-day</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/05/seventh-day/" class="archive-article-date">
-  	<time datetime="2019-08-05T02:01:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/05/seventh-day/">seventh-day</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/04/sixth-day/" class="archive-article-date">
-  	<time datetime="2019-08-04T01:00:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/04/sixth-day/">sixth-day</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2019/page/4/">&laquo; Prev</a><a class="page-number" href="/archives/2019/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2019/page/3/">3</a><a class="page-number" href="/archives/2019/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/archives/2019/page/6/">6</a><a class="extend next" rel="next" href="/archives/2019/page/6/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -465,8 +351,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

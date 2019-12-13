@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="Chapter 1###操作系统引论###什么是OS（Operating Systems）？操作系统是用来组织和管理计算机的软件和硬件资源，合理的对各类作业进行调度，方便用户使用的程序的集合。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-12-10T01:16:47.220Z">
+<meta property="og:updated_time" content="2019-12-10T01:23:24.319Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="The-Review-of-OS">
 <meta name="twitter:description" content="Chapter 1###操作系统引论###什么是OS（Operating Systems）？操作系统是用来组织和管理计算机的软件和硬件资源，合理的对各类作业进行调度，方便用户使用的程序的集合。">
@@ -199,7 +199,36 @@
 <p>NTFS（new technology file system）<br>特点:<br>    &gt;使用64位磁盘地址<br>    支持长文件名，单个文件名限制在255个字节，全路径名为32767个字节<br>    具有系统容错功能<br>    提供了数据的一致性<br>    还提供了文件加密、文件压缩等功能<br>索引组织方式<br>索引文件:要求为每一文件建立一张索引块(表),其中记录了分配给该文件的所有盘块号。<br>两级/多级索引分配<br>    &gt;两级索引、盘块大小1KB、盘块号占4B<br>    则一个索引块可含 1KB/4B=256个盘块号，于是两级索引最多可含256×256 = 64K个盘块号，允许文件最大长度为64MB</p>
 <p>文件存储空间管理<br>空闲表法，属于连续分配方式，适用于对换空间，对于文件系统，当文件较小时(1~4个盘块)，对于多媒体文件，为了减少磁头寻道时间，也采用连续分配方式。<br>空闲盘区的分配<br>    首次适应算法<br>    循环首次适应算法<br>    最佳适应算法<br>    最坏适应算法</p>
 <pre><code>&gt;空闲盘块链:将磁盘上所有空闲空间，以盘块为单位拉成一条链。
-&gt;分配和释放顺序:从头分配，从尾回收。</code></pre><p>位示图<br>利用位示图(即二维数组Map[m,n])的一位(0/1)来表示磁盘中的一个盘块的使用情况，磁盘上所有盘块都与一个二进制位相对应<br>    Var Map: array [1..m, 1..n] of bit;<br>    顺序扫描位示图，找出一个或一组其值均为空闲的二进制位<br>    将所找到的一个或一组二进制位Map[i, j]的行/列号转换为与之对应的盘块号b：b = n(i-1) + j<br>    按盘块号分配盘块，同时修改位示图，令map[i,j]=1</p>
+&gt;分配和释放顺序:从头分配，从尾回收。</code></pre><p>位示图<br>利用位示图(即二维数组Map[m,n])的一位(0/1)来表示磁盘中的一个盘块的使用情况，磁盘上所有盘块都与一个二进制位相对应</p>
+<h4>盘块的分配</h4>
+    Var Map: array [1..m, 1..n] of bit;
+    顺序扫描位示图，找出一个或一组其值均为空闲的二进制位
+    将所找到的一个或一组二进制位Map[i, j]的行/列号转换为与之对应的盘块号b：b = n(i-1) + j
+    按盘块号分配盘块，同时修改位示图，令map[i,j]=1
+<h4>盘块的回收</h4>
+    将回收盘块的盘块号b转换为位示图中的行号i和列号j：
+    i = (b-1) DIV n + 1;
+    j = (b-1) MOD n + 1;
+    按盘块号回收盘块
+    根据回收盘块对应二进制位的行/列号修改位示图,令map[i,j]=0
+提高磁盘I/O速度的途径
+(1)改进文件的目录结构以及检索目录的方法来减少对目录的查找时间
+(2)选取好的文件存储结构，以提高对文件的访问速度
+(3)提高磁盘的I/O速度，能将文件中的数据快速地从磁盘传送到内存中，或者相反。
+虚拟盘：RAM盘
+
+
+
+
+
+
+
+
+
+
+
+
+
 
       
 
@@ -292,6 +321,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2019/12/13/review-the-php/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          review-the-php
+        
+      </div>
+    </a>
   
   
     <a href="/2019/12/03/ISOON-2019/" id="article-nav-older" class="article-nav-link-wrap">

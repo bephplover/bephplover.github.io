@@ -155,6 +155,69 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-26-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/28/26-day/">26-day</a>
+    </h1>
+  
+
+        
+        <a href="/2019/08/28/26-day/" class="archive-article-date">
+  	<time datetime="2019-08-28T00:52:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天开始做一下杂项，综合哈其他知识。<br>63.这是一张单纯的图片<br><img src="http://123.206.87.240:8002/misc/1.jpg" alt><br>&emsp;&emsp;用winhex打开这张图片，在右边区域可以看见一些html编码，&#107;&#101;&#121;&#123;&#121;&#111;&#117;&#32;&#97;&#114;&#101;&#32;&#114;&#105;&#103;&#104;&#116;&#125;<br>拿去解码看一下，拿下Key.<br>&emsp;&emsp;这算一道misc的入门题吧，了解具体隐写术的原理与利用，以及工具winhex的使用。<br>64.隐写<br>&emsp;&emsp;这张图片用winhex打开后没有发现直接的有用信息，首先它是一张PNG形式的图片，在它的IHDR后面的16bit前8bit是高值，后8bit是宽，将宽改为和高一样的值，再打开图片发现了flag.<br>&emsp;&emsp;summary:这算是对隐写术的初步掌握，知道了再IHDR后面的是它的高与宽，然后加以利用，能够让隐写的数据得以显现出来。<br>65.telnet<br>&emsp;&emsp;将压缩包解压后用wireshark打开后直接右键追踪tcp流就拿下了flag.为什么要这么做呢，因为大部分类似文件得重要信息应当都是用tcp来传递的，因而直接查看tcp流应当会有重要信息。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/08/28/26-day/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-25-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -708,71 +771,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/08/16/17th-day/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-16th-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/15/16th-day/">16th-day</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/15/16th-day/" class="archive-article-date">
-  	<time datetime="2019-08-15T01:12:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>41.你真的会PHP吗(<a href="http://ctf5.shiyanbar.com/web/PHP/index.php" title="你怎的会PHP吗" target="_blank" rel="noopener">http://ctf5.shiyanbar.com/web/PHP/index.php</a>)<br>&emsp;&emsp;进入页面后,只有一个have fun.F12看一下，在网络的响应头中发现了一个Hint：6c525af4059b4fe7d8c33a.txt打开这个txt看一下发现一大串php代码，一道代码审计类题目。若果没有post设置Number就在头文件中给出hint提示并且现实hava a fun。
-        
-          <a class="article-more-a" href="/2019/08/15/16th-day/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/15/16th-day/">展开全文 >></a>
         </p>
       
 

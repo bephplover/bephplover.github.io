@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>review-the-php | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="变量的作用域 变量的作用域:指该变量在程序中可以被使用的范围。 局部变量：定义在函数内部，只有这个函数内的代码才可使用该变量 全局变量：定义在所有函数外的，则其作用域是整个PHP文件，减去用户自定义的函数内部。 global关键字:在函数内引用外部定义的变量。例如： 12345678910&amp;lt;?php	$a=&amp;apos;全局变量、&amp;apos;;	function fun()&amp;#123;	gl">
+  <meta name="description" content="变量的作用域 变量的作用域:指该变量在程序中可以被使用的范围。 局部变量：定义在函数内部，只有这个函数内的代码才可使用该变量 全局变量：定义在所有函数外的，则其作用域是整个PHP文件，减去用户自定义的函数内部。 global关键字:在函数内引用外部定义的变量。例如：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="review-the-php">
 <meta property="og:url" content="http://yoursite.com/2019/12/13/review-the-php/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="变量的作用域 变量的作用域:指该变量在程序中可以被使用的范围。 局部变量：定义在函数内部，只有这个函数内的代码才可使用该变量 全局变量：定义在所有函数外的，则其作用域是整个PHP文件，减去用户自定义的函数内部。 global关键字:在函数内引用外部定义的变量。例如： 12345678910&amp;lt;?php	$a=&amp;apos;全局变量、&amp;apos;;	function fun()&amp;#123;	gl">
+<meta property="og:description" content="变量的作用域 变量的作用域:指该变量在程序中可以被使用的范围。 局部变量：定义在函数内部，只有这个函数内的代码才可使用该变量 全局变量：定义在所有函数外的，则其作用域是整个PHP文件，减去用户自定义的函数内部。 global关键字:在函数内引用外部定义的变量。例如：">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-12-13T03:03:25.759Z">
+<meta property="og:updated_time" content="2019-12-13T03:12:47.903Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="review-the-php">
-<meta name="twitter:description" content="变量的作用域 变量的作用域:指该变量在程序中可以被使用的范围。 局部变量：定义在函数内部，只有这个函数内的代码才可使用该变量 全局变量：定义在所有函数外的，则其作用域是整个PHP文件，减去用户自定义的函数内部。 global关键字:在函数内引用外部定义的变量。例如： 12345678910&amp;lt;?php	$a=&amp;apos;全局变量、&amp;apos;;	function fun()&amp;#123;	gl">
+<meta name="twitter:description" content="变量的作用域 变量的作用域:指该变量在程序中可以被使用的范围。 局部变量：定义在函数内部，只有这个函数内的代码才可使用该变量 全局变量：定义在所有函数外的，则其作用域是整个PHP文件，减去用户自定义的函数内部。 global关键字:在函数内引用外部定义的变量。例如：">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -176,21 +176,21 @@
       
         <p><font color="red"></font></p>
 <h2>变量的作用域</h2>
-变量的作用域:指该变量在程序中可以被使用的范围。
-<font color="red">局部变量</font>：定义在函数内部，只有这个函数内的代码才可使用该变量
-<font color="red">全局变量</font>：定义在所有函数外的，则其作用域是整个PHP文件，减去用户自定义的函数内部。
-<font color="red">global关键字</font>:在函数内引用外部定义的变量。例如：
+变量的作用域:指该变量在程序中可以被使用的范围。<br>
+<font color="red">局部变量</font>：定义在函数内部，只有这个函数内的代码才可使用该变量<br>
+<font color="red">全局变量</font>：定义在所有函数外的，则其作用域是整个PHP文件，减去用户自定义的函数内部。<br>
+<font color="red">global关键字</font>:在函数内引用外部定义的变量。例如：<a id="more"></a>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">	$a=&apos;全局变量、&apos;;</span><br><span class="line">	function fun()&#123;</span><br><span class="line">	global $a;</span><br><span class="line">	echo $a;</span><br><span class="line">	$a=&quot;局部变量、&quot;;</span><br><span class="line">	echo $a;</span><br><span class="line">&#125;</span><br><span class="line">	fun();</span><br><span class="line">	echo $a; ?&gt;</span><br></pre></td></tr></table></figure>
 
 <p>最后输出的结果是全局变量、局部变量、局部变量、<br>这里解释一下由于在函数内使用了global引用了外部定义变量，导致全局变量在fun函数中的值发生了改变，故最后输出的是局部变量的值。</p>
 <h2>变量的生存期</h2>
-<font color="red">全局变量</font>的生存期从它被定义那一刻起到整个脚本代码执行结束为止。
+<font color="red">全局变量</font>的生存期从它被定义那一刻起到整个脚本代码执行结束为止。<br>
 <font color="red">局部变量</font>的生存期从它被定义开始到该函数运行结束为止。
 若要在函数运行结束后仍保留局部变量的值，可使用静态变量。
 例如：
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?  function Test() &#123; </span><br><span class="line">		static $w = 0; 	//声明静态变量</span><br><span class="line">		echo $w; </span><br><span class="line">		$w++; 		&#125; </span><br><span class="line">Test();Test() ;Test() ;Test() ;Test() ;	?&gt;</span><br></pre></td></tr></table></figure>
 
-<p>运行结果为01234<br>如果去掉static，则运行结果为00000<br><font color="red">可变变量</font><br>例如:$$a,然后$a=’b’;$b=123;那么$$a=123.<br>变量的引用赋值:&amp;类似C语言指针的用法<br>php中除法不是整除的例如5/3=1.66666666667<br>符号^是按位异或<br>运算符不等于(!=或者&lt;&gt;)<br>在php中的三等号需要数值和变量类型都相同才能返回true</p>
+<p>运行结果为01234<br>如果去掉static，则运行结果为00000<b><br><font color="red">可变变量</font><br>例如:$$a,然后$a=’b’;$b=123;那么$$a=123.<br>变量的引用赋值:&amp;类似C语言指针的用法<br>php中除法不是整除的例如5/3=1.66666666667<br>符号^是按位异或<br>运算符不等于(!=或者&lt;&gt;)<br>在php中的三等号需要数值和变量类型都相同才能返回true</b></p>
 <h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><p>php中使用array()函数创建数组</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">简单形式 </span><br><span class="line">$citys=array( &quot;长沙&quot;,&quot;衡阳&quot;,&quot;常德&quot;,&quot;湘潭&quot;);</span><br><span class="line"></span><br><span class="line">完整形式 </span><br><span class="line">$citys=array(&apos;cs&apos;=&gt;&apos;长沙&apos;,&apos;hy&apos;=&gt;&apos;衡阳&apos;,&apos;cd&apos;=&gt;&apos;常德&apos;,&apos;xt&apos;=&gt;&apos;湘潭&apos;);</span><br></pre></td></tr></table></figure>
 

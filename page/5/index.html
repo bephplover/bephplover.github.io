@@ -155,6 +155,71 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-19th-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/18/19th-day/">19th-day</a>
+    </h1>
+  
+
+        
+        <a href="/2019/08/18/19th-day/" class="archive-article-date">
+  	<time datetime="2019-08-18T01:31:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>44.程序逻辑问题(<a href="http://ctf5.shiyanbar.com/web/5/index.php" title="程序逻辑问题" target="_blank" rel="noopener">http://ctf5.shiyanbar.com/web/5/index.php</a>)<br>&emsp;&emsp;进入页面后是一个提交框并且可以看到框中已经有数据了，然后有个welcome to simplexue.点提交查询试试，然后是登陆失败。F12看一下，在源代码中发现一个Index.txt点进去看一下，可以看到如下代码
+        
+          <a class="article-more-a" href="/2019/08/18/19th-day/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/08/18/19th-day/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-18th-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -722,71 +787,6 @@ echo "<p>sorry!</p>";
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/08/09/tenth-day/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-ninth-day" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/08/ninth-day/">ninth-day</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/08/ninth-day/" class="archive-article-date">
-  	<time datetime="2019-08-08T01:06:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>26.过狗一句话(<a href="http://123.206.87.240:8010/" title="过狗一句话" target="_blank" rel="noopener">http://123.206.87.240:8010/</a>)<br>&emsp;&emsp;进入页面后提示，，此站没有flag,flag被人删了，不用在做了。这逗我呢。之前有这样的一句话提示:<br>送给大家一个过狗一句话<br>$poc=”a#s#s#e#r#t”;<br> $poc1=explode(“#”,$poc);<br> $poc2=$poc1[0].$poc1[1].$poc1[2].$poc1[3].$poc1[4].$poc1[5];<br> $poc2($GET[‘s’])<br>&emsp;&emsp;这个应该是让我们上传一句话，但是上传点在哪，它又是怎么执行的呢。再打开页面与F12中均未发现有用部分，我们打开BP抓包试试。任无果，因而只能分析这个一句话了。首先可以看到poc变量是一个被#分隔开的assert,而assert函数是判断一个表达式是否成立。
-        
-          <a class="article-more-a" href="/2019/08/08/ninth-day/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/08/ninth-day/">展开全文 >></a>
         </p>
       
 

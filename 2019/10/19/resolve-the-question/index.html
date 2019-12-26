@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="Hack the box邀请码和注册问题总结">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-12-03T04:27:01.994Z">
+<meta property="og:updated_time" content="2019-12-26T13:43:08.107Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="resolve the question">
 <meta name="twitter:description" content="Hack the box邀请码和注册问题总结">
@@ -190,6 +190,10 @@
 
 <p>md5碰撞</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if ( (string)$_POST[&apos;param1&apos;] !==  (string)$_POST[&apos;param2&apos;] &amp;&amp; md5($_POST[&apos;param1&apos;]) === md5($_POST[&apos;param2&apos;]))&#123;</span><br><span class="line">    echo &quot;yes&quot;;</span><br><span class="line">    &#125; </span><br><span class="line">param1=%4d%c9%68%ff%0e%e3%5c%20%95%72%d4%77%7b%72%15%87%d3%6f%a7%b2%1b%dc%56%b7%4a%3d%c0%78%3e%7b%95%18%af%bf%a2%00%a8%28%4b%f3%6e%8e%4b%55%b3%5f%42%75%93%d8%49%67%6d%a0%d1%55%5d%83%60%fb%5f%07%fe%a2&amp;param2=%4d%c9%68%ff%0e%e3%5c%20%95%72%d4%77%7b%72%15%87%d3%6f%a7%b2%1b%dc%56%b7%4a%3d%c0%78%3e%7b%95%18%af%%a2%02%a8%28%4b%f3%6e%8e%4b%55%b3%5f%42%75%93%d8%49%67%6d%a0%d1%d5%5d%83%60%fb%5f%07%fe%a2</span><br></pre></td></tr></table></figure>
+
+<p>将本地文件上传到github的步骤:<br>在没有本地仓库时候先git init把其变成仓库，再使用git add .把项目添加到仓库，再通过git commit -m ‘文件名’将项目提交到仓库，最后通过git push -u origin master把本地仓库的项目推送到远程仓库即上传到了github.</p>
+<p>这里可以使用git add .<br>git commit -m ‘文件夹名’<br>git push -u -origin master</p>
+
       
 
       

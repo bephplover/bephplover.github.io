@@ -11,17 +11,17 @@
   
 
   <link rel="shortcut icon" href="/favicon.ico" type="image/png">
-  <meta name="description" content="初识变量覆盖 变量覆盖我个人的理解就是攻击者利用一些手段改变了程序中定义了变量的值。 parse_str() 首先说一下parse\_str()这个函数，这函数是把传入的string类型的参数，直接作为变量使用，当然可以设置第二个参数，这样会存入固定的数组中，下面看一个它的例子: 123$a=123;	parse_str($_GET[&amp;apos;b&amp;apos;]);	echo $a;  这里当我们">
+  <meta name="description" content="初识变量覆盖 变量覆盖我个人的理解就是攻击者利用一些手段改变了程序中定义了变量的值。 parse_str() 首先说一下parse\_str()这个函数，这函数是把传入的string类型的参数，直接作为变量使用，当然可以设置第二个参数，这样会存入固定的数组中，下面看一个它的例子: 123$a=123;	parse_str($_GET[&amp;apos;b&amp;apos;]);	echo $a;  这里当我">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Variable-Cover">
 <meta property="og:url" content="http://yoursite.com/2019/12/18/Variable-Cover/index.html">
 <meta property="og:site_name" content="Cupid&#39;s Blog">
-<meta property="og:description" content="初识变量覆盖 变量覆盖我个人的理解就是攻击者利用一些手段改变了程序中定义了变量的值。 parse_str() 首先说一下parse\_str()这个函数，这函数是把传入的string类型的参数，直接作为变量使用，当然可以设置第二个参数，这样会存入固定的数组中，下面看一个它的例子: 123$a=123;	parse_str($_GET[&amp;apos;b&amp;apos;]);	echo $a;  这里当我们">
+<meta property="og:description" content="初识变量覆盖 变量覆盖我个人的理解就是攻击者利用一些手段改变了程序中定义了变量的值。 parse_str() 首先说一下parse\_str()这个函数，这函数是把传入的string类型的参数，直接作为变量使用，当然可以设置第二个参数，这样会存入固定的数组中，下面看一个它的例子: 123$a=123;	parse_str($_GET[&amp;apos;b&amp;apos;]);	echo $a;  这里当我">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-12-18T12:45:52.715Z">
+<meta property="og:updated_time" content="2019-12-31T13:18:53.269Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Variable-Cover">
-<meta name="twitter:description" content="初识变量覆盖 变量覆盖我个人的理解就是攻击者利用一些手段改变了程序中定义了变量的值。 parse_str() 首先说一下parse\_str()这个函数，这函数是把传入的string类型的参数，直接作为变量使用，当然可以设置第二个参数，这样会存入固定的数组中，下面看一个它的例子: 123$a=123;	parse_str($_GET[&amp;apos;b&amp;apos;]);	echo $a;  这里当我们">
+<meta name="twitter:description" content="初识变量覆盖 变量覆盖我个人的理解就是攻击者利用一些手段改变了程序中定义了变量的值。 parse_str() 首先说一下parse\_str()这个函数，这函数是把传入的string类型的参数，直接作为变量使用，当然可以设置第二个参数，这样会存入固定的数组中，下面看一个它的例子: 123$a=123;	parse_str($_GET[&amp;apos;b&amp;apos;]);	echo $a;  这里当我">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/atom-one-dark.css">
    
@@ -29,7 +29,7 @@
   
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1577798070608">
+  <link rel="stylesheet" href="/css/style.css?v=1577798353392">
 </head>
 
 <body class="mdui-drawer-body-left">
@@ -134,7 +134,8 @@
     
   </div>
   <article>
-    <h2>初识变量覆盖</h2>
+    <a id="more"></a>
+<h2>初识变量覆盖</h2>
 变量覆盖我个人的理解就是攻击者利用一些手段改变了程序中定义了变量的值。
 <h3><font color="orange">parse_str()</font></h3>
 首先说一下parse\_str()这个函数，这函数是把传入的string类型的参数，直接作为变量使用，当然可以设置第二个参数，这样会存入固定的数组中，下面看一个它的例子:
@@ -190,7 +191,7 @@
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1577798070655"></script>
+<script src="/js/app.js?v=1577798353447"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
 
 

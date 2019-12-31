@@ -18,7 +18,7 @@
 <meta property="og:site_name" content="Cupid&#39;s Blog">
 <meta property="og:description" content="初识变量覆盖 变量覆盖我个人的理解就是攻击者利用一些手段改变了程序中定义了变量的值。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-12-31T14:20:32.709Z">
+<meta property="og:updated_time" content="2019-12-31T14:42:14.111Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Variable-Cover">
 <meta name="twitter:description" content="初识变量覆盖 变量覆盖我个人的理解就是攻击者利用一些手段改变了程序中定义了变量的值。">
@@ -29,7 +29,7 @@
   
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1577802079780">
+  <link rel="stylesheet" href="/css/style.css?v=1577803557992">
 </head>
 
 <body class="mdui-drawer-body-left">
@@ -128,7 +128,7 @@
     </div>
   <div class="nexmoe-post-meta">
     <a><i class="nexmoefont icon-calendar-fill"></i>2019年12月18日</a>
-    <a><i class="nexmoefont icon-areachart"></i>244 字</a>
+    <a><i class="nexmoefont icon-areachart"></i>243 字</a>
     <a><i class="nexmoefont icon-time-circle-fill"></i>大概 1 分钟</a>
     
     
@@ -138,9 +138,12 @@
 变量覆盖我个人的理解就是攻击者利用一些手段改变了程序中定义了变量的值。<a id="more"></a>
 <h3><font color="orange">parse_str()</font></h3>
 首先说一下parse\_str()这个函数，这函数是把传入的string类型的参数，直接作为变量使用，当然可以设置第二个参数，这样会存入固定的数组中，下面看一个它的例子:
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$a=123;</span><br><span class="line">parse_str($_GET[&apos;b&apos;]);</span><br><span class="line">echo $a;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- $a=<span class="number">123</span>;</span><br><span class="line">- parse_str($_GET[<span class="string">'b'</span>]);</span><br><span class="line">- <span class="keyword">echo</span> $a;</span><br></pre></td></tr></table></figure>
 
-<p>这里当我们在url中输入b=a=abc时，页面上打印的竟然变成了abc.这就叫做变量覆盖。<br>当我们传入参数后，原来的语句就变成了parse_str(‘a=abc’),这时候根据函数parse_str的功能就会自动创建$a=abc,导致原来的$a的值被覆盖掉。</p>
+<p>这里当我们在url中输入b=a=abc时，页面上打印的竟然变成了abc.这就叫做变量覆盖。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">123</span><br><span class="line">456</span><br><span class="line">789</span><br></pre></td></tr></table></figure>
+
+<p>当我们传入参数后，原来的语句就变成了parse_str(‘a=abc’),这时候根据函数parse_str的功能就会自动创建$a=abc,导致原来的$a的值被覆盖掉。</p>
 <h3><font color="orange">$$的使用</font></h3>
 前文在复习php时候说过$$是可变变量，这样的使用同样会造成变量覆盖漏洞，下面同样举个简单的例子:
 
@@ -190,7 +193,7 @@
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1577802079825"></script>
+<script src="/js/app.js?v=1577803558030"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
 
 

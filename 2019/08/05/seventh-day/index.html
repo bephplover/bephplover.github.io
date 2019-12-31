@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  
+  <title>seventh-day - Cupid&#39;s Blog</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="a new ctfer&#39;s study">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+
+  <link rel="shortcut icon" href="/favicon.ico" type="image/png">
+  <meta name="description" content="21.秋名山老司机(http://123.206.87.240:8002/qiumingshan/)&amp;emsp;&amp;emsp;进入页面，提示我在2S内计算老司机的车速是多少，妈耶，十多亿数量级的加法2S内完成。手工肯定不行，这得考计算机，这个就涉及到我的知识盲区了，但我知道应该是能用一个脚本2S内提交其答案。百度吧，学习下其他人的解法。由于此前从未学习过Python对于其脚本的运行报错一大堆，目前正">
+<meta property="og:type" content="article">
+<meta property="og:title" content="seventh-day">
+<meta property="og:url" content="http://yoursite.com/2019/08/05/seventh-day/index.html">
+<meta property="og:site_name" content="Cupid&#39;s Blog">
+<meta property="og:description" content="21.秋名山老司机(http://123.206.87.240:8002/qiumingshan/)&amp;emsp;&amp;emsp;进入页面，提示我在2S内计算老司机的车速是多少，妈耶，十多亿数量级的加法2S内完成。手工肯定不行，这得考计算机，这个就涉及到我的知识盲区了，但我知道应该是能用一个脚本2S内提交其答案。百度吧，学习下其他人的解法。由于此前从未学习过Python对于其脚本的运行报错一大堆，目前正">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-08-11T01:17:13.547Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="seventh-day">
+<meta name="twitter:description" content="21.秋名山老司机(http://123.206.87.240:8002/qiumingshan/)&amp;emsp;&amp;emsp;进入页面，提示我在2S内计算老司机的车速是多少，妈耶，十多亿数量级的加法2S内完成。手工肯定不行，这得考计算机，这个就涉及到我的知识盲区了，但我知道应该是能用一个脚本2S内提交其答案。百度吧，学习下其他人的解法。由于此前从未学习过Python对于其脚本的运行报错一大堆，目前正">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/atom-one-dark.css">
+   
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
+  <link rel="stylesheet" href="/css/style.css?v=1577797662966">
+</head>
+
+<body class="mdui-drawer-body-left">
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(http://img3.imgtn.bdimg.com/it/u=3748941237,546001350&amp;fm=26&amp;gp=0.jpg)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="Cupid" class="mdui-btn mdui-btn-icon"><img src="/images/namei.png"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="Cupid">
+            <img src="/images/namei.png" alt="Cupid">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>Articles</span>61</div>
+        <div><span>Tags</span>0</div>
+        <div><span>Categories</span>0</div>
+    </div>
+    <ul class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about.html" title="关于博客">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博客
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/PY.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+    </ul>
+    <aside id="nexmoe-sidebar">
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">Social</h3>
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/20238211" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="https://github.com/nexmoe/" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a>
+    </div>
+</div>
+  
+  
+
+  
+  
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">Archive</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2019 Cupid
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://nexmoe.com/hexo-theme-nexmoe.html" target="_blank">Nexmoe</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+    <div class="nexmoe-post-cover"> 
+        
+            <img src="http://img3.imgtn.bdimg.com/it/u=3748941237,546001350&amp;fm=26&amp;gp=0.jpg">
+        
+        <h1>seventh-day</h1>
+    </div>
+  <div class="nexmoe-post-meta">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2019年08月05日</a>
+    <a><i class="nexmoefont icon-areachart"></i>1.1k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 4 分钟</a>
+    
+    
+  </div>
+  <article>
+    <p>21.秋名山老司机(<a href="http://123.206.87.240:8002/qiumingshan/" title="秋名山老司机" target="_blank" rel="noopener">http://123.206.87.240:8002/qiumingshan/</a>)<br>&emsp;&emsp;进入页面，提示我在2S内计算老司机的车速是多少，妈耶，十多亿数量级的加法2S内完成。手工肯定不行，这得考计算机，这个就涉及到我的知识盲区了，但我知道应该是能用一个脚本2S内提交其答案。百度吧，学习下其他人的解法。由于此前从未学习过Python对于其脚本的运行报错一大堆，目前正下载重装最新版本以求解决方案，先做下一道题。<a id="more"></a><br>22.速度要快(<a href="http://123.206.87.240:8002/web6/" title="速度要快" target="_blank" rel="noopener">http://123.206.87.240:8002/web6/</a>)<br>&emsp;&emsp;进入页面。。提示我感觉你得快点，不会又让我用python脚本吧饶了我吧！！！，先F12看看，欸在网络中发现一个flag,6LeR55qE6L+Y5LiN6ZSZ77yM57uZ5L2gZmxhZ+WQpzogT1RBNE9UYzE=,base64解码试试,欸速度要快行吧，又是一道Python提交题，换下一道。<br>23.welcome the bugkuctf(<a href="http://123.206.87.240:8006/test1/" title="welcome the bugku ctf" target="_blank" rel="noopener">http://123.206.87.240:8006/test1/</a>)<br>&emsp;&emsp;进入页面,说我不是bugku的成员，这，先F12,可以看到如下注释中的提示：<br>$user = $_GET[“txt”];<br>$file = $_GET[“file”];<br>$pass = $_GET[“password”];  </p>
+<p>if(isset($user)&amp;&amp;(file_get_contents($user,’r’)===”welcome to the bugkuctf”)){<br>    echo “hello admin!<br>“;<br>    include($file); //hint.php<br>}else{<br>    echo “you are not admin ! “;<br>}<br>代码意思大致是先从get中设置了user,file,pass变量，然后判断语句是如果设置了user变量并且从文件中采用读取方式得到的成分为welcome to the bugkuctf 就输出hello admin并且给我们打开提示的php文件。这道题考的就是一个文件流的打开，试试php流。使用之前类似的payload:?txt=php://input&amp;file=php://filter/read=convert.base64-encode/resource=hint.php&amp;password=尝试打开hint.php.等一下这种流的方式好像要post方式才可以，修改一下。<br>由于hackbar出了些问题，post不了因而采用BP提交上述payload得到以下代码。(得到的都是base64的值进行解码后为以下代码)<br><?php   
+class Flag{//flag.php  
+    public $file;  
+    public function __tostring(){  
+        if(isset($this->file)){  
+            echo file_get_contents($this->file); 
+            echo "<br>";
+        return ("good");
+        }  
+    }  
+}  
+?><br>仔细阅读，注释了一个flag.php,该类为flag类，函数是tostring,如果设置了this的file方法就输出其文件的内容，并输出good.这儿还不知道要干什么，先看下面的。<br>将payload中的hint.php改为Index.php看一下，解码后得到如下代码<br>  &lt;?php<br>$txt = $_GET[“txt”];<br>$file = $_GET[“file”];<br>$password = $_GET[“password”];  </p>
+<p>if(isset($txt)&amp;&amp;(file_get_contents($txt,’r’)===”welcome to the bugkuctf”)){<br>    echo “hello friend!<br>“;<br>    if(preg_match(“/flag/“,$file)){<br>        echo “ä¸è½ç°å¨å°±ç»ä½ flagå¦”;<br>        exit();<br>    }else{<br>        include($file);<br>        $password = unserialize($password);<br>        echo $password;<br>    }<br>}else{<br>    echo “you are not the number of bugku ! “;<br>}  </p>
+<p>?&gt;<br>index.php中注释的内容之前看过就不看了，可以看到如果文件名中包含flag会输出一些什么，应该是中文因而不会是flag，可以试试，改为flag.php来验证。出现了一堆乱码,(解决乱码问题后，发现是不能现在给你flag哦)因而继续其他方法获取flag.else包含了file文件，搜索了以下umserialize函数的意思，大致意思是将已序列化的变量转化为PHP值，说实话，这个序列化我没怎么懂，然后这样就输出password。这里参考了下他人的博文，大致理解是要将password传入一个flag类，并且还需要将这个对象序列化，这样再反序列化就是正常的，因而参考别人博客有：&lt;?php<br>    class Flag{//flag.php<br>    public $file;<br>    }  </p>
+<pre><code>$a = new Flag();
+$a-&gt;file = &quot;flag.php&quot;;
+$a = serialize($a);
+print_r($a);</code></pre><p>?&gt;该PHP即为将传入password的值获得的php,运行后得到O:4:”Flag”:1:{s:4:”file”;s:8:”flag.php”;}之后构造：payload:?txt=php://input&amp;file=hint.php&amp;password=O:4:”Flag”:1:{s:4:”file”;s:8:”flag.php”;}转发包即可获得flag.<br>&emsp;&emsp;:summary:今天一天的题都做得很蒙蔽，前两道到现在依旧没有做出来，死在了不会python上，后一道题，对于这个序列化的问题不是很清楚因而卡了很久，并且参考别人博客自己做着也是似懂非懂，因而下来还需继续努力将其搞懂，在完全明白后我还会来继续修改这一天博客的内容，修改我错误的理解，新增我所知道了的。</p>
+
+  </article>
+  
+    
+<div class="nexmoe-post-copyright">
+<i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+<strong>Author：</strong>Cupid<br>
+<strong>Link：</strong><a href="http://yoursite.com/2019/08/05/seventh-day/" title="http://yoursite.com/2019/08/05/seventh-day/" target="_blank" rel="noopener">http://yoursite.com/2019/08/05/seventh-day/</a><br>
+
+  <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+
+</div>
+
+
+  
+  <section class="nexmoe-comment">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.css">
+<div id="gitalk"></div>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '80b2453b6d5f37ad6225',
+        clientSecret: '43e99fa852795c9a7b3eb924b2558c64b84bbdeb',
+        id: window.location.pathname,
+        repo: 'nexmoe.github.io',
+        owner: 'nexmoe',
+        admin: 'nexmoe'
+    })
+    gitalk.render('gitalk')
+</script>
+</section>
+</div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/js/mdui.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+ 
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+ 
+    <script src="https://cdn.jsdelivr.net/npm/smoothscroll-for-websites@1.4.9/SmoothScroll.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script src="/js/app.js?v=1577797663044"></script>
+<script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
+
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
+
+
+
+  
+
+
+
+
+
+</body>
+
+</html>

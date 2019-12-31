@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  
+  <title>Git-study - Cupid&#39;s Blog</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="a new ctfer&#39;s study">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+
+  <link rel="shortcut icon" href="/favicon.ico" type="image/png">
+  <meta name="description" content="Git简介Git是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。git是Linus Torvalds为了帮助管理Linux内核开发而开发的一个开放源码的版本控制软件。Git与常用的版本控制工具CVS，Subversion等不同，它采用了分布式版本库的方式，不必服务器端软件支持。Git不仅仅是个版本控制系统，也是一个内容管理系统（CMS），工作管理系统。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git-study">
+<meta property="og:url" content="http://yoursite.com/2019/11/17/Git-study/index.html">
+<meta property="og:site_name" content="Cupid&#39;s Blog">
+<meta property="og:description" content="Git简介Git是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。git是Linus Torvalds为了帮助管理Linux内核开发而开发的一个开放源码的版本控制软件。Git与常用的版本控制工具CVS，Subversion等不同，它采用了分布式版本库的方式，不必服务器端软件支持。Git不仅仅是个版本控制系统，也是一个内容管理系统（CMS），工作管理系统。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-11-21T13:40:50.282Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Git-study">
+<meta name="twitter:description" content="Git简介Git是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。git是Linus Torvalds为了帮助管理Linux内核开发而开发的一个开放源码的版本控制软件。Git与常用的版本控制工具CVS，Subversion等不同，它采用了分布式版本库的方式，不必服务器端软件支持。Git不仅仅是个版本控制系统，也是一个内容管理系统（CMS），工作管理系统。">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/atom-one-dark.css">
+   
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
+  <link rel="stylesheet" href="/css/style.css?v=1577797660037">
+</head>
+
+<body class="mdui-drawer-body-left">
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(http://img3.imgtn.bdimg.com/it/u=3748941237,546001350&amp;fm=26&amp;gp=0.jpg)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="Cupid" class="mdui-btn mdui-btn-icon"><img src="/images/namei.png"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="Cupid">
+            <img src="/images/namei.png" alt="Cupid">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>Articles</span>61</div>
+        <div><span>Tags</span>0</div>
+        <div><span>Categories</span>0</div>
+    </div>
+    <ul class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about.html" title="关于博客">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博客
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/PY.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+    </ul>
+    <aside id="nexmoe-sidebar">
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">Social</h3>
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/20238211" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="https://github.com/nexmoe/" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a>
+    </div>
+</div>
+  
+  
+
+  
+  
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">Archive</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2019 Cupid
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://nexmoe.com/hexo-theme-nexmoe.html" target="_blank">Nexmoe</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+    <div class="nexmoe-post-cover"> 
+        
+            <img src="http://img3.imgtn.bdimg.com/it/u=3748941237,546001350&amp;fm=26&amp;gp=0.jpg">
+        
+        <h1>Git-study</h1>
+    </div>
+  <div class="nexmoe-post-meta">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2019年11月17日</a>
+    <a><i class="nexmoefont icon-areachart"></i>1.5k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 6 分钟</a>
+    
+    
+  </div>
+  <article>
+    <h1 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Git是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。git是Linus Torvalds为了帮助管理Linux内核开发而开发的一个开放源码的版本控制软件。<br>Git与常用的版本控制工具CVS，Subversion等不同，它采用了分布式版本库的方式，不必服务器端软件支持。<br>Git不仅仅是个版本控制系统，也是一个内容管理系统（CMS），工作管理系统。<a id="more"></a></p>
+<h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><p>1.记录历史版本信息（记录每一次修改的记录）<br>2.方便团队相互之间协作开发<br>……</p>
+<h2 id="Git工作流程"><a href="#Git工作流程" class="headerlink" title="Git工作流程"></a>Git工作流程</h2><p>一般工作流程如下：<br>1.克隆Git资源作为工作目录。<br>2.在克隆的资源上添加或修改文件。<br>3.如果其他人修改了，你可以更新资源。<br>4.在提交前查看修改。<br>5.提交修改。<br>6.在修改完成后，如果发现错误，可以撤回提交并再次修改并提交。</p>
+<h3>Git工作区、暂存区和版本库</h3>
+工作区：就是你在电脑里看到的目录
+暂存区：英文叫stage,或index.一般存放在.git目录下的index文件红，所以把暂存区有时也叫做索引(index).
+版本库：工作区有一个隐藏目录.git，不算工作区，而是Git的版本库
+
+<p>常用的版本控制系统<br>cvs/svn:集中式版本控制系统<br>git:分布式版本控制系统</p>
+<p>集中式的版本控制系统=&gt;必须有一个中央总控的服务器(用来记录存储历史版本和源代码信息)<br>从中央服务器上获取某个版本信息，回滚一下，让对应的版本中的代码覆盖本地的代码。 </p>
+<p>SVN弊端<br>1.需要连网才能回退或查看历史版本信息<br>2.中央服务器毁坏的话，一切OVER<br>3.所有的上传和下载都是基于文件传输方式完成的，速度会慢</p>
+<p>Git分布式<br>=&gt;每个开发者本地就是一个代码管理仓库</p>
+<p>创建本地项目仓库：$ git init</p>
+<p>工作区：写代码的地方<br>还有两个看不见的区域：暂存区与版本区<br>从本地仓库的版本区，基于命令，把某个版本信息回退到工作区<br>Git也有一个中央服务器(中央仓库)，用来团队协作<br>每一个个体开发程序员只需要把自己的版本区信息同步到中央仓库上。（这个过程叫推送）<br>如果团队中的人员想要看其他人代码，就直接把远程仓库的信息拉取到版本区中(信息同步)<br>git好处：<br>1.无需连网也能记录和查看历史版本信息<br>2.无需过多依赖中央仓库，每个人本地也有全部的信息<br>3.向中央仓库传输内容依托的是文件流传输，速度比SVN快N倍</p>
+<h2 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h2><p>工作区：我们能看到的，并且用来写代码的区域<br>暂存区：临时存储用的<br>版本区：生成历史版本<br>git add -A 把工作区的内容提交到暂存区<br>git add -m 把暂存区内容提交给版本区<br>git push origin master<br>git pull orgin master(版本区与中央仓库间的操作)</p>
+<h2 id="Git使用"><a href="#Git使用" class="headerlink" title="Git使用"></a>Git使用</h2><h3 id="Git的全局配置"><a href="#Git的全局配置" class="headerlink" title="Git的全局配置"></a>Git的全局配置</h3><p>第一次安装完成git后，我们在全局环境下配置基本信息：我是谁？<br>git config -l 查看配置信息<br>git config –global -l查看全局配置信息<br>配置全局信息，用户名和邮箱<br>git config –global user.name=’xxx’<br>git config –global user.email=’xxx@xx.xx’<br>2.创建仓库完成版本控制<br>创建本地git仓库<br>git init<br>会生成一个隐藏文件夹，.git文件夹千万不能删，因为暂存区和历史区还有一些其他的信息都在这里，删了就不是一个完整的git仓库</p>
+<p>在本地编写完成代码后(工作区)，把一些文件提交到暂存区<br>git add XXX 把某一个文件或者文件夹提交到暂存区<br>git add . 把所有最新修改的文件都提交到暂存区<br>git add -A 同上<br>git stattus 查看当前文件的状态(红色代表在工作区，绿色代表在暂存区，看不见东西证明所有修改的信息都已经提交到历史区)<br>git rm -cached 1.html 把刚传入到暂存区的内容删除</p>
+<p>把暂存区内容提交到历史区<br>git commit -m’描述信息：本次提交内容的一个描述’<br>查看历史版本信息<br>git log<br>git reflog<br>从工作区提交到暂存区，从暂存区提交到版本区：是把内容复制一份传过去的，本区域中依然存在这些信息(只有这样才能对比出哪些文件在某个区)<br>git reset –hard 版本号 即可替换工作区的历史版本</p>
+<h2 id="Github"><a href="#Github" class="headerlink" title="Github"></a>Github</h2><p>Github: <a href="http://www.github.com" target="_blank" rel="noopener">http://www.github.com</a><br>一个开源的源代码管理平台，用户注册后可以在自己账户下创建仓库，用来管理项目源代码(源代码是基于Git传到仓库中)<br>我们所熟知的插件、类库、框架等都在这个平台上有托管，可以下载观看和研究源码等<br>1.Settings用户设置<br>Profile 修改自己的基本信息<br>Account 可以修改用户名<br>Security 可以修改密码<br>Emails 可以增加修改邮箱(必须进行邮箱校验)<br>。。。。。。<br>2.创建仓库<br>new Repository-&gt;填写信息-&gt;Create repostity</p>
+<p>public 公共仓库作为开源的项目<br>private 私有仓库作为内部团队协作管理的项目<br>Settings-&gt;删除仓库Delete this repository<br>    -&gt;Collaborators设置协作开发的人员</p>
+<p>####基本概念####<br>仓库（Repository）<br>仓库用来存放项目代码，每个项目对应一个仓库，多个开源项目则有多个仓库<br>收藏(Star)<br>收藏项目，方便下次看<br>复制克隆项目(Fork)<br>该fork的项目是独立存在的</p>
+<p>Pull Request(发起请求)</p>
+
+  </article>
+  
+    
+<div class="nexmoe-post-copyright">
+<i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+<strong>Author：</strong>Cupid<br>
+<strong>Link：</strong><a href="http://yoursite.com/2019/11/17/Git-study/" title="http://yoursite.com/2019/11/17/Git-study/" target="_blank" rel="noopener">http://yoursite.com/2019/11/17/Git-study/</a><br>
+
+  <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+
+</div>
+
+
+  
+  <section class="nexmoe-comment">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.css">
+<div id="gitalk"></div>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '80b2453b6d5f37ad6225',
+        clientSecret: '43e99fa852795c9a7b3eb924b2558c64b84bbdeb',
+        id: window.location.pathname,
+        repo: 'nexmoe.github.io',
+        owner: 'nexmoe',
+        admin: 'nexmoe'
+    })
+    gitalk.render('gitalk')
+</script>
+</section>
+</div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/js/mdui.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+ 
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+ 
+    <script src="https://cdn.jsdelivr.net/npm/smoothscroll-for-websites@1.4.9/SmoothScroll.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script src="/js/app.js?v=1577797660099"></script>
+<script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
+
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
+
+
+
+  
+
+
+
+
+
+</body>
+
+</html>

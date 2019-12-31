@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  
+  <title>16th-day - Cupid&#39;s Blog</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="a new ctfer&#39;s study">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+
+  <link rel="shortcut icon" href="/favicon.ico" type="image/png">
+  <meta name="description" content="41.你真的会PHP吗(http://ctf5.shiyanbar.com/web/PHP/index.php)&amp;emsp;&amp;emsp;进入页面后,只有一个have fun.F12看一下，在网络的响应头中发现了一个Hint：6c525af4059b4fe7d8c33a.txt打开这个txt看一下发现一大串php代码，一道代码审计类题目。若果没有post设置Number就在头文件中给出hint提示并">
+<meta property="og:type" content="article">
+<meta property="og:title" content="16th-day">
+<meta property="og:url" content="http://yoursite.com/2019/08/15/16th-day/index.html">
+<meta property="og:site_name" content="Cupid&#39;s Blog">
+<meta property="og:description" content="41.你真的会PHP吗(http://ctf5.shiyanbar.com/web/PHP/index.php)&amp;emsp;&amp;emsp;进入页面后,只有一个have fun.F12看一下，在网络的响应头中发现了一个Hint：6c525af4059b4fe7d8c33a.txt打开这个txt看一下发现一大串php代码，一道代码审计类题目。若果没有post设置Number就在头文件中给出hint提示并">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-08-16T00:44:40.889Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="16th-day">
+<meta name="twitter:description" content="41.你真的会PHP吗(http://ctf5.shiyanbar.com/web/PHP/index.php)&amp;emsp;&amp;emsp;进入页面后,只有一个have fun.F12看一下，在网络的响应头中发现了一个Hint：6c525af4059b4fe7d8c33a.txt打开这个txt看一下发现一大串php代码，一道代码审计类题目。若果没有post设置Number就在头文件中给出hint提示并">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/atom-one-dark.css">
+   
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
+  <link rel="stylesheet" href="/css/style.css?v=1577797662424">
+</head>
+
+<body class="mdui-drawer-body-left">
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(http://img3.imgtn.bdimg.com/it/u=3748941237,546001350&amp;fm=26&amp;gp=0.jpg)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="Cupid" class="mdui-btn mdui-btn-icon"><img src="/images/namei.png"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="Cupid">
+            <img src="/images/namei.png" alt="Cupid">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>Articles</span>61</div>
+        <div><span>Tags</span>0</div>
+        <div><span>Categories</span>0</div>
+    </div>
+    <ul class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about.html" title="关于博客">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博客
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/PY.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+    </ul>
+    <aside id="nexmoe-sidebar">
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">Social</h3>
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/20238211" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="https://github.com/nexmoe/" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a>
+    </div>
+</div>
+  
+  
+
+  
+  
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">Archive</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2019 Cupid
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://nexmoe.com/hexo-theme-nexmoe.html" target="_blank">Nexmoe</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+    <div class="nexmoe-post-cover"> 
+        
+            <img src="http://img3.imgtn.bdimg.com/it/u=3748941237,546001350&amp;fm=26&amp;gp=0.jpg">
+        
+        <h1>16th-day</h1>
+    </div>
+  <div class="nexmoe-post-meta">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2019年08月15日</a>
+    <a><i class="nexmoefont icon-areachart"></i>979 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 4 分钟</a>
+    
+    
+  </div>
+  <article>
+    <p>41.你真的会PHP吗(<a href="http://ctf5.shiyanbar.com/web/PHP/index.php" title="你怎的会PHP吗" target="_blank" rel="noopener">http://ctf5.shiyanbar.com/web/PHP/index.php</a>)<br>&emsp;&emsp;进入页面后,只有一个have fun.F12看一下，在网络的响应头中发现了一个Hint：6c525af4059b4fe7d8c33a.txt打开这个txt看一下发现一大串php代码，一道代码审计类题目。若果没有post设置Number就在头文件中给出hint提示并且现实hava a fun。<a id="more"></a><br>&emsp;&emsp;接下来的:<br>foreach([$_POST] as $global_var) {<br>    foreach($global_var as $key =&gt; $value) {<br>        $value = trim($value);<br>        is_string($value) &amp;&amp; $req[$key] = addslashes($value);<br>    }<br>}<br>这个是个循环遍历赋值的一个函数，先是用post方式传参给global_var里面，第二个仍然是赋值，这个函数仅用于数组,第二个是采用全局数组的方式给Key赋值并赋上键。value变量的值经过trim去掉空格和换行符。最后的代码意思是判断value是否是string类型与上key的请求值=转义后的value。这句代码不是很懂待会儿联系一起看哈。<br>&emsp;&emsp;紧接着是:<br>function is_palindrome_number($number) {<br>    $number = strval($number);<br>    $i = 0;<br>    $j = strlen($number) - 1;<br>    while($i &lt; $j) {<br>        if($number[$i] !== $number[$j]) {<br>            return false;<br>        }<br>        $i++;<br>        $j–;<br>    }<br>    return true;<br>}<br>这是一个判断是否是回文的函数，$number=其字符串值，$j=number的长度减1，如果i&lt;j,并且如果i!=j就返回false.否则是i++,j–.继续下一段代码:<br>if(is_numeric($_REQUEST[‘number’])){</p>
+<p>   $info=”sorry, you cann’t input a number!”;</p>
+<p>}elseif($req[‘number’]!=strval(intval($req[‘number’]))){</p>
+<pre><code>$info = &quot;number must be equal to it&apos;s integer!! &quot;;  </code></pre><p>}else{</p>
+<pre><code>$value1 = intval($req[&quot;number&quot;]);
+$value2 = intval(strrev($req[&quot;number&quot;]));  
+
+if($value1!=$value2){
+     $info=&quot;no, this is not a palindrome number!&quot;;
+}else{
+
+     if(is_palindrome_number($req[&quot;number&quot;])){
+         $info = &quot;nice! {$value1} is a palindrome number!&quot;; 
+     }else{
+        $info=$flag;
+     }
+}</code></pre><p>}</p>
+<p>echo $info;<br>如果request方式传入的Number是数字的话就提示you can’t input a number。而如果不是数字请求的number不等于字符类型的整型Number，就提示”number must be equal to it’s integer!!”.如果这个满足了就让value1为整型的Number，value2等于整型的反转Number.但于此同时如果value1!=value2会提示这不是一个回文数字，如果它是一个会问数字就提示是一个会问数字，如果Number不是回文数字就给出flag.<br>&emsp;&emsp;总结一下number需要满足的条件:<br>1.number不能是一个数字型的<br>2.它的值必须等于整型的它的值的字符型<br>3.整型的number值必须等于反转整型的它的值<br>4.number不能是一个回文<br>由上4个条件可以看出，1,2两个条件相互矛盾。3，4两个条件相互矛盾。<br>现在开始构造特殊，构造特别一般会想到科学记数法，这里采用0e-0%00.它满足1,2条件也满足3，4条件，这里绕过的机制是%00加入后不会被认为是整型，并且strval会忽略掉%00.由于不能是回文因而添加了-0.<br>这道题还有第二种解法:利用Intaval的溢出，它的最大值取决于操作系统<br>32 位系统最大带符号的 integer 范围是 -2147483648 到 2147483647。举例，在这样的系统上， intval(‘1000000000000’) 会返回 2147483647。64 位系统上，最大带符号的 integer 值是 9223372036854775807。通过f12可以看到服务器的操作系统是32位的因而直接构造2147483747就可以满足2，3条件再加上(%00,%20即可满足剩余条件)<br>在其他人的博客上发现了更简单的构造number=-0%00或-0%20都可以。<br>关于操作系统溢出的我试验过好像不行，不知道是哪出了问题。<br>&emsp;&emsp;实验吧的题很明显一下提升了个档次就算是最初级的题都比较有难度需要知道大量的php函数并且理解非常清楚，对于字符型整型回文这些数字的技巧也要灵活的运用才能成功解题，自己对于这方面还有待提升。</p>
+
+  </article>
+  
+    
+<div class="nexmoe-post-copyright">
+<i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+<strong>Author：</strong>Cupid<br>
+<strong>Link：</strong><a href="http://yoursite.com/2019/08/15/16th-day/" title="http://yoursite.com/2019/08/15/16th-day/" target="_blank" rel="noopener">http://yoursite.com/2019/08/15/16th-day/</a><br>
+
+  <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+
+</div>
+
+
+  
+  <section class="nexmoe-comment">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.css">
+<div id="gitalk"></div>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '80b2453b6d5f37ad6225',
+        clientSecret: '43e99fa852795c9a7b3eb924b2558c64b84bbdeb',
+        id: window.location.pathname,
+        repo: 'nexmoe.github.io',
+        owner: 'nexmoe',
+        admin: 'nexmoe'
+    })
+    gitalk.render('gitalk')
+</script>
+</section>
+</div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/js/mdui.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+ 
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+ 
+    <script src="https://cdn.jsdelivr.net/npm/smoothscroll-for-websites@1.4.9/SmoothScroll.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script src="/js/app.js?v=1577797662467"></script>
+<script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
+
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
+
+
+
+  
+
+
+
+
+
+</body>
+
+</html>

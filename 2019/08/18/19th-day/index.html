@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  
+  <title>19th-day - Cupid&#39;s Blog</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="a new ctfer&#39;s study">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+
+  <link rel="shortcut icon" href="/favicon.ico" type="image/png">
+  <meta name="description" content="44.程序逻辑问题(http://ctf5.shiyanbar.com/web/5/index.php)&amp;emsp;&amp;emsp;进入页面后是一个提交框并且可以看到框中已经有数据了，然后有个welcome to simplexue.点提交查询试试，然后是登陆失败。F12看一下，在源代码中发现一个Index.txt点进去看一下，可以看到如下代码">
+<meta property="og:type" content="article">
+<meta property="og:title" content="19th-day">
+<meta property="og:url" content="http://yoursite.com/2019/08/18/19th-day/index.html">
+<meta property="og:site_name" content="Cupid&#39;s Blog">
+<meta property="og:description" content="44.程序逻辑问题(http://ctf5.shiyanbar.com/web/5/index.php)&amp;emsp;&amp;emsp;进入页面后是一个提交框并且可以看到框中已经有数据了，然后有个welcome to simplexue.点提交查询试试，然后是登陆失败。F12看一下，在源代码中发现一个Index.txt点进去看一下，可以看到如下代码">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://ctf5.shiyanbar.com/web/web200.jpg">
+<meta property="og:updated_time" content="2019-08-19T01:01:45.047Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="19th-day">
+<meta name="twitter:description" content="44.程序逻辑问题(http://ctf5.shiyanbar.com/web/5/index.php)&amp;emsp;&amp;emsp;进入页面后是一个提交框并且可以看到框中已经有数据了，然后有个welcome to simplexue.点提交查询试试，然后是登陆失败。F12看一下，在源代码中发现一个Index.txt点进去看一下，可以看到如下代码">
+<meta name="twitter:image" content="http://ctf5.shiyanbar.com/web/web200.jpg">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/atom-one-dark.css">
+   
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
+  <link rel="stylesheet" href="/css/style.css?v=1577797662150">
+</head>
+
+<body class="mdui-drawer-body-left">
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(http://img3.imgtn.bdimg.com/it/u=3748941237,546001350&amp;fm=26&amp;gp=0.jpg)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="Cupid" class="mdui-btn mdui-btn-icon"><img src="/images/namei.png"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="Cupid">
+            <img src="/images/namei.png" alt="Cupid">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>Articles</span>61</div>
+        <div><span>Tags</span>0</div>
+        <div><span>Categories</span>0</div>
+    </div>
+    <ul class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about.html" title="关于博客">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博客
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/PY.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+    </ul>
+    <aside id="nexmoe-sidebar">
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">Social</h3>
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/20238211" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="https://github.com/nexmoe/" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a>
+    </div>
+</div>
+  
+  
+
+  
+  
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">Archive</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2019 Cupid
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://nexmoe.com/hexo-theme-nexmoe.html" target="_blank">Nexmoe</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+    <div class="nexmoe-post-cover"> 
+        
+            <img src="http://img3.imgtn.bdimg.com/it/u=3748941237,546001350&amp;fm=26&amp;gp=0.jpg">
+        
+        <h1>19th-day</h1>
+    </div>
+  <div class="nexmoe-post-meta">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2019年08月18日</a>
+    <a><i class="nexmoefont icon-areachart"></i>1.2k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 5 分钟</a>
+    
+    
+  </div>
+  <article>
+    <p>44.程序逻辑问题(<a href="http://ctf5.shiyanbar.com/web/5/index.php" title="程序逻辑问题" target="_blank" rel="noopener">http://ctf5.shiyanbar.com/web/5/index.php</a>)<br>&emsp;&emsp;进入页面后是一个提交框并且可以看到框中已经有数据了，然后有个welcome to simplexue.点提交查询试试，然后是登陆失败。F12看一下，在源代码中发现一个Index.txt点进去看一下，可以看到如下代码<a id="more"></a>:<br>if($_POST[user] &amp;&amp; $_POST[pass]) {<br>    $conn = mysql_connect(“<strong>****</strong>, “<strong><strong>*”, “****</strong></strong>“);<br>    mysql_select_db(“phpformysql”) or die(“Could not select database”);<br>    if ($conn-&gt;connect_error) {<br>        die(“Connection failed: “ . mysql_error($conn));<br>}<br>$user = $_POST[user];<br>$pass = md5($_POST[pass]);</p>
+<p>$sql = “select pw from php where user=’$user’”;<br>$query = mysql_query($sql);<br>if (!$query) {<br>    printf(“Error: %s\n”, mysql_error($conn));<br>    exit();<br>}<br>$row = mysql_fetch_array($query, MYSQL_ASSOC);<br>//echo $row[“pw”];</p>
+<p>  if (($row[pw]) &amp;&amp; (!strcasecmp($pass, $row[pw]))) {<br>    echo “</p><p>Logged in! Key:<strong><strong><strong>**</strong></strong></strong> </p>“;<br>}<br>else {<br>    echo(“<p>Log in failure!</p>“);<p></p>
+<p>  }<br>}<br>很明显应该是一道代码审计类题目，根据题目说是逻辑问题现在来读一下代码。其中的mysql_fetch_array函数从结果集中取得一行作为关联数组，或数字数组，或二者兼有。返回根据从结果集取得的行生成的数组，如果没有更多行则返回 false。strcasecmp比较两个字符串（不区分大小写<br>如果$pass=$row[pw]就返回0.其余情况均不为0.可以看到sql语句是直接拼接在了用户的可控输入上，这种是很容易进行sql注入的，因而需要构造自己的sql语句得到自己想输入的密码：payload:Username’ union select md5(1) #，密码就输入1。然后就解出来了key,这里说明一下。这样输入用户名的方式首先用户名不变保持它的提示用户名，之后在查询中多返回一项密码的md5值而这样查询结果作为直接判断的依据，因而自己输入的md5里面的1就成了密码。因而直接通过判断进行了登陆。<br>45.NSCTF web200(<a href="http://ctf5.shiyanbar.com/web/web200.jpg" title="请解密" target="_blank" rel="noopener">http://ctf5.shiyanbar.com/web/web200.jpg</a>)<br>&emsp;&emsp;进入页面后是一张图片是一个加密的自定义函数也就是我们要写出它的解密函数就能得到key。<br>原加密函数如下:<br><img src="http://ctf5.shiyanbar.com/web/web200.jpg" alt><br>我写出的解密：<br>    $str=a1zLbgQsCESEIqRLwuQAyMwLyq2L5VwBxqGA3RQAyumZ0tmMvSGM2ZwB4tws;<br>    $<em>a=”~88:36e1bg8438e41757d:29cgeb6e48c`GUDTO|;hbmg”;<br>    //_o=strrev($str);<br>    //$num=strlen($_o);<br>    $i=0;<br>    $j=strlen($_a);<br>    echo $j;<br>    $_e=””;<br>    for($i;$i&lt;$j;$i++){<br>        $b=substr($_a,$i,1);<br>        $c=ord($b)-1;<br>        $d=chr($c);<br>        $_e=$_e.$d;<br>    }<br>    echo strrev($_e);<br>&emsp;&emsp;这里说明一下，这道题我是反推过去的，我先顺着函数加密思路看一下，先假设str=abcde,反转后$_o=edcba;之后进入循环解也就是循环五次因为长度为5，第一行的substr是截取字符串，这道题我把它直接想成一个数组也就是数组$_o[]=edcba,因而就给$_c赋值从e-&gt;a.下一行是返回$_d的Ascii值并且+1，在下一行是再把这个Ascii值变成字符。第一次也就是e变成了f,然后把这个f赋值给一个最开始为””的$</em>.这样五次循环下来$<em>=fedcb.然后在进行base64加密，反转rot13就是最后加密的结果。这样分析起来就简单了很多。现在结束例子用本题去写解密代码。首先为了简便先把$_算出来，$</em>=”~88:36e1bg8438e41757d:29cgeb6e48c`GUDTO|;hbmg”;<br>这个也很好算直接:$_=base64_decode(strrev(str_rot13($_str)))，这里的str就是给出的密文。然后刚刚从例子可以看出只是反转后把每个字符都换成了下一个ASCII表中的字符而已，因而循环中把$_的每一个字符都换成上一个ASCII表中的字符即可，然后找一个最开始为””的变量存起来，存起来后再用反转函数最后得出的就是解密结果，上面我自己写的解密代码也就是这个思路，最后拿下了flag.<br>&emsp;&emsp;summary:这道题其实思路是挺简单的，但是我做了还是挺久的有1个小时了，为什么会做这么久也是因为很久没有些C的逻辑代码了，因而一个小循环都绕半天，因而大一那时候练习C还是对现在读代码很有帮助的。还有我觉得自己很赞的一点是不会的时候活用一个简单的例子然后采用类比，就一步一步解出来了，化难为易。像这道题就是很好的例子，本来经过Base64加密的很复杂一大长串字母很多人看到头都晕了更别说解密了，我也是，因而换成简单的abcde来做相同的事，再把要解密的带进这个abcde的思路就解决了，今天get到了，嗯加油！</p>
+
+  </article>
+  
+    
+<div class="nexmoe-post-copyright">
+<i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+<strong>Author：</strong>Cupid<br>
+<strong>Link：</strong><a href="http://yoursite.com/2019/08/18/19th-day/" title="http://yoursite.com/2019/08/18/19th-day/" target="_blank" rel="noopener">http://yoursite.com/2019/08/18/19th-day/</a><br>
+
+  <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+
+</div>
+
+
+  
+  <section class="nexmoe-comment">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.css">
+<div id="gitalk"></div>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '80b2453b6d5f37ad6225',
+        clientSecret: '43e99fa852795c9a7b3eb924b2558c64b84bbdeb',
+        id: window.location.pathname,
+        repo: 'nexmoe.github.io',
+        owner: 'nexmoe',
+        admin: 'nexmoe'
+    })
+    gitalk.render('gitalk')
+</script>
+</section>
+</div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/js/mdui.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+ 
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+ 
+    <script src="https://cdn.jsdelivr.net/npm/smoothscroll-for-websites@1.4.9/SmoothScroll.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script src="/js/app.js?v=1577797662213"></script>
+<script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
+
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
+
+
+
+  
+
+
+
+
+
+</body>
+
+</html>

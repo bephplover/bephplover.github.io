@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  
+  <title>36-day - Cupid&#39;s Blog</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="a new ctfer&#39;s study">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+
+  <link rel="shortcut icon" href="/favicon.ico" type="image/png">
+  <meta name="description" content="脚本关1.key又又找不到了(http://lab1.xseclab.com/xss1_30ac8668cd453e7e387c76b132b140bb/index.php)&amp;emsp;&amp;emsp;进入页面后有个链接，点进去后，说key不在这里。直接用BP抓包看过程。抓到包后送去repeater点击go后出现了提示：href=”./search_key.php”&amp;gt;_到这里找">
+<meta property="og:type" content="article">
+<meta property="og:title" content="36-day">
+<meta property="og:url" content="http://yoursite.com/2019/09/25/36-day/index.html">
+<meta property="og:site_name" content="Cupid&#39;s Blog">
+<meta property="og:description" content="脚本关1.key又又找不到了(http://lab1.xseclab.com/xss1_30ac8668cd453e7e387c76b132b140bb/index.php)&amp;emsp;&amp;emsp;进入页面后有个链接，点进去后，说key不在这里。直接用BP抓包看过程。抓到包后送去repeater点击go后出现了提示：href=”./search_key.php”&amp;gt;_到这里找">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-11-11T14:14:04.919Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="36-day">
+<meta name="twitter:description" content="脚本关1.key又又找不到了(http://lab1.xseclab.com/xss1_30ac8668cd453e7e387c76b132b140bb/index.php)&amp;emsp;&amp;emsp;进入页面后有个链接，点进去后，说key不在这里。直接用BP抓包看过程。抓到包后送去repeater点击go后出现了提示：href=”./search_key.php”&amp;gt;_到这里找">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/atom-one-dark.css">
+   
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
+  <link rel="stylesheet" href="/css/style.css?v=1577797660898">
+</head>
+
+<body class="mdui-drawer-body-left">
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(http://img3.imgtn.bdimg.com/it/u=3748941237,546001350&amp;fm=26&amp;gp=0.jpg)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="Cupid" class="mdui-btn mdui-btn-icon"><img src="/images/namei.png"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="Cupid">
+            <img src="/images/namei.png" alt="Cupid">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>Articles</span>61</div>
+        <div><span>Tags</span>0</div>
+        <div><span>Categories</span>0</div>
+    </div>
+    <ul class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about.html" title="关于博客">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博客
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/PY.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+    </ul>
+    <aside id="nexmoe-sidebar">
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">Social</h3>
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/20238211" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="https://github.com/nexmoe/" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a>
+    </div>
+</div>
+  
+  
+
+  
+  
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">Archive</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2019 Cupid
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://nexmoe.com/hexo-theme-nexmoe.html" target="_blank">Nexmoe</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+    <div class="nexmoe-post-cover"> 
+        
+            <img src="http://img3.imgtn.bdimg.com/it/u=3748941237,546001350&amp;fm=26&amp;gp=0.jpg">
+        
+        <h1>36-day</h1>
+    </div>
+  <div class="nexmoe-post-meta">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2019年09月25日</a>
+    <a><i class="nexmoefont icon-areachart"></i>1.7k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 7 分钟</a>
+    
+    
+  </div>
+  <article>
+    <p>脚本关<br>1.key又又找不到了(<a href="http://lab1.xseclab.com/xss1_30ac8668cd453e7e387c76b132b140bb/index.php" target="_blank" rel="noopener">http://lab1.xseclab.com/xss1_30ac8668cd453e7e387c76b132b140bb/index.php</a>)<br>&emsp;&emsp;进入页面后有个链接，点进去后，说key不在这里。直接用BP抓包看过程。抓到包后送去repeater点击go后出现了提示：href=”./search_key.php”&gt;_到这里找<a id="more"></a>key_<br>直接在链接上将Index.php改为search_key.php再发包试试。拿下了key.<br>&emsp;&emsp;summary:为什么直接点链接进去什么都看不到，但是通过BP转发缺能看到key呢。再仔细重新弄一下过程。首先正常进去网页，然后点入链接，可以看到此时文件名为：no_key_is_here_forever.php，提示很明显了，key不在这个php下面。回到主页面，打开源代码可以看见，这个链接的确是到no_key_is_here_forever.php下的，但链接的名字却是search_key.php，因而看源代码可以清晰看出key应该在这个php下面，所以自己改php路径到这个下面，从而拿到了key.<br>2.快速口算(<a href="http://lab1.xseclab.com/xss2\_0d557e6d2a4ac08b749b61473a075be1/index.php" target="_blank" rel="noopener">http://lab1.xseclab.com/xss2\_0d557e6d2a4ac08b749b61473a075be1/index.php</a>)<br>&emsp;&emsp;又是一道python题，很明显要在两s内口算出并提交人根本算不出，更何况这是随机数，那么只有试试python了，我还没学过。（连运行别人的都不会）在学会了python的运行以及环境配置之后。借鉴了某大佬的脚本。运行后直接跑出了key.<br>3.怎么就是弹不出key呢<br>&emsp;&emsp;进入页面后会看到一个蓝色的疑似跳转链接，但点击后没有反应，ctrl+u查看源代码，发现了提示：<br>var d=eval(b);<br>alert(“key is first 14 chars”+d).在这上面还有3个函数，都是返回false。要知道返回false后那么输出key这个函数就被掩盖掉了。因而这里直接删除上面的返回false的三个函数。<br>然后保存代码到本地，打开后就会弹窗，得到：key is first 14 charsslakfjteslkjsdflkslakfjteslkjsdflkslakfjteslkjsdflkslakfjteslkjsdflkslakfjteslkjsdflkslakfjteslkjsdflkslakfjteslkjsdflkslakfjteslkjsdflkslakfjteslkjsdflkslakfjteslkjsdflk<br>这儿，我刚开始就截取了14个char:sslakfjteslkjs,这样上传key不对，因而仔细看会发现这儿14 char,char应该为chars，因而截取14个char应该为：slakfjteslkjsd.然后上传key就OK了。这里直接截取14个chars是很容易的，但如果长度多了人眼看就麻烦了。因而用php的substr这个简单的函数操作一下：payload:substr($str,0,14).<br>&emsp;&emsp;这道题首先要对script代码有一定了解，以及对于函数的执行结果要清楚的认识，最开始我想直接读取程序弹框的内容，但是人脑在面对大量数据以及正则表达式时的确无能为力，但应懂得利用电脑，人会利用这个工具才能做更多复杂的操作。因而保存到本地里面，运行输出结果。然后就是对截取字符串函数substr的复习吧。<br>4.逗比验证码第一期(<a href="http://lab1.xseclab.com/vcode1_bcfef7eacf7badc64aaf18844cdb1c46/index.php" target="_blank" rel="noopener">http://lab1.xseclab.com/vcode1_bcfef7eacf7badc64aaf18844cdb1c46/index.php</a>)<br>&emsp;&emsp;进入页面后是一个登录框，提示登陆密码是4位纯数字数，第一位不为0，先用superdic生成字典，抓包到BP后，验证码输对，直接爆破密码。爆破出来是1238，在Repeator中改密码为1238，再点击转发，就拿下了key.<br>5.逗比验证码第二期（<a href="http://lab1.xseclab.com/vcode2_a6e6bac0b47c8187b09deb20babc0e85/index.php" target="_blank" rel="noopener">http://lab1.xseclab.com/vcode2_a6e6bac0b47c8187b09deb20babc0e85/index.php</a>）<br>&emsp;&emsp;进入页面后任然是登陆框，不过有一句提示：程序猿：“该死的黑客，我让你绕！我验证一次就让你的验证码失效，看你怎么绕！”<br>Tips:密码是4位数字，首位不是0。<br>也就是说验证码可能会失效，不管先按常爆破一次，很明显没有用了，没有爆破出密码。接下来试试验证码与密码一起爆破。数量太大，不可取。最后试试不输入验证码，输入密码。居然提示的是密码错误，有搞头，直接把验证码清零，然后爆破密码，拿下key.<br>6.逗比验证码第三期(<a href="http://lab1.xseclab.com/vcode3_9d1ea7ad52ad93c04a837e0808b17097/index.php" target="_blank" rel="noopener">http://lab1.xseclab.com/vcode3_9d1ea7ad52ad93c04a837e0808b17097/index.php</a>)<br>&emsp;&emsp;进入页面后，依旧是登陆框。提示如下：Tips:密码是4位数字，首位不是0<br>Tips2: SESSION<br>也就是这一次绕过登陆得在session下手了。还是先抓包，按照第二期做法，还是验证码清0然后居然任然是报错pwd error,哎，那么直接爆破密码，拿下key。<br>7.微笑一下就能过关了(<a href="http://lab1.xseclab.com/base13_ead1b12e47ec7cc5390303831b779d47/index.php" target="_blank" rel="noopener">http://lab1.xseclab.com/base13_ead1b12e47ec7cc5390303831b779d47/index.php</a>)<br>&emsp;&emsp;首先ctrl+u查看源代码，发现href有一个提示，打开这个后缀文件，发现是php代码，接下来进行代码审计。<br>header(“Content-type: text/html; charset=utf-8”);<br>    if (isset($_GET[‘view-source’])) {<br>        show_source(_<em>FILE_</em>);<br>        exit();<br>    } </p>
+<pre><code>include(&apos;flag.php&apos;); 
+
+$smile = 1;  </code></pre><p>   if (!isset ($_GET[‘^<em>^’])) $smile = 0;<br>    if (preg_match (‘/./‘, $_GET[‘^</em>^’])) $smile = 0;<br>    if (preg_match (‘/%/‘, $_GET[‘^<em>^’])) $smile = 0;<br>    if (preg_match (‘/[0-9]/‘, $_GET[‘^</em>^’])) $smile = 0;<br>    if (preg_match (‘/http/‘, $_GET[‘^<em>^’]) ) $smile = 0;<br>    if (preg_match (‘/https/‘, $_GET[‘^</em>^’]) ) $smile = 0;<br>    if (preg_match (‘/ftp/‘, $_GET[‘^<em>^’])) $smile = 0;<br>    if (preg_match (‘/telnet/‘, $_GET[‘^</em>^’])) $smile = 0;<br>    if (preg_match (‘/_/‘, $_SERVER[‘QUERY_STRING’])) $smile = 0;<br>    if ($smile) {<br>        if (@file_exists ($_GET[‘^<em>^’])) $smile = 0;<br>    }<br>    if ($smile) {<br>        $smile = @file_get_contents ($_GET[‘^</em>^’]);<br>        if ($smile === “(●’◡’●)”) die($flag);<br>    }<br>首先可以看到，其包含了flag.php.那么可以用php的协议流直接看一下flag.php中的内容构造payload:file=php://filter/read=convert.base64-encode/recource=flag.php.等一下。这里没有定义file变量，也并不存在文件包含漏洞，因而该方法无效。还是得按代码内容进行构造Url.这里我想错了，重新构造。首先需要设置^<em>^,其次它得内容必须为(●’◡’●)，并且有一段很关键得代码$smile = @file_get_contents ($_GET[‘^</em>^’]);<br>也就是说还得利用file_get_contents得特性才可以，因而构造payload:<br>^<em>^=(●’◡’●),但是这样的代码在Url中肯定是不能出现的，再查询了一下file_get_contents(),这个函数里面的参数可以是data:,&lt;文本数据&gt;。也就是应该构造：^</em>^=data:,&lt;文本数据&gt;，这里还需要看一下代码。因为正则表达式过滤的内容还没有考虑，首先它的内容不能有a-z,0-9,http(s),<em>,telnet,ftp,%.这里这个笑脸中就包含了_所以应当对_进行编码。%5f，这里为什么%5f不会被过滤呢？问题先留这里<br>构造payload:^%5f^=data:,(●’◡’●),拿下flag.<br>&emsp;&emsp;经过对get取参的复习后，我发现了自己的一个错误，这里代码的意思应当是对参数的值进行过滤，而不是对参数本身进行过滤处理。if (preg_match (‘/\</em>/‘, $_SERVER[‘QUERY_STRING’]))其次这里的这一句中的$SERVER这一个变量才是对get本身的参数进行过滤的。所以才会把_转化为%5f.</p>
+
+  </article>
+  
+    
+<div class="nexmoe-post-copyright">
+<i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+<strong>Author：</strong>Cupid<br>
+<strong>Link：</strong><a href="http://yoursite.com/2019/09/25/36-day/" title="http://yoursite.com/2019/09/25/36-day/" target="_blank" rel="noopener">http://yoursite.com/2019/09/25/36-day/</a><br>
+
+  <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+
+</div>
+
+
+  
+  <section class="nexmoe-comment">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.css">
+<div id="gitalk"></div>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '80b2453b6d5f37ad6225',
+        clientSecret: '43e99fa852795c9a7b3eb924b2558c64b84bbdeb',
+        id: window.location.pathname,
+        repo: 'nexmoe.github.io',
+        owner: 'nexmoe',
+        admin: 'nexmoe'
+    })
+    gitalk.render('gitalk')
+</script>
+</section>
+</div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/js/mdui.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+ 
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+ 
+    <script src="https://cdn.jsdelivr.net/npm/smoothscroll-for-websites@1.4.9/SmoothScroll.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script src="/js/app.js?v=1577797660959"></script>
+<script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
+
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
+
+
+
+  
+
+
+
+
+
+</body>
+
+</html>

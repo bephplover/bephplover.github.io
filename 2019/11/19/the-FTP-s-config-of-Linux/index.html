@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  
+  <title>the FTP&#39;s config of Linux - Cupid&#39;s Blog</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="a new ctfer&#39;s study">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+
+  <link rel="shortcut icon" href="/favicon.ico" type="image/png">
+  <meta name="description" content="Linux下的FTP服务器配置环境：服务器：Centos 7客户机： WINDOWS10采用工具:8UFTP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="the FTP&#39;s config of Linux">
+<meta property="og:url" content="http://yoursite.com/2019/11/19/the-FTP-s-config-of-Linux/index.html">
+<meta property="og:site_name" content="Cupid&#39;s Blog">
+<meta property="og:description" content="Linux下的FTP服务器配置环境：服务器：Centos 7客户机： WINDOWS10采用工具:8UFTP">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-11-21T13:18:45.206Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="the FTP&#39;s config of Linux">
+<meta name="twitter:description" content="Linux下的FTP服务器配置环境：服务器：Centos 7客户机： WINDOWS10采用工具:8UFTP">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/atom-one-dark.css">
+   
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
+  <link rel="stylesheet" href="/css/style.css?v=1577797660101">
+</head>
+
+<body class="mdui-drawer-body-left">
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(http://img3.imgtn.bdimg.com/it/u=3748941237,546001350&amp;fm=26&amp;gp=0.jpg)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="Cupid" class="mdui-btn mdui-btn-icon"><img src="/images/namei.png"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="Cupid">
+            <img src="/images/namei.png" alt="Cupid">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>Articles</span>61</div>
+        <div><span>Tags</span>0</div>
+        <div><span>Categories</span>0</div>
+    </div>
+    <ul class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about.html" title="关于博客">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博客
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/PY.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+    </ul>
+    <aside id="nexmoe-sidebar">
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">Social</h3>
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/20238211" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="https://github.com/nexmoe/" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a>
+    </div>
+</div>
+  
+  
+
+  
+  
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">Archive</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2019 Cupid
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://nexmoe.com/hexo-theme-nexmoe.html" target="_blank">Nexmoe</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+    <div class="nexmoe-post-cover"> 
+        
+            <img src="http://img3.imgtn.bdimg.com/it/u=3748941237,546001350&amp;fm=26&amp;gp=0.jpg">
+        
+        <h1>the FTP&#39;s config of Linux</h1>
+    </div>
+  <div class="nexmoe-post-meta">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2019年11月19日</a>
+    <a><i class="nexmoefont icon-areachart"></i>1.2k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 5 分钟</a>
+    
+    
+  </div>
+  <article>
+    <h1 id="Linux下的FTP服务器配置"><a href="#Linux下的FTP服务器配置" class="headerlink" title="Linux下的FTP服务器配置"></a>Linux下的FTP服务器配置</h1><p>环境：服务器：Centos 7<br>客户机： WINDOWS10<br>采用工具:8UFTP<a id="more"></a></p>
+<h3 id="1-安装vsftpd服务"><a href="#1-安装vsftpd服务" class="headerlink" title="1.安装vsftpd服务"></a>1.安装vsftpd服务</h3><p>使用yum install vsftpd可以在线安装vsftpd服务,当然很多Linux系统在安装时候勾选了ftp可能已经装过了。<br>这时候可以使用rpm -q 服务名  这里所有安装的服务都可以这样检查<br>这里服务名为vsftpd</p>
+<p>再用rpm -ql vsftpd就可以看到其相关的文件的文件路径</p>
+<h3 id="2-启停vsftpd服务"><a href="#2-启停vsftpd服务" class="headerlink" title="2.启停vsftpd服务"></a>2.启停vsftpd服务</h3><p>vsftpd服务相对比较简单，在安装完后无需配置即可启动服务，启动和停止的相关命令如下所示：<br>启动vsftpd守护进程:systemctl start vsftpd 或service vsftpd start<br>重启vsftpd守护进程:systemctl restart vsftpd 或service vsftpd restart<br>停止vsftpd守护进程:systemctl stop vsftpd 或service vsftpd stop<br>开放ftp端口:firewall-cmd –add-service = ftp<br>firewall-cmd –add-service = ftp-permanent<br>关闭防火墙:systemctl stop firewalld<br>说明：为什么以上给出了两条命令呢？<br>由于Centos在7之前的版本只有service命令开启服务，在Centos7以后的版本都改为使用systemctl来启停服务了<br>为什么要关闭防火墙？<br>是为了方便客户机与之进行连接通信</p>
+<h3 id="3-vsftpd相关配置文件说明"><a href="#3-vsftpd相关配置文件说明" class="headerlink" title="3.vsftpd相关配置文件说明"></a>3.vsftpd相关配置文件说明</h3><p>服务器vsftpd被安装后,主要的相关文件和目录包括：<br>(1)/etc/vsftpd/目录为vsftpd服务器配置的主目录<br>(2)/etc/vsftpd/vsftpd.conf文件为vsftpd服务器的主要配置文件，缺省情况下其主目录为/var/ftp,任何配置参数修改需要操作此文件<br>(3)/etc/vsftpd/ftpusers定义哪些用户不能登录ftp服务器的用户列表文件<br>(4) /etc/pam.d/vsftpd 定义vsftpd的PAM认证文件。<br>(5) /etc/vsftpd/user_list与/etc/vsftpd/ftpusers一样，不过需要与主配置文件中的<br>vsftpd.conf的”userlist_deny=YES”参数选项配合使用。<br>(6) /var/ftp目录为vsftpd服务器的匿名缺省共享主目录。<br>(7) /usr/doc/vsftpd-3.0.2目录下所有的文档作为vsftpd的帮助文档。<br>(8) /etc/logrotate.d/vsftpd是完成vsftpd运行日志的配置文件。<br>(9) /etc/pam.d/vsftpd为vsftpd指出vsftpd进行PAM认证时所使用的PAM配置文件名，<br>没有该文件，将无法使本地用户登录FTP服务器。<br>(10)/usr/sbin/vsftpd为vsftpd服务器的主程序。<br>(11) /user/lib/system/vsftpd.sevice为CentOS的sytend管理vsftpd服务器所运<br>行的配置脚本。</p>
+<h4 id="3-1vsftpd-conf文件说明"><a href="#3-1vsftpd-conf文件说明" class="headerlink" title="3.1vsftpd.conf文件说明"></a>3.1vsftpd.conf文件说明</h4><p>其位于/etc/vsftpd目录下，通常我们都修改这个文件的各项参数来配置vsftpd。当主机IP固定后，缺省情况下，不需要做任何的修改就可以直接启动vsftpd作为ftp服务器。此时，ftp服务器允许匿名(Anonymous)和Linux系统中的本地账号登录，当不允许匿名上传。</p>
+<h3 id="4-配置vsftp服务器"><a href="#4-配置vsftp服务器" class="headerlink" title="4.配置vsftp服务器"></a>4.配置vsftp服务器</h3><p>vsFTP服务器大致分为三类用户:匿名用户(anonymous)、本地用户(local user)以及虚拟用户(guest)</p>
+<h4 id="4-1匿名用户服务器"><a href="#4-1匿名用户服务器" class="headerlink" title="4.1匿名用户服务器"></a>4.1匿名用户服务器</h4><h4 id="4-2本地用户服务器"><a href="#4-2本地用户服务器" class="headerlink" title="4.2本地用户服务器"></a>4.2本地用户服务器</h4><h3 id="5-配置FTP服务器的实例"><a href="#5-配置FTP服务器的实例" class="headerlink" title="5.配置FTP服务器的实例"></a>5.配置FTP服务器的实例</h3><p>1、建立一台Linux下的FTP服务器，IP地址为192.168.XX.16(XX为学号后两位)。<br>2、允许匿名访问FTP服务器；匿名用户访问的根目录为/var/ftp/doc<br>3、匿名用户不能上传文件，只可以下载文件的权限；<br>4、FTP服务器能够接受最大的连接数为100，同一IP的连接数为2；<br>5、允许本地用户访问FTP服务器；设定本地用户test被约束在自己的主目录；</p>
+<p>1.可以直接使用 ifconfig 网络接口 IP地址 这条命令更改IP为想要的，也可以去网络设置中修改IP为192.168.23.16这里23是我的学号</p>
+<p>2.默认是允许匿名用户访问的，这里说一下主要在/etc/vsftpd/vsftpd.conf配置的几条信息<br>anonymous_enable=YES 这一条便是允许匿名用户访问<br>anon_root =/var/ftp/doc  这是设置匿名用户访问的根目录<br>这样第二个条件就满足了</p>
+<p>3.然后需要修改配置使得匿名用户不能上传文件，只可以下载文件<br>anon_upload_enable=NO</p>
+<p>默认为NO，也就是默认是把=YES注释掉的就为NO</p>
+<p>4.设置ftp最大连接数：max_clients=100<br>设置同一IP的连接数：max_per_ip=2</p>
+<p>5.设置本地用户可以访问FTP服务器：local_enable=YES<br>这里要求锁定本地用户test被约束在自己的主目录，设置chroot_list_enable=YES<br>chroot_list_file设置值为/etc/vsftpd/chroot_list文件，文件中的用户被约束在根目录下，根目录为用户的主目录。<br>这里chroot_local_user=NO让其他的账户不锁定在自己家目录<br>设置local_root=test用户的目录<br>运行以下命令创建test用户<br>useradd test<br>删除用户使用sudo userdel -r newuser<br>运行以下命令修改test用户密码<br>passwd test<br>密码设置为:xf199962<br>接下来使用8UFTP验证试验即可。</p>
+
+  </article>
+  
+    
+<div class="nexmoe-post-copyright">
+<i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+<strong>Author：</strong>Cupid<br>
+<strong>Link：</strong><a href="http://yoursite.com/2019/11/19/the-FTP-s-config-of-Linux/" title="http://yoursite.com/2019/11/19/the-FTP-s-config-of-Linux/" target="_blank" rel="noopener">http://yoursite.com/2019/11/19/the-FTP-s-config-of-Linux/</a><br>
+
+  <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+
+</div>
+
+
+  
+  <section class="nexmoe-comment">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.css">
+<div id="gitalk"></div>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '80b2453b6d5f37ad6225',
+        clientSecret: '43e99fa852795c9a7b3eb924b2558c64b84bbdeb',
+        id: window.location.pathname,
+        repo: 'nexmoe.github.io',
+        owner: 'nexmoe',
+        admin: 'nexmoe'
+    })
+    gitalk.render('gitalk')
+</script>
+</section>
+</div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/js/mdui.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+ 
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+ 
+    <script src="https://cdn.jsdelivr.net/npm/smoothscroll-for-websites@1.4.9/SmoothScroll.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script src="/js/app.js?v=1577797660145"></script>
+<script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
+
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
+
+
+
+  
+
+
+
+
+
+</body>
+
+</html>

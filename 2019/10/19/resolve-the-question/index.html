@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="Hack the box邀请码和注册问题总结">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-12-26T13:43:08.107Z">
+<meta property="og:updated_time" content="2019-12-30T09:55:46.181Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="resolve the question">
 <meta name="twitter:description" content="Hack the box邀请码和注册问题总结">
@@ -193,6 +193,7 @@
 
 <p>将本地文件上传到github的步骤:<br>在没有本地仓库时候先git init把其变成仓库，再使用git add .把项目添加到仓库，再通过git commit -m ‘文件名’将项目提交到仓库，最后通过git push -u origin master把本地仓库的项目推送到远程仓库即上传到了github.</p>
 <p>这里可以使用git add .<br>git commit -m ‘文件夹名’<br>git push -u -origin master</p>
+<p>当windows server 2012设置两张网卡时候，其中一个IP ping不通的。背景:刚开机能Ping通，过一会儿ping不通，这里防火墙也关了的，原因:仔细查找发现自己的win server还装了路由器的功能，在路由器的IPV4常规中发现了这一张ping不通的网卡与另一个存在一处差异，它的静态筛选器是开着的，在删除了这条记录后，发现能够ping通了，很明显静态筛选器，会将死的IP给筛选掉，导致ping不通，因为我设置的另外一个IP是用来做内网实验的，故被判定为静态IP。</p>
 
       
 

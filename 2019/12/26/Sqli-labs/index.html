@@ -11,17 +11,17 @@
   
 
   <link rel="shortcut icon" href="/favicon.ico" type="image/png">
-  <meta name="description" content="0x00前言 由于之前一直对sql注入比较疏忽，导致一些比较难的报错注入，延时注入，或是宽字节注入，堆叠注入。。。等等仍然掌握的不是很好，总的来说对于sql不能很灵活的运用，于是有了爆肝sqli-labs的打算，并再次复习以及学习各类sql注入的原理，以及工具sqlmap的使用。 0x01Sqli-labs介绍 Sqli-libs是一个非常好的SQL注入学习实战平台，涵盖了报错注入、盲注、Upd">
+  <meta name="description" content="0x00前言">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Sqli-labs">
 <meta property="og:url" content="http://yoursite.com/2019/12/26/Sqli-labs/index.html">
 <meta property="og:site_name" content="Cupid&#39;s Blog">
-<meta property="og:description" content="0x00前言 由于之前一直对sql注入比较疏忽，导致一些比较难的报错注入，延时注入，或是宽字节注入，堆叠注入。。。等等仍然掌握的不是很好，总的来说对于sql不能很灵活的运用，于是有了爆肝sqli-labs的打算，并再次复习以及学习各类sql注入的原理，以及工具sqlmap的使用。 0x01Sqli-labs介绍 Sqli-libs是一个非常好的SQL注入学习实战平台，涵盖了报错注入、盲注、Upd">
+<meta property="og:description" content="0x00前言">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-12-31T13:18:06.619Z">
+<meta property="og:updated_time" content="2019-12-31T13:22:03.712Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Sqli-labs">
-<meta name="twitter:description" content="0x00前言 由于之前一直对sql注入比较疏忽，导致一些比较难的报错注入，延时注入，或是宽字节注入，堆叠注入。。。等等仍然掌握的不是很好，总的来说对于sql不能很灵活的运用，于是有了爆肝sqli-labs的打算，并再次复习以及学习各类sql注入的原理，以及工具sqlmap的使用。 0x01Sqli-labs介绍 Sqli-libs是一个非常好的SQL注入学习实战平台，涵盖了报错注入、盲注、Upd">
+<meta name="twitter:description" content="0x00前言">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/atom-one-dark.css">
    
@@ -29,13 +29,13 @@
   
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1577798353338">
+  <link rel="stylesheet" href="/css/style.css?v=1577798618330">
 </head>
 
 <body class="mdui-drawer-body-left">
   
   <div id="nexmoe-background">
-    <div class="nexmoe-bg" style="background-image: url(https://i.loli.net/2019/01/13/5c3aec85a4343.jpg#是博客的背景，又是文章默认头图)"></div>
+    <div class="nexmoe-bg" style="background-image: url(https://s2.best-wallpaper.net/wallpaper/1440x900/1607/Dragon-Ball-classic-anime_1440x900.jpg#是博客的背景，又是文章默认头图)"></div>
     <div class="mdui-appbar mdui-shadow-0">
       <div class="mdui-toolbar">
         <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
@@ -122,7 +122,7 @@
         <div class="nexmoe-post">
     <div class="nexmoe-post-cover"> 
         
-            <img src="https://i.loli.net/2019/01/13/5c3aec85a4343.jpg#是博客的背景，又是文章默认头图">
+            <img src="https://s2.best-wallpaper.net/wallpaper/1440x900/1607/Dragon-Ball-classic-anime_1440x900.jpg#是博客的背景，又是文章默认头图">
         
         <h1>Sqli-labs</h1>
     </div>
@@ -134,8 +134,7 @@
     
   </div>
   <article>
-    <a id="more"></a>
-<h1>0x00前言</h1>
+    <h1>0x00前言</h1><a id="more"></a>
 由于之前一直对sql注入比较疏忽，导致一些比较难的报错注入，延时注入，或是宽字节注入，堆叠注入。。。等等仍然掌握的不是很好，总的来说对于sql不能很灵活的运用，于是有了爆肝sqli-labs的打算，并再次复习以及学习各类sql注入的原理，以及工具sqlmap的使用。
 <h1>0x01Sqli-labs介绍</h1>
 Sqli-libs是一个非常好的SQL注入学习实战平台，涵盖了报错注入、盲注、Update注入、INSert注入、Heather注入、二次注入、绕过WAF等等，是一个比较全面的注入平台，它可以直接部署在本地，下载一个phpstudy即可打开，当然赵总的BUU平台上也有这个平台。
@@ -186,7 +185,7 @@ Sqli-libs是一个非常好的SQL注入学习实战平台，涵盖了报错注�
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1577798353388"></script>
+<script src="/js/app.js?v=1577798618379"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
 
 

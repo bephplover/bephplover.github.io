@@ -312,7 +312,7 @@ Sqli-libs是一个非常好的SQL注入学习实战平台，涵盖了报错注�
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1>1 引言<h1>
+        <h1>1 引言</h1>
 ## 1.1 漏洞背景 ##
 MetInfo是中国米拓信息技术有限公司的一套使用PHP和Mysql开发的内容管理系统（CMS）。而Metinfo 6.0.0以及Metlnfo5.3.x版本中存在安全漏洞。远程攻击者在登陆进admin后台后，可通过向admin/column/save.php文件发送‘module’参数利用该漏洞向某个路径下写入代码并让其执行。
 exp:该漏洞是metinfo5.3版本下的一个任意变量覆盖导致的任意文件上传，因而可以上传我们的一句话木马，并用蚁剑进行连接，在获取到了webshell的情况下，我们再对其进行简单的域信息收集，路由信息收集，然后对其进行简单的内网渗透。
@@ -410,7 +410,7 @@ Payload:admin/column/save.php?name=123&action=editor&foldername=upload&module=22
 <p>图6-2远程连接靶机成功<br>接下来我们在靶机上对其内网中的机器进行内网渗透。</p>
 <h2 id="6-2在靶机上进行内网渗透"><a href="#6-2在靶机上进行内网渗透" class="headerlink" title="6.2在靶机上进行内网渗透"></a>6.2在靶机上进行内网渗透</h2><h1 id="7-漏洞的修复与防范"><a href="#7-漏洞的修复与防范" class="headerlink" title="7 漏洞的修复与防范"></a>7 漏洞的修复与防范</h1><p>通过对原理的分析，得出了以下3种防范与修复漏洞的方法如下所示：<br>1.首先这个漏洞是出现在metinfo的固定版本内，因而可以直接更新到最新版本来解决这个漏洞。<br>2.管理后台应当隐藏起来，并且管理员尽量不要使用默认的用户admin,以及使用弱密码，最好在登录验证中自行添加上验证码进行验证，降低黑客入侵的几率。<br>3.其内网的机器不应当有如此简单而又明显的phpadmin漏洞，至少应当将其隐藏，或者更新到最新版本来解决这个问题。</p>
 <p>本文参考文章：<a href="https://www.freebuf.com/news/193748.html" target="_blank" rel="noopener">https://www.freebuf.com/news/193748.html</a></p>
-</h1></h1>
+
       
 
       

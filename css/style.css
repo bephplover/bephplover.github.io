@@ -756,6 +756,20 @@ article li p {
 article dd {
   margin: 0 0 0 2em;
 }
+article table {
+  color: #5b6064;
+  border-spacing: 0;
+  text-align: center;
+  border-collapse: collapse;
+  -webkit-box-shadow: 0 0 0 1px #eee;
+  box-shadow: 0 0 0 1px #eee;
+  display: inline-block;
+  max-width: 100%;
+  overflow: auto;
+  white-space: nowrap;
+  margin: auto;
+  border-radius: 6px;
+}
 article table::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -764,19 +778,19 @@ article table::-webkit-scrollbar-thumb {
   background-color: #888;
 }
 article table thead {
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #f3b;
   background-color: #f8f8f8;
 }
 article table thead tr {
   background-color: #f8f8f8;
 }
 article table th {
-  border-right: 1px solid #eee;
+  border-right: 1px solid #f3b;
   padding: 13px 26px;
   font-weight: 400;
 }
 article table td {
-  border-right: 1px solid #eee;
+  border-right: 1px solid #f3b;
   padding: 13px 26px;
 }
 article table th:last-child,

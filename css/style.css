@@ -476,10 +476,9 @@ article p {
 }
 article code {
   background-color: rgba(27,31,35,0.05);
-  border-radius: 6px;
+  border-radius: 0px;
   font-size: 85%;
   padding: 0.2em 0.4em;
-  border: 1px solid #d7dae2;
 }
 article code::-webkit-scrollbar {
   width: 10px;
@@ -490,39 +489,14 @@ article code::-webkit-scrollbar-thumb {
   background-color: #888;
 }
 article pre {
-  border-radius: 6px;
+  border-radius: 0px;
   overflow: hidden;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  margin: 20px 0;
   position: relative;
   background: #282c34;
-}
-article pre::before {
-  content: "";
-  background: #282c34;
-  height: 32px;
-  margin-bottom: 0;
-  display: block;
-}
-article pre::after {
-  content: " ";
-  position: absolute;
-  border-radius: 50%;
-  background: #ff5f56;
-  width: 12px;
-  height: 12px;
-  top: 0;
-  left: 12px;
-  margin-top: 12px;
-  -webkit-box-shadow: 20px 0 #ffbd2e, 40px 0 #27c93f;
-  box-shadow: 20px 0 #ffbd2e, 40px 0 #27c93f;
 }
 article pre code {
   position: relative;
   padding: 0 5px;
-  display: inline-block;
-  padding-left: 45px !important;
   border: none;
   border-radius: 0;
   font-size: 100%;

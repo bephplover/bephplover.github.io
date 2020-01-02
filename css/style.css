@@ -482,8 +482,8 @@ article code {
   border: 1px solid #d7dae2;
 }
 article code::-webkit-scrollbar {
-  width: 100px;
-  height: 100px;
+  width: 10px;
+  height: 10px;
 }
 article code::-webkit-scrollbar-thumb {
   border-radius: 6px;
@@ -496,11 +496,11 @@ article pre {
   box-sizing: border-box;
   margin: 20px 0;
   position: relative;
-  background: #282c34;
+  background: #fdd;
 }
 article pre::before {
   content: "";
-  background: #282c34;
+  background: #fdd;
   height: 32px;
   margin-bottom: 0;
   display: block;
@@ -540,7 +540,7 @@ article pre code::after {
   overflow: hidden;
   padding: 1px 0;
   padding-left: 12px;
-  background: #282c34;
+  background: #fdd;
 }
 article a {
   -webkit-transition: all 0.35s;
@@ -755,20 +755,6 @@ article li p {
 }
 article dd {
   margin: 0 0 0 2em;
-}
-article table {
-  color: #5b6064;
-  border-spacing: 0;
-  text-align: center;
-  border-collapse: collapse;
-  -webkit-box-shadow: 0 0 0 1px #eee;
-  box-shadow: 0 0 0 1px #eee;
-  display: inline-block;
-  max-width: 100%;
-  overflow: auto;
-  white-space: nowrap;
-  margin: auto;
-  border-radius: 6px;
 }
 article table::-webkit-scrollbar {
   width: 6px;

@@ -27,7 +27,7 @@
   
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1577954173335">
+  <link rel="stylesheet" href="/css/style.css?v=1577955019945">
 </head>
 
 <body class="mdui-drawer-body-left">
@@ -152,13 +152,13 @@
 <h2 id="操作符"><a href="#操作符" class="headerlink" title="操作符"></a>操作符</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">还有and,or,not分别代表与或非</span><br><span class="line"></span><br><span class="line">## python之for循环 ##</span><br><span class="line">实例：L=[&apos;Adam&apos;,&apos;Lisa&apos;,Bart]</span><br><span class="line">      for name in L:</span><br><span class="line">		  print name</span><br><span class="line">注意：name这个变量是在for循环中定义的，意思是，依次取出list中的每一个元素，并把元素赋值给name,然后执行for循环体。</span><br><span class="line">另一种循环是while循环，while循环不会迭代list或tuple的元素，而是根据表达式判断循环是否结束。break退出循环，continue继续循环。</span><br><span class="line">python之什么是dict</span><br><span class="line">我们把名字称为key,对应的成绩称为value.</span><br><span class="line">举例：d=&#123;</span><br><span class="line">			&apos;Adam&apos;:95,</span><br><span class="line">			&apos;Lisa&apos;:85,</span><br><span class="line">			&apos;Bart&apos;:59</span><br><span class="line">&#125;</span><br><span class="line">花括号&#123;&#125;表示这是一个dict，然后按照key:value，写出来即可，最后一个key:value的逗号可以省略。由于dict也是集合，len()函数可以计算任意集合大小。</span><br><span class="line">dict第一个特点是查找速度快，无论dict有10个元素还是10万个元素，查找速度都一样，而list得查找速度随着元素增加而逐渐下降。但dict的缺点就是占用内存大，还会浪费很多内容，list正好相反，占用内存小。</span><br><span class="line">由于dict是按key查找，所以，在一个dict中，key不能重复。</span><br><span class="line">dict的第二个特点就是存储的key-value是没有顺序的。这和list不一样。</span><br><span class="line">dict的第三个特点是作为key的元素必须不可变。list是可变的。</span><br><span class="line">可以通过for循环遍历dict的key:</span><br><span class="line">for key in d:</span><br><span class="line">由于通过key可以获取相应的value,因此，在循环体内，可以获取到value的值。</span><br><span class="line">set的内部结构和dict很像，唯一区别是不存储value.因此判断一个元素是否在set中速度很快。判断用&apos;&apos; in s.如果在返回true,不在返回false.</span><br><span class="line">set存储的元素也是没有顺序的</span><br><span class="line">set的元素是tuple,因此for循环的变量被依次赋值为tuple</span><br><span class="line">set的更新调用add和remove方法。例子：s =set[(1,2,3)]</span><br><span class="line">s.add(3),s.remove(3)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## python3.0运算 ##</span><br><span class="line">在python2的版本中如果采用100/8得到的是12的答案也就是采用了floor向下取整的做法，但在python3.0中除法可以直接得到12.5的准确值。不过python3也提供了之前的运算方法采用100//8就还是可以得到12的值。</span><br><span class="line">在python中的幂运算是**,例如</span><br></pre></td></tr></table></figure>
 
 <p>3**2=9</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在python中%是取余运算：</span><br></pre></td></tr></table></figure>
+<figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在<span class="keyword">python</span>中%是取余运算：</span><br></pre></td></tr></table></figure>
 
 <p>5%2=1</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">运算优先级问题：与数学中运算顺序一致</span><br><span class="line"></span><br><span class="line">之前的运算都为单目操作符，而and是二元操作符</span><br></pre></td></tr></table></figure>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">运算优先级问题：与数学中运算顺序一致</span><br><span class="line"></span><br><span class="line">之前的运算都为单目操作符，而<span class="keyword">and</span>是二元操作符</span><br></pre></td></tr></table></figure>
 
 <p>&lt;&lt;&lt;（3&lt;4）and(4&lt;5)<br>&lt;&lt;&lt;True</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## Python3学习 ##</span><br><span class="line"></span><br><span class="line">## 条件分支 ##</span><br><span class="line">elif是else if的简写，在书写条件分支语句时候应该思考程序的复杂度，不必要的循环以及不必要的判断操作可以减去的话就减去了程序的复杂度。加快了CPU运行的时间</span><br><span class="line"></span><br><span class="line">##三元操作符##</span><br></pre></td></tr></table></figure>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## Python3学习 ##</span><br><span class="line"></span><br><span class="line">## 条件分支 ##</span><br><span class="line">elif是else <span class="keyword">if</span>的简写，在书写条件分支语句时候应该思考程序的复杂度，不必要的循环以及不必要的判断操作可以减去的话就减去了程序的复杂度。加快了CPU运行的时间</span><br><span class="line"></span><br><span class="line">##三元操作符##</span><br></pre></td></tr></table></figure>
 
 <p>x,y=4,5<br>if x&lt;y:<br>    small=x<br>else<br>    small = y<br>以上语句可以简化为<br>small= x if x &lt;y else y</p>
 <pre><code>断言
@@ -206,7 +206,7 @@ assert 3&gt;4
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1577954173413"></script>
+<script src="/js/app.js?v=1577955020015"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
 
 

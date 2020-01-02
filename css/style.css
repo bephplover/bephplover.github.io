@@ -476,21 +476,15 @@ article p {
 }
 article code {
   background-color: rgba(27,31,35,0.05);
-  border-radius: 0px;
-  font-size: 85%;
   padding: 0.2em 0.4em;
-}
-article code::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-article code::-webkit-scrollbar-thumb {
-  border-radius: 6px;
-  background-color: #888;
+  border-radius: 10px;
+  font-size: 100%;
 }
 article pre {
-  border-radius: 0px;
-  overflow: hidden;
+  border-radius: 6px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 20px 0;
   position: relative;
   background: #282c34;
 }

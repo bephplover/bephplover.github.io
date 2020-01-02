@@ -778,27 +778,27 @@ article table::-webkit-scrollbar-thumb {
   background-color: #888;
 }
 article table thead {
-  border-bottom: 1px solid #f3b;
+  border-bottom: 1px solid #eee;
   background-color: #f8f8f8;
 }
 article table thead tr {
   background-color: #f8f8f8;
 }
 article table th {
-  border-right: 1px solid #f3b;
-  padding: 13px 26px;
+  border-right: 1px solid #eee;
+  padding: 0px 0px;
   font-weight: 400;
 }
 article table td {
-  border-right: 1px solid #f3b;
-  padding: 13px 26px;
+  border-right: 4px solid #eee;
+  padding: 2px 2px;
 }
 article table th:last-child,
 article table td:last-child {
   border: none;
 }
 article table tr {
-  background-color: #fff;
+  background-color: #fdd;
 }
 article table tr:nth-child(2n) {
   background-color: #f8f8f8;

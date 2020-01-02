@@ -490,11 +490,11 @@ article p {
     line-height:24px
 }
 article code {
-    /*background-color: rgba(27,31,35,.05);*/
+    background-color: rgba(27,31,35,.05);
     border-radius: 6px;
     font-size: 85%;
     padding: .2em .4em;
-    /*border: 1px solid #d7dae2;*/
+    border: 1px solid #d7dae2;
 }
 article code::-webkit-scrollbar {
     width:10px;

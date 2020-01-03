@@ -18,7 +18,7 @@
 <meta property="og:site_name" content="Cupid&#39;s Blog">
 <meta property="og:description" content="Hack the box邀请码和注册问题总结">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-12-30T09:55:46.181Z">
+<meta property="og:updated_time" content="2020-01-03T01:58:14.777Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="resolve the question">
 <meta name="twitter:description" content="Hack the box邀请码和注册问题总结">
@@ -27,7 +27,7 @@
   
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1578016563882">
+  <link rel="stylesheet" href="/css/style.css?v=1578016896273">
 </head>
 
 <body class="mdui-drawer-body-left">
@@ -171,7 +171,7 @@
     </div>
   <div class="nexmoe-post-meta">
     <a><i class="nexmoefont icon-calendar-fill"></i>2019年10月19日</a>
-    <a><i class="nexmoefont icon-areachart"></i>683 字</a>
+    <a><i class="nexmoefont icon-areachart"></i>739 字</a>
     <a><i class="nexmoefont icon-time-circle-fill"></i>大概 3 分钟</a>
     
     
@@ -195,8 +195,17 @@
 <figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ( (<span class="keyword">string</span>)$_POST[<span class="string">'param1'</span>] !==  (<span class="keyword">string</span>)$_POST[<span class="string">'param2'</span>] &amp;&amp; md5($_POST[<span class="string">'param1'</span>]) === md5($_POST[<span class="string">'param2'</span>]))&#123;</span><br><span class="line">    echo <span class="string">"yes"</span>;</span><br><span class="line">    &#125; </span><br><span class="line">param1=%4d%c9%68%ff%0e%e3%5c%20%95%72%d4%77%7b%72%15%87%d3%6f%a7%b2%1b%dc%56%b7%4a%3d%c0%78%3e%7b%95%18%af%bf%a2%00%a8%28%4b%f3%6e%8e%4b%55%b3%5f%42%75%93%d8%49%67%6d%a0%d1%55%5d%83%60%fb%5f%07%fe%a2&amp;param2=%4d%c9%68%ff%0e%e3%5c%20%95%72%d4%77%7b%72%15%87%d3%6f%a7%b2%1b%dc%56%b7%4a%3d%c0%78%3e%7b%95%18%af%%a2%02%a8%28%4b%f3%6e%8e%4b%55%b3%5f%42%75%93%d8%49%67%6d%a0%d1%d5%5d%83%60%fb%5f%07%fe%a2</span><br></pre></td></tr></table></figure>
 
 <p>将本地文件上传到github的步骤:<br>在没有本地仓库时候先git init把其变成仓库，再使用git add .把项目添加到仓库，再通过git commit -m ‘文件名’将项目提交到仓库，最后通过git push -u origin master把本地仓库的项目推送到远程仓库即上传到了github.</p>
-<p>这里可以使用git add .<br>git commit -m ‘文件夹名’<br>git push -u -origin master</p>
+<p>这里可以使用</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">add</span><span class="bash"> .</span></span><br><span class="line">git commit -m <span class="string">'文件夹名'</span></span><br><span class="line">git push -u -origin master</span><br></pre></td></tr></table></figure>
+
 <p>当windows server 2012设置两张网卡时候，其中一个IP ping不通的。背景:刚开机能Ping通，过一会儿ping不通，这里防火墙也关了的，原因:仔细查找发现自己的win server还装了路由器的功能，在路由器的IPV4常规中发现了这一张ping不通的网卡与另一个存在一处差异，它的静态筛选器是开着的，在删除了这条记录后，发现能够ping通了，很明显静态筛选器，会将死的IP给筛选掉，导致ping不通，因为我设置的另外一个IP是用来做内网实验的，故被判定为静态IP。</p>
+<p>hexo删除无用的标签和索引<br>有些目录或者标签为0却依然要显示，解决办法:</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">hexo clean</span></span><br></pre></td></tr></table></figure>
+
+<p>当hexo出错时例如:node_modules文件出错直接删除掉<br>然后</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">npm</span> i</span><br></pre></td></tr></table></figure>
+
+<p>重新装</p>
 
   </article>
   
@@ -242,7 +251,7 @@
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1578016563920"></script>
+<script src="/js/app.js?v=1578016896313"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
 
 

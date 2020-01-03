@@ -3,7 +3,7 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
   
-  <title>23-day - Cupid&#39;s Blog</title>
+  <title>Categories：密码学 - Cupid&#39;s Blog</title>
   <meta charset="UTF-8">
   <meta name="description" content="a new ctfer&#39;s study">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -11,23 +11,22 @@
   
 
   <link rel="shortcut icon" href="/images/4023.gif" type="image/png">
-  <meta name="description" content="54.让我进去(http://ctf5.shiyanbar.com/web/kzhan.php)&amp;emsp;&amp;emsp;进入页面前有提示：Hint:你可能希望知道服务器端发生了什么。。这个服务器端怎么才能进到呢，进入页面后显示admins only然后是一个登陆框还显示：If you have the correct credentials, log in below. If not, pleas">
-<meta property="og:type" content="article">
-<meta property="og:title" content="23-day">
-<meta property="og:url" content="http://yoursite.com/2019/08/22/23-day/index.html">
+  <meta name="description" content="a new ctfer&apos;s study">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Cupid&#39;s Blog">
+<meta property="og:url" content="http://yoursite.com/categories/密码学/index.html">
 <meta property="og:site_name" content="Cupid&#39;s Blog">
-<meta property="og:description" content="54.让我进去(http://ctf5.shiyanbar.com/web/kzhan.php)&amp;emsp;&amp;emsp;进入页面前有提示：Hint:你可能希望知道服务器端发生了什么。。这个服务器端怎么才能进到呢，进入页面后显示admins only然后是一个登陆框还显示：If you have the correct credentials, log in below. If not, pleas">
+<meta property="og:description" content="a new ctfer&apos;s study">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-24T02:09:58.829Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="23-day">
-<meta name="twitter:description" content="54.让我进去(http://ctf5.shiyanbar.com/web/kzhan.php)&amp;emsp;&amp;emsp;进入页面前有提示：Hint:你可能希望知道服务器端发生了什么。。这个服务器端怎么才能进到呢，进入页面后显示admins only然后是一个登陆框还显示：If you have the correct credentials, log in below. If not, pleas">
+<meta name="twitter:title" content="Cupid&#39;s Blog">
+<meta name="twitter:description" content="a new ctfer&apos;s study">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/atom-one-dark.css">
   
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1578016564759">
+  <link rel="stylesheet" href="/css/style.css?v=1578016565850">
 </head>
 
 <body class="mdui-drawer-body-left">
@@ -162,58 +161,36 @@
   </div>
   <div id="nexmoe-content">
     <div class="nexmoe-primary">
-        <div class="nexmoe-post">
-    <div class="nexmoe-post-cover"> 
-        
-            <img src="http://p0.ssl.cdn.btime.com/t01cd55c4b5ab3036c2.jpg#是博客的背景，又是文章默认头图">
-        
-        <h1>23-day</h1>
+        <section class="nexmoe-posts" id="brand-waterfall">
+    
+    <div class="nexmoe-post">
+        <a href="/2019/10/04/review-of-AES/">
+            <div class="nexmoe-post-cover mdui-ripple"> 
+                
+                    <img src="http://p0.ssl.cdn.btime.com/t01cd55c4b5ab3036c2.jpg#是博客的背景，又是文章默认头图" alt="review of AES">
+                
+                <h1>review of AES</h1>
+            </div>
+        </a>
+        <div class="nexmoe-post-meta">
+            <a><i class="nexmoefont icon-calendar-fill"></i>2019年10月04日</a>
+            <a><i class="nexmoefont icon-areachart"></i>329 字</a>
+            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 1 分钟</a>
+            
+                <a class="nexmoefont icon-appstore-fill -link" href="/categories/密码学/">密码学</a>
+            
+            
+        </div>
+        <article>
+            
+            <h2 id="AES"><a href="#AES" class="headerlink" title="AES"></a>AES</h2><p>AES(Advanced Encryption Standard)<br>对称加密算法也就是加密和解密用相同的密钥。<br>AES是一种分组密码，分组密码也就是把明文分成一组一组的，每组长度相等，每次加密一组数据，直到加密完整个明文。再AES标准规范中，分组长度只能是128位，也就是说，每个分组为16个字节（每个字节8位）。密钥的长度可以使用128位、192位、256位。密钥长度不同，推荐加密轮数也不同。<br>AES     密钥长度  分组长度    加密轮数<br>AES-128 4         4          10<br>AES-192 6         4          12<br>AES-256 8         4          14<br>AES的处理单位是字节，一般地，明文分组用字节单位的正方形矩阵描述，称为状态矩阵。在算法的每一轮，状态矩阵的内容不断发生变化，最后的结果作为密文输出。<br>AES-192解决办法<br>首先采用自己设计的扩展方法扩展随机生成的明文与密钥。然后在类之中写入方法，分别是密钥扩展，轮密钥加，字节替代，行移位（这里解密就不说了类似的）。然后用明文所存储的变量调用这些方法，并采用循环，最后达到12轮的加密。</p>
+
+            
+        </article>
     </div>
-  <div class="nexmoe-post-meta">
-    <a><i class="nexmoefont icon-calendar-fill"></i>2019年08月22日</a>
-    <a><i class="nexmoefont icon-areachart"></i>485 字</a>
-    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 2 分钟</a>
     
-    
-  </div>
-  <article>
-    <p>54.让我进去(<a href="http://ctf5.shiyanbar.com/web/kzhan.php" title="让我进去" target="_blank" rel="noopener">http://ctf5.shiyanbar.com/web/kzhan.php</a>)<br>&emsp;&emsp;进入页面前有提示：Hint:你可能希望知道服务器端发生了什么。。这个服务器端怎么才能进到呢，进入页面后显示admins only然后是一个登陆框还显示：If you have the correct credentials, log in below. If not, please LEAVE.F12看一下，没有其他重要线索，现在用BP抓包看一下，在cookie中发现了一个奇怪的参数source=0把它改为1发包出去后得到提示代码<a id="more"></a>：<br>$flag = “XXXXXXXXXXXXXXXXXXXXXXX”;<br>$secret = “XXXXXXXXXXXXXXX”; // This secret is 15 characters long for security!</p>
-<p>$username = $_POST[“username”];<br>$password = $_POST[“password”];</p>
-<p>if (!empty($_COOKIE[“getmein”])) {<br>    if (urldecode($username) === “admin” &amp;&amp; urldecode($password) != “admin”) {<br>        if ($COOKIE[“getmein”] === md5($secret . urldecode($username . $password))) {<br>            echo “Congratulations! You are a registered user.\n”;<br>            die (“The flag is “. $flag);<br>        }<br>        else {<br>            die (“Your cookies don’t match up! STOP HACKING THIS SITE.”);<br>        }<br>    }<br>    else {<br>        die (“You are not an admin! LEAVE.”);<br>    }<br>}</p>
-<p>setcookie(“sample-hash”, md5($secret . urldecode(“admin” . “admin”)), time() + (60 * 60 * 24 * 7));</p>
-<p>if (empty($_COOKIE[“source”])) {<br>    setcookie(“source”, 0, time() + (60 * 60 * 24 * 7));<br>}<br>else {<br>    if ($_COOKIE[“source”] != 0) {<br>        echo “”; // This source code is outputted here<br>    }<br>}<br>阅读代码可以发现首先必须要求一个cookie叫getmein,其次username的urldecode需要等于admin,password的Urldecode不能等于admin,其次cookie getmein需要等于md5的($secret . urldecode($username . $password)).现在就需要构造了，首先构造一个叫getmein的cookie,其次这个getmein的值为md5的这一串。username=admin,password=12345将他们Url编码后为：%61%64%6d%69%6e%2e%31%32%33%34%35，secret=15个1，用.链接之后再md5传入cookie看一下。getmein=2861c306fc5e3dd08048dd533eaabddc这样得不到正确答案，应该还有什么问题没有注意到。setcookie(“sample-hash”, md5($secret . urldecode(“admin” . “admin”)), time() + (60 * 60 * 24 * 7));这儿它的setcookie的方式值得注意编码的时候明明都是admin admin意思是password必须也为admin也就是password应该是admin+绕过判断的东西。从他人的WP中学习到了一种叫哈希长度扩展攻击。关于什么叫md5扩展攻击，只能留一个博文慢慢学习了：<a href="https://www.cnblogs.com/p00mj/p/6288337.html" title="hash扩展攻击" target="_blank" rel="noopener">https://www.cnblogs.com/p00mj/p/6288337.html</a></p>
-
-  </article>
-  
-    
-<div class="nexmoe-post-copyright">
-<i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
-<strong>Author：</strong>Cupid<br>
-<strong>Link：</strong><a href="http://yoursite.com/2019/08/22/23-day/" title="http://yoursite.com/2019/08/22/23-day/" target="_blank" rel="noopener">http://yoursite.com/2019/08/22/23-day/</a><br>
-
-  <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
-
-</div>
-
-
-  
-  <section class="nexmoe-comment">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.css">
-<div id="gitalk"></div>
-<script src="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.js"></script>
-<script type="text/javascript">
-    var gitalk = new Gitalk({
-        clientID: '80b2453b6d5f37ad6225',
-        clientSecret: '43e99fa852795c9a7b3eb924b2558c64b84bbdeb',
-        id: window.location.pathname,
-        repo: 'nexmoe.github.io',
-        owner: 'nexmoe',
-        admin: 'nexmoe'
-    })
-    gitalk.render('gitalk')
-</script>
 </section>
-</div>
+
     </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/js/mdui.min.js"></script>
@@ -227,7 +204,7 @@
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1578016564797"></script>
+<script src="/js/app.js?v=1578016565890"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
 
 

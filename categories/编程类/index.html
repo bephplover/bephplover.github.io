@@ -3,7 +3,7 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
   
-  <title>Variable-Cover - Cupid&#39;s Blog</title>
+  <title>Categories：编程类 - Cupid&#39;s Blog</title>
   <meta charset="UTF-8">
   <meta name="description" content="a new ctfer&#39;s study">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -11,23 +11,22 @@
   
 
   <link rel="shortcut icon" href="/images/4023.gif" type="image/png">
-  <meta name="description" content="初识变量覆盖 变量覆盖我个人的理解就是攻击者利用一些手段改变了程序中定义了变量的值。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Variable-Cover">
-<meta property="og:url" content="http://yoursite.com/2019/12/18/Variable-Cover/index.html">
+  <meta name="description" content="a new ctfer&apos;s study">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Cupid&#39;s Blog">
+<meta property="og:url" content="http://yoursite.com/categories/编程类/index.html">
 <meta property="og:site_name" content="Cupid&#39;s Blog">
-<meta property="og:description" content="初识变量覆盖 变量覆盖我个人的理解就是攻击者利用一些手段改变了程序中定义了变量的值。">
+<meta property="og:description" content="a new ctfer&apos;s study">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-12-31T15:02:05.998Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Variable-Cover">
-<meta name="twitter:description" content="初识变量覆盖 变量覆盖我个人的理解就是攻击者利用一些手段改变了程序中定义了变量的值。">
+<meta name="twitter:title" content="Cupid&#39;s Blog">
+<meta name="twitter:description" content="a new ctfer&apos;s study">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/atom-one-dark.css">
   
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1578015809595">
+  <link rel="stylesheet" href="/css/style.css?v=1578015813222">
 </head>
 
 <body class="mdui-drawer-body-left">
@@ -149,62 +148,35 @@
   </div>
   <div id="nexmoe-content">
     <div class="nexmoe-primary">
-        <div class="nexmoe-post">
-    <div class="nexmoe-post-cover"> 
-        
-        <img src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1084068393,2838998916&fm=26&gp=0.jpg">
-        
-        <h1>Variable-Cover</h1>
+        <section class="nexmoe-posts" id="brand-waterfall">
+    
+    <div class="nexmoe-post">
+        <a href="/2019/09/26/python-study/">
+            <div class="nexmoe-post-cover mdui-ripple"> 
+                
+                    <img src="http://p0.ssl.cdn.btime.com/t01cd55c4b5ab3036c2.jpg#是博客的背景，又是文章默认头图" alt="python-study">
+                
+                <h1>python-study</h1>
+            </div>
+        </a>
+        <div class="nexmoe-post-meta">
+            <a><i class="nexmoefont icon-calendar-fill"></i>2019年09月26日</a>
+            <a><i class="nexmoefont icon-areachart"></i>3.3k 字</a>
+            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 14 分钟</a>
+            
+                <a class="nexmoefont icon-appstore-fill -link" href="/categories/编程类/">编程类</a>
+            
+            
+        </div>
+        <article>
+            
+            <h1 id="python学习"><a href="#python学习" class="headerlink" title="python学习"></a>python学习</h1><p>&emsp;&emsp;python是用来解释执行的，运行速度较慢，但代码数量较少
+            
+        </p></article>
     </div>
-  <div class="nexmoe-post-meta">
-    <a><i class="nexmoefont icon-calendar-fill"></i>2019年12月18日</a>
-    <a><i class="nexmoefont icon-areachart"></i>242 字</a>
-    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 1 分钟</a>
     
-    
-  </div>
-  <article>
-    <h2>初识变量覆盖</h2>
-变量覆盖我个人的理解就是攻击者利用一些手段改变了程序中定义了变量的值。<a id="more"></a>
-<h3><font color="orange">parse_str()</font></h3>
-首先说一下parse\_str()这个函数，这函数是把传入的string类型的参数，直接作为变量使用，当然可以设置第二个参数，这样会存入固定的数组中，下面看一个它的例子:
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$a=<span class="number">123</span>;</span><br><span class="line">parse_str($_GET[<span class="string">'b'</span>]);</span><br><span class="line"><span class="keyword">echo</span> $a;</span><br></pre></td></tr></table></figure>
-
-<p>这里当我们在url中输入b=a=abc时，页面上打印的竟然变成了abc.这就叫做变量覆盖。<br>当我们传入参数后，原来的语句就变成了parse_str(‘a=abc’),这时候根据函数parse_str的功能就会自动创建$a=abc,导致原来的$a的值被覆盖掉。</p>
-<h3><font color="orange">$$的使用</font></h3>
-前文在复习php时候说过$$是可变变量，这样的使用同样会造成变量覆盖漏洞，下面同样举个简单的例子:
-
-  </article>
-  
-    
-<div class="nexmoe-post-copyright">
-<i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
-<strong>Author：</strong>Cupid<br>
-<strong>Link：</strong><a href="http://yoursite.com/2019/12/18/Variable-Cover/" title="http://yoursite.com/2019/12/18/Variable-Cover/" target="_blank" rel="noopener">http://yoursite.com/2019/12/18/Variable-Cover/</a><br>
-
-  <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
-
-</div>
-
-
-  
-  <section class="nexmoe-comment">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.css">
-<div id="gitalk"></div>
-<script src="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.js"></script>
-<script type="text/javascript">
-    var gitalk = new Gitalk({
-        clientID: '80b2453b6d5f37ad6225',
-        clientSecret: '43e99fa852795c9a7b3eb924b2558c64b84bbdeb',
-        id: window.location.pathname,
-        repo: 'nexmoe.github.io',
-        owner: 'nexmoe',
-        admin: 'nexmoe'
-    })
-    gitalk.render('gitalk')
-</script>
 </section>
-</div>
+
     </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/js/mdui.min.js"></script>
@@ -218,7 +190,7 @@
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1578015809635"></script>
+<script src="/js/app.js?v=1578015813268"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
 
 

@@ -26,7 +26,7 @@
   
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1578104899139">
+  <link rel="stylesheet" href="/css/style.css?v=1578109305875">
 </head>
 
 <body class="mdui-drawer-body-left">
@@ -273,8 +273,8 @@ MetInfo是中国米拓信息技术有限公司的一套使用PHP和Mysql开发�
         </a>
         <div class="nexmoe-post-meta">
             <a><i class="nexmoefont icon-calendar-fill"></i>2019年12月15日</a>
-            <a><i class="nexmoefont icon-areachart"></i>427 字</a>
-            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 1 分钟</a>
+            <a><i class="nexmoefont icon-areachart"></i>573 字</a>
+            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 2 分钟</a>
             
                 <a class="nexmoefont icon-appstore-fill -link" href="/categories/编程类/">编程类</a>
             
@@ -294,7 +294,11 @@ MetInfo是中国米拓信息技术有限公司的一套使用PHP和Mysql开发�
 <figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">è·çè¿ä¸éï¼ç»ä½ flagå§: OTQ5NzM1=</span><br><span class="line">è·çè¿ä¸éï¼ç»ä½ <span class="symbol">~V å§</span>: <span class="number">949735</span>=</span><br></pre></td></tr></table></figure>
 
 <p>再解密就都是乱码了，因而极有可能就是提交这个949735=这个值。但我们刷新页面后就会更换值，并且页面提示了要GKD!!!<br>因而我们的python就闪亮登场了！！。<br>以下为我写的小脚本(跟着网上大佬一行一行写哈哈)</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line">url = <span class="string">"http://123.206.87.240:8002/web6/"</span></span><br><span class="line">\<span class="comment">#创建session会话</span></span><br><span class="line">s=requests.session()</span><br><span class="line">\<span class="comment">#取得数据包的headers</span></span><br><span class="line">headers=s.get().headers</span><br><span class="line">\<span class="comment">#str1为获得第一次base64解码header中flag的值</span></span><br><span class="line">str1 = base64.b64decode(headers[<span class="string">'flag'</span>])</span><br><span class="line">\<span class="comment">#str2为再次解码str1并且按照:分隔后取后半部分的值,repr是将str1转化为可以被解析的字符串</span></span><br><span class="line">str2 = base64.b64decode(repr(str1).split(<span class="string">':'</span>)[<span class="number">1</span>])</span><br><span class="line">\<span class="comment">#split取得之后是按列表即数组方式存储</span></span><br><span class="line">data=&#123;<span class="string">'margin'</span>,str2&#125;</span><br><span class="line">flag=s.post(url,data=data)</span><br><span class="line">print(flag.text)</span><br></pre></td></tr></table></figure>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">import base64</span><br><span class="line">url = <span class="string">"http://123.206.87.240:8002/web6/"</span></span><br><span class="line">\<span class="comment">#创建session会话</span></span><br><span class="line">s=requests.session()</span><br><span class="line">\<span class="comment">#取得数据包的headers</span></span><br><span class="line">headers=s.get().headers</span><br><span class="line">\<span class="comment">#str1为获得第一次base64解码header中flag的值</span></span><br><span class="line">str1 = base64.b64decode(headers['flag'])</span><br><span class="line"><span class="section">\#str2为再次解码str1并且按照:分隔后取后半部分的值,repr是将str1转化为可以被解析的字符串</span></span><br><span class="line">str2 = base64.b64decode(repr(str1).split(':')[1])</span><br><span class="line">\<span class="comment">#split取得之后是按列表即数组方式存储</span></span><br><span class="line">data=&#123;'margin',str2&#125;</span><br><span class="line">flag=s.post(url,data=data)</span><br><span class="line">print(flag.text)</span><br></pre></td></tr></table></figure>
+
+<p>这样就可以拿下key了</p>
+<p>2.<a href="http://123.206.87.240:8002/qiumingshan/" title="秋名山老司机" target="_blank" rel="noopener">秋名山老司机</a><br>&emsp;&emsp;这道题。。说实话我怀疑是炸了，网上都说刷新后会有提示post提交value的值为答案就可以了。但是我刷新了没有效果，算了这道题就当练习python。最后也跑不出flag.不知道是不是flag被删了。<br>以下为python脚本:</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">import re</span><br><span class="line">url = <span class="string">"http://123.206.87.240:8002/qiumingshan/"</span> </span><br><span class="line">s = requests.getsession()</span><br><span class="line">data = s.get(url)</span><br><span class="line">str = re.findall(r'&lt;div&gt;.*&lt;/div&gt;',data.text)</span><br><span class="line">str_calculate = mystr[0].strip('=?;&lt;/div&gt;')</span><br><span class="line">result = &#123;</span><br><span class="line">	<span class="string">"value"</span>:eval(str_calculate)</span><br><span class="line">｝</span><br><span class="line">str2 = s.post(url,data=result)</span><br><span class="line">print(str2.text)</span><br></pre></td></tr></table></figure>
             
         </article>
     </div>
@@ -446,7 +450,7 @@ MetInfo是中国米拓信息技术有限公司的一套使用PHP和Mysql开发�
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1578104899199"></script>
+<script src="/js/app.js?v=1578109305914"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
 
 

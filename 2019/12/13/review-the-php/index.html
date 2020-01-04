@@ -18,7 +18,7 @@
 <meta property="og:site_name" content="Cupid&#39;s Blog">
 <meta property="og:description" content="变量的作用域 变量的作用域:指该变量在程序中可以被使用的范围。 局部变量：定义在函数内部，只有这个函数内的代码才可使用该变量 全局变量：定义在所有函数外的，则其作用域是整个PHP文件，减去用户自定义的函数内部。 global关键字:在函数内引用外部定义的变量。例如：">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-01-03T01:45:48.941Z">
+<meta property="og:updated_time" content="2020-01-04T03:01:59.931Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="review-the-php">
 <meta name="twitter:description" content="变量的作用域 变量的作用域:指该变量在程序中可以被使用的范围。 局部变量：定义在函数内部，只有这个函数内的代码才可使用该变量 全局变量：定义在所有函数外的，则其作用域是整个PHP文件，减去用户自定义的函数内部。 global关键字:在函数内引用外部定义的变量。例如：">
@@ -27,7 +27,7 @@
   
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1578104894966">
+  <link rel="stylesheet" href="/css/style.css?v=1578109303245">
 </head>
 
 <body class="mdui-drawer-body-left">
@@ -185,7 +185,7 @@
 <font color="red">局部变量</font>：定义在函数内部，只有这个函数内的代码才可使用该变量<br>
 <font color="red">全局变量</font>：定义在所有函数外的，则其作用域是整个PHP文件，减去用户自定义的函数内部。<br>
 <font color="red">global关键字</font>:在函数内引用外部定义的变量。例如：<a id="more"></a>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?php</span></span></span><br><span class="line"><span class="php">	$a=<span class="string">'全局变量、'</span>;</span></span><br><span class="line"><span class="php">	<span class="function"><span class="keyword">function</span> <span class="title">fun</span><span class="params">()</span></span>&#123;</span></span><br><span class="line"><span class="php">	<span class="keyword">global</span> $a;</span></span><br><span class="line"><span class="php">	<span class="keyword">echo</span> $a;</span></span><br><span class="line"><span class="php">	$a=<span class="string">"局部变量、"</span>;</span></span><br><span class="line"><span class="php">	<span class="keyword">echo</span> $a;</span></span><br><span class="line"><span class="php">&#125;</span></span><br><span class="line"><span class="php">	fun();</span></span><br><span class="line"><span class="php">	<span class="keyword">echo</span> $a; <span class="meta">?&gt;</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$a=<span class="string">'全局变量、'</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="keyword">global</span> $a;</span><br><span class="line"><span class="keyword">echo</span> $a;</span><br><span class="line">$a=<span class="string">"局部变量、"</span>;</span><br><span class="line"><span class="keyword">echo</span> $a;</span><br><span class="line">&#125;</span><br><span class="line">fun();</span><br><span class="line"><span class="keyword">echo</span> $a;</span><br></pre></td></tr></table></figure>
 
 <p>最后输出的结果是全局变量、局部变量、局部变量、<br>这里解释一下由于在函数内使用了global引用了外部定义变量，导致全局变量在fun函数中的值发生了改变，故最后输出的是局部变量的值。</p>
 <h2>变量的生存期</h2>
@@ -193,7 +193,7 @@
 <font color="red">局部变量</font>的生存期从它被定义开始到该函数运行结束为止。
 若要在函数运行结束后仍保留局部变量的值，可使用静态变量。
 例如：
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?</span>  <span class="function"><span class="keyword">function</span> <span class="title">Test</span><span class="params">()</span> </span>&#123; </span></span><br><span class="line"><span class="php">		<span class="keyword">static</span> $w = <span class="number">0</span>; 	<span class="comment">//声明静态变量</span></span></span><br><span class="line"><span class="php">		<span class="keyword">echo</span> $w; </span></span><br><span class="line"><span class="php">		$w++; 		&#125; </span></span><br><span class="line"><span class="php">Test();Test() ;Test() ;Test() ;Test() ;	<span class="meta">?&gt;</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function <span class="keyword">Test</span>() &#123; </span><br><span class="line">static <span class="variable">$w</span> = 0; 	<span class="comment">//声明静态变量</span></span><br><span class="line">echo <span class="variable">$w</span>; </span><br><span class="line"><span class="variable">$w</span>++; 	&#125; </span><br><span class="line"><span class="keyword">Test</span>();<span class="keyword">Test</span>() ;<span class="keyword">Test</span>() ;<span class="keyword">Test</span>() ;<span class="keyword">Test</span>() ;</span><br></pre></td></tr></table></figure>
 
 <p>运行结果为01234<br>如果去掉static，则运行结果为00000<br><font color="red">可变变量</font><br>例如:’$$a’,然后$a=’b’;$b=123;那么$$a=123.<br>变量的引用赋值:&amp;类似C语言指针的用法<br>php中除法不是整除的例如5/3=1.66666666667<br>符号^是按位异或<br>运算符不等于(!=或者&lt;&gt;)<br>在php中的三等号需要数值和变量类型都相同才能返回true</p>
 <h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><p>php中使用array()函数创建数组</p>
@@ -212,7 +212,7 @@
 格式:
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">foreach</span><span class="params">(数组名 as <span class="variable">$value</span>)</span></span></span><br><span class="line">	&#123;循环体语句块&#125;</span><br><span class="line"><span class="function"><span class="title">foreache</span><span class="params">(数组名 as <span class="variable">$key</span>=&gt;<span class="variable">$value</span>)</span></span></span><br><span class="line">	&#123;循环体语句块&#125;</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?</span> $sports=<span class="keyword">array</span>( <span class="string">"网球"</span>,<span class="string">"游泳"</span>,<span class="string">"短跑"</span>,<span class="string">"柔道"</span>); </span></span><br><span class="line"><span class="php"><span class="keyword">echo</span> <span class="string">"我校开展的运动项目有：&lt;br /&gt;"</span>;</span></span><br><span class="line"><span class="php"><span class="keyword">foreach</span>($sports <span class="keyword">as</span> $key=&gt;$value)</span></span><br><span class="line"><span class="php">		<span class="keyword">echo</span> $key .<span class="string">":"</span>. $value . <span class="string">" "</span>;		<span class="meta">?&gt;</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$sports=<span class="keyword">array</span>( <span class="string">"网球"</span>,<span class="string">"游泳"</span>,<span class="string">"短跑"</span>,<span class="string">"柔道"</span>); </span><br><span class="line"><span class="keyword">echo</span> <span class="string">"我校开展的运动项目有：&lt;br /&gt;"</span>;</span><br><span class="line"><span class="keyword">foreach</span>($sports <span class="keyword">as</span> $key=&gt;$value)</span><br><span class="line"><span class="keyword">echo</span> $key .<span class="string">":"</span>. $value . <span class="string">" "</span>;</span><br></pre></td></tr></table></figure>
 
 <p>输出结果为:<br>我校开展的运动项目有:<br>0:网球 1:游泳 2:短跑 3:柔道<br>输出数组元素使用unset()函数，删除后元素的下标不会被新添加的数组元素占用。</p>
 <h3>操作数组的内置函数</h3>
@@ -303,7 +303,7 @@ str_replace("0747","\*\*\*\*","13307473541")
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1578104895026"></script>
+<script src="/js/app.js?v=1578109303295"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
 
 

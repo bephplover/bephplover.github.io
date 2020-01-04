@@ -26,7 +26,7 @@
   
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1578037462929">
+  <link rel="stylesheet" href="/css/style.css?v=1578104899139">
 </head>
 
 <body class="mdui-drawer-body-left">
@@ -222,8 +222,8 @@
         </a>
         <div class="nexmoe-post-meta">
             <a><i class="nexmoefont icon-calendar-fill"></i>2019年12月18日</a>
-            <a><i class="nexmoefont icon-areachart"></i>315 字</a>
-            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 1 分钟</a>
+            <a><i class="nexmoefont icon-areachart"></i>563 字</a>
+            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 2 分钟</a>
             
                 <a class="nexmoefont icon-appstore-fill -link" href="/categories/Web漏洞/">Web漏洞</a>
             
@@ -273,7 +273,7 @@ MetInfo是中国米拓信息技术有限公司的一套使用PHP和Mysql开发�
         </a>
         <div class="nexmoe-post-meta">
             <a><i class="nexmoefont icon-calendar-fill"></i>2019年12月15日</a>
-            <a><i class="nexmoefont icon-areachart"></i>67 字</a>
+            <a><i class="nexmoefont icon-areachart"></i>427 字</a>
             <a><i class="nexmoefont icon-time-circle-fill"></i>大概 1 分钟</a>
             
                 <a class="nexmoefont icon-appstore-fill -link" href="/categories/编程类/">编程类</a>
@@ -284,7 +284,17 @@ MetInfo是中国米拓信息技术有限公司的一套使用PHP和Mysql开发�
             
             <p>python的爬虫使用的是requests模块<br>使用import可以引入模块，根JAVA的导入包有异曲同工之妙</p>
 <p>然后使用url=’’<br>再使用r=requests.get(url,header=header)<br>这个后面的header是伪装浏览器用<br>再使用print r.text打印文本</p>
+<p>下面是两道CTF的python爬虫类题目，在这里做一下实践一下<br>1.<a href="http://123.206.87.240:8002/web6/" target="_blank" rel="noopener">速度要快</a><br>&emsp;&emsp;进入页面后，发现有个提示我觉得你要快点。ctrl+u查看源代码提示:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;/<span class="name">br</span>&gt;</span>我感觉你得快点!!!<span class="comment">&lt;!-- OK ,now you have to post the margin what you find --&gt;</span></span><br></pre></td></tr></table></figure>
 
+<p>也就是说我们必须很快的post一个margin给服务器才能拿到flag.我们看一下网站的http头。<br>发现有个可以的flag头部:</p>
+<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag: <span class="number">6</span>LeR<span class="number">55</span>qE<span class="number">6</span>L+Y<span class="number">5</span>Li<span class="symbol">N6</span>ZSZ<span class="number">77</span>y<span class="name">M57</span>uZ<span class="number">5</span>L<span class="number">2</span>gZmxhZ+WQpzogT<span class="number">1</span>RR<span class="symbol">NU56</span>TTE=</span><br></pre></td></tr></table></figure>
+
+<p>这种写法感觉是base64加密，我们放入base64解密中发现可以解密两次，分别是:</p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">è·çè¿ä¸éï¼ç»ä½ flagå§: OTQ5NzM1=</span><br><span class="line">è·çè¿ä¸éï¼ç»ä½ <span class="symbol">~V å§</span>: <span class="number">949735</span>=</span><br></pre></td></tr></table></figure>
+
+<p>再解密就都是乱码了，因而极有可能就是提交这个949735=这个值。但我们刷新页面后就会更换值，并且页面提示了要GKD!!!<br>因而我们的python就闪亮登场了！！。<br>以下为我写的小脚本(跟着网上大佬一行一行写哈哈)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line">url = <span class="string">"http://123.206.87.240:8002/web6/"</span></span><br><span class="line">\<span class="comment">#创建session会话</span></span><br><span class="line">s=requests.session()</span><br><span class="line">\<span class="comment">#取得数据包的headers</span></span><br><span class="line">headers=s.get().headers</span><br><span class="line">\<span class="comment">#str1为获得第一次base64解码header中flag的值</span></span><br><span class="line">str1 = base64.b64decode(headers[<span class="string">'flag'</span>])</span><br><span class="line">\<span class="comment">#str2为再次解码str1并且按照:分隔后取后半部分的值,repr是将str1转化为可以被解析的字符串</span></span><br><span class="line">str2 = base64.b64decode(repr(str1).split(<span class="string">':'</span>)[<span class="number">1</span>])</span><br><span class="line">\<span class="comment">#split取得之后是按列表即数组方式存储</span></span><br><span class="line">data=&#123;<span class="string">'margin'</span>,str2&#125;</span><br><span class="line">flag=s.post(url,data=data)</span><br><span class="line">print(flag.text)</span><br></pre></td></tr></table></figure>
             
         </article>
     </div>
@@ -436,7 +446,7 @@ MetInfo是中国米拓信息技术有限公司的一套使用PHP和Mysql开发�
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1578037462981"></script>
+<script src="/js/app.js?v=1578104899199"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
 
 

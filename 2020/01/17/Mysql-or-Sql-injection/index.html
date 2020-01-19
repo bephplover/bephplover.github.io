@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  
+  <title>Mysql_or_Sql_injection - Cupid&#39;s Blog</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="a new ctfer&#39;s study">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+
+  <link rel="shortcut icon" href="/images/4023.gif" type="image/png">
+  <meta name="description" content="0x00前言 很早之前就觉得自己的sql注入很菜了，一直没有机会爆肝sql注入，乘着这个寒假，认真的学习一哈mysql和sql注入。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mysql_or_Sql_injection">
+<meta property="og:url" content="http://yoursite.com/2020/01/17/Mysql-or-Sql-injection/index.html">
+<meta property="og:site_name" content="Cupid&#39;s Blog">
+<meta property="og:description" content="0x00前言 很早之前就觉得自己的sql注入很菜了，一直没有机会爆肝sql注入，乘着这个寒假，认真的学习一哈mysql和sql注入。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2020-01-19T15:18:55.763Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mysql_or_Sql_injection">
+<meta name="twitter:description" content="0x00前言 很早之前就觉得自己的sql注入很菜了，一直没有机会爆肝sql注入，乘着这个寒假，认真的学习一哈mysql和sql注入。">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/atom-one-dark.css">
+  
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
+  <link rel="stylesheet" href="/css/style.css?v=1579447164509">
+</head>
+
+<body class="mdui-drawer-body-left">
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(http://p0.ssl.cdn.btime.com/t01cd55c4b5ab3036c2.jpg#是博客的背景，又是文章默认头图)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="Cupid" class="mdui-btn mdui-btn-icon"><img src="/images/namei.png"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="Cupid">
+            <img src="/images/namei.png" alt="Cupid">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>Articles</span>63</div>
+        <div><span>Tags</span>0</div>
+        <div><span>Categories</span>4</div>
+    </div>
+    <ul class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about.html" title="关于博客">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博客
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/PY.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+    </ul>
+    <aside id="nexmoe-sidebar">
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">Social</h3>
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/23290461" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="https://github.com/bephplover" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a>
+    </div>
+</div>
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">Categories</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/CTF/">CTF</a>
+          <span class="category-list-count">5</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Web漏洞/">Web漏洞</a>
+          <span class="category-list-count">3</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/密码学/">密码学</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/编程类/">编程类</a>
+          <span class="category-list-count">3</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+  
+  
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">Archive</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2020 Cupid
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://nexmoe.com/hexo-theme-nexmoe.html" target="_blank">Nexmoe</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+    <div class="nexmoe-post-cover"> 
+        
+            <img src="http://p0.ssl.cdn.btime.com/t01cd55c4b5ab3036c2.jpg#是博客的背景，又是文章默认头图">
+        
+        <h1>Mysql_or_Sql_injection</h1>
+    </div>
+  <div class="nexmoe-post-meta">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2020年01月17日</a>
+    <a><i class="nexmoefont icon-areachart"></i>645 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 2 分钟</a>
+    
+    
+  </div>
+  <article>
+    <h2>0x00前言</h2>
+很早之前就觉得自己的sql注入很菜了，一直没有机会爆肝sql注入，乘着这个寒假，认真的学习一哈mysql和sql注入。<a id="more"></a>
+<h2>0x01Mysql学习篇</h2>
+&emsp;&emsp;之前大二的时候学习过sql server，sql语句都类似，因而迅速的过一遍mysql，然后从原理和实践上更多的熟练sql注入。
+Mysql也是一种关系型数据库(RDB)
+什么是数据库？
+数据库是按照数据结构来组织、存储和管理数据的仓库。
+每个数据库都有一个或多个不同的API用于创建，访问，管理，搜索和复制所保存的数据。
+数据也可以存储在文件中，数据库存储的优势在于数据读取速度快
+所谓关系型数据库，是建立在关系模型基础上的数据库，借助于集合代数等数学概念和方法来处理数据库中的数据。
+关系型数据库管理系统具有以下特点:
+>数据以表格形式出现
+>每行为各种记录名称
+>每列为各种记录名称
+>每列为记录名称所对应的数据域
+>许多的行和列组成一张表单
+>若干的表单组成database
+
+<h3>RDBMS术语:</h3>
+数据库:数据库是一些关联表的集合
+数据表:表是数据的矩阵，在一个数据库中的表看起来像一个简单的电子表格
+列：一列(数据元素)包含了相同类型的数据，例如邮政编码的数据
+行:一行(=元组，或记录)是一组相关的数据，例如一条用户点阅的数据
+冗余：村粗两倍数据，冗余降低了性能，但提高了数据的安全性
+主键：主键是惟一的，一个数据表中只能包含一个主键。可以使用主键来查询数据
+外键：外键用于关联两个表
+复合键：复合键将多个列作为一个索引值，一般用于复合索引
+索引：使用索引可以快速访问数据库中的特定信息，索引是对数据库表中一列或多列的值进行排序的一种结构，类似于书籍的目录。
+参照完整性：参照完整性: 参照的完整性要求关系中不允许引用不存在的实体。与实体完整性是关系模型必须满足的完整性约束条件，目的是保证数据的一致性。
+
+<h3>Mysql与php</h3>
+
+
+  </article>
+  
+    
+<div class="nexmoe-post-copyright">
+<i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+<strong>Author：</strong>Cupid<br>
+<strong>Link：</strong><a href="http://yoursite.com/2020/01/17/Mysql-or-Sql-injection/" title="http://yoursite.com/2020/01/17/Mysql-or-Sql-injection/" target="_blank" rel="noopener">http://yoursite.com/2020/01/17/Mysql-or-Sql-injection/</a><br>
+
+  <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+
+</div>
+
+
+  
+  <section class="nexmoe-comment">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.css">
+<div id="gitalk"></div>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '80b2453b6d5f37ad6225',
+        clientSecret: '43e99fa852795c9a7b3eb924b2558c64b84bbdeb',
+        id: window.location.pathname,
+        repo: 'nexmoe.github.io',
+        owner: 'nexmoe',
+        admin: 'nexmoe'
+    })
+    gitalk.render('gitalk')
+</script>
+</section>
+</div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/js/mdui.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+
+
+ 
+    <script src="https://cdn.jsdelivr.net/npm/smoothscroll-for-websites@1.4.9/SmoothScroll.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script src="/js/app.js?v=1579447164552"></script>
+<script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
+
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
+
+
+
+  
+
+
+
+
+
+</body>
+
+</html>

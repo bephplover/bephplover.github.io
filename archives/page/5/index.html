@@ -26,7 +26,7 @@
   
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1578292068428">
+  <link rel="stylesheet" href="/css/style.css?v=1579447166337">
 </head>
 
 <body class="mdui-drawer-body-left">
@@ -50,7 +50,7 @@
         </a>
     </div>
     <div class="nexmoe-count">
-        <div><span>Articles</span>61</div>
+        <div><span>Articles</span>63</div>
         <div><span>Tags</span>0</div>
         <div><span>Categories</span>4</div>
     </div>
@@ -107,7 +107,7 @@
 
         <li class="category-list-item">
           <a class="category-list-link" href="/categories/CTF/">CTF</a>
-          <span class="category-list-count">4</span>
+          <span class="category-list-count">5</span>
         </li>
 
         
@@ -145,7 +145,7 @@
   <div class="nexmoe-widget-wrap">
     <h3 class="nexmoe-widget-title">Archive</h3>
     <div class="nexmoe-widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
     </div>
   </div>
 
@@ -162,6 +162,52 @@
   <div id="nexmoe-content">
     <div class="nexmoe-primary">
         <section class="nexmoe-posts" id="brand-waterfall">
+    
+    <div class="nexmoe-post">
+        <a href="/2019/08/22/23-day/">
+            <div class="nexmoe-post-cover mdui-ripple"> 
+                
+                    <img src="http://p0.ssl.cdn.btime.com/t01cd55c4b5ab3036c2.jpg#是博客的背景，又是文章默认头图" alt="23-day">
+                
+                <h1>23-day</h1>
+            </div>
+        </a>
+        <div class="nexmoe-post-meta">
+            <a><i class="nexmoefont icon-calendar-fill"></i>2019年08月22日</a>
+            <a><i class="nexmoefont icon-areachart"></i>485 字</a>
+            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 2 分钟</a>
+            
+            
+        </div>
+        <article>
+            
+            <p>54.让我进去(<a href="http://ctf5.shiyanbar.com/web/kzhan.php" title="让我进去" target="_blank" rel="noopener">http://ctf5.shiyanbar.com/web/kzhan.php</a>)<br>&emsp;&emsp;进入页面前有提示：Hint:你可能希望知道服务器端发生了什么。。这个服务器端怎么才能进到呢，进入页面后显示admins only然后是一个登陆框还显示：If you have the correct credentials, log in below. If not, please LEAVE.F12看一下，没有其他重要线索，现在用BP抓包看一下，在cookie中发现了一个奇怪的参数source=0把它改为1发包出去后得到提示代码
+            
+        </p></article>
+    </div>
+    
+    <div class="nexmoe-post">
+        <a href="/2019/08/21/22-day/">
+            <div class="nexmoe-post-cover mdui-ripple"> 
+                
+                    <img src="http://p0.ssl.cdn.btime.com/t01cd55c4b5ab3036c2.jpg#是博客的背景，又是文章默认头图" alt="22-day">
+                
+                <h1>22-day</h1>
+            </div>
+        </a>
+        <div class="nexmoe-post-meta">
+            <a><i class="nexmoefont icon-calendar-fill"></i>2019年08月21日</a>
+            <a><i class="nexmoefont icon-areachart"></i>486 字</a>
+            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 2 分钟</a>
+            
+            
+        </div>
+        <article>
+            
+            <p>53.忘记密码了(<a href="http://ctf5.shiyanbar.com/10/upload/step1.php" title="忘记密码了" target="_blank" rel="noopener">http://ctf5.shiyanbar.com/10/upload/step1.php</a>)<br>&emsp;&emsp;进入页面是一个找回密码的输入框，让我们输入邮箱，先随便输入一个<a href="mailto:12345678@qq.com" target="_blank" rel="noopener">12345678@qq.com</a>,提交试试，提交后弹出了一个提示框：你邮箱收到的重置密码链接为 ./step2.php?email=youmail@mail.com&amp;check=???????<br>那就进入这个链接看看，任然返回主页面，step2的页面只有一瞬间，因而直接前面输入view-source:<a href="http://ctf5.shiyanbar.com/10/upload/step2.php查看step2页面的源代码。" target="_blank" rel="noopener">http://ctf5.shiyanbar.com/10/upload/step2.php查看step2页面的源代码。</a>
+            
+        </p></article>
+    </div>
     
     <div class="nexmoe-post">
         <a href="/2019/08/20/21st-day/">
@@ -350,52 +396,6 @@
         </p></article>
     </div>
     
-    <div class="nexmoe-post">
-        <a href="/2019/08/12/13th-day/">
-            <div class="nexmoe-post-cover mdui-ripple"> 
-                
-                    <img src="http://p0.ssl.cdn.btime.com/t01cd55c4b5ab3036c2.jpg#是博客的背景，又是文章默认头图" alt="13th-day">
-                
-                <h1>13th-day</h1>
-            </div>
-        </a>
-        <div class="nexmoe-post-meta">
-            <a><i class="nexmoefont icon-calendar-fill"></i>2019年08月12日</a>
-            <a><i class="nexmoefont icon-areachart"></i>954 字</a>
-            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 4 分钟</a>
-            
-            
-        </div>
-        <article>
-            
-            <p>&emsp;&emsp;关于报错注入的一些小总结:MySQL 5.1.5版本中添加了对XML文档进行查询和修改的两个函数：extractvalue、updatexml.ExtractValue() 使用XPath表示法从XML字符串中提取值<br>UpdateXML()     返回替换的XML片段<br>举例其用法:<br>emsp;&emsp;先从爆库开始
-            
-        </p></article>
-    </div>
-    
-    <div class="nexmoe-post">
-        <a href="/2019/08/11/twelfth-day/">
-            <div class="nexmoe-post-cover mdui-ripple"> 
-                
-                    <img src="http://p0.ssl.cdn.btime.com/t01cd55c4b5ab3036c2.jpg#是博客的背景，又是文章默认头图" alt="twelfth-day">
-                
-                <h1>twelfth-day</h1>
-            </div>
-        </a>
-        <div class="nexmoe-post-meta">
-            <a><i class="nexmoefont icon-calendar-fill"></i>2019年08月11日</a>
-            <a><i class="nexmoefont icon-areachart"></i>1.2k 字</a>
-            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 5 分钟</a>
-            
-            
-        </div>
-        <article>
-            
-            <p>36.多次(<a href="http://123.206.87.240:9004/1ndex.php?id=1" title="多次" target="_blank" rel="noopener">http://123.206.87.240:9004/1ndex.php?id=1</a>)<br>&emsp;&emsp;进入链接后会看到 there is nothing.可以看到url上面有个？id=1猜测可能是sql注入，但没有输入框又不像。先F12看一下，无任何线索，本题有2个flag，flag均为小写，flag格式 flag{}这是题目本身自带的提示。感觉没啥用.现在回到url上,试试url上的id.</p>
-            
-        </article>
-    </div>
-    
 </section>
 
     <nav class="nexmoe-page-nav">
@@ -415,7 +415,7 @@
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1578292068467"></script>
+<script src="/js/app.js?v=1579447166376"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
 
 

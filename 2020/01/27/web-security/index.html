@@ -3,7 +3,7 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
   
-  <title>31-day - Cupid&#39;s Blog</title>
+  <title>web-security - Cupid&#39;s Blog</title>
   <meta charset="UTF-8">
   <meta name="description" content="a new ctfer&#39;s study">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -11,23 +11,23 @@
   
 
   <link rel="shortcut icon" href="/images/4023.gif" type="image/png">
-  <meta name="description" content="77.认真一点(http://ctf5.shiyanbar.com/web/earnest/index.php)&amp;emsp;&amp;emsp;这道题进入网页后是一个输入框，猜测应该是sql注入，让我们输入Id的值。输入id=1后提示you are in.加上’后提示you are not in.那就是sql注入了。接下来需要判断其注入类型，首先尝试添加and立马sql indected。双写任然是，接下">
+  <meta name="description" content="挖掘Web漏洞思路挖掘逻辑漏洞思路验证码与用户修改密码的凭证回显暴露信息登录在没有用户账户时，可以进行大量的撞库找到一个可以登录的账号便可以继续进行渗透测试弱口令，撞库，账户权限绕过cookie仿冒，uid=1 uid=2验证码明文返回，短信轰炸，短信验证码劫持，用户的信息泄露robots.txt子域名敏感目录JS文件里寻找借口多点多思考">
 <meta property="og:type" content="article">
-<meta property="og:title" content="31-day">
-<meta property="og:url" content="http://yoursite.com/2019/09/05/31-day/index.html">
+<meta property="og:title" content="web-security">
+<meta property="og:url" content="http://yoursite.com/2020/01/27/web-security/index.html">
 <meta property="og:site_name" content="Cupid&#39;s Blog">
-<meta property="og:description" content="77.认真一点(http://ctf5.shiyanbar.com/web/earnest/index.php)&amp;emsp;&amp;emsp;这道题进入网页后是一个输入框，猜测应该是sql注入，让我们输入Id的值。输入id=1后提示you are in.加上’后提示you are not in.那就是sql注入了。接下来需要判断其注入类型，首先尝试添加and立马sql indected。双写任然是，接下">
+<meta property="og:description" content="挖掘Web漏洞思路挖掘逻辑漏洞思路验证码与用户修改密码的凭证回显暴露信息登录在没有用户账户时，可以进行大量的撞库找到一个可以登录的账号便可以继续进行渗透测试弱口令，撞库，账户权限绕过cookie仿冒，uid=1 uid=2验证码明文返回，短信轰炸，短信验证码劫持，用户的信息泄露robots.txt子域名敏感目录JS文件里寻找借口多点多思考">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-09-05T01:24:07.808Z">
+<meta property="og:updated_time" content="2020-01-27T13:56:15.455Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="31-day">
-<meta name="twitter:description" content="77.认真一点(http://ctf5.shiyanbar.com/web/earnest/index.php)&amp;emsp;&amp;emsp;这道题进入网页后是一个输入框，猜测应该是sql注入，让我们输入Id的值。输入id=1后提示you are in.加上’后提示you are not in.那就是sql注入了。接下来需要判断其注入类型，首先尝试添加and立马sql indected。双写任然是，接下">
+<meta name="twitter:title" content="web-security">
+<meta name="twitter:description" content="挖掘Web漏洞思路挖掘逻辑漏洞思路验证码与用户修改密码的凭证回显暴露信息登录在没有用户账户时，可以进行大量的撞库找到一个可以登录的账号便可以继续进行渗透测试弱口令，撞库，账户权限绕过cookie仿冒，uid=1 uid=2验证码明文返回，短信轰炸，短信验证码劫持，用户的信息泄露robots.txt子域名敏感目录JS文件里寻找借口多点多思考">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@0.4.3/dist/css/mdui.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.15.8/styles/atom-one-dark.css">
   
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1580311172639">
+  <link rel="stylesheet" href="/css/style.css?v=1580311173379">
 </head>
 
 <body class="mdui-drawer-body-left">
@@ -174,17 +174,17 @@
         
             <img src="http://p0.ssl.cdn.btime.com/t01cd55c4b5ab3036c2.jpg#是博客的背景，又是文章默认头图">
         
-        <h1>31-day</h1>
+        <h1>web-security</h1>
     </div>
   <div class="nexmoe-post-meta">
-    <a><i class="nexmoefont icon-calendar-fill"></i>2019年09月05日</a>
-    <a><i class="nexmoefont icon-areachart"></i>313 字</a>
+    <a><i class="nexmoefont icon-calendar-fill"></i>2020年01月27日</a>
+    <a><i class="nexmoefont icon-areachart"></i>139 字</a>
     <a><i class="nexmoefont icon-time-circle-fill"></i>大概 1 分钟</a>
     
     
   </div>
   <article>
-    <p>77.认真一点(<a href="http://ctf5.shiyanbar.com/web/earnest/index.php" title="认真一点" target="_blank" rel="noopener">http://ctf5.shiyanbar.com/web/earnest/index.php</a>)<br>&emsp;&emsp;这道题进入网页后是一个输入框，猜测应该是sql注入，让我们输入Id的值。输入id=1后提示you are in.加上’后提示you are not in.那就是sql注入了。接下来需要判断其注入类型，首先尝试添加and立马sql indected。双写任然是，接下来添加union等均被检查出sql indected接下来还可以使用布尔盲注。这道题的两种回应一种相当于是yes.而另一种是No可以猜测应当就是布尔盲注。使用添加or在后面时没有给出sql injection detected因而使用or的布尔盲注。首先需要猜解数据库长度。这道题由于是post提交的id因而使用bp好一些。在不断尝试后还得到了一个发现。在提交1时，提示You are in…提交1’是You are not in.提交0时也是you are not in。因而就是布尔判断。如果句子整体是false类型，就会返回not in.而为true类型就返回in.接下来直接采用payload:0’oorr(length(database())=len)oror’1然后送入Intruder进行爆破，获取到数据库长度为18.</p>
+    <p>挖掘Web漏洞思路<br>挖掘逻辑漏洞思路<br>验证码与用户修改密码的凭证回显暴露信息<br>登录在没有用户账户时，可以进行大量的撞库找到一个可以登录的账号便可以继续进行渗透测试<br>弱口令，撞库，账户权限绕过<br>cookie仿冒，uid=1 uid=2<br>验证码明文返回，短信轰炸，短信验证码劫持，用户的信息泄露<br>robots.txt<br>子域名<br>敏感目录<br>JS文件里寻找借口<br>多点多思考</p>
 
   </article>
   
@@ -192,7 +192,7 @@
 <div class="nexmoe-post-copyright">
 <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
 <strong>Author：</strong>Cupid<br>
-<strong>Link：</strong><a href="http://yoursite.com/2019/09/05/31-day/" title="http://yoursite.com/2019/09/05/31-day/" target="_blank" rel="noopener">http://yoursite.com/2019/09/05/31-day/</a><br>
+<strong>Link：</strong><a href="http://yoursite.com/2020/01/27/web-security/" title="http://yoursite.com/2020/01/27/web-security/" target="_blank" rel="noopener">http://yoursite.com/2020/01/27/web-security/</a><br>
 
   <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
 
@@ -230,7 +230,7 @@
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1580311172682"></script>
+<script src="/js/app.js?v=1580311173421"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
 
 

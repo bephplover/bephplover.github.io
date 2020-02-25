@@ -18,7 +18,7 @@
 <meta property="og:site_name" content="Cupid&#39;s Blog">
 <meta property="og:description" content="之前由于有事很遗憾没能参加安洵杯，看了师傅们的wp，来复现一波。题目在道格的上面就有，在BUUCTF上也有一部分。1.[安洵杯 2019]easy_web">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-01-03T01:48:05.704Z">
+<meta property="og:updated_time" content="2020-02-05T11:55:27.281Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ISOON-2019">
 <meta name="twitter:description" content="之前由于有事很遗憾没能参加安洵杯，看了师傅们的wp，来复现一波。题目在道格的上面就有，在BUUCTF上也有一部分。1.[安洵杯 2019]easy_web">
@@ -27,7 +27,7 @@
   
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1038733_0xvrvpg9c0r.css">
-  <link rel="stylesheet" href="/css/style.css?v=1580311171689">
+  <link rel="stylesheet" href="/css/style.css?v=1582644554480">
 </head>
 
 <body class="mdui-drawer-body-left">
@@ -51,9 +51,9 @@
         </a>
     </div>
     <div class="nexmoe-count">
-        <div><span>Articles</span>64</div>
+        <div><span>Articles</span>66</div>
         <div><span>Tags</span>0</div>
-        <div><span>Categories</span>5</div>
+        <div><span>Categories</span>6</div>
     </div>
     <ul class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
         
@@ -128,6 +128,13 @@
         
 
         <li class="category-list-item">
+          <a class="category-list-link" href="/categories/代码审计/">代码审计</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
           <a class="category-list-link" href="/categories/密码学/">密码学</a>
           <span class="category-list-count">1</span>
         </li>
@@ -153,7 +160,7 @@
   <div class="nexmoe-widget-wrap">
     <h3 class="nexmoe-widget-title">Archive</h3>
     <div class="nexmoe-widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
     </div>
   </div>
 
@@ -178,8 +185,8 @@
     </div>
   <div class="nexmoe-post-meta">
     <a><i class="nexmoefont icon-calendar-fill"></i>2019年12月03日</a>
-    <a><i class="nexmoefont icon-areachart"></i>941 字</a>
-    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 4 分钟</a>
+    <a><i class="nexmoefont icon-areachart"></i>1k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 5 分钟</a>
     
       <a class="nexmoefont icon-appstore-fill -link" href="/categories/CTF/">CTF</a>
     
@@ -201,7 +208,7 @@
 <p>传值可以直接得到Yes,但我复现这道题的时候，怎么都不行，我仔细比对了我的本地包和复现抓的网页的包，发现网页包中缺少了如下内容：</p>
 <figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Content-<span class="keyword">Type</span>: application/x-www-<span class="keyword">form</span>-urlencoded</span><br></pre></td></tr></table></figure>
 
-<p>也就是说，如果没有这个设置包里面的内容经过了url加密，我的POST传过去的urlencode方式的参数被解析不了，也得不到正确的Md5加密，导致判断绕不过，因此每一个细节都很重要，这关乎成败。</p>
+<p>也就是说，如果没有这个设置包里面的内容经过了url加密，我的POST传过去的urlencode方式的参数被解析不了，也得不到正确的Md5加密，导致判断绕不过，因此每一个细节都很重要，这关乎成败。<br>这里写一下它的作用，其是对传入数据包头中的参数进行编码，服务器要知道参数用符号&amp;间隔，则通过这个编码将键值对的参数用&amp;连接起来，如果有空格，则转换为+如果有特殊符号，转换为其ASCII HEX值。</p>
 
   </article>
   
@@ -247,7 +254,7 @@
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="/js/app.js?v=1580311171729"></script>
+<script src="/js/app.js?v=1582644554525"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js"></script>
 
 

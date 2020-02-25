@@ -778,30 +778,30 @@ article table::-webkit-scrollbar-thumb {
   background-color: #888;
 }
 article table thead {
-  border-bottom: 1px solid #eee;
-  background-color: #f8f8f8;
+  border-bottom: 1px solid #fff;
+  background-color: #282c34;
 }
 article table thead tr {
-  background-color: #f8f8f8;
+  background-color: #282c34;
 }
 article table th {
-  border-right: 1px solid #eee;
-  padding: 13px 26px;
+  border-right: 1px solid #282c34;
+  padding: 2px 2px;
   font-weight: 400;
 }
 article table td {
-  border-right: 1px solid #eee;
-  padding: 13px 26px;
+  border-right: 1px solid #282c34;
+  padding: 2px 2px;
 }
 article table th:last-child,
 article table td:last-child {
   border: none;
 }
 article table tr {
-  background-color: #fff;
+  background-color: #282c34;
 }
 article table tr:nth-child(2n) {
-  background-color: #f8f8f8;
+  background-color: #282c34;
 }
 article img,
 article canvas,
@@ -887,6 +887,48 @@ article .mdui-btn:hover {
 font.douyin {
   text-shadow: -2px 0 rgba(0,255,255,0.5), 2px 0 rgba(255,0,0,0.5);
   animation: shake-it 0.5s reverse infinite cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+@-moz-keyframes shake-it {
+  0% {
+    text-shadow: 0 0 rgba(0,255,255,0.5), 0 0 rgba(255,0,0,0.5);
+  }
+  25% {
+    text-shadow: -1px 0 rgba(0,255,255,0.5), 1px 0 rgba(255,0,0,0.5);
+  }
+  50% {
+    text-shadow: -3px 0 rgba(0,255,255,0.5), 1px 0 rgba(255,0,0,0.5);
+  }
+  100% {
+    text-shadow: 1px 0 rgba(0,255,255,0.5), 3px 0 rgba(255,0,0,0.5);
+  }
+}
+@-webkit-keyframes shake-it {
+  0% {
+    text-shadow: 0 0 rgba(0,255,255,0.5), 0 0 rgba(255,0,0,0.5);
+  }
+  25% {
+    text-shadow: -1px 0 rgba(0,255,255,0.5), 1px 0 rgba(255,0,0,0.5);
+  }
+  50% {
+    text-shadow: -3px 0 rgba(0,255,255,0.5), 1px 0 rgba(255,0,0,0.5);
+  }
+  100% {
+    text-shadow: 1px 0 rgba(0,255,255,0.5), 3px 0 rgba(255,0,0,0.5);
+  }
+}
+@-o-keyframes shake-it {
+  0% {
+    text-shadow: 0 0 rgba(0,255,255,0.5), 0 0 rgba(255,0,0,0.5);
+  }
+  25% {
+    text-shadow: -1px 0 rgba(0,255,255,0.5), 1px 0 rgba(255,0,0,0.5);
+  }
+  50% {
+    text-shadow: -3px 0 rgba(0,255,255,0.5), 1px 0 rgba(255,0,0,0.5);
+  }
+  100% {
+    text-shadow: 1px 0 rgba(0,255,255,0.5), 3px 0 rgba(255,0,0,0.5);
+  }
 }
 @-moz-keyframes shake-it {
   0% {

@@ -360,19 +360,13 @@
 由于一些不可逆因素，我又得重新刷一遍bugku<a id="more"></a>，虽然大家都说上面题简单，但能自己亲手对每一个题做出来的人，并且学习到其中的知识点，对于现目前处于迷茫期的我可能极有帮助，废话不多说，直接开刷(尽量不看wp)
 <h2>0x01开始刷题</h2>
 WEB部分
-1.[WEB2](http://123.206.87.240:8002/web2/ "WEB2")
-进入页面后是眼花缭乱的滑稽图，直接ctrl+u查看源码，拿到flag.
-2.[计算器](http://123.206.87.240:8002/yanzhengma/ "计算器")
-进入页面后有个输入框，问38+20=？发现只能输入一个数字，f12打开控制台查看前端代码，在表单部分代码中发现有maxlength=1的字样，改为10后发现可以输入正确答案了，弹框得到flag.
-3.[基础$_get](http://123.206.87.240:8002/get/)
-进入页面有代码提示，get传入what=flag即可拿到flag.
-4.[基础$_post](http://123.206.87.240:8002/post/)
-进入页面同上post传入what=flag即可拿到flag.
-5.[矛盾](http://123.206.87.240:8002/get/index1.php "矛盾")
-进入页面后代码提示get传入的num不是数字且num又等于1，判断用的==是弱类型比较传入num=1a即可拿到flag.
-6.[WEB3](http://123.206.87.240:8002/web3/)
-进入页面JS弹框flag就在这里，查看源代码后发现:
 
+<p>1.<a href="http://123.206.87.240:8002/web2/" title="WEB2" target="_blank" rel="noopener">WEB2</a><br>进入页面后是眼花缭乱的滑稽图，直接ctrl+u查看源码，拿到flag.</p>
+<p>2.<a href="http://123.206.87.240:8002/yanzhengma/" title="计算器" target="_blank" rel="noopener">计算器</a><br>进入页面后有个输入框，问38+20=？发现只能输入一个数字，f12打开控制台查看前端代码，在表单部分代码中发现有maxlength=1的字样，改为10后发现可以输入正确答案了，弹框得到flag.</p>
+<p>3.<a href="http://123.206.87.240:8002/get/" target="_blank" rel="noopener">基础$_get</a><br>进入页面有代码提示，get传入what=flag即可拿到flag.</p>
+<p>4.<a href="http://123.206.87.240:8002/post/" target="_blank" rel="noopener">基础$_post</a><br>进入页面同上post传入what=flag即可拿到flag.</p>
+<p>5.<a href="http://123.206.87.240:8002/get/index1.php" title="矛盾" target="_blank" rel="noopener">矛盾</a><br>进入页面后代码提示get传入的num不是数字且num又等于1，判断用的==是弱类型比较传入num=1a即可拿到flag.</p>
+<p>6.<a href="http://123.206.87.240:8002/web3/" target="_blank" rel="noopener">WEB3</a><br>进入页面JS弹框flag就在这里，查看源代码后发现:</p>
 <pre><code>&amp;#75;&amp;#69;&amp;#89;&amp;#123;&amp;#74;&amp;#50;&amp;#115;&amp;#97;&amp;#52;&amp;#50;&amp;#97;&amp;#104;&amp;#74;&amp;#75;&amp;#45;&amp;#72;&amp;#83;&amp;#49;&amp;#49;&amp;#73;&amp;#73;&amp;#73;&amp;#125;</code></pre><p>这个是unicode编码，先知道这是一种Html页面编码形式就可以了解码即可拿下flag.<br>7.域名解析(听说把 flag.baidu.com 解析到123.206.87.240 就能拿到flag)<br>这个直接在本地的域名解析文件中添加上flag.baidu.com 与123.206.87.240再访问这个页面即可<br>hosts文件位置C:\Windows\System32\drivers\etc\hosts<br>之前我这样做是拿到了flag了，现在网站崩了，继续下一道题<br>8.<a href="http://123.206.87.240:8002/web12/" target="_blank" rel="noopener">你必须让他停下</a><br>这道题进入页面后发现页面在无限的刷新，我们直接用BP抓包，送到Repeater中后不断go就会出现flag.<br>9.<a href="http://123.206.87.240:8003/" target="_blank" rel="noopener">本地包含</a><br>这个题也是炸了，网上看wp原页面有如下源代码:</p>
 <pre><code>&lt;?php 
 include &quot;flag.php&quot;;

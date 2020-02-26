@@ -28,3 +28,33 @@
 [3772:17700:0226/010852:INFO:serviceManager.cpp(508)] mainprocessisrunning key is set as 0
 [3772:17700:0226/010852:INFO:AppRunner.cpp(735)] close mutex of process geeplayer
 [3772:17700:0226/010852:INFO:AppRunner.cpp(743)] run process geeplayer end
+[13084:20340:0226/015650:INFO:AppRunner.cpp(611)] Begin run process geeplayer, -runfrom openimage "D:\hexo\themes\Sakura\source\images\favicon.ico", mainplugin is mainPlugin
+[13084:20340:0226/015650:INFO:AppRunner.cpp(617)] ProductName is GeePlayer1
+[13084:20340:0226/015650:INFO:ChannelManager.cpp(1219)] create connection thread
+[13084:20340:0226/015650:INFO:AppRunner.cpp(661)] apppluginbase version is 5.1.3.13
+[13084:20340:0226/015650:INFO:UIlib.cpp(192)] quilib: version is 5.1.3.9
+[13084:20340:0226/015650:INFO:serviceManager.cpp(508)] mainprocessisrunning key is set as 1
+[13084:20340:0226/015650:INFO:serviceManager.cpp(629)] create local service plugin PluginServerStatePlugin
+[13084:20340:0226/015650:INFO:serviceManager.cpp(687)] plugin PluginServerStatePlugin DoPluginInit
+[13084:20340:0226/015650:INFO:serviceManager.cpp(1272)] repository parse over
+[13084:20340:0226/015652:INFO:UIManager.cpp(383)] quilib:call set resouce path, path is c:\program files (x86)\iqiyi video\geeplayer\3.0.40.3591\skin
+[13084:20340:0226/015652:INFO:UIMarkup.cpp(395)] quilib:Open Resource failed, Path is c:\program files (x86)\iqiyi video\geeplayer\3.0.40.3591\skin\StyleTable.xml, last error is2
+[13084:20340:0226/015652:INFO:UIDlgBuilder.cpp(512)] quilib:create root control failed
+[13084:20340:0226/015652:INFO:UIDlgBuilder.cpp(512)] quilib:create root control failed
+[13084:20340:0226/015652:INFO:UIDlgBuilder.cpp(512)] quilib:create root control failed
+[13084:20340:0226/015652:INFO:UIDlgBuilder.cpp(512)] quilib:create root control failed
+[13084:20340:0226/015652:INFO:UIDlgBuilder.cpp(512)] quilib:create root control failed
+[13084:20340:0226/015652:INFO:UIDlgBuilder.cpp(512)] quilib:create root control failed
+[13084:20340:0226/015656:INFO:AppRunner.cpp(720)] loop exit geeplayer call main plugin DestoryPluginEntry
+[13084:20340:0226/015656:INFO:PluginDevelopAssistant.cpp(115)] real plugin mainPlugin call DestroyPlugin
+[13084:20340:0226/015656:INFO:IPlugin.cpp(31)] destruct plugin mainPlugin
+[13084:20340:0226/015656:INFO:serviceManager.cpp(1353)] mainPlugin plugin had destroy by DestructPlugin
+[13084:20340:0226/015656:INFO:serviceManager.cpp(1906)] DestructManager begin
+[13084:20340:0226/015656:INFO:IPlugin.cpp(31)] destruct plugin PluginServerStatePlugin
+[13084:20340:0226/015656:INFO:PluginDevelopAssistant.cpp(295)] real plugin PluginServerStatePlugin call DestroyPlugin
+[13084:20340:0226/015656:INFO:serviceManager.cpp(1353)] PluginServerStatePlugin plugin had destroy by DestructPlugin
+[13084:20340:0226/015656:INFO:serviceManager.cpp(1759)] DeleteLeftPlugins begin
+[13084:20340:0226/015656:INFO:serviceManager.cpp(1822)] DeleteLeftPlugins end
+[13084:20340:0226/015656:INFO:serviceManager.cpp(508)] mainprocessisrunning key is set as 0
+[13084:20340:0226/015656:INFO:AppRunner.cpp(735)] close mutex of process geeplayer
+[13084:20340:0226/015656:INFO:AppRunner.cpp(743)] run process geeplayer end

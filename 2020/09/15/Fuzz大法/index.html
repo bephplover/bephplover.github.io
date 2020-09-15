@@ -386,8 +386,28 @@
 <p>其实目录扫描的工具也相当于是一个fuzz的过程，能够fuzz出一些前人以前访问到的功能点目录。</p>
 <p>再者暴力破解也是fuzz的过程，fuzz用户名和密码</p>
 <p>啊我错过了1e个洞。</p>
-<p>当然最早接触到fuzz是在ctf的sql注入题目上，需要先使用burp的爆破模块fuzz下过滤了哪些特殊字符再进行绕过注入，本文不再讲诉那些，谈一些跟挖洞更多的场景。</p>
+<p>当然最早接触到fuzz是在ctf的sql注入题目上，需要先使用burp的爆破模块fuzz下过滤了哪些特殊字符再进行绕过注入，本文不再讲诉那些，谈一些更多跟挖洞有关的场景。</p>
 <p>下面看一下真实场景(本文实例均学习自网上文章，最后会附上原文链接)</p>
+<h3><span id="无中生有">无中生有</span></h3><h4><span id="1隐藏的注册">1.隐藏的注册</span></h4><p>当我们成功探测到某目录下存在/register接口时，而系统默认不允许支持注册用户时候，这时候我们可以通过fuzz把隐藏的注册接口找出来，例如下面:</p>
+<p><img src="/2020/09/15/Fuzz大法/1.jpg" alt="1"></p>
+<p>这个时候我们就需要想了是不是什么参数没有传递，于是构造fuzz的json格式参数进行发包，根据响应包的状态码来fuzz得到正确的结果。</p>
+<p>加入最后得到uname和pwd</p>
+<p>这个时候我们再加上这两个参数和pwd进行发包说不定就能成功注册一枚账户了！</p>
+<h4><span id="2隐藏的上传接口">2.隐藏的上传接口</span></h4><p>当我们目录扫描出upload目录却无法上传时，我们也可以猜测是否存在上传功能点但未写前端，这个时候可以使用payload构造上传html：</p>
+<pre><code class="html">&lt;form action=&quot;地址&quot; method=&quot;post&quot; enctype=&quot;multipart/form-data&quot; &gt;
+    &lt;input type=&quot;file&quot; name=&quot;Filedata&quot;/&gt;
+    &lt;input type=&quot;submit&quot; value=&quot;提交&quot;/&gt;
+&lt;/form&gt;</code></pre>
+<p>当时即使是这样还是有可能上传不了，因为构造的html表单的name不对，这时候也需要BP抓包对file的name进行fuzz</p>
+<p>常见的file-表单name-fuzz：<a href="https://github.com/yuanhaiGreg/Fuzz-Dict/blob/master/upload_parmar" target="_blank" rel="noopener">远海大佬</a></p>
+<h4><span id="3未发现的jsonp接口">3.未发现的Jsonp接口</span></h4><p>假若获得了一个敏感信息返回的请求端点:<a href="http://xxx/getInfo" target="_blank" rel="noopener">http://xxx/getInfo</a></p>
+<p>就可以使用<code>callback_dict.txt</code>字典进行Fuzz</p>
+<p>下面的直接用key大佬博客的图:</p>
+<p><img src="/2020/09/15/Fuzz大法/2.jpg" alt="2"></p>
+<p>最后经过fuzz成功发现了callback这个参数:</p>
+<p><img src="/2020/09/15/Fuzz大法/3.jpg" alt="3"></p>
+<p>无中生有的fuzz实在是tql,膜拜师傅们。</p>
+<h3><span id="狸猫换太子">狸猫换太子</span></h3><h4><span id="1相应变请求">1.相应变请求</span></h4><p>参考文章:<a href="https://cn.gh0st.cn/archives/2019-11-11/1" target="_blank" rel="noopener">key师傅</a></p>
 
         </div>
         <!-- .entry-content -->
@@ -474,7 +494,7 @@
     <div class="ins-search-mask"></div>
     <div class="ins-search-container">
         <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="Type something..."/>
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..."/>
             <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="ins-section-wrapper">
@@ -486,10 +506,10 @@
 (function (window) {
     var INSIGHT_CONFIG = {
         TRANSLATION: {
-            POSTS: 'Posts',
-            // PAGES: 'Pages',
-            CATEGORIES: 'Categories',
-            TAGS: 'Tags',
+            POSTS: '文章',
+            // PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
         },
         ROOT_URL: '/',
         CONTENT_URL: '/content.json',

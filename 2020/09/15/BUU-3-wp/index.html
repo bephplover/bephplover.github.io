@@ -380,7 +380,21 @@
         <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
         
         <div class="entry-content">
-          <h2><span id="bsidescf-2020had-a-bad-day">[BSidesCF 2020]Had a bad day</span></h2><p>进入页面后就两个按钮，按了之后url分别是:</p>
+          <!-- toc -->
+
+<ul>
+<li><a href="#bsidescf-2020had-a-bad-day">[BSidesCF 2020]Had a bad day</a></li>
+<li><a href="#npuctf2020readlezphp">[NPUCTF2020]ReadlezPHP</a></li>
+<li><a href="#网鼎杯-2018comment">[网鼎杯 2018]Comment</a></li>
+<li><a href="#bjdctf-2nd简单注入">[BJDCTF 2nd]简单注入</a></li>
+<li><a href="#gwctf-2019我有一个数据库">[GWCTF 2019]我有一个数据库</a></li>
+<li><a href="#bsidescf-2019kookie">[BSidesCF 2019]Kookie</a></li>
+<li>[Day2 Web1]Easyweb](#day2-web1easyweb)</li>
+<li><a href="#hfctf2020easylogin">[HFCTF2020]EasyLogin</a></li>
+</ul>
+<!-- tocstop -->
+
+<h2><span id="bsidescf-2020had-a-bad-day">[BSidesCF 2020]Had a bad day</span></h2><p>进入页面后就两个按钮，按了之后url分别是:</p>
 <pre><code class="url">http://ed8e3ed8-e966-44c5-b917-7cfb4c276d9f.node3.buuoj.cn/index.php?category=woofers
 http://ed8e3ed8-e966-44c5-b917-7cfb4c276d9f.node3.buuoj.cn/index.php?category=meowers</code></pre>
 <p>查看源代码发现:</p>
@@ -552,7 +566,7 @@ select * from users where username=&#39;$_POST[&quot;username&quot;]&#39; and pa
 
 //出题人四级压线才过 见谅见谅 领会精神</code></pre><p>输入用户名密码抓包如下:</p>
 <p>加上单引号:</p>
-<p><img src="/2020/09/15/BUU-3-wp/E:%5Chexo%5Csource_posts%5CBUU-3-wp%5C4.png" alt="image-20200827161015818"></p>
+<p><img src="/2020/09/15/BUU-3-wp/4.png" alt="4"></p>
 <p>仔细看提示的sql注入尝试绕过单引号注入:</p>
 <pre><code class="mysql">select * from users where username=&#39;$_POST[&quot;username&quot;]&#39; and password=&#39;$_POST[&quot;password&quot;]&#39;;
 可以看到用户名和密码在同一个语句中，单引号用不了的话就只能将两个部分联通来闭合然后在中间部分执行sql语句。
@@ -563,7 +577,7 @@ password=^+sleep(5)#
 select * from users where username=&#39;admin\&#39; and password=&#39;^ sleep(5)#&#39;;
 相当于:select * from users where username=&#39;admin and password=&#39;^ sleep(5)
 这样执行的sql语句就拼接到了整个查询语句后面就可以执行了。后面就是爆password字段了。</code></pre>
-<p><img src="/2020/09/15/BUU-3-wp/E:%5Chexo%5Csource_posts%5CBUU-3-wp%5C5.png" alt="image-20200827160844213"></p>
+<p><img src="/2020/09/15/BUU-3-wp/5.png" alt="5"></p>
 <p>payload：</p>
 <pre><code>username=admin\
 password=^(ascii(substr(password,{},1))&gt;{})#</code></pre><p>尝试编写脚本:</p>
@@ -645,10 +659,11 @@ $result=mysqli_query($con,&quot;select * from images where id=&#39;\&#39; or pat
 当传入\\0会导致第一个\被转义而无法转义后面的单引号。
 </code></pre>
 <p>本地测试了一下:</p>
-<p><img src="/2020/09/15/BUU-3-wp/E:%5Chexo%5Csource_posts%5CBUU-3-wp%5C7.png" alt="image-20200830161728526"></p>
+<p><img src="/2020/09/15/BUU-3-wp/7.png" alt="7"></p>
+<p><img src="/2020/09/15/BUU-3-wp/8.png" alt="8"></p>
 <p>这样就相当于是双斜杠导致并没能转义后面的单引号。</p>
 <p>这里我接着尝试输入\0’</p>
-<p><img src="/2020/09/15/BUU-3-wp/E:%5Chexo%5Csource_posts%5CBUU-3-wp%5C9.png" alt="image-20200830161840751"></p>
+<p><img src="/2020/09/15/BUU-3-wp/9.png" alt="9"></p>
 <p>这次最终得到的是\</p>
 <p>接下来回到题目测试sql注入存在性:</p>
 <p>payload：</p>
@@ -656,7 +671,7 @@ $result=mysqli_query($con,&quot;select * from images where id=&#39;\&#39; or pat
 <p>接下来就很简单的，直接套用的以前的bool盲注的二分法跑。</p>
 <p>这里还需要注意的是，盲注判断正确的时候页面是一个猫的图片，不正确是什么都没有。</p>
 <p>因而判断页面内容需要采用:</p>
-<p><img src="/2020/09/15/BUU-3-wp/E:%5Chexo%5Csource_posts%5CBUU-3-wp%5C10.png" alt="image-20200830162356461"></p>
+<p><img src="/2020/09/15/BUU-3-wp/10.png" alt="10"></p>
 <p>exp编写如下:</p>
 <pre><code class="python">import requests
 import time

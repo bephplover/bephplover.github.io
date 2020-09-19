@@ -490,7 +490,7 @@ $str=&#39;a:2:{i:0;s:5:&quot;Cupid&quot;;i:1;s:5:&quot;aaaaa&quot;;}abc&#39;;
 var_dump(unserialize($str));
 ?&gt;</code></pre>
 <p>我们拿到php中运行一下</p>
-<p><img src="C:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20200919152323515.png" alt="image-20200919152323515"></p>
+<p><img src="/2020/09/19/序列化和反序列化/image-20200919152323515.png" alt="image-20200919152323515"></p>
 <p>可以看到跟不加abc字符反序列化后的结果一样，说明php能够识别出哪些属于反序列化的范畴并自动过滤。</p>
 <p>利用这个特性可以绕过某些针对字符的检测机制。</p>
 <p>第二个逃逸点:</p>
@@ -527,10 +527,10 @@ $_SESSION[&quot;dd&quot;]=&#39;a&#39;;</code></pre>
 <p>关于base64的内容是phpinfo里面找到的:d0g3_f1ag.php</p>
 <p>所以最后的payload：</p>
 <pre><code>_SESSION[phpflag]=;s:7:&quot;xxxxxxx&quot;;s:3:&quot;img&quot;;s:20:&quot;ZDBnM19mMWFnLnBocA==&quot;;}</code></pre><p>最后get传参?f=show_image,再通过post传入参数(上面的payload)送入extract变量覆盖-&gt;最后送入反序列化后解码img的部分-&gt;并读取d0g3_f1ag.php</p>
-<p><img src="C:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20200919155741608.png" alt="image-20200919155741608"></p>
+<p><img src="/2020/09/19/序列化和反序列化/image-20200919155741608.png" alt="image-20200919155741608"></p>
 <p>再将这个文件路径进行base64编码</p>
 <p>最后拿到flag：</p>
-<p><img src="C:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20200919155638209.png" alt="image-20200919155638209"></p>
+<p><img src="/2020/09/19/序列化和反序列化/image-20200919155638209.png" alt="image-20200919155638209"></p>
 <p>喔，最后再去看AdminTony大佬写的文章好像没有那么吃力了(自己唬自己还是很吃力，tcl毕竟……)</p>
 
         </div>

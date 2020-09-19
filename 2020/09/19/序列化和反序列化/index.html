@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   
-  <title itemprop="name">Cupid&#39;s Blog</title>
+  <title itemprop="name">序列化和反序列化 | Cupid&#39;s Blog</title>
   
     <link rel="shortcut icon" href="/images/favicon.ico">
   
@@ -344,463 +344,180 @@
   </div>
 </header>
 
-      <div class="blank" style="padding-top: 0px;"></div>
+      <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+<div class="pattern-center-blank"></div>
+
+  <div class="pattern-center single-center">
+    <!-- 有配图默认渲染第一张 -->
+    <div class="pattern-attachment-img lazyload" style="background-image: url(http://175.24.19.33/image/9bd9b167gy1g4c8qcc821j21hc0u0ay3.jpg);" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="http://175.24.19.33/image/9bd9b167gy1g4c8qcc821j21hc0u0ay3.jpg">
+    </div>
+    <header class="pattern-header single-header">
+      <h1 class="entry-title">
+      序列化和反序列化</h1>
+      <p class="entry-census">
+        <span>
+          <a href="">
+            <img src="">
+          </a>
+        </span>
+        <span>
+          <a href=""></a>
+        </span>
+        <span class="bull">
+        ·</span>
+        2020-9-19<span class="bull">
+        ·</span>
+      <span id="busuanzi_value_page_pv"></span>次阅读</p>
+    </header>
+  </div>
+
 <div id="content" class="site-content">
-  
-  <div class="notice" style="margin-top:60px">
-    <i class="iconfont icon-notification">
-    </i>
-    <div class="notice-content">Cupid的博客随时都在更新哟，欢迎小伙伴浏览...</div>
-  </div>
-  
-  <div class="top-feature-row">
-  <h1 class="fes-title" style="font-family: 'Ubuntu', sans-serif;">
-  <i class="fa fa-anchor" aria-hidden="true">
-  </i>
-  START:DASH!!</h1>
-  
-  <div class="top-feature-v2">
-    <div class="the-feature square from_left_and_right">
-      <a href="/theme-sakura/" target="_blank">
-        <div class="img">
-          <img src="https://cdn.jsdelivr.net/gh/bephplover/cdn@2.7/img/startdash/sakura.md.png">
-        </div>
-        <div class="info">
-          <h3>Sakura</h3>
-          <p>本站 hexo 主题</p>
-        </div>
-      </a>
-    </div>
-  </div>
-  
-  <div class="top-feature-v2">
-    <div class="the-feature square from_left_and_right">
-      <a href="https://space.bilibili.com/23290461" target="_blank">
-        <div class="img">
-          <img src="https://cdn.jsdelivr.net/gh/bephplover/cdn@2.7/img/startdash/bilibili.jpg">
-        </div>
-        <div class="info">
-          <h3>Bilibili</h3>
-          <p>博主的b站视频</p>
-        </div>
-      </a>
-    </div>
-  </div>
-  
-  <div class="top-feature-v2">
-    <div class="the-feature square from_left_and_right">
-      <a href="/" target="_blank">
-        <div class="img">
-          <img src="https://cdn.jsdelivr.net/gh/bephplover/cdn@2.7/img/startdash/wangshiwu.jpg">
-        </div>
-        <div class="info">
-          <h3>Cupid的万事屋</h3>
-          <p>技术服务</p>
-        </div>
-      </a>
-    </div>
-  </div>
-  
-</div>
   <div id="primary" class="content-area">
     <main id="main" class="site-main" role="main">
-      <h1 class="main-title" style="font-family: 'Ubuntu', sans-serif;">
-      <i class="fa fa-envira" aria-hidden="true"></i>
-      Discovery</h1>
+      <article id="post-1" class="post-1 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized">
+        <div class="toc"></div>
+        <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
+        
+        <div class="entry-content">
+          <h3><span id="0x00背景">0x00背景</span></h3><p>写这篇文章的原因是因为今天向大佬问了一个问题:</p>
+<p><img src="/2020/09/19/序列化和反序列化/1.png" alt="image.png"></p>
+<p>文章作者提到$this-&gt;_dataReader可控</p>
+<p>我一直纠结着为啥可控，并询问了大佬。</p>
+<p>最后得到了一句精华:</p>
+<p>反序列化一个类出来，只要是类的属性，肯定可控</p>
+<p>针对这句话，好好学习下序列化和反序列化。</p>
+<h3><span id="0x00正题">0x00正题</span></h3><p>定义:什么是序列化？反序列化？</p>
+<p>java序列化是指把java对象转换为字节序列的过程</p>
+<p>java反序列化就是指把字节序列恢复为java对象的过程。</p>
+<p>序列化的作用呢？</p>
+<p>在传递和保存对象时，保证对象的完整性和可传递性。对象转换为有序字节流，以便在网络上传输或者保存在本地文件中。</p>
+<p>反序列化呢是根据字节流中保存的对象状态以及描述信息，通过反序列化重构对象。</p>
+<p>当然这是从代码层面上理解的作用，通俗点来说序列化是为了让一些数据包括视频、音频、图像、变量、一个类在网络传输时候更方便，更持久，更易于保存。</p>
+<p>而反序列是为了让序列化后的对象，当再次需要调用这个对象的方法时能够反序列化为原来的对象。</p>
+<p>这句话看似很拗口，其实已经是我自己认为最好理解的语句。</p>
+<p>从这儿已经可以解释文前大佬说的:反序列化一个类出来，只要是类的属性，肯定可控。为什么可控？</p>
+<p>个人总结如下:</p>
+<pre><code>反序列化就是为了对象重构而去调用方法，而之所以需要重新调用方法就是因为有用户可传入的参数需要处理</code></pre><p>所以迷惑解开了，接下来进一步对其进入深入了解，就像tla一样需要深入了解，^_^!</p>
+<p>接下来由于过菜，只能接着用php进行研究，java之后补上来。</p>
+<p>虽然前面说的是java序列化，但其实只有不同语言的特性，但序列化的含义都大同小异。</p>
+<h3><span id="0x03php反序列化漏洞具体实例">0x03php反序列化漏洞具体实例</span></h3><p>这里用之前参加极客大挑战做的一道基础反序列化题目:</p>
+<pre><code class="php">&lt;?php
+class Student
+{
+    public $score = 0;
+    public function __destruct()
+    {
+        echo &quot;__destruct working&quot;;
+        if($this-&gt;score==10000) {
+            $flag = &quot;******************&quot;;
+            echo $flag;
+        }
+    }
+}
+$exp = $_GET[&#39;exp&#39;];
+echo &quot;&lt;br&gt;&quot;;
+unserialize($exp);</code></pre>
+<p>题目很简单，我们仔细分析一下解题构造pop链。</p>
+<pre><code>php的反序列化漏洞主要存在于魔术方法，啥是魔术方法呢？
+按我的理解就是它自己就可以执行，不需要我们人为去特意调用它。
+接下来介绍两个基础的方法:
+构造函数和析构函数:
+__construct和__destruct
+__construct:具有构造函数的类会在每次创建新对象时先调用此方法。
+__destruct:析构函数会在某个对象的所有引用都被删除或者当对象被显式销毁时执行。</code></pre><p>那么这道题就需要让__destruct析构函数执行并且伪造其中的变量值最终拿到flag.</p>
+<p>当我们传入序列化的数据进去后，这时候对象的引用就被删除了，从而导致了析构函数执行。</p>
+<p>然后传入的数据再由反序列化函数unserialize执行，最终成功将我们的序列化数据反序列化具体对象引用变量的值，从而达到改变了原有代码写定的变量的值，最后绕过判断拿到flag.</p>
+<p>整个利用:传入序列化——&gt;__destruct执行—-&gt;序列化被传入-&gt;反序列化函数-&gt;传入的具有新的值的变量覆盖原有变量的值-&gt;达成If条件-&gt;取得flag.</p>
+<p>最后写一个类生成序列化数据:</p>
+<p><img src="/2020/09/19/序列化和反序列化/image-20200919103047397.png" alt="image-20200919103047397"></p>
+<p>接下来再传入1.php</p>
+<pre><code>?exp=O:7:&quot;Student&quot;:1:{s:5:&quot;score&quot;;i:10000;}</code></pre><p>最后就拿到了flag.</p>
+<p>这是最基础的反序列化漏洞的利用，也是反序列化漏洞原理掌握的启蒙。</p>
+<p>当然在这之后又设计到了类中的私有对象和保护对象的序列化，与公开的对象又有一定区别。</p>
+<p>private成员变量被序列化变成%00test%00</p>
+<p>而protecter的成员变量变成%00*%00test</p>
+<p>而这些在浏览器打印是不会被显示的，所以在遇到这样的成员变量时打印出来的序列化数据还需要自己加上这些。</p>
+
+        </div>
+        <!-- .entry-content -->
+        <div class="single-reward">
+          <div class="reward-open">赏
+            <div class="reward-main">
+              <ul class="reward-row">
+                <li class="alipay-code"><img src="https://cdn.jsdelivr.net/gh/bephplover/cdn@2.7null"></li>
+                <li class="wechat-code"><img src="https://cdn.jsdelivr.net/gh/bephplover/cdn@2.7null"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent"></div>
+        <footer class="post-footer">
+          <div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="nofollow"><i class="fa fa-creative-commons" aria-hidden="true"></i> 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a></div>
+          <div class="post-tags">
+          </div>
+          <div class="post-share">
+            <div class="social-share sharehidden share-component"></div>
+            <i class="iconfont show-share icon-forward"></i>
+          </div>
+        </footer><!-- .entry-footer -->
+      </article>
+      <!-- #post-## -->
+      <div class="toc" style="background: none;"></div>
+      <section class="post-squares nextprev">
+        
+        
+          
+            <div class="post-nepre full next">
+          
+            <a href="/2020/09/17/姜太公养成记/" rel="next">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="">
+              </div>
+              <span class="label">
+              Next Post</span>
+              <div class="info">
+                <h3>
+                姜太公养成记</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+      </section>
       
-  <!-- 首页默认取最最新文章集 -->
-  
-    
-<article  class="post post-list-thumb post-list-thumb-left"  class="post post-list-thumb" itemscope="" itemtype="http://schema.org/BlogPosting">
+<div id="vcomments"></div>
+<script>
+  window.onload = function(){
+      var valine = new Valine();
+      valine.init({
+        el: '#vcomments',
+        appId: "GyC3NzMvd0hT9Yyd2hYIC0MN-gzGzoHsz",
+        appKey: "mgOpfzbkHYqU92CV4IDlAUHQ",
+        path: window.location.pathname,
+        placeholder: "你是我一生只会遇见一次的惊喜 ..."
+      })
+  }
+</script>
 
-  <div class="post-thumb">
-    <a href="/2020/05/05/safe-of-Unicode/">
-      <img class="lazyload" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/image-404.png">
-    </a>
-  </div>
-  <div class="post-content-wrap">
-    <div class="post-content">
-      <div class="post-date">
-        <i class="iconfont icon-time">
-        </i>2020-5-5 15:05</div>
-      <a href="/2020/05/05/safe-of-Unicode/" class="post-title">
-        <h3>safe_of_Unicode</h3>
-      </a>
-      <div class="post-meta">
-        <span><i class="fa fa-tags"></i>
-        
-        </span>
-        <span>
-          <i class="iconfont icon-file"></i>
-          
-            <a href="/categories/Web-漏洞/">Web 漏洞</a>
-          
-        </span>
-      </div>
-      <div class="float-content">
-        <p></p>
-        <div class="post-bottom">
-          <a href="/2020/05/05/safe-of-Unicode/" class="button-normal">
-            <i class="iconfont icon-caidan"></i>
-          </a>
+      <section class="author-profile">
+        <div class="info" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <a href="" class="profile gravatar"><img src="" itemprop="image" alt="" height="70" width="70"></a>
+          <div class="meta">
+            <span class="title">Author</span>
+            <h3 itemprop="name">
+            <a href="" itemprop="url" rel="author"></a>
+            </h3>
+          </div>
         </div>
-      </div>
-    </div>
-  </div>
-</article>
-  
-    
-<article  class="post post-list-thumb" itemscope="" itemtype="http://schema.org/BlogPosting">
-
-  <div class="post-thumb">
-    <a href="/2020/05/04/python-pickle/">
-      <img class="lazyload" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/image-404.png">
-    </a>
-  </div>
-  <div class="post-content-wrap">
-    <div class="post-content">
-      <div class="post-date">
-        <i class="iconfont icon-time">
-        </i>2020-5-4 20:05</div>
-      <a href="/2020/05/04/python-pickle/" class="post-title">
-        <h3>python-pickle</h3>
-      </a>
-      <div class="post-meta">
-        <span><i class="fa fa-tags"></i>
-        
-        </span>
-        <span>
-          <i class="iconfont icon-file"></i>
-          
-        </span>
-      </div>
-      <div class="float-content">
-        <p></p>
-        <div class="post-bottom">
-          <a href="/2020/05/04/python-pickle/" class="button-normal">
-            <i class="iconfont icon-caidan"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</article>
-  
-    
-<article  class="post post-list-thumb post-list-thumb-left"  class="post post-list-thumb" itemscope="" itemtype="http://schema.org/BlogPosting">
-
-  <div class="post-thumb">
-    <a href="/2020/05/01/PHP-inclusion/">
-      <img class="lazyload" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/image-404.png">
-    </a>
-  </div>
-  <div class="post-content-wrap">
-    <div class="post-content">
-      <div class="post-date">
-        <i class="iconfont icon-time">
-        </i>2020-5-1 16:05</div>
-      <a href="/2020/05/01/PHP-inclusion/" class="post-title">
-        <h3>[PHP]inclusion</h3>
-      </a>
-      <div class="post-meta">
-        <span><i class="fa fa-tags"></i>
-        
-        </span>
-        <span>
-          <i class="iconfont icon-file"></i>
-          
-        </span>
-      </div>
-      <div class="float-content">
-        <p></p>
-        <div class="post-bottom">
-          <a href="/2020/05/01/PHP-inclusion/" class="button-normal">
-            <i class="iconfont icon-caidan"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</article>
-  
-    
-<article  class="post post-list-thumb" itemscope="" itemtype="http://schema.org/BlogPosting">
-
-  <div class="post-thumb">
-    <a href="/2020/04/29/read-book-note/">
-      <img class="lazyload" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/image-404.png">
-    </a>
-  </div>
-  <div class="post-content-wrap">
-    <div class="post-content">
-      <div class="post-date">
-        <i class="iconfont icon-time">
-        </i>2020-4-29 23:04</div>
-      <a href="/2020/04/29/read-book-note/" class="post-title">
-        <h3>read_book_note</h3>
-      </a>
-      <div class="post-meta">
-        <span><i class="fa fa-tags"></i>
-        
-        </span>
-        <span>
-          <i class="iconfont icon-file"></i>
-          
-        </span>
-      </div>
-      <div class="float-content">
-        <p></p>
-        <div class="post-bottom">
-          <a href="/2020/04/29/read-book-note/" class="button-normal">
-            <i class="iconfont icon-caidan"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</article>
-  
-    
-<article  class="post post-list-thumb post-list-thumb-left"  class="post post-list-thumb" itemscope="" itemtype="http://schema.org/BlogPosting">
-
-  <div class="post-thumb">
-    <a href="/2020/04/29/SSRF-know/">
-      <img class="lazyload" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/image-404.png">
-    </a>
-  </div>
-  <div class="post-content-wrap">
-    <div class="post-content">
-      <div class="post-date">
-        <i class="iconfont icon-time">
-        </i>2020-4-29 08:04</div>
-      <a href="/2020/04/29/SSRF-know/" class="post-title">
-        <h3>SSRF-know</h3>
-      </a>
-      <div class="post-meta">
-        <span><i class="fa fa-tags"></i>
-        
-        </span>
-        <span>
-          <i class="iconfont icon-file"></i>
-          
-        </span>
-      </div>
-      <div class="float-content">
-        <p></p>
-        <div class="post-bottom">
-          <a href="/2020/04/29/SSRF-know/" class="button-normal">
-            <i class="iconfont icon-caidan"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</article>
-  
-    
-<article  class="post post-list-thumb" itemscope="" itemtype="http://schema.org/BlogPosting">
-
-  <div class="post-thumb">
-    <a href="/2020/04/28/MRCTF2020-WP/">
-      <img class="lazyload" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/image-404.png">
-    </a>
-  </div>
-  <div class="post-content-wrap">
-    <div class="post-content">
-      <div class="post-date">
-        <i class="iconfont icon-time">
-        </i>2020-4-28 15:04</div>
-      <a href="/2020/04/28/MRCTF2020-WP/" class="post-title">
-        <h3>MRCTF2020-WP</h3>
-      </a>
-      <div class="post-meta">
-        <span><i class="fa fa-tags"></i>
-        
-        </span>
-        <span>
-          <i class="iconfont icon-file"></i>
-          
-            <a href="/categories/CTF/">CTF</a>
-          
-        </span>
-      </div>
-      <div class="float-content">
-        <p></p>
-        <div class="post-bottom">
-          <a href="/2020/04/28/MRCTF2020-WP/" class="button-normal">
-            <i class="iconfont icon-caidan"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</article>
-  
-    
-<article  class="post post-list-thumb post-list-thumb-left"  class="post post-list-thumb" itemscope="" itemtype="http://schema.org/BlogPosting">
-
-  <div class="post-thumb">
-    <a href="/2020/04/27/php-stream/">
-      <img class="lazyload" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/image-404.png">
-    </a>
-  </div>
-  <div class="post-content-wrap">
-    <div class="post-content">
-      <div class="post-date">
-        <i class="iconfont icon-time">
-        </i>2020-4-27 15:04</div>
-      <a href="/2020/04/27/php-stream/" class="post-title">
-        <h3>php-stream</h3>
-      </a>
-      <div class="post-meta">
-        <span><i class="fa fa-tags"></i>
-        
-        </span>
-        <span>
-          <i class="iconfont icon-file"></i>
-          
-        </span>
-      </div>
-      <div class="float-content">
-        <p></p>
-        <div class="post-bottom">
-          <a href="/2020/04/27/php-stream/" class="button-normal">
-            <i class="iconfont icon-caidan"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</article>
-  
-    
-<article  class="post post-list-thumb" itemscope="" itemtype="http://schema.org/BlogPosting">
-
-  <div class="post-thumb">
-    <a href="/2020/04/26/CVE-2018-12613-PHPmyadmin/">
-      <img class="lazyload" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/image-404.png">
-    </a>
-  </div>
-  <div class="post-content-wrap">
-    <div class="post-content">
-      <div class="post-date">
-        <i class="iconfont icon-time">
-        </i>2020-4-26 14:04</div>
-      <a href="/2020/04/26/CVE-2018-12613-PHPmyadmin/" class="post-title">
-        <h3>CVE-2018-12613-PHPmyadmin</h3>
-      </a>
-      <div class="post-meta">
-        <span><i class="fa fa-tags"></i>
-        
-        </span>
-        <span>
-          <i class="iconfont icon-file"></i>
-          
-        </span>
-      </div>
-      <div class="float-content">
-        <p></p>
-        <div class="post-bottom">
-          <a href="/2020/04/26/CVE-2018-12613-PHPmyadmin/" class="button-normal">
-            <i class="iconfont icon-caidan"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</article>
-  
-    
-<article  class="post post-list-thumb post-list-thumb-left"  class="post post-list-thumb" itemscope="" itemtype="http://schema.org/BlogPosting">
-
-  <div class="post-thumb">
-    <a href="/2020/04/19/docker/">
-      <img class="lazyload" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/image-404.png">
-    </a>
-  </div>
-  <div class="post-content-wrap">
-    <div class="post-content">
-      <div class="post-date">
-        <i class="iconfont icon-time">
-        </i>2020-4-19 19:04</div>
-      <a href="/2020/04/19/docker/" class="post-title">
-        <h3>docker</h3>
-      </a>
-      <div class="post-meta">
-        <span><i class="fa fa-tags"></i>
-        
-        </span>
-        <span>
-          <i class="iconfont icon-file"></i>
-          
-        </span>
-      </div>
-      <div class="float-content">
-        <p></p>
-        <div class="post-bottom">
-          <a href="/2020/04/19/docker/" class="button-normal">
-            <i class="iconfont icon-caidan"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</article>
-  
-    
-<article  class="post post-list-thumb" itemscope="" itemtype="http://schema.org/BlogPosting">
-
-  <div class="post-thumb">
-    <a href="/2020/04/18/NPUCTF/">
-      <img class="lazyload" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/image-404.png">
-    </a>
-  </div>
-  <div class="post-content-wrap">
-    <div class="post-content">
-      <div class="post-date">
-        <i class="iconfont icon-time">
-        </i>2020-4-18 09:04</div>
-      <a href="/2020/04/18/NPUCTF/" class="post-title">
-        <h3>NPUCTF</h3>
-      </a>
-      <div class="post-meta">
-        <span><i class="fa fa-tags"></i>
-        
-        </span>
-        <span>
-          <i class="iconfont icon-file"></i>
-          
-            <a href="/categories/CTF/">CTF</a>
-          
-        </span>
-      </div>
-      <div class="float-content">
-        <p></p>
-        <div class="post-bottom">
-          <a href="/2020/04/18/NPUCTF/" class="button-normal">
-            <i class="iconfont icon-caidan"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</article>
-  
-
-
-    </main>
-      <!-- 首页默认取最最新文章集 -->
-    <!-- 
-      <nav class="navigator">
-        
-        <a class="extend prev" rel="prev" href="/page/5/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/7/">Next</a>
-      </nav>
-     -->
-  </div>
-  
-    <div id="pagination"><a href="/page/7/" class="">Previous</a></div>
-  
+        <hr>
+        <p><i class="iconfont icon-write"></i></p>
+      </section>
+    </main><!-- #main -->
+  </div><!-- #primary -->
 </div>
+
+
 
     </div>    
     <div class="ins-search">

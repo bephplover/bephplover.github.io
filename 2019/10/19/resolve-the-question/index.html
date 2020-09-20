@@ -431,6 +431,21 @@ trusted-host=mirrors.aliyun.com</code></pre>
 <p>关于Linux终端使用</p>
 <p>输入部分命令比如cron按住tab即可出现完整命令</p>
 <p>连按两次tab可以显示cron开头的所有命令</p>
+<h3><span id="kali使用各类软件绕坑">KALI使用各类软件绕坑</span></h3><p>关于docker-compose使用pip install安装出错的问题<br>切换国内源如下所示，其中keras代表使用pip安装的东西<br>pip install keras -i <a href="http://pypi.douban.com/simple" target="_blank" rel="noopener">http://pypi.douban.com/simple</a> –trusted-host pypi.douban.com</p>
+<p>关于kali装不上的问题:<br>先跳过镜像出错，原因还是国外镜像网太慢出错</p>
+<p>kali安装pip步骤:<br>先更新源:<br>vim /etc/apt/sources.list<br>网上有很多我用的浙江大学的:<br><a href="http://mirrors.zju.edu.cn/kali" target="_blank" rel="noopener">http://mirrors.zju.edu.cn/kali</a> kali-rolling main contrib non-free<br>deb-src <a href="http://mirrors.zju.edu.cn/kali" target="_blank" rel="noopener">http://mirrors.zju.edu.cn/kali</a> kali-rolling main contrib non-free<br>然后更新一下:<br>apt-get update</p>
+<p>apt-get upgrade</p>
+<p>apt-get dist-upgrade<br>最后reboot<br>上来后输入以下命令:<br>sudo apt-get install python-pip<br>就可安装pip了(再也不用那什么setuptool什么东西的)</p>
+<p>windows安装pip</p>
+<p>关于docker-pull慢的问题:<br>vi /etc/docker/daemon.json<br>添加ali的镜像:<br>{<br>“registry-mirrors”: [“<a href="https://mj9kvemk.mirror.aliyuncs.com&quot;]" target="_blank" rel="noopener">https://mj9kvemk.mirror.aliyuncs.com&quot;]</a><br>}<br>重启docker:</p>
+<p>使用夜神等模拟器抓取手机包:<br>BP设置all interface<br>生成证书放入模拟器中<br>安装证书在设置-&gt;安全中-&gt;从SD卡安装<br>设置wifi为本机IP<br>即可。</p>
+<p>关于安装各个语言环境变量配置的原因<br>按我的理解，其实可执行的程序都有了，但你没有装到命令行中，导致无法在命令行中快捷的执行。<br>windows配置环境变量，很简单，<br>linux的 vim /etc/profile<br>然后是export PATH=$PATH:路径后保存<br>然后是source /etc/profile使得环境变量立即生效</p>
+<p>关于msf半天启动不了的问题可以尝试重启哈它的数据库:<br>service postgresql start 　　　　# 启动数据库服务<br>msfdb init　　　　　　　　　　　　　# 初始化数据库<br>msfconsole　　　　　　　　　　　　　# 启动metasploit<br>关于iis漏洞模块加载不出来的问题，把cve-中的-改成下划线_然后进入msfconsole中后再reload哈就可以找到了。/usr/share/metasploit-framework/modules/exploits/</p>
+<h3><span id="博客搭建绕坑">博客搭建绕坑</span></h3><p>关于配置了ssh依然显示:</p>
+<p><img src="/2019/10/19/resolve-the-question/image-20200915175419455.png" alt="image-20200915175419455"></p>
+<p>直接git打开输入以下命令:</p>
+<pre><code>ssh-keyscan -t rsa github.com &gt;&gt; ~/.ssh/known_hosts</code></pre><p>然后使用</p>
+<pre><code>ssh -T git@github.com</code></pre><p>即可发现已经success了。</p>
 
         </div>
         <!-- .entry-content -->

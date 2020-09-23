@@ -369,6 +369,7 @@
 <p><img src="/2020/09/22/Linux-用户目录下的bash/image-20200922102040588.png" alt="image-20200922102040588"></p>
 <h3><span id="2bash_logout">2.bash_logout</span></h3><p>该文件存储这用户登出时执行的命令</p>
 <h3><span id="3bash_profile">3.bash_profile</span></h3><p><img src="/2020/09/22/Linux-用户目录下的bash/image-20200922102850301.png" alt="image-20200922102850301"></p>
+<p>profile中存储这环境变量，如果有一些java类的环境变量配置了也会在这里面显示。</p>
 <h3><span id="4bashrc">4.bashrc</span></h3><p><img src="/2020/09/22/Linux-用户目录下的bash/image-20200922103939746.png" alt="image-20200922103939746"></p>
 <p>具体案例:</p>
 <p>如果需要每个用户登出时都清除输入的命令历史记录,可以在<code>/etc/skel/.bash_logout</code>文件中添加下面这行<code>rm -f $HOME/.bash_history</code> 。这样，当用户每次注销时，<code>.bash_history</code>文件都会被删除.</p>
@@ -405,7 +406,7 @@
           
             <a href="/2020/09/22/study-plan-2020/" rel="prev">
               <div class="background">
-                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://blog.nineya.com/upload/2020/04/%E5%B0%81%E9%9D%A2%E5%9B%BE5-da3037874eb74e5380ce9da6c8e63ad9.jpg" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://blog.nineya.com/upload/2020/04/%E5%B0%81%E9%9D%A2%E5%9B%BE5-da3037874eb74e5380ce9da6c8e63ad9.jpg">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="http://175.24.19.33/image/4.jpg" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="http://175.24.19.33/image/4.jpg">
               </div>
               <span class="label">
               Previous Post</span>
@@ -421,7 +422,7 @@
           
             <div class="post-nepre half next">
           
-            <a href="/2020/09/22/Mysql-提权/" rel="next">
+            <a href="/2020/09/22/MsSql-提权/" rel="next">
               <div class="background">
                 <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="">
               </div>

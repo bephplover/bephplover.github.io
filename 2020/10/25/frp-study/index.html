@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   
-  <title itemprop="name">域名的泛解析 | Cupid&#39;s Blog</title>
+  <title itemprop="name">frp-study | Cupid&#39;s Blog</title>
   
     <link rel="shortcut icon" href="/images/favicon.ico">
   
@@ -350,11 +350,11 @@
 
   <div class="pattern-center single-center">
     <!-- 有配图默认渲染第一张 -->
-    <div class="pattern-attachment-img lazyload" style="background-image: url(http://175.24.19.33/image/4.jpg);" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="http://175.24.19.33/image/4.jpg">
+    <div class="pattern-attachment-img lazyload" style="background-image: url(http://175.24.19.33/image/1.jpg);" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="http://175.24.19.33/image/1.jpg">
     </div>
     <header class="pattern-header single-header">
       <h1 class="entry-title">
-      域名的泛解析</h1>
+      frp-study</h1>
       <p class="entry-census">
         <span>
           <a href="">
@@ -366,7 +366,7 @@
         </span>
         <span class="bull">
         ·</span>
-        2020-10-22<span class="bull">
+        2020-10-25<span class="bull">
         ·</span>
       <span id="busuanzi_value_page_pv"></span>次阅读</p>
     </header>
@@ -380,10 +380,53 @@
         <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
         
         <div class="entry-content">
-          <p>什么是泛域名解析？</p>
-<p>指利用通配符*来做次级域名以实现所有的次级域名均指向同一IP地址。在域名前添加任何子域名均可访问到所指向的WEB地址。也就是域名#.com之下所设的</p>
-<pre><code>*.#.com全部解析到同一个IP地址上去。比如设置一个1.#.com就会自动解析到与#.com同一个ip地址上去。</code></pre><p>什么是A记录</p>
-<p>A记录全程Address记录，又称IP指向，是用来指定主机名(或域名)对应的IP地址记录。用户可以将该域名下的网站服务器指向到自己的web server上。同时可以设置二级域名，从而实现通过域名找到服务器找到相应网页的功能。</p>
+          <p>在vps上建立frp服务端用来反向代理内网中的frp客户端，然后攻击者就可以通过自己的vps，来访问到内网中的服务器了。</p>
+<p>vps配置(服务端)</p>
+<p>由于其作为服务端所以可以把客户端的ini给删掉</p>
+<p>先cd到frp的文件下:</p>
+<pre><code>rm -f frpc frpc.ini
+vim frps.ini
+[common]
+bind_port = 7000
+dashboard_port = 7500
+token = your token
+dashboard_user = admin
+dashboard_pwd = your password
+vhost_http_port = 10080
+vhost_https_port = 10443
+</code></pre><p>服务端运行:</p>
+<pre><code>./frps -c frps.ini</code></pre><p>直接ctrl+c就关了</p>
+<p>后台运行:</p>
+<pre><code>nohup ./frps -c frps.ini &gt;/dev/null 2&gt;&amp;1 &amp;</code></pre><p><img src="/2020/10/25/frp-study/image-20200928215029822.png" alt="image-20200928215029822"></p>
+<p><img src="/2020/10/25/frp-study/image-20200928215848275.png" alt="image-20200928215848275"></p>
+<p>客户端配置:<br>wget <a href="https://github.com/fatedier/frp/releases/download/v0.17.0/frp_0.17.0_linux_arm.tar.gz" target="_blank" rel="noopener">https://github.com/fatedier/frp/releases/download/v0.17.0/frp_0.17.0_linux_arm.tar.gz</a><br>tar -zxvf frp_0.17.0_linux_arm.tar.gz<br>cd frp_0.17.0_linux_arm<br>sudo vim ./frpc.ini<br>[common]<br>server_addr = your_server_ip               #VPS服务器IP<br>server_port = 7000                         #端口，与服务端bind_port一致  </p>
+<p>#临时启动<br>./frpc -c ./frpc.ini</p>
+<p>#后台保持启动<br>nohup ./frpc -c ./frpc.ini &amp;</p>
+<p>#启动frpc<br>systemctl daemon-reload<br>systemctl start frpc</p>
+<p>#设置为开机启动<br>systemctl enable frpc</p>
+<p>windows客户端配置:</p>
+<pre><code>[common]
+server_addr = 175.24.19.33
+server_port = 7000
+token = Cupid
+health_check_type = tcp
+health_check_interval_s = 100
+
+
+
+[web] 
+remote_port = 7002          
+plugin = socks5            
+use_encryption = true         
+use_compression = true
+local_ip=127.0.0.1
+local_port=80
+
+[http_proxy]
+type=tcp
+remote_port=9000
+plugin= socks5</code></pre><p>记住一定要删去windows上面的#注释</p>
+<p><img src="/2020/10/25/frp-study/image-20201025161758526.png" alt="image-20201025161758526"></p>
 
         </div>
         <!-- .entry-content -->
@@ -412,36 +455,19 @@
       <div class="toc" style="background: none;"></div>
       <section class="post-squares nextprev">
         
-          
-            <div class="post-nepre half previous">
-          
-            <a href="/2020/10/25/frp-study/" rel="prev">
-              <div class="background">
-                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="http://175.24.19.33/image/1.jpg" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="http://175.24.19.33/image/1.jpg">
-              </div>
-              <span class="label">
-              Previous Post</span>
-              <div class="info">
-                <h3>
-                frp-study</h3>
-                <hr>
-              </div>
-            </a>
-          </div>
-        
         
           
-            <div class="post-nepre half next">
+            <div class="post-nepre full next">
           
-            <a href="/2020/10/19/Windows-Cmd-Download/" rel="next">
+            <a href="/2020/10/22/域名的泛解析/" rel="next">
               <div class="background">
-                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="http://175.24.19.33/image/1.jpg" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="http://175.24.19.33/image/1.jpg">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="http://175.24.19.33/image/4.jpg" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="http://175.24.19.33/image/4.jpg">
               </div>
               <span class="label">
               Next Post</span>
               <div class="info">
                 <h3>
-                Windows-Cmd-Download</h3>
+                域名的泛解析</h3>
                 <hr>
               </div>
             </a>

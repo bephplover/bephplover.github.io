@@ -383,23 +383,23 @@
           <p>参考文章:<a href="https://www.cnblogs.com/-qing-/p/11483080.html" target="_blank" rel="noopener">https://www.cnblogs.com/-qing-/p/11483080.html</a></p>
 <p>先把win7(靶机)的3389开启:</p>
 <p>搜索远程连接就可以看到:</p>
-<p><img src="C:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20201012161745649.png" alt="image-20201012161745649"></p>
+<p><img src="/2020/10/12/MS-0708/image-20201012161745649.png" alt="image-20201012161745649"></p>
 <p>选择上面第二项。这样就启动了3389.</p>
 <p>漏洞复现很简单，直接用msf即可。</p>
 <pre><code>msfconsole   启动msf
-然后search BlueKeep</code></pre><p><img src="C:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20201012161910056.png" alt="image-20201012161910056"></p>
+然后search BlueKeep</code></pre><p><img src="/2020/10/12/MS-0708/image-20201012161910056.png" alt="image-20201012161910056"></p>
 <p>使用下面这个，上面的是检测。</p>
 <p>然后是配置选项:</p>
-<p><img src="C:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20201012161941691.png" alt="image-20201012161941691"></p>
+<p><img src="/2020/10/12/MS-0708/image-20201012161941691.png" alt="image-20201012161941691"></p>
 <p>主要需要配置下rhosts。</p>
 <p>接下来会不会打蓝屏就是关键了:</p>
-<p><img src="C:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20201012162016084.png" alt="image-20201012162016084"></p>
+<p><img src="/2020/10/12/MS-0708/image-20201012162016084.png" alt="image-20201012162016084"></p>
 <p>这里我看参考文章中选的3没有蓝屏，我的VM是15.于是我选了4.</p>
 <p>蓝屏。。</p>
 <p>然后我就3、4、5全部试了</p>
 <p>都蓝屏了。</p>
 <p>最后set target 1成功了。</p>
-<p><img src="C:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20201012162121957.png" alt="image-20201012162121957"></p>
+<p><img src="/2020/10/12/MS-0708/image-20201012162121957.png" alt="image-20201012162121957"></p>
 <p>关于中文乱码:chcp 65001</p>
 
         </div>

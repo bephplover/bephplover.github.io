@@ -369,7 +369,7 @@
 <p>其设计目标是通过密钥系统为客户机/服务器应用程序提供强大的认证服务。它允许某实体在非安全网络环境下通信，向另一个实体以一种安全的方式证明自己的身份。该认证过程的实现不依赖于</p>
 <h3><span id="协议内容">协议内容</span></h3><ul>
 <li>AS:认证服务器</li>
-<li>KDC:密钥分发中心</li>
+<li>KDC:密钥分发中心,默认安装在域控上</li>
 <li>TGT票据授权票据 票据的票据</li>
 <li>TGS 票据授权服务器</li>
 </ul>
@@ -378,6 +378,10 @@
 <p>AS为client生成TGT的服务</p>
 <p>而TGS为Client生成某个服务的ticket</p>
 <p>Session Key(会话密钥只有Client和TGS知道)</p>
+<p>协议可分为三个步骤:</p>
+<p>1.获得票据许可票据</p>
+<p>2.获取服务许可票据</p>
+<p>3.获得服务</p>
 <p>参考文章:</p>
 
         </div>
@@ -482,7 +486,7 @@
     <div class="ins-search-mask"></div>
     <div class="ins-search-container">
         <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="请输入关键词..."/>
+            <input type="text" class="ins-search-input" placeholder="Type something..."/>
             <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="ins-section-wrapper">
@@ -494,10 +498,10 @@
 (function (window) {
     var INSIGHT_CONFIG = {
         TRANSLATION: {
-            POSTS: '文章',
-            // PAGES: '页面',
-            CATEGORIES: '分类',
-            TAGS: '标签',
+            POSTS: 'Posts',
+            // PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
         },
         ROOT_URL: '/',
         CONTENT_URL: '/content.json',

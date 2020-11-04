@@ -357,16 +357,38 @@
         
           <header class="entry-header">
             <h1 class="entry-title">Linux-杂学</h1>
-            <p class="entry-census">&nbsp;·&nbsp;2020-9-29&nbsp;·&nbsp;<span id="busuanzi_value_page_pv"></span>次阅读</p></p>
+            <p class="entry-census">&nbsp;·&nbsp;2020-11-4&nbsp;·&nbsp;<span id="busuanzi_value_page_pv"></span>次阅读</p></p>
 
             <hr>
           </header>
         
         <div class="entry-content">
-          <p>Linux-Shell学习</p>
-<p>Shell是命令解释器，是Unix操作系统的用户接口，程序从用户接口得到输入信息，shell将用户程序及其输入翻译成操作系统内核能够识别的指令，并且操作系统内核执行完将返回的输出通过shell再呈现给用户。</p>
-<p>shell是解释执行的脚本语言，可直接调用linux命令。</p>
-
+          <h3><span id="重要的目录-文件">重要的目录、文件:</span></h3><ul>
+<li>/etc/passwd 用户信息文件</li>
+<li>/etc/crontab 定时任务文件</li>
+<li>/etc/anacrontab 异步定时任务文件</li>
+<li>/etc/rc.d/rc.local 开机启动项</li>
+<li>/var/log/btmp 登陆失败日志，使用last命令查看</li>
+<li>/var/log/cron 定时任务执行日志</li>
+<li>/var/log/lastlog 所有用户最近登陆信息，使用lastlog查看</li>
+<li>/var/log/secure 验证、授权等日志</li>
+<li>/var/log/wtmp 包含用户登录日志，使用last命令查看</li>
+<li>/var/log/utmp 当前登陆系统的用户信息，使用last命令查看</li>
+</ul>
+<p>使用top查看CPU使用率:</p>
+<p><img src="C:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20201104112145928.png" alt="image-20201104112145928"></p>
+<h3><span id="ps-aux查看进程">ps -aux查看进程:</span></h3><p><img src="C:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20201104161125755.png" alt="image-20201104161125755"></p>
+<p>使用ldd命令可以查看是否有进程被注入了可以的.so文件</p>
+<p><img src="C:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20201104161806815.png" alt="image-20201104161806815"></p>
+<h3><span id="检查数据库日志">检查数据库日志:</span></h3><p>mysql连接上后使用:</p>
+<pre><code>show variables like &#39;general_log_file&#39;;</code></pre><p>查看日志存放路径:</p>
+<p><img src="C:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20201104162157752.png" alt="image-20201104162157752"></p>
+<p>这里我到该路径下并没有该日志，原因是global变量的general_log并没有设置on状态所以默认不会产生mysql日志。</p>
+<h4><span id="检查定时任务">检查定时任务</span></h4><p>crontab -l</p>
+<p><img src="C:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20201104182925818.png" alt="image-20201104182925818"></p>
+<h4><span id="查看登陆成功的ip">查看登陆成功的IP</span></h4><pre><code>grep &quot;Accepted &quot; /var/log/secure* | awk &#39;{print $11}&#39;</code></pre><h4><span id="定位有爆破行为的ip">定位有爆破行为的IP</span></h4><pre><code>grep &quot;Failed password&quot; /var/log/secure|awk &#39;{print $11}&#39; | sort | uniq -c | sort -nr |more</code></pre><h3><span id="隐藏进程查看">隐藏进程查看</span></h3><pre><code>ps -ef | awk &#39;{print}&#39; | sort -n | uniq &gt;1
+ls /proc | sort -n | uniq &gt;2
+Diff 1 2</code></pre>
         </div>
         <!-- .entry-content -->
         <div class="single-reward">
@@ -394,28 +416,11 @@
       <div class="toc" style="background: none;"></div>
       <section class="post-squares nextprev">
         
-          
-            <div class="post-nepre half previous">
-          
-            <a href="/2020/10/03/PiKachu/" rel="prev">
-              <div class="background">
-                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="http://175.24.19.33/image/4.jpg" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="http://175.24.19.33/image/4.jpg">
-              </div>
-              <span class="label">
-              Previous Post</span>
-              <div class="info">
-                <h3>
-                PiKachu</h3>
-                <hr>
-              </div>
-            </a>
-          </div>
-        
         
           
-            <div class="post-nepre half next">
+            <div class="post-nepre full next">
           
-            <a href="/2020/09/28/Windows-User/" rel="next">
+            <a href="/2020/10/27/windows-应急响应/" rel="next">
               <div class="background">
                 <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="">
               </div>
@@ -423,7 +428,7 @@
               Next Post</span>
               <div class="info">
                 <h3>
-                Windows-User</h3>
+                windows-应急响应</h3>
                 <hr>
               </div>
             </a>
@@ -469,7 +474,7 @@
     <div class="ins-search-mask"></div>
     <div class="ins-search-container">
         <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="请输入关键词..."/>
+            <input type="text" class="ins-search-input" placeholder="Type something..."/>
             <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="ins-section-wrapper">
@@ -481,10 +486,10 @@
 (function (window) {
     var INSIGHT_CONFIG = {
         TRANSLATION: {
-            POSTS: '文章',
-            // PAGES: '页面',
-            CATEGORIES: '分类',
-            TAGS: '标签',
+            POSTS: 'Posts',
+            // PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
         },
         ROOT_URL: '/',
         CONTENT_URL: '/content.json',

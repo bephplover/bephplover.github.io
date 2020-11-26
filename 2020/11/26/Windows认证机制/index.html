@@ -348,6 +348,30 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
 <div class="pattern-center-blank"></div>
 
+  <div class="pattern-center single-center">
+    <!-- 有配图默认渲染第一张 -->
+    <div class="pattern-attachment-img lazyload" style="background-image: url(http://175.24.19.33/image/4.jpg);" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="http://175.24.19.33/image/4.jpg">
+    </div>
+    <header class="pattern-header single-header">
+      <h1 class="entry-title">
+      Windows认证机制</h1>
+      <p class="entry-census">
+        <span>
+          <a href="">
+            <img src="">
+          </a>
+        </span>
+        <span>
+          <a href=""></a>
+        </span>
+        <span class="bull">
+        ·</span>
+        2020-11-26<span class="bull">
+        ·</span>
+      <span id="busuanzi_value_page_pv"></span>次阅读</p>
+    </header>
+  </div>
+
 <div id="content" class="site-content">
   <div id="primary" class="content-area">
     <main id="main" class="site-main" role="main">
@@ -355,20 +379,13 @@
         <div class="toc"></div>
         <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
         
-          <header class="entry-header">
-            <h1 class="entry-title">Windows认证机制</h1>
-            <p class="entry-census">&nbsp;·&nbsp;2020-11-26&nbsp;·&nbsp;<span id="busuanzi_value_page_pv"></span>次阅读</p></p>
-
-            <hr>
-          </header>
-        
         <div class="entry-content">
           <h3><span id="0x00背景">0x00背景</span></h3><p>其实在很早之前我就想学习下NTLM的机制，当时也是随便看了下然后写了点笔记，这篇文章算是对当初的浮躁的一个静下心来的基础学习。</p>
 <h3><span id="0x01前置知识">0x01前置知识</span></h3><p>在理解windows认证前必须要掌握的是域的基本概念、域环境、工作组环境的区别。</p>
 <p>域渗透是基于Windows域的渗透，而域渗透涉及到的技术，例如哈希传递(PTH)、票据传递(PTT)、委派攻击等常用的域渗透手段，都是基于域环境下的认证机制来啊实现的。</p>
 <p>因而理解清楚Windows的认证机制对于域渗透的学习是必不可少的。</p>
 <h3><span id="0x02正式开始">0x02正式开始</span></h3><p>开局一张图，其余全靠扯。</p>
-<p><img src="C:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20201126205344663.png" alt="image-20201126205344663"></p>
+<p><img src="/2020/11/26/Windows认证机制/image-20201126205344663.png" alt="image-20201126205344663"></p>
 <h4><span id="本地认证">本地认证</span></h4><p>本地认证十分简单:其实就是我们平常登陆系统的认证手段，我们输入密码，系统收到密码后将我们输入的密码计算成NTLM Hash，然后与sam数据库(%SystemRoot%\system32\config\sam)中该用户的哈希比对，匹配则登陆成功，不匹配则登陆失败。</p>
 <p>由于采用了哈希算法，是单向的加密，因而只要设置的较为负责就不会被碰撞出结果。</p>
 <p>而NTLM大致的运算流程为:用户密码-&gt;HEX编码-&gt;Unicode编码-&gt;MD4</p>
@@ -377,7 +394,7 @@
 <p>在本地认证中用来处理用户输入密码的进程也就是lsass.exe，密码会在这个进程中明文保存。</p>
 <p>供该进程将密码计算成NTLM Hash与sam进行比对。</p>
 <p>但早在2012R2就已经默认不再明文保存了(内存禁止保存明文密码)。我们看一下自己的win10是否有这个进程:</p>
-<p><img src="C:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20201126210722368.png" alt="image-20201126210722368"></p>
+<p><img src="/2020/11/26/Windows认证机制/image-20201126210722368.png" alt="image-20201126210722368"></p>
 <p>所以这个windows认证的进程还是存在的，只是像刚刚说的一样不再支持明文保存密码了。</p>
 <p>所以这个时候mimikatz的原理就清楚了，就是从这个进程lsass.exe中获取到的明文密码。</p>
 <p>在2012R2之后的win7、win10就不行了，在这之前的都可以(部分win7也可以)。</p>

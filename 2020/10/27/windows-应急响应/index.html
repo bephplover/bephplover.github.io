@@ -397,12 +397,12 @@
 <p>也可固定查看某个用户的详细信息，使用命令net user username</p>
 <p><img src="/2020/10/27/windows-应急响应/image-20200920201000486.png" alt="image-20200920201000486"></p>
 <p>使用query user查看当前系统用户的会话(排查是否有人远程终端登陆服务器):</p>
-<p><img src="C:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20201109124511598.png" alt="image-20201109124511598"></p>
+<p><img src="/2020/10/27/windows-应急响应/image-20201109124511598.png" alt="image-20201109124511598"></p>
 <p>如果有可以使用logoff ID 踢出该用户</p>
 <h3><span id="补丁信息">补丁信息</span></h3><p>使用systeminfo可以排查是否打了补丁:</p>
-<p><img src="C:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20201109124610688.png" alt="image-20201109124610688"></p>
+<p><img src="/2020/10/27/windows-应急响应/image-20201109124610688.png" alt="image-20201109124610688"></p>
 <h3><span id="日志排查">日志排查</span></h3><p>win+r  -&gt; eventvwr</p>
-<p><img src="C:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20201109124744077.png" alt="image-20201109124744077"></p>
+<p><img src="/2020/10/27/windows-应急响应/image-20201109124744077.png" alt="image-20201109124744077"></p>
 <p>查询计划任务:</p>
 <p>schtasks /query /fo LIST /v</p>
 

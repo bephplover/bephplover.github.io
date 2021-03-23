@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  
+  <title itemprop="name">bWApp_play | Cupid&#39;s Blog</title>
+  
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+SerifMerriweather|Merriweather+Sans|Source+Code+Pro|Ubuntu:400,700|Noto+Serif+SC" media="all">
+  <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+  <link rel="stylesheet" id="saukra_css-css" href="/css/style.css" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/lib.min.css" media="all">
+  <link rel="stylesheet" href="/css/font.css" media="all">
+  <link rel="stylesheet" href="/css/insight.css" media="all">
+  <link rel="stylesheet" href="/css/jquery.fancybox.min.css" media="all">
+  <link rel="stylesheet" href="/css/zoom.css" media="all">
+  <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<!--   <link rel="stylesheet" id="saukra_css-css" href="https://2heng.xin/wp-content/cache/autoptimize/css/autoptimize_ad42a61f4c7d4bdd9f91afcff6b5dda5.css
+" type="text/css" media="all"> -->
+  <script>
+  /*Initial Variables*/
+  var mashiro_option = new Object();
+  var mashiro_global = new Object();
+  mashiro_option.NProgressON = true;
+  /* 
+   * 邮箱信息之类的东西可以填在这里，这些js变量基本都作用于sakura-app.js
+   * 这样的设置仅是为了方便在基于PHP开发的主题中设置js变量，既然移植到了Node上，我想或许可以精简这一逻辑吧
+   */
+  mashiro_option.email_domain = "";
+  mashiro_option.email_name = "";
+  mashiro_option.cookie_version_control = "";
+  mashiro_option.qzone_autocomplete = false;
+  mashiro_option.site_name = "Cupid'sblog";
+  mashiro_option.author_name = "blog";
+  mashiro_option.site_url = "https://bephplover.github.io/";
+  mashiro_option.v_appId = "GyC3NzMvd0hT9Yyd2hYIC0MN-gzGzoHsz";
+  mashiro_option.v_appKey = "mgOpfzbkHYqU92CV4IDlAUHQ";
+  mashiro_option.mathjax = "0";
+  mashiro_option.qq_api_url = "https://api.mashiro.top/qqinfo/"; 
+  mashiro_option.qq_avatar_api_url = "https://api.mashiro.top/qqinfo/";
+
+  // mashiro_option.jsdelivr_css_src = "https://cdn.jsdelivr.net/gh/moezx/cdn@3.4.5/css/lib.min.css";
+  // mashiro_option.float_player_on = true;
+
+  /*End of Initial Variables*/
+  </script>
+  <script type="text/javascript">
+  var bg = "https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cover/(1).jpg.webp,https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cover/(2).jpg.webp,https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cover/(3).jpg.webp,https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cover/(4).jpg.webp,https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cover/(5).jpg.webp,https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cover/(6).jpg.webp,https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cover/(7).jpg.webp,https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cover/(8).jpg.webp".split(",");
+  var bgindex = Math.floor(Math.random()*bg.length);
+  if (!!window.ActiveXObject || "ActiveXObject" in window) { //is IE?
+    alert('朋友，IE浏览器未适配哦~');
+  }
+  </script>
+  <style type="text/css">
+  .hljs-ln{border-collapse:collapse}.hljs-ln td{padding:0}.hljs-ln-n:before{content:attr(data-line-number)}
+  </style>
+  <style type="text/css">.site-top .lower nav{display:block !important;}.author-profile i,.post-like a,.post-share .show-share,.sub-text,.we-info a,span.sitename,.post-more i:hover,#pagination a:hover,.post-content a:hover,.float-content i:hover{color:#FE9600}.feature i,.download,.navigator i:hover,.links ul li:before,.ar-time i,span.ar-circle,.object,.comment .comment-reply-link,.siren-checkbox-radio:checked + .siren-checkbox-radioInput:after{background:#FE9600}::-webkit-scrollbar-thumb{background:#FE9600}.download,.navigator i:hover,.link-title,.links ul li:hover,#pagination a:hover,.comment-respond input[type='submit']:hover{border-color:#FE9600}.entry-content a:hover,.site-info a:hover,.comment h4 a,#comments-navi a.prev,#comments-navi a.next,.comment h4 a:hover,.site-top ul li a:hover,.entry-title a:hover,#archives-temp h3,span.page-numbers.current,.sorry li a:hover,.site-title a:hover,i.iconfont.js-toggle-search.iconsearch:hover,.comment-respond input[type='submit']:hover{color:#FE9600}.comments .comments-main{display:block !important;}.comments .comments-hidden{display:none !important;}background-position:center center;background-attachment:inherit;}
+  </style>
+</head>
+</html>
+<body class="page-template page-template-user page-template-page-analytics page-template-userpage-analytics-php page page-id-1297 chinese-font serif isWebKit">
+  <div class="scrollbar" id="bar">
+  </div>
+  <a href="#" class="cd-top faa-float animated"></a>
+  <section id="main-container">
+    <div class="headertop filter-dot">
+  <div id="banner_wave_1"></div>
+  <div id="banner_wave_2"></div>
+  <figure id="centerbg" class="centerbg">
+    <div class="focusinfo no-select">
+      <div class="header-tou">
+        <a href="https://bephplover.github.io/">
+          <img src="https://cdn.jsdelivr.net/gh/bephplover/cdn@2.7/img/custom/namei.jpg">
+        </a>
+      </div>
+      <div class="header-info">
+        <p>Welcome to my blog,have a good time!</p>
+        <div class="top-social_v2">
+          <li id="bg-pre">
+            <img class="flipx" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/next-b.svg">
+          </li>
+          
+            
+              
+                <li>
+                  <a href="https://github.com/bephplover" target="_blank" class="social-github" title="github">
+                    <img src="https://cdn.jsdelivr.net/gh/bephplover/cdn@2.7/img/social/github.png">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="http://weibo.com/mashirozx?is_all=1" target="_blank" class="social-github" title="sina">
+                    <img src="https://cdn.jsdelivr.net/gh/bephplover/cdn@2.7/img/social/sina.png">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="https://music.163.com/#/user/home?id=623980935" target="_blank" class="social-github" title="wangyiyun">
+                    <img src="https://cdn.jsdelivr.net/gh/bephplover/cdn@2.7/img/social/wangyiyun.png">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="http://weibo.com/mashirozx?is_all=1" target="_blank" class="social-github" title="zhihu">
+                    <img src="https://cdn.jsdelivr.net/gh/bephplover/cdn@2.7/img/social/zhihu.png">
+                  </a>
+                </li>
+              
+            
+          
+          <li id="bg-next">
+            <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/next-b.svg">
+          </li>
+        </div>
+      </div>
+    </div>
+  </figure>
+  <div id="video-container" style="">
+    <video style="object-fit: fill" id="bgvideo" class="video" video-name="" src="" width="auto" preload="auto">
+    </video>
+    <div id="video-btn" class="loadvideo videolive">
+    </div>
+    <div id="video-add">
+    </div>
+    <div class="video-stu">
+    </div>
+  </div>
+  <div class="headertop-down faa-float animated" onclick="headertop_down()">
+    <span>
+      <i class="fa fa-chevron-down" aria-hidden="true">
+      </i>
+    </span>
+  </div>
+</div>
+    <div id="page" class="site wrapper">
+      <header class="site-header no-select gizle sabit" role="banner">
+  <div class="site-top">
+    <div class="site-branding">
+      <span class="site-title">
+        <span class="logolink moe-mashiro">
+          <a href="/">
+            <span class="sakurasono">Cupid&#39;s</span>
+            <span class="shironeko">blog</span>
+          </a>
+        </span>
+      </span>
+    </div>
+    <div class="searchbox search-form-submit">
+      <i class="iconfont js-toggle-search iconsearch icon-search">
+      </i>
+    </div>
+    <div id="show-nav" class="showNav mobile-fit">
+      <div class="line line1">
+      </div>
+      <div class="line line2">
+      </div>
+      <div class="line line3">
+      </div>
+    </div>
+    <div class="lower-cantiner">
+      <div class="lower">
+        <nav class="mobile-fit-control hide">
+          <ul id="menu-new" class="menu">
+            
+              <li>
+                <a href="/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+                    首页
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+                    归档
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/categories/技术/">
+                          <i class="fa fa-code" aria-hidden="true"></i>
+                          技术
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/内网渗透/">
+                          <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                          内网渗透
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/编程类/">
+                          <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                          编程学习
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/Linux/">
+                          <i class="fa fa-book" aria-hidden="true"></i>
+                          Linux学习
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/CTF/">
+                          <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                          CTF
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/Web漏洞/">
+                          <i class="fa fa-book" aria-hidden="true"></i>
+                          Web渗透
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="javascript:;">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-list-ul faa-vertical" aria-hidden="true"></i>
+                    清单
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/tags/悦读/">
+                          <i class="fa fa-th-list faa-bounce" aria-hidden="true"></i>
+                          书单
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/music/">
+                          <i class="fa fa-headphones" aria-hidden="true"></i>
+                          歌单
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/tags/图集/">
+                          <i class="fa fa-photo" aria-hidden="true"></i>
+                          图集
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="/comment/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-pencil-square-o faa-tada" aria-hidden="true"></i>
+                    留言板
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/links/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-link faa-shake" aria-hidden="true"></i>
+                    友人帐
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-leaf faa-wrench" aria-hidden="true"></i>
+                    关于
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/about/">
+                          <i class="fa fa-meetup" aria-hidden="true"></i>
+                          我？
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/theme-sakura/">
+                          <i class="fa iconfont icon-sakura" aria-hidden="true"></i>
+                          主题
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/lab/">
+                          <i class="fa fa-cogs" aria-hidden="true"></i>
+                          Lab
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="/atom.xml">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-rss faa-pulse" aria-hidden="true"></i>
+                    RSS
+                  </span>
+                </a>
+                
+              </li>
+            
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+<div class="pattern-center-blank"></div>
+
+<div id="content" class="site-content">
+  <div id="primary" class="content-area">
+    <main id="main" class="site-main" role="main">
+      <article id="post-1" class="post-1 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized">
+        <div class="toc"></div>
+        <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
+        
+          <header class="entry-header">
+            <h1 class="entry-title">bWApp_play</h1>
+            <p class="entry-census">&nbsp;·&nbsp;2020-5-7&nbsp;·&nbsp;<span id="busuanzi_value_page_pv"></span>次阅读</p></p>
+
+            <hr>
+          </header>
+        
+        <div class="entry-content">
+          <h1><span id="0x01-a1-injuction注入">0x01、A1-Injuction（注入）</span></h1><h2><span id="sql-injection-getsearch">SQL injection （GET/Search）</span></h2><p>1.low<br>加上’后直接报错:</p>
+<pre><code class="error">Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &#39;%&#39;&#39; at line 1</code></pre>
+<p>那么sql语句就有可能是</p>
+<pre><code class="sql">SELECT * FROM movies WHERE title LIKE &#39;%&quot; . ($title) . &quot;%&#39;
+上面的%是模糊，也可以说是匹配查询，注入的时候可以不用管它</code></pre>
+<p>这里闭合不需要使用%’的形式直接使用’闭合让前面的与%组成一个新参数，反正都不要紧的。<br>使用order by得到字段数量为7<br>接下来payload</p>
+<pre><code class="payload">123&#39; union select 1,user(),3,database(),5,6,7 #</code></pre>
+<p>即可拿到user与database,low就做到着了，太基础了，其他查询类似。</p>
+<p>2.medium</p>
+<p>输入’后提示找不到，看样子引号被过滤了。猜测极有可能使用了addslashes函数转义了<br>因而考虑是否存在宽字节注入。测试1%df%27仍然no movies were found!因而，其编码不是GBK，所以不存在宽字节注入。<br>那么该怎么绕过呢，看一下服务器端代码吧：</p>
+<pre><code class="php">function sqli_check_1($data)
+{
+
+    return addslashes($data);
+
+}</code></pre>
+<p>可以看到的确使用了addslashes函数过滤。<br>再来看一下查询语句和low同样:</p>
+<pre><code class="sql">    $title = $_GET[&quot;title&quot;];
+
+    $sql = &quot;SELECT * FROM movies WHERE title LIKE &#39;%&quot; . sqli($title) . &quot;%&#39;&quot;;</code></pre>
+<p>这里参考addslashes的过滤方式，<br>一：字符编码问题导致绕过</p>
+<pre><code>2.1、设置数据库字符为gbk导致宽字节注入
+2.2、使用icon,mb_convert_encoding转换字符编码函数导致宽字节注入</code></pre><p>二：编码解码导致的绕过</p>
+<pre><code>3.1、url解码导致绕过addslashes
+3.2、base64解码导致绕过addslashes
+3.3、json编码导致绕过addslashes</code></pre><p>三：一些特殊情况导致的绕过</p>
+<pre><code>4.1、没有使用引号保护字符串，直接无视addslashes
+4.2、使用了stripslashes
+4.3、字符替换导致的绕过addslashes</code></pre><p>很明显上面的都行不通，因为都不满足，因而BW的medium和high可能是无法绕过，作为防御机制。<br>addslashes返回在预定义字符(单引号，双引号，反斜杠，NULL)之前添加反斜杠的字符串。</p>
+<p>3.high<br>同理high使用的是mysql_real_escape_string($data)<br>这个调用的实际也是addslashes函数，其在mysql未连接时会报错，但根据代码审计所说，其的确比addslashes更安全。<br>原因在于addslashes只针对字符串，而$_GET本身是个数组，因而某些情况也存在绕过机制。而mysql_real_escape_string可以根据当前字符集进行过滤，因而更安全。</p>
+<p>当然最好的方式还是采用预编译的方式连接数据库，那么为什么预编译的数据库可以有效地防止SQL注入？</p>
+<p>我们拿java的预编译来说，php同理:<br>PreparedStatement(java的预处理)会对SQL进行了预编译，在第一次执行SQL前数据库会进行分析、编译和优化，同时执行计划同样会被缓存起来，它允许数据库做参数化查询。在使用参数化查询的情况下，数据库不会将参数的内容视为SQL执行的一部分，而是作为一个字段的属性值来处理，这样就算参数中包含破环性语句（or ‘1=1’）也不会被执行。</p>
+<p>也就是说用户输入的参数不会被拼接到SQL语句中然后被数据库解析执行导致SQL注入，而是在参数输入前，就已经进行过SQL预处理，也就是预查询。预编译的查询已经变成了参数化，也就是只会进行参数的查询(作为一个字段的属性值处理)，而语句不会，这样就避免了SQL注入。</p>
+<p>##HTML injection - Reflected(GET)  ##</p>
+<p>这个hack有两个输入框，low等级的把用户输入的直接就输出了。<br>因而测试</p>
+<pre><code class="XSS">&lt;script&gt;alert(&#39;XSS&#39;)&lt;/script&gt;</code></pre>
+<p>即可成功弹框，挖掘这类XSS漏洞，主要寻找输出函数，echo,print,fprint,printf等<br>然后注入的实质就是把用户输入的参数加载到服务器上并且执行了，因而成功注入。<br>所以在用户参数进入表单时必须对其进行充分的过滤，然后才允许其加载到服务器进行处理。<br>看一下靶机代码:</p>
+<pre><code class="reflected">&lt;?php
+    if(isset($_GET[&quot;firstname&quot;]) &amp;&amp; isset($_GET[&quot;lastname&quot;]))
+    {   
+        $firstname = $_GET[&quot;firstname&quot;];
+        $lastname = $_GET[&quot;lastname&quot;];    
+
+        if($firstname == &quot;&quot; or $lastname == &quot;&quot;)
+        {
+
+            echo &quot;&lt;font color=\&quot;red\&quot;&gt;Please enter both fields...&lt;/font&gt;&quot;;       
+
+        }
+        else            
+        { 
+
+            echo &quot;Welcome &quot; . xss($firstname) . &quot; &quot; . xss($lastname);   
+        }
+
+    }
+    ?&gt;</code></pre>
+<p>可以看到上面直接把get传入的firstname与lastname显示，导致alert函数执行。<br>然后看一下medium的</p>
+<pre><code class="xss">function xss_check_4($data)
+{
+
+    // addslashes - returns a string with backslashes before characters that need to be quoted in database queries etc.
+    // These characters are single quote (&#39;), double quote (&quot;), backslash (\) and NUL (the NULL byte).
+    // Do NOT use this for XSS or HTML validations!!! 
+    return addslashes($data);
+
+}</code></pre>
+<p>又是addslashes。上次说到会对单引号，双引号，反斜杠，NULL自动转义加上<br>但<script>alert(%27xss%27)</script>利用不了了。这里就很奇怪，因为没有被转义的东西<br>但使用Url编码即可绕过:</p>
+<pre><code class="url">%3cscript%3ealert(%2fxss%2f)%3c%2fscript%3e</code></pre>
+<p>这里涉及到解析的顺序了，很明显Url的解码在过了addslashes后才解码，因而绕过了过滤。</p>
+<h2><span id="html-injection-reflectedurl-low">HTML injection-Reflected(url)-low</span></h2><p>刚开始没理解什么意思，只知道页面显示了当前的url：</p>
+<p><img src="/2020/05/07/bWApp-play/1.png" alt="1"></p>
+<p>我还准备插入XSS但是很快就失败了。这里应该是对url的一种处理。</p>
+<p>抓包修改host: localhost  -&gt;host: 8.8.8.8</p>
+<p>发现页面变成:</p>
+<p><img src="/2020/05/07/bWApp-play/2.png" alt="2"></p>
+<p>很明显这里获取url的方法采用了</p>
+<pre><code class="url">全局变量$_SERVER[HTTP_HOST]</code></pre>
+<p>我们单独写一个php看一下这两个</p>
+<pre><code class="PHP">$_SERVER[HTTP_HOST]和$_SERVER[REQUEST_URI]</code></pre>
+<p><img src="/2020/05/07/bWApp-play/3.png" alt="3"></p>
+<p>可以看到这两个变量分别获取了网站的域名以及它的目录。</p>
+<p>所以上面的current的代码也能猜到了应该是</p>
+<pre><code>echo &#39;$_SERVER[&quot;HTTP_HOST&quot;].$_SERVER[&quot;REQUEST_URI&quot;]&#39;</code></pre><p>那么这样会有什么危害呢？</p>
+<p>大概会被伪造为localhost而未授权访问到某些东西吧，网上都没有说危害。以后再来深究。</p>
+<p>看一下他的medium和high</p>
+<h2><span id="html-injection-reflectedurl-medium">HTML injection-Reflected(url)-medium</span></h2><p>这次执行low同样的操作已经无法修改localhost为8然而其在cookie中设置了安全级改为0就又回到了low,这里就不做没有意义的事了。探究一下这里url的抓取方式。</p>
+<p>使用ctrl+u查看源代码发现前端获取代码:case “2” :</p>
+<pre><code>    $url = &quot;http://&quot; . $_SERVER[&quot;HTTP_HOST&quot;] . xss_check_3($_SERVER[&quot;REQUEST_URI&quot;]);可以看到现在使用的是js直接获取url。</code></pre><h2><span id="html-injection-reflectedurl-high">HTML injection-Reflected(url)-high</span></h2><p>high直接查看源代码:</p>
+<pre><code class="php">case &quot;2&quot; :
+
+        $url = &quot;http://&quot; . $_SERVER[&quot;HTTP_HOST&quot;] . xss_check_3($_SERVER[&quot;REQUEST_URI&quot;]);
+跟进xss_check_3：
+    function xss_check_3($data, $encoding = &quot;UTF-8&quot;)
+{
+
+    // htmlspecialchars - converts special characters to HTML entities    
+    // &#39;&amp;&#39; (ampersand) becomes &#39;&amp;amp;&#39; 
+    // &#39;&quot;&#39; (double quote) becomes &#39;&amp;quot;&#39; when ENT_NOQUOTES is not set
+    // &quot;&#39;&quot; (single quote) becomes &#39;&amp;#039;&#39; (or &amp;apos;) only when ENT_QUOTES is set
+    // &#39;&lt;&#39; (less than) becomes &#39;&amp;lt;&#39;
+    // &#39;&gt;&#39; (greater than) becomes &#39;&amp;gt;&#39;  
+
+    return htmlspecialchars($data, ENT_QUOTES, $encoding);
+
+}</code></pre>
+<p>其实就是把request_url部分进行了输出编码，这里注意第二个参数连单引号也转义了。</p>
+<p>其实我明白了这个是说明什么了。有的时候服务器需要判断用户IP，而当没有对request_uri部分进行过滤那么极有可能可以采用X-F-F,client等绕过限制。</p>
+<h1><span id="html-injection-stored-blog-low">HTML Injection - Stored (Blog)-low</span></h1><p>low的很简单最基本的XSS直接弹窗，直接看medium</p>
+<h2><span id="html-injection-stored-blog-medium">HTML Injection - Stored (Blog)-medium</span></h2><p>插入XSS:</p>
+<p><img src="/2020/05/07/bWApp-play/4.png" alt="4"></p>
+<p>很明显这里采用了htmlspecialchars进行过滤。</p>
+<p>但查看源码发现使用的addslashes进行过滤</p>
+<p>High采用的</p>
+<pre><code class="php">return htmlspecialchars($data, ENT_QUOTES, $encoding);</code></pre>
+<p>但我总感觉按理说addslashes对于XSS应该是不能达到方法作用:</p>
+<pre><code> // addslashes - returns a string with backslashes before characters that need to be quoted in database queries etc.
+    // These characters are single quote (&#39;), double quote (&quot;), backslash (\) and NUL (the NULL byte).
+    // Do NOT use this for XSS or HTML validations!!!
+在这个函数中也说明了这一点</code></pre><p>仔细看代码发现这三个level最开始就是用了:</p>
+<pre><code class="php">mysqli_real_escape_string</code></pre>
+<p>呃。。。这里不懂medium为啥大小括号被编码了。</p>
+<h2><span id="iframe-injection">iFrame injection</span></h2><p><img src="/2020/05/07/bWApp-play/5.png" alt="5"></p>
+<p>仔细查看复现ParamUrl的值会被直接页面加载出来比如robot.txt就直接被加载了出来</p>
+<p>那我尝试一下目录跳转:</p>
+<p><img src="/2020/05/07/bWApp-play/6.png" alt="6"></p>
+<p>同样可以设置其还可以跳转到百度页面去。</p>
+<p><img src="/2020/05/07/bWApp-play/7.png" alt="7"></p>
+<p>仔细看是插入到了iframe标签中的src中所以导致任意URL跳转并在页面中加载出来。</p>
+<p>接下来尝试medium:</p>
+<p>但发现无论输入什么都不行了。尝试闭合iframe标签。</p>
+<p>发现width和height也是可控的所以对后面参数尝试XSS:</p>
+<p><img src="/2020/05/07/bWApp-play/8.png" alt="8"></p>
+<p>成功弹窗</p>
+<pre><code class="js">payload:ParamWidth=250&quot;&gt;&lt;/iframe&gt;&lt;script&gt;alert(123)&lt;/script&gt;</code></pre>
+<p>仔细看会发现medium是采用的addslashes而high采用的htmlspecialchars</p>
+<p>因而用过滤sql的来防止xss是愚蠢的因而即使”被\转义也能成功闭合双引号最后成功XSS。</p>
+<h2><span id="php-code-injection">PHP Code injection</span></h2><p>这个很容易理解，message后面的内容会被直接代入eval中输出出来。</p>
+<p><img src="/2020/05/07/bWApp-play/9.png" alt="9"></p>
+<h1><span id="mail-header-injection-smtp">Mail Header Injection (SMTP）</span></h1><p>首先做题之前需要了解几个邮件相关的概念:</p>
+<p>电子邮件中的CC英文名称是Carbon Copy(抄送)</p>
+<p>BCC英文名称是Blind Carbon Copy(暗抄送)</p>
+<p>利用这两个字段有时候即可进行mail hearder的注入。</p>
+<p><img src="/2020/05/07/bWApp-play/10.png" alt="10"></p>
+<p>可以看到都是明文传输的，一旦数据包被攻击者拦下，直接将其变成:</p>
+<p><img src="/2020/05/07/bWApp-play/11.png" alt="11"></p>
+<p>其中\n是换行一般最好采用url编码的%0d%0a在数据包中更好被识别。然后bcc就是暗抄送邮件就也会送到攻击者手上了。</p>
+<h2><span id="evil-666-fuzzing-page">Evil 666 Fuzzing Page</span></h2><p>这个就是目录文件的fuzz跟dirsearch的原理类似，这里我们用BP跑:</p>
+<p><img src="/2020/05/07/bWApp-play/12.png" alt="12"></p>
+<p>可以看到成功fuzz出了666页面</p>
+<h1><span id="0x02-a2-broken-authampsession-mgmt失效的身份认证和会话管理">0x02、A2-Broken Auth&amp;Session Mgmt（失效的身份认证和会话管理）</span></h1>
+        </div>
+        <!-- .entry-content -->
+        <div class="single-reward">
+          <div class="reward-open">赏
+            <div class="reward-main">
+              <ul class="reward-row">
+                <li class="alipay-code"><img src="https://cdn.jsdelivr.net/gh/bephplover/cdn@2.7null"></li>
+                <li class="wechat-code"><img src="https://cdn.jsdelivr.net/gh/bephplover/cdn@2.7null"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent"></div>
+        <footer class="post-footer">
+          <div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="nofollow"><i class="fa fa-creative-commons" aria-hidden="true"></i> 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a></div>
+          <div class="post-tags">
+          </div>
+          <div class="post-share">
+            <div class="social-share sharehidden share-component"></div>
+            <i class="iconfont show-share icon-forward"></i>
+          </div>
+        </footer><!-- .entry-footer -->
+      </article>
+      <!-- #post-## -->
+      <div class="toc" style="background: none;"></div>
+      <section class="post-squares nextprev">
+        
+          
+            <div class="post-nepre half previous">
+          
+            <a href="/2020/05/09/BUUCTF-WP/" rel="prev">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/tperch/jsd/img/20200510151324.png" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/tperch/jsd/img/20200510151324.png">
+              </div>
+              <span class="label">
+              Previous Post</span>
+              <div class="info">
+                <h3>
+                BUUCTF-WP</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+        
+          
+            <div class="post-nepre half next">
+          
+            <a href="/2020/05/05/Xpath-study/" rel="next">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="">
+              </div>
+              <span class="label">
+              Next Post</span>
+              <div class="info">
+                <h3>
+                Xpath_study</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+      </section>
+      
+<div id="vcomments"></div>
+<script>
+  window.onload = function(){
+      var valine = new Valine();
+      valine.init({
+        el: '#vcomments',
+        appId: "GyC3NzMvd0hT9Yyd2hYIC0MN-gzGzoHsz",
+        appKey: "mgOpfzbkHYqU92CV4IDlAUHQ",
+        path: window.location.pathname,
+        placeholder: "你是我一生只会遇见一次的惊喜 ..."
+      })
+  }
+</script>
+
+      <section class="author-profile">
+        <div class="info" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <a href="" class="profile gravatar"><img src="" itemprop="image" alt="" height="70" width="70"></a>
+          <div class="meta">
+            <span class="title">Author</span>
+            <h3 itemprop="name">
+            <a href="" itemprop="url" rel="author"></a>
+            </h3>
+          </div>
+        </div>
+        <hr>
+        <p><i class="iconfont icon-write"></i></p>
+      </section>
+    </main><!-- #main -->
+  </div><!-- #primary -->
+</div>
+
+
+
+    </div>    
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            // PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+    <!-- <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 Cupid<br>
+      powered_by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer> -->
+<footer id="colophon" class="site-footer" role="contentinfo">
+  <div class="site-info">
+    <div class="footertext">
+      <div class="img-preload">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/wordpress-rotating-ball-o.svg">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/disqus-preloader.svg">
+      </div>
+      <p style="color: #666666;">&copy 2018</p>
+    </div>
+    <div class="footer-device">
+    <p style="font-family: 'Ubuntu', sans-serif;">
+        <span style="color: #b9b9b9;">Theme <a href="https://github.com/honjun/hexo-theme-sakura" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Sakura</a> <i class="iconfont icon-sakura rotating" style="color: #ffc0cb;display:inline-block"></i> by <a href="https://2heng.xin/" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Mashiro</a>&<a href="https://www.hojun.cn/" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Hojun</a>, Powered by Hexo, Hosted by Coding Pages</a>
+        </span>
+      </p>
+    </div>
+  </div><!-- .site-info -->
+</footer>
+
+
+
+<!-- <script src="/js/tocbot.js"></script> -->
+<script type="text/javascript" src="/js/lib.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script type="text/javascript" src="/js/InsightSearch.js"></script>
+<script type="text/javascript" src="/js/jquery.fancybox.min.js"></script>
+<script type="text/javascript" src="/js/zoom.min.js"></script>
+<script type="text/javascript" src="/js/sakura-app.js"></script>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine@1.3.4/dist/Valine.min.js'></script>
+<script src="/js/botui.js"></script>
+<!-- 不蒜子 网页计数器 -->
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script> -->
+<script type="text/javascript">
+/* <![CDATA[ */
+if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  var Poi = {"pjax":"1","movies":{"url": "https://cdn.jsdelivr.net/gh/honjun/hojun@1.2","name":"Unbroken.mp4","live":"close"},"windowheight":"fixed","codelamp":"close","ajaxurl":"","order":"asc","formpostion":"bottom"};
+} else {
+  var Poi = {"pjax":"1","movies":{"url": "https://cdn.jsdelivr.net/gh/honjun/hojun@1.2","name":"Unbroken.mp4","live":"open"},"windowheight":"auto","codelamp":"close","ajaxurl":"","order":"asc","formpostion":"bottom"};
+}
+/* ]]> */
+
+</script>
+<script>
+$(document).ready(function() {
+  if ($(".toc").length > 0 && document.body.clientWidth > 1200) {
+    if ($(".pattern-center").length > 0) { //有图的情况
+      tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -400,
+          scrollSmoothOffset: -85
+      });
+    } else {
+      tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -85,
+          scrollSmoothOffset: -85
+      });
+    }
+    var offsetTop = $('.toc').offset().top - 95;
+    window.onscroll = function() {
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+      if (scrollTop >= offsetTop) {
+        $('.toc').addClass('toc-fixed');
+      } else {
+        $('.toc').removeClass('toc-fixed');
+      }
+    }
+  }
+});
+</script>
+
+    <div class="openNav no-select" style="height: 50px;">
+      <div class="iconflat no-select" style="width: 50px; height: 50px;">
+        <div class="icon"></div>
+      </div>
+      <div class="site-branding search-form-submit">
+        <i class="iconfont js-toggle-search iconsearch icon-search"></i>
+      </div>
+    </div>
+  </section>
+  <div id="mo-nav" class="">
+  <div class="m-avatar">
+    <img src="https://cdn.jsdelivr.net/gh/bephplover/cdn@2.7/img/custom/namei.jpg">
+  </div>
+  <p style="text-align: center; color: #333; font-weight: 900; font-family: 'Ubuntu', sans-serif; letter-spacing: 1.5px">Cupid'sblog</p>
+  <p style="text-align: center; word-spacing: 20px;">
+    
+      
+        <a href="https://github.com/bephplover" class="fa fa-github" target="_blank" style="color: #333; margin-left:20px"></a>
+      
+        <a href="https://wpa.qq.com/msgrd?v=3&uin=782377128&site=qq&menu=yes" class="fa fa-qq" target="_blank" style="color: #25c6fe; margin-left:20px"></a>
+      
+    
+  </p>
+  <ul id="menu-new-1" class="menu">
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+            首页
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/archives">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+            归档
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/categories/技术/">
+                  <i class="fa fa-code" aria-hidden="true"></i>
+                  技术
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/内网渗透/">
+                  <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                  内网渗透
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/编程类/">
+                  <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                  编程学习
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/Linux/">
+                  <i class="fa fa-book" aria-hidden="true"></i>
+                  Linux学习
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/CTF/">
+                  <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                  CTF
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/Web漏洞/">
+                  <i class="fa fa-book" aria-hidden="true"></i>
+                  Web渗透
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="javascript:;">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-list-ul faa-vertical" aria-hidden="true"></i>
+            清单
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/tags/悦读/">
+                  <i class="fa fa-th-list faa-bounce" aria-hidden="true"></i>
+                  书单
+                </a>
+              </li>
+            
+              <li>
+                <a href="/music/">
+                  <i class="fa fa-headphones" aria-hidden="true"></i>
+                  歌单
+                </a>
+              </li>
+            
+              <li>
+                <a href="/tags/图集/">
+                  <i class="fa fa-photo" aria-hidden="true"></i>
+                  图集
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="/comment/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-pencil-square-o faa-tada" aria-hidden="true"></i>
+            留言板
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/links/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-link faa-shake" aria-hidden="true"></i>
+            友人帐
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-leaf faa-wrench" aria-hidden="true"></i>
+            关于
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/about/">
+                  <i class="fa fa-meetup" aria-hidden="true"></i>
+                  我？
+                </a>
+              </li>
+            
+              <li>
+                <a href="/theme-sakura/">
+                  <i class="fa iconfont icon-sakura" aria-hidden="true"></i>
+                  主题
+                </a>
+              </li>
+            
+              <li>
+                <a href="/lab/">
+                  <i class="fa fa-cogs" aria-hidden="true"></i>
+                  Lab
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="/atom.xml">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-rss faa-pulse" aria-hidden="true"></i>
+            RSS
+          </span>
+        </a>
+        
+      </li>
+    
+  </ul>
+  <p style="text-align: center; font-size: 13px; color: #b9b9b9;">&copy 2019 hexo-sakura</p>
+</div>
+<button onclick="topFunction()" class="mobile-cd-top" id="moblieGoTop" title="Go to top" style="display: none;"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<!-- require MetingJS -->
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+<style>
+  .aplayer .aplayer-lrc {
+    height: 35px;
+  }
+  .aplayer .aplayer-lrc p{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 18px !important;
+  }
+  .aplayer .aplayer-lrc p.aplayer-lrc-current{
+    color: #FF1493;
+  }
+  .aplayer.aplayer-narrow .aplayer-body{
+    left: -66px !important;
+  }
+  .aplayer.aplayer-fixed .aplayer-lrc {
+    display: none;
+  }
+  .aplayer .aplayer-lrc.aplayer-lrc-hide {
+      display:none !important;
+  }
+  .aplayer.aplayer-fixed .lrc-show {
+    display: block;
+    background: rgba(255, 255, 255, 0.8);
+  }
+</style>
+<meting-js
+
+    id="2660651585"
+
+    server="netease"
+
+    type="playlist"
+
+    fixed="true"
+
+    autoplay="false"
+
+    loop="all"
+
+    order="random"
+
+    preload="auto"
+
+    volume="0.7"
+
+    mutex="true"
+
+</meting-js>
+<script>
+  $(function(){
+    $('body').on('click', '.aplayer', function(){
+      if($('.aplayer-button').hasClass('aplayer-play')) {
+        $('.aplayer-lrc').removeClass('lrc-show');
+      } else {
+        $('.aplayer-lrc').addClass('lrc-show');
+      }
+    })
+  });
+</script>
+</body>
+</html>

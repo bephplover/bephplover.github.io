@@ -423,7 +423,7 @@
 <p>通过Web方式访问的时候，Content-Type是文件类型最权威的描述，此时文件扩展名在大多数情况下都会被忽略。这个是什么意思呢。就是说例如上传文件中定义了Content-type的内容那么再传其他的文件也不可能被解析了。</p>
 </li>
 <li><p>X-Content-Type-Options</p>
-<pre><code>X-Content-Type-Options: nosniff</code></pre><p>这个直接就金庸浏览器的内容嗅探机制。</p>
+<pre><code>X-Content-Type-Options: nosniff</code></pre><p>这个直接就禁用浏览器的内容嗅探机制。</p>
 </li>
 <li><p>Content-Disposition</p>
 <p>将数据体设定为附件</p>
@@ -517,7 +517,7 @@
     <div class="ins-search-mask"></div>
     <div class="ins-search-container">
         <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="Type something..."/>
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..."/>
             <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="ins-section-wrapper">
@@ -529,10 +529,10 @@
 (function (window) {
     var INSIGHT_CONFIG = {
         TRANSLATION: {
-            POSTS: 'Posts',
-            // PAGES: 'Pages',
-            CATEGORIES: 'Categories',
-            TAGS: 'Tags',
+            POSTS: '文章',
+            // PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
         },
         ROOT_URL: '/',
         CONTENT_URL: '/content.json',

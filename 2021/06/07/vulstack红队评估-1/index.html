@@ -384,7 +384,7 @@
 <p>外网IP:192.168.31.33</p>
 <p>首先探测开放端口:</p>
 <p>goby：</p>
-<p><img src="/2021/06/07/vulstack红队评估-1/../../%E4%BF%A1%E5%AE%89%E5%AD%A6%E4%B9%A0/QAX%E5%B7%A5%E4%BD%9C/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E7%9A%84%E5%AD%A6%E4%B9%A0/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/vulstack%E7%BA%A2%E9%98%9F%E8%AF%84%E4%BC%B0/%E8%AE%B0%E5%BD%95.assets/1623048392951.png" alt="1623048392951"></p>
+<p><img src="/2021/06/07/vulstack红队评估-1/1623048392951.png" alt="1623048392951"></p>
 <p>开了mysql和web,445和3389是之前测试的时候开的不管。</p>
 <p>就先从web开始</p>
 <p>直接访问有个phpstudy的探针。应该是存在phpmyadmin.</p>
@@ -393,40 +393,40 @@
 <p>beifen.rar下载下来就是yxcms的源码。</p>
 <p>先去yxcms里面看一下。</p>
 <p>果然是靶机:</p>
-<p><img src="/2021/06/07/vulstack红队评估-1/../../%E4%BF%A1%E5%AE%89%E5%AD%A6%E4%B9%A0/QAX%E5%B7%A5%E4%BD%9C/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E7%9A%84%E5%AD%A6%E4%B9%A0/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/vulstack%E7%BA%A2%E9%98%9F%E8%AF%84%E4%BC%B0/%E8%AE%B0%E5%BD%95.assets/1623048241917.png" alt="1623048241917"></p>
+<p><img src="/2021/06/07/vulstack红队评估-1/1623048241917.png" alt="1623048241917"></p>
 <p>公告信息处。直接给出后台等着我们getshell了。</p>
 <p>vulstack主要是内网部分靶机所以web部分比较简单。</p>
-<p><img src="/2021/06/07/vulstack红队评估-1/../../%E4%BF%A1%E5%AE%89%E5%AD%A6%E4%B9%A0/QAX%E5%B7%A5%E4%BD%9C/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E7%9A%84%E5%AD%A6%E4%B9%A0/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/vulstack%E7%BA%A2%E9%98%9F%E8%AF%84%E4%BC%B0/%E8%AE%B0%E5%BD%95.assets/1623048341488.png" alt="1623048341488"></p>
+<p><img src="/2021/06/07/vulstack红队评估-1/1623048341488.png" alt="1623048341488"></p>
 <p>接下来就很简单了，模板管理文件里面直接添加shell.php</p>
 <p>这里用哥斯拉的shell.</p>
 <p>接下来需要找到上传的路径。</p>
-<p><img src="/2021/06/07/vulstack红队评估-1/../../%E4%BF%A1%E5%AE%89%E5%AD%A6%E4%B9%A0/QAX%E5%B7%A5%E4%BD%9C/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E7%9A%84%E5%AD%A6%E4%B9%A0/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/vulstack%E7%BA%A2%E9%98%9F%E8%AF%84%E4%BC%B0/%E8%AE%B0%E5%BD%95.assets/1623048521641.png" alt="1623048521641"></p>
+<p><img src="/2021/06/07/vulstack红队评估-1/1623048521641.png" alt="1623048521641"></p>
 <p>去翻翻备份文件:</p>
-<p><img src="/2021/06/07/vulstack红队评估-1/../../%E4%BF%A1%E5%AE%89%E5%AD%A6%E4%B9%A0/QAX%E5%B7%A5%E4%BD%9C/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E7%9A%84%E5%AD%A6%E4%B9%A0/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/vulstack%E7%BA%A2%E9%98%9F%E8%AF%84%E4%BC%B0/%E8%AE%B0%E5%BD%95.assets/1623048588636.png" alt="1623048588636"></p>
+<p><img src="/2021/06/07/vulstack红队评估-1/1623048588636.png" alt="1623048588636"></p>
 <p>最后在备份文件的这个目录下找到了模板管理的其他文件。</p>
 <p>直接访问web上的这个目录下的shell.</p>
 <p><a href="http://192.168.31.33/yxcms/protected/apps/default/view/default/shell.php" target="_blank" rel="noopener">http://192.168.31.33/yxcms/protected/apps/default/view/default/shell.php</a></p>
 <p>哥斯拉连上后设置下编码为GBK。</p>
-<p><img src="/2021/06/07/vulstack红队评估-1/../../%E4%BF%A1%E5%AE%89%E5%AD%A6%E4%B9%A0/QAX%E5%B7%A5%E4%BD%9C/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E7%9A%84%E5%AD%A6%E4%B9%A0/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/vulstack%E7%BA%A2%E9%98%9F%E8%AF%84%E4%BC%B0/%E8%AE%B0%E5%BD%95.assets/1623048614725.png" alt="1623048614725"></p>
+<p><img src="/2021/06/07/vulstack红队评估-1/1623048614725.png" alt="1623048614725"></p>
 <p>接下来需要信息收集一下弄清楚内网IP</p>
-<p><img src="/2021/06/07/vulstack红队评估-1/../../%E4%BF%A1%E5%AE%89%E5%AD%A6%E4%B9%A0/QAX%E5%B7%A5%E4%BD%9C/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E7%9A%84%E5%AD%A6%E4%B9%A0/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/vulstack%E7%BA%A2%E9%98%9F%E8%AF%84%E4%BC%B0/%E8%AE%B0%E5%BD%95.assets/1623048655576.png" alt="1623048655576"></p>
+<p><img src="/2021/06/07/vulstack红队评估-1/1623048655576.png" alt="1623048655576"></p>
 <p>内网IP192.168.52.243</p>
 <p>可以确定有域环境了。</p>
 <p>然后准备上传frp进行内网穿透。</p>
 <p>内网IP:192.168.52.143</p>
 <p>接下来上一个CS的马，使用reverse的监听生成一个exe。</p>
 <p>使用哥斯拉上传后再命令行执行</p>
-<p><img src="/2021/06/07/vulstack红队评估-1/../../%E4%BF%A1%E5%AE%89%E5%AD%A6%E4%B9%A0/QAX%E5%B7%A5%E4%BD%9C/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E7%9A%84%E5%AD%A6%E4%B9%A0/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/vulstack%E7%BA%A2%E9%98%9F%E8%AF%84%E4%BC%B0/%E8%AE%B0%E5%BD%95.assets/1623048895846.png" alt="1623048895846"></p>
+<p><img src="/2021/06/07/vulstack红队评估-1/1623048895846.png" alt="1623048895846"></p>
 <p>试试直接getsystem提权:</p>
-<p><img src="/2021/06/07/vulstack红队评估-1/../../%E4%BF%A1%E5%AE%89%E5%AD%A6%E4%B9%A0/QAX%E5%B7%A5%E4%BD%9C/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E7%9A%84%E5%AD%A6%E4%B9%A0/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/vulstack%E7%BA%A2%E9%98%9F%E8%AF%84%E4%BC%B0/%E8%AE%B0%E5%BD%95.assets/1623049106134.png" alt="1623049106134"></p>
+<p><img src="/2021/06/07/vulstack红队评估-1/1623049106134.png" alt="1623049106134"></p>
 <p>可以直接提到了SYSTEM。</p>
 <p>这下先用mimikatz抓下密码:</p>
-<p><img src="/2021/06/07/vulstack红队评估-1/../../%E4%BF%A1%E5%AE%89%E5%AD%A6%E4%B9%A0/QAX%E5%B7%A5%E4%BD%9C/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E7%9A%84%E5%AD%A6%E4%B9%A0/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/vulstack%E7%BA%A2%E9%98%9F%E8%AF%84%E4%BC%B0/%E8%AE%B0%E5%BD%95.assets/1623049299723.png" alt="1623049299723"></p>
+<p><img src="/2021/06/07/vulstack红队评估-1/1623049299723.png" alt="1623049299723"></p>
 <p>端口扫描。没扫出来IP。使用其他命令收集下内网存在的IP:</p>
 <p>shell ipconfig /all</p>
-<p><img src="/2021/06/07/vulstack红队评估-1/../../%E4%BF%A1%E5%AE%89%E5%AD%A6%E4%B9%A0/QAX%E5%B7%A5%E4%BD%9C/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E7%9A%84%E5%AD%A6%E4%B9%A0/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/vulstack%E7%BA%A2%E9%98%9F%E8%AF%84%E4%BC%B0/%E8%AE%B0%E5%BD%95.assets/1623050502092.png" alt="1623050502092"></p>
+<p><img src="/2021/06/07/vulstack红队评估-1/1623050502092.png" alt="1623050502092"></p>
 <p>DNS服务器极有可能是域控地址。</p>
-<p><img src="/2021/06/07/vulstack红队评估-1/../../%E4%BF%A1%E5%AE%89%E5%AD%A6%E4%B9%A0/QAX%E5%B7%A5%E4%BD%9C/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E7%9A%84%E5%AD%A6%E4%B9%A0/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/vulstack%E7%BA%A2%E9%98%9F%E8%AF%84%E4%BC%B0/%E8%AE%B0%E5%BD%95.assets/1623052032094.png" alt="1623052032094"></p>
+<p><img src="/2021/06/07/vulstack红队评估-1/1623052032094.png" alt="1623052032094"></p>
 <p>所以总结下内网环境还有192.168.52.88和192.168.52.138.</p>
 <p>用cs端口扫描把88扫出来了。138没扫出来。</p>
 <p>先跳一下88:</p>

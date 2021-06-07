@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   
-  <title itemprop="name">Cupid&#39;s Blog</title>
+  <title itemprop="name">vulstack红队评估(1) | Cupid&#39;s Blog</title>
   
     <link rel="shortcut icon" href="/images/favicon.ico">
   
@@ -344,457 +344,174 @@
   </div>
 </header>
 
-      <div class="blank" style="padding-top: 0px;"></div>
+      <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+<div class="pattern-center-blank"></div>
+
+  <div class="pattern-center single-center">
+    <!-- 有配图默认渲染第一张 -->
+    <div class="pattern-attachment-img lazyload" style="background-image: url(https://cdn.jsdelivr.net/gh/Daisy-1999/CDN/blog/updata.3cxekv85owa0.png);" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/Daisy-1999/CDN/blog/updata.3cxekv85owa0.png">
+    </div>
+    <header class="pattern-header single-header">
+      <h1 class="entry-title">
+      vulstack红队评估(1)</h1>
+      <p class="entry-census">
+        <span>
+          <a href="">
+            <img src="">
+          </a>
+        </span>
+        <span>
+          <a href=""></a>
+        </span>
+        <span class="bull">
+        ·</span>
+        2021-6-7<span class="bull">
+        ·</span>
+      <span id="busuanzi_value_page_pv"></span>次阅读</p>
+    </header>
+  </div>
+
 <div id="content" class="site-content">
-  
-  <div class="notice" style="margin-top:60px">
-    <i class="iconfont icon-notification">
-    </i>
-    <div class="notice-content">Cupid的博客随时都在更新哟，欢迎小伙伴浏览...</div>
-  </div>
-  
-  <div class="top-feature-row">
-  <h1 class="fes-title" style="font-family: 'Ubuntu', sans-serif;">
-  <i class="fa fa-anchor" aria-hidden="true">
-  </i>
-  START:DASH!!</h1>
-  
-  <div class="top-feature-v2">
-    <div class="the-feature square from_left_and_right">
-      <a href="/theme-sakura/" target="_blank">
-        <div class="img">
-          <img src="https://cdn.jsdelivr.net/gh/bephplover/cdn@2.7/img/startdash/sakura.md.png">
-        </div>
-        <div class="info">
-          <h3>Sakura</h3>
-          <p>本站 hexo 主题</p>
-        </div>
-      </a>
-    </div>
-  </div>
-  
-  <div class="top-feature-v2">
-    <div class="the-feature square from_left_and_right">
-      <a href="https://space.bilibili.com/23290461" target="_blank">
-        <div class="img">
-          <img src="https://cdn.jsdelivr.net/gh/bephplover/cdn@2.7/img/startdash/bilibili.jpg">
-        </div>
-        <div class="info">
-          <h3>Bilibili</h3>
-          <p>博主的b站视频</p>
-        </div>
-      </a>
-    </div>
-  </div>
-  
-  <div class="top-feature-v2">
-    <div class="the-feature square from_left_and_right">
-      <a href="/" target="_blank">
-        <div class="img">
-          <img src="https://cdn.jsdelivr.net/gh/bephplover/cdn@2.7/img/startdash/wangshiwu.jpg">
-        </div>
-        <div class="info">
-          <h3>Cupid的万事屋</h3>
-          <p>技术服务</p>
-        </div>
-      </a>
-    </div>
-  </div>
-  
-</div>
   <div id="primary" class="content-area">
     <main id="main" class="site-main" role="main">
-      <h1 class="main-title" style="font-family: 'Ubuntu', sans-serif;">
-      <i class="fa fa-envira" aria-hidden="true"></i>
-      Discovery</h1>
+      <article id="post-1" class="post-1 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized">
+        <div class="toc"></div>
+        <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
+        
+        <div class="entry-content">
+          <h3><span id="vulstack红队评估一">Vulstack红队评估(一)</span></h3><p>外网机(Win7)含内外网网卡。</p>
+<p>外网IP:192.168.31.33</p>
+<p>首先探测开放端口:</p>
+<p>goby：</p>
+<p><img src="/2021/06/07/vulstack红队评估-1/../../%E4%BF%A1%E5%AE%89%E5%AD%A6%E4%B9%A0/QAX%E5%B7%A5%E4%BD%9C/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E7%9A%84%E5%AD%A6%E4%B9%A0/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/vulstack%E7%BA%A2%E9%98%9F%E8%AF%84%E4%BC%B0/%E8%AE%B0%E5%BD%95.assets/1623048392951.png" alt="1623048392951"></p>
+<p>开了mysql和web,445和3389是之前测试的时候开的不管。</p>
+<p>就先从web开始</p>
+<p>直接访问有个phpstudy的探针。应该是存在phpmyadmin.</p>
+<p>先扫一下目录:</p>
+<p>扫出来yxcms和phpmyadmin以及beifen.rar</p>
+<p>beifen.rar下载下来就是yxcms的源码。</p>
+<p>先去yxcms里面看一下。</p>
+<p>果然是靶机:</p>
+<p><img src="/2021/06/07/vulstack红队评估-1/../../%E4%BF%A1%E5%AE%89%E5%AD%A6%E4%B9%A0/QAX%E5%B7%A5%E4%BD%9C/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E7%9A%84%E5%AD%A6%E4%B9%A0/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/vulstack%E7%BA%A2%E9%98%9F%E8%AF%84%E4%BC%B0/%E8%AE%B0%E5%BD%95.assets/1623048241917.png" alt="1623048241917"></p>
+<p>公告信息处。直接给出后台等着我们getshell了。</p>
+<p>vulstack主要是内网部分靶机所以web部分比较简单。</p>
+<p><img src="/2021/06/07/vulstack红队评估-1/../../%E4%BF%A1%E5%AE%89%E5%AD%A6%E4%B9%A0/QAX%E5%B7%A5%E4%BD%9C/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E7%9A%84%E5%AD%A6%E4%B9%A0/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/vulstack%E7%BA%A2%E9%98%9F%E8%AF%84%E4%BC%B0/%E8%AE%B0%E5%BD%95.assets/1623048341488.png" alt="1623048341488"></p>
+<p>接下来就很简单了，模板管理文件里面直接添加shell.php</p>
+<p>这里用哥斯拉的shell.</p>
+<p>接下来需要找到上传的路径。</p>
+<p><img src="/2021/06/07/vulstack红队评估-1/../../%E4%BF%A1%E5%AE%89%E5%AD%A6%E4%B9%A0/QAX%E5%B7%A5%E4%BD%9C/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E7%9A%84%E5%AD%A6%E4%B9%A0/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/vulstack%E7%BA%A2%E9%98%9F%E8%AF%84%E4%BC%B0/%E8%AE%B0%E5%BD%95.assets/1623048521641.png" alt="1623048521641"></p>
+<p>去翻翻备份文件:</p>
+<p><img src="/2021/06/07/vulstack红队评估-1/../../%E4%BF%A1%E5%AE%89%E5%AD%A6%E4%B9%A0/QAX%E5%B7%A5%E4%BD%9C/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E7%9A%84%E5%AD%A6%E4%B9%A0/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/vulstack%E7%BA%A2%E9%98%9F%E8%AF%84%E4%BC%B0/%E8%AE%B0%E5%BD%95.assets/1623048588636.png" alt="1623048588636"></p>
+<p>最后在备份文件的这个目录下找到了模板管理的其他文件。</p>
+<p>直接访问web上的这个目录下的shell.</p>
+<p><a href="http://192.168.31.33/yxcms/protected/apps/default/view/default/shell.php" target="_blank" rel="noopener">http://192.168.31.33/yxcms/protected/apps/default/view/default/shell.php</a></p>
+<p>哥斯拉连上后设置下编码为GBK。</p>
+<p><img src="/2021/06/07/vulstack红队评估-1/../../%E4%BF%A1%E5%AE%89%E5%AD%A6%E4%B9%A0/QAX%E5%B7%A5%E4%BD%9C/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E7%9A%84%E5%AD%A6%E4%B9%A0/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/vulstack%E7%BA%A2%E9%98%9F%E8%AF%84%E4%BC%B0/%E8%AE%B0%E5%BD%95.assets/1623048614725.png" alt="1623048614725"></p>
+<p>接下来需要信息收集一下弄清楚内网IP</p>
+<p><img src="/2021/06/07/vulstack红队评估-1/../../%E4%BF%A1%E5%AE%89%E5%AD%A6%E4%B9%A0/QAX%E5%B7%A5%E4%BD%9C/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E7%9A%84%E5%AD%A6%E4%B9%A0/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/vulstack%E7%BA%A2%E9%98%9F%E8%AF%84%E4%BC%B0/%E8%AE%B0%E5%BD%95.assets/1623048655576.png" alt="1623048655576"></p>
+<p>内网IP192.168.52.243</p>
+<p>可以确定有域环境了。</p>
+<p>然后准备上传frp进行内网穿透。</p>
+<p>内网IP:192.168.52.143</p>
+<p>接下来上一个CS的马，使用reverse的监听生成一个exe。</p>
+<p>使用哥斯拉上传后再命令行执行</p>
+<p><img src="/2021/06/07/vulstack红队评估-1/../../%E4%BF%A1%E5%AE%89%E5%AD%A6%E4%B9%A0/QAX%E5%B7%A5%E4%BD%9C/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E7%9A%84%E5%AD%A6%E4%B9%A0/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/vulstack%E7%BA%A2%E9%98%9F%E8%AF%84%E4%BC%B0/%E8%AE%B0%E5%BD%95.assets/1623048895846.png" alt="1623048895846"></p>
+<p>试试直接getsystem提权:</p>
+<p><img src="/2021/06/07/vulstack红队评估-1/../../%E4%BF%A1%E5%AE%89%E5%AD%A6%E4%B9%A0/QAX%E5%B7%A5%E4%BD%9C/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E7%9A%84%E5%AD%A6%E4%B9%A0/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/vulstack%E7%BA%A2%E9%98%9F%E8%AF%84%E4%BC%B0/%E8%AE%B0%E5%BD%95.assets/1623049106134.png" alt="1623049106134"></p>
+<p>可以直接提到了SYSTEM。</p>
+<p>这下先用mimikatz抓下密码:</p>
+<p><img src="/2021/06/07/vulstack红队评估-1/../../%E4%BF%A1%E5%AE%89%E5%AD%A6%E4%B9%A0/QAX%E5%B7%A5%E4%BD%9C/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E7%9A%84%E5%AD%A6%E4%B9%A0/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/vulstack%E7%BA%A2%E9%98%9F%E8%AF%84%E4%BC%B0/%E8%AE%B0%E5%BD%95.assets/1623049299723.png" alt="1623049299723"></p>
+<p>端口扫描。没扫出来IP。使用其他命令收集下内网存在的IP:</p>
+<p>shell ipconfig /all</p>
+<p><img src="/2021/06/07/vulstack红队评估-1/../../%E4%BF%A1%E5%AE%89%E5%AD%A6%E4%B9%A0/QAX%E5%B7%A5%E4%BD%9C/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E7%9A%84%E5%AD%A6%E4%B9%A0/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/vulstack%E7%BA%A2%E9%98%9F%E8%AF%84%E4%BC%B0/%E8%AE%B0%E5%BD%95.assets/1623050502092.png" alt="1623050502092"></p>
+<p>DNS服务器极有可能是域控地址。</p>
+<p><img src="/2021/06/07/vulstack红队评估-1/../../%E4%BF%A1%E5%AE%89%E5%AD%A6%E4%B9%A0/QAX%E5%B7%A5%E4%BD%9C/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E7%9A%84%E5%AD%A6%E4%B9%A0/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/vulstack%E7%BA%A2%E9%98%9F%E8%AF%84%E4%BC%B0/%E8%AE%B0%E5%BD%95.assets/1623052032094.png" alt="1623052032094"></p>
+<p>所以总结下内网环境还有192.168.52.88和192.168.52.138.</p>
+<p>用cs端口扫描把88扫出来了。138没扫出来。</p>
+<p>先跳一下88:</p>
+<p>psexec直接一把梭哈。后面的就不搞了。</p>
+<p>参考url：<a href="https://www.redhatzone.com/ask/article/1368.html?article_type=jishu" target="_blank" rel="noopener"></a></p>
+
+        </div>
+        <!-- .entry-content -->
+        <div class="single-reward">
+          <div class="reward-open">赏
+            <div class="reward-main">
+              <ul class="reward-row">
+                <li class="alipay-code"><img src="https://cdn.jsdelivr.net/gh/bephplover/cdn@2.7null"></li>
+                <li class="wechat-code"><img src="https://cdn.jsdelivr.net/gh/bephplover/cdn@2.7null"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent"></div>
+        <footer class="post-footer">
+          <div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="nofollow"><i class="fa fa-creative-commons" aria-hidden="true"></i> 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a></div>
+          <div class="post-tags">
+          </div>
+          <div class="post-share">
+            <div class="social-share sharehidden share-component"></div>
+            <i class="iconfont show-share icon-forward"></i>
+          </div>
+        </footer><!-- .entry-footer -->
+      </article>
+      <!-- #post-## -->
+      <div class="toc" style="background: none;"></div>
+      <section class="post-squares nextprev">
+        
+        
+          
+            <div class="post-nepre full next">
+          
+            <a href="/2021/06/03/2021-study-plan/" rel="next">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/Daisy-1999/CDN/blog/kuangjiadajian.gu288aerdzc.png" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/Daisy-1999/CDN/blog/kuangjiadajian.gu288aerdzc.png">
+              </div>
+              <span class="label">
+              Next Post</span>
+              <div class="info">
+                <h3>
+                2021-study-plan</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+      </section>
       
-  <!-- 首页默认取最最新文章集 -->
-  
-    
-<article  class="post post-list-thumb post-list-thumb-left"  class="post post-list-thumb" itemscope="" itemtype="http://schema.org/BlogPosting">
+<div id="vcomments"></div>
+<script>
+  window.onload = function(){
+      var valine = new Valine();
+      valine.init({
+        el: '#vcomments',
+        appId: "GyC3NzMvd0hT9Yyd2hYIC0MN-gzGzoHsz",
+        appKey: "mgOpfzbkHYqU92CV4IDlAUHQ",
+        path: window.location.pathname,
+        placeholder: "你是我一生只会遇见一次的惊喜 ..."
+      })
+  }
+</script>
 
-  <div class="post-thumb">
-    <a href="/2019/08/11/twelfth-day/">
-      <img class="lazyload" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/image-404.png">
-    </a>
-  </div>
-  <div class="post-content-wrap">
-    <div class="post-content">
-      <div class="post-date">
-        <i class="iconfont icon-time">
-        </i>2019-8-11 08:08</div>
-      <a href="/2019/08/11/twelfth-day/" class="post-title">
-        <h3>twelfth-day</h3>
-      </a>
-      <div class="post-meta">
-        <span><i class="fa fa-tags"></i>
-        
-        </span>
-        <span>
-          <i class="iconfont icon-file"></i>
-          
-        </span>
-      </div>
-      <div class="float-content">
-        <p></p>
-        <div class="post-bottom">
-          <a href="/2019/08/11/twelfth-day/" class="button-normal">
-            <i class="iconfont icon-caidan"></i>
-          </a>
+      <section class="author-profile">
+        <div class="info" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <a href="" class="profile gravatar"><img src="" itemprop="image" alt="" height="70" width="70"></a>
+          <div class="meta">
+            <span class="title">Author</span>
+            <h3 itemprop="name">
+            <a href="" itemprop="url" rel="author"></a>
+            </h3>
+          </div>
         </div>
-      </div>
-    </div>
-  </div>
-</article>
-  
-    
-<article  class="post post-list-thumb" itemscope="" itemtype="http://schema.org/BlogPosting">
-
-  <div class="post-thumb">
-    <a href="/2019/08/10/eleventh-day/">
-      <img class="lazyload" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/image-404.png">
-    </a>
-  </div>
-  <div class="post-content-wrap">
-    <div class="post-content">
-      <div class="post-date">
-        <i class="iconfont icon-time">
-        </i>2019-8-10 09:08</div>
-      <a href="/2019/08/10/eleventh-day/" class="post-title">
-        <h3>eleventh-day</h3>
-      </a>
-      <div class="post-meta">
-        <span><i class="fa fa-tags"></i>
-        
-        </span>
-        <span>
-          <i class="iconfont icon-file"></i>
-          
-        </span>
-      </div>
-      <div class="float-content">
-        <p></p>
-        <div class="post-bottom">
-          <a href="/2019/08/10/eleventh-day/" class="button-normal">
-            <i class="iconfont icon-caidan"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</article>
-  
-    
-<article  class="post post-list-thumb post-list-thumb-left"  class="post post-list-thumb" itemscope="" itemtype="http://schema.org/BlogPosting">
-
-  <div class="post-thumb">
-    <a href="/2019/08/09/tenth-day/">
-      <img class="lazyload" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/image-404.png">
-    </a>
-  </div>
-  <div class="post-content-wrap">
-    <div class="post-content">
-      <div class="post-date">
-        <i class="iconfont icon-time">
-        </i>2019-8-9 09:08</div>
-      <a href="/2019/08/09/tenth-day/" class="post-title">
-        <h3>tenth day</h3>
-      </a>
-      <div class="post-meta">
-        <span><i class="fa fa-tags"></i>
-        
-        </span>
-        <span>
-          <i class="iconfont icon-file"></i>
-          
-        </span>
-      </div>
-      <div class="float-content">
-        <p></p>
-        <div class="post-bottom">
-          <a href="/2019/08/09/tenth-day/" class="button-normal">
-            <i class="iconfont icon-caidan"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</article>
-  
-    
-<article  class="post post-list-thumb" itemscope="" itemtype="http://schema.org/BlogPosting">
-
-  <div class="post-thumb">
-    <a href="/2019/08/08/ninth-day/">
-      <img class="lazyload" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/image-404.png">
-    </a>
-  </div>
-  <div class="post-content-wrap">
-    <div class="post-content">
-      <div class="post-date">
-        <i class="iconfont icon-time">
-        </i>2019-8-8 09:08</div>
-      <a href="/2019/08/08/ninth-day/" class="post-title">
-        <h3>ninth-day</h3>
-      </a>
-      <div class="post-meta">
-        <span><i class="fa fa-tags"></i>
-        
-        </span>
-        <span>
-          <i class="iconfont icon-file"></i>
-          
-        </span>
-      </div>
-      <div class="float-content">
-        <p></p>
-        <div class="post-bottom">
-          <a href="/2019/08/08/ninth-day/" class="button-normal">
-            <i class="iconfont icon-caidan"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</article>
-  
-    
-<article  class="post post-list-thumb post-list-thumb-left"  class="post post-list-thumb" itemscope="" itemtype="http://schema.org/BlogPosting">
-
-  <div class="post-thumb">
-    <a href="/2019/08/07/eighth-day/">
-      <img class="lazyload" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/image-404.png">
-    </a>
-  </div>
-  <div class="post-content-wrap">
-    <div class="post-content">
-      <div class="post-date">
-        <i class="iconfont icon-time">
-        </i>2019-8-7 08:08</div>
-      <a href="/2019/08/07/eighth-day/" class="post-title">
-        <h3>eighth-day</h3>
-      </a>
-      <div class="post-meta">
-        <span><i class="fa fa-tags"></i>
-        
-        </span>
-        <span>
-          <i class="iconfont icon-file"></i>
-          
-        </span>
-      </div>
-      <div class="float-content">
-        <p></p>
-        <div class="post-bottom">
-          <a href="/2019/08/07/eighth-day/" class="button-normal">
-            <i class="iconfont icon-caidan"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</article>
-  
-    
-<article  class="post post-list-thumb" itemscope="" itemtype="http://schema.org/BlogPosting">
-
-  <div class="post-thumb">
-    <a href="/2019/08/05/seventh-day/">
-      <img class="lazyload" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/image-404.png">
-    </a>
-  </div>
-  <div class="post-content-wrap">
-    <div class="post-content">
-      <div class="post-date">
-        <i class="iconfont icon-time">
-        </i>2019-8-5 10:08</div>
-      <a href="/2019/08/05/seventh-day/" class="post-title">
-        <h3>seventh-day</h3>
-      </a>
-      <div class="post-meta">
-        <span><i class="fa fa-tags"></i>
-        
-        </span>
-        <span>
-          <i class="iconfont icon-file"></i>
-          
-        </span>
-      </div>
-      <div class="float-content">
-        <p></p>
-        <div class="post-bottom">
-          <a href="/2019/08/05/seventh-day/" class="button-normal">
-            <i class="iconfont icon-caidan"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</article>
-  
-    
-<article  class="post post-list-thumb post-list-thumb-left"  class="post post-list-thumb" itemscope="" itemtype="http://schema.org/BlogPosting">
-
-  <div class="post-thumb">
-    <a href="/2019/08/04/sixth-day/">
-      <img class="lazyload" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/image-404.png">
-    </a>
-  </div>
-  <div class="post-content-wrap">
-    <div class="post-content">
-      <div class="post-date">
-        <i class="iconfont icon-time">
-        </i>2019-8-4 09:08</div>
-      <a href="/2019/08/04/sixth-day/" class="post-title">
-        <h3>sixth-day</h3>
-      </a>
-      <div class="post-meta">
-        <span><i class="fa fa-tags"></i>
-        
-        </span>
-        <span>
-          <i class="iconfont icon-file"></i>
-          
-        </span>
-      </div>
-      <div class="float-content">
-        <p></p>
-        <div class="post-bottom">
-          <a href="/2019/08/04/sixth-day/" class="button-normal">
-            <i class="iconfont icon-caidan"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</article>
-  
-    
-<article  class="post post-list-thumb" itemscope="" itemtype="http://schema.org/BlogPosting">
-
-  <div class="post-thumb">
-    <a href="/2019/08/03/fifth-day/">
-      <img class="lazyload" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/image-404.png">
-    </a>
-  </div>
-  <div class="post-content-wrap">
-    <div class="post-content">
-      <div class="post-date">
-        <i class="iconfont icon-time">
-        </i>2019-8-3 09:08</div>
-      <a href="/2019/08/03/fifth-day/" class="post-title">
-        <h3>fifth-day</h3>
-      </a>
-      <div class="post-meta">
-        <span><i class="fa fa-tags"></i>
-        
-        </span>
-        <span>
-          <i class="iconfont icon-file"></i>
-          
-        </span>
-      </div>
-      <div class="float-content">
-        <p></p>
-        <div class="post-bottom">
-          <a href="/2019/08/03/fifth-day/" class="button-normal">
-            <i class="iconfont icon-caidan"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</article>
-  
-    
-<article  class="post post-list-thumb post-list-thumb-left"  class="post post-list-thumb" itemscope="" itemtype="http://schema.org/BlogPosting">
-
-  <div class="post-thumb">
-    <a href="/2019/08/02/fourth-day/">
-      <img class="lazyload" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/image-404.png">
-    </a>
-  </div>
-  <div class="post-content-wrap">
-    <div class="post-content">
-      <div class="post-date">
-        <i class="iconfont icon-time">
-        </i>2019-8-2 08:08</div>
-      <a href="/2019/08/02/fourth-day/" class="post-title">
-        <h3>fourth day</h3>
-      </a>
-      <div class="post-meta">
-        <span><i class="fa fa-tags"></i>
-        
-        </span>
-        <span>
-          <i class="iconfont icon-file"></i>
-          
-        </span>
-      </div>
-      <div class="float-content">
-        <p></p>
-        <div class="post-bottom">
-          <a href="/2019/08/02/fourth-day/" class="button-normal">
-            <i class="iconfont icon-caidan"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</article>
-  
-    
-<article  class="post post-list-thumb" itemscope="" itemtype="http://schema.org/BlogPosting">
-
-  <div class="post-thumb">
-    <a href="/2019/08/01/the-third-day/">
-      <img class="lazyload" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/image-404.png">
-    </a>
-  </div>
-  <div class="post-content-wrap">
-    <div class="post-content">
-      <div class="post-date">
-        <i class="iconfont icon-time">
-        </i>2019-8-1 09:08</div>
-      <a href="/2019/08/01/the-third-day/" class="post-title">
-        <h3>the third day</h3>
-      </a>
-      <div class="post-meta">
-        <span><i class="fa fa-tags"></i>
-        
-        </span>
-        <span>
-          <i class="iconfont icon-file"></i>
-          
-        </span>
-      </div>
-      <div class="float-content">
-        <p></p>
-        <div class="post-bottom">
-          <a href="/2019/08/01/the-third-day/" class="button-normal">
-            <i class="iconfont icon-caidan"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</article>
-  
-
-
-    </main>
-      <!-- 首页默认取最最新文章集 -->
-    <!-- 
-      <nav class="navigator">
-        
-        <a class="extend prev" rel="prev" href="/page/16/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="page-number" href="/page/16/">16</a><span class="page-number current">17</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/18/">Next</a>
-      </nav>
-     -->
-  </div>
-  
-    <div id="pagination"><a href="/page/18/" class="">Previous</a></div>
-  
+        <hr>
+        <p><i class="iconfont icon-write"></i></p>
+      </section>
+    </main><!-- #main -->
+  </div><!-- #primary -->
 </div>
+
+
 
     </div>    
     <div class="ins-search">

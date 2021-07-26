@@ -366,7 +366,7 @@
         </span>
         <span class="bull">
         ·</span>
-        2021-7-22<span class="bull">
+        2021-7-26<span class="bull">
         ·</span>
       <span id="busuanzi_value_page_pv"></span>次阅读</p>
     </header>
@@ -388,14 +388,14 @@
 <p>配置maven不需要配环境变量，直接按照参考链接的后面部分在IDEA中设置路径即可。</p>
 <p>tomcat配置自行百度这个比较简单。</p>
 <h3><span id="0x02项目导入">0X02项目导入</span></h3><p>一开始我是百度的别人的文章。然后打开的这个文件夹:</p>
-<p><img src="/2021/07/22/使用IDEA复现Shiro-550/image-20210726162549757.png" alt="image-20210726162549757"></p>
+<p><img src="/2021/07/26/使用IDEA复现Shiro-550/image-20210726162549757.png" alt="image-20210726162549757"></p>
 <p>但是打开后发现为什么和别人长的不一样:</p>
-<p><img src="/2021/07/22/使用IDEA复现Shiro-550/image-20210726162616984.png" alt="image-20210726162616984"></p>
+<p><img src="/2021/07/26/使用IDEA复现Shiro-550/image-20210726162616984.png" alt="image-20210726162616984"></p>
 <p>我这儿压根没有webapp。</p>
 <p>然后去youtube上找了个视频看，发现导入maven项目直接打开根目录下的pom.xml即可:</p>
-<p><img src="/2021/07/22/使用IDEA复现Shiro-550/image-20210726162630212.png" alt="image-20210726162630212"></p>
+<p><img src="/2021/07/26/使用IDEA复现Shiro-550/image-20210726162630212.png" alt="image-20210726162630212"></p>
 <p>这样打开后:</p>
-<p><img src="/2021/07/22/使用IDEA复现Shiro-550/image-20210726162644237.png" alt="image-20210726162644237"></p>
+<p><img src="/2021/07/26/使用IDEA复现Shiro-550/image-20210726162644237.png" alt="image-20210726162644237"></p>
 <p>就成了。</p>
 <p>然后需要改这个samples-web里面的pom.xml：</p>
 <pre><code class="xml">&lt;dependency&gt;
@@ -413,14 +413,14 @@
 然后你进入home.jsp会提示:
 无法在web.xml或使用此应用程序部署的jar文件中解析绝对uri：[http://java.sun.com/jsp/jstl/core]</code></pre><p>这时候需要把下载的jstl.jar和standerd.jar放在tomcat目录下的lib文件夹下，就OK了。</p>
 <h3><span id="0x03成功">0X03成功</span></h3><p>最后搭建成功:</p>
-<p><img src="/2021/07/22/使用IDEA复现Shiro-550/image-20210726162658226.png" alt="image-20210726162658226"></p>
+<p><img src="/2021/07/26/使用IDEA复现Shiro-550/image-20210726162658226.png" alt="image-20210726162658226"></p>
 <h3><span id="0x04总结">0x04总结</span></h3><p>总结一下自己不会的点:</p>
 <p>1.IDEA如何导入maven项目，打开项目下的pom.xml即可。</p>
 <p>2.IDEA如何配置maven和tomcat，百度即可解决</p>
 <p>3.jstl问题解决，百度解决，以后添加jar包都在左上角文件-&gt;项目结构-&gt;库即可。</p>
 <p>英文就是file-&gt;project structure-&gt;library</p>
 <p>彩头一把梭：</p>
-<p><img src="/2021/07/22/使用IDEA复现Shiro-550/image-20210726162711057.png" alt="image-20210726162711057"></p>
+<p><img src="/2021/07/26/使用IDEA复现Shiro-550/image-20210726162711057.png" alt="image-20210726162711057"></p>
 
         </div>
         <!-- .entry-content -->

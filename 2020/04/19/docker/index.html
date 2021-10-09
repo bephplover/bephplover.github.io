@@ -379,6 +379,11 @@ docker-compose up -d 启动并保持后台运行
 查看对应端口号
 本机访问使用虚拟机IP:端口即可</code></pre>
 <p>搭建docker环境还是遇到了很多坑，比如docker-compose命令不存在，docker启动失败什么的，把错误粘贴进百度即可解决，不过最好先阅读下英语，尝试下解决，有一个独立解决问题的能力。<br>docker stop id即可停止容器<br>docker exec -it id /bin/bash进入运行的docker容器</p>
+<p>删除容器</p>
+<p>docker rm containerid   删除容器</p>
+<p>然后删除镜像</p>
+<p>docker images -q查出来镜像ID</p>
+<p>然后dicker rmi ID即可</p>
 
         </div>
         <!-- .entry-content -->

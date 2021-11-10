@@ -398,7 +398,32 @@ NetBios 137 138 139</code></pre><p>2.通过大小写判断</p>
 <p>linux的TTL是64</p>
 <p>其他:asp一般运行再iis服务器上的，肯定就是windows。</p>
 <p>然后是例如phpinfo等这种信息泄露。</p>
-
+<p>内网密码凭证信息收集:</p>
+<pre><code>dir %APPDATA%\Microsoft\Windows\Recent //查看最近打开的文档
+findstr /si password  config.*  *.ini *.txt *.properties //递归搜索后面文件的password字段
+dir /a /s /b &quot;*conf*&quot; &gt; 1.txt    //递归查找当前目录包含conf的文件
+findstr /s /i /c:&quot;Password&quot; 目录\*.txt  //递归查找目录下的txt中的oassword字段
+for /r 目录 %i in (account.docx,pwd.docx,login.docx,login*.xls) do @echo  %i &gt;&gt; C:\Users\e0mlja\desktop\123.txt     //递归查找目录下的敏感文件输出到桌面123.txt中
+指定目录搜索各类敏感文件
+dir /a /s /b d:\&quot;*.txt&quot;
+dir /a /s /b d:\&quot;*.xml&quot;
+dir /a /s /b d:\&quot;*.mdb&quot;
+dir /a /s /b d:\&quot;*.sql&quot;
+dir /a /s /b d:\&quot;*.mdf&quot;
+dir /a /s /b d:\&quot;*.eml&quot;
+dir /a /s /b d:\&quot;*.pst&quot;
+dir /a /s /b d:\&quot;*conf*&quot;
+dir /a /s /b d:\&quot;*bak*&quot;
+dir /a /s /b d:\&quot;*pwd*&quot;
+dir /a /s /b d:\&quot;*pass*&quot;
+dir /a /s /b d:\&quot;*login*&quot;
+dir /a /s /b d:\&quot;*user*&quot;
+收集各类账号密码信息
+findstr /si pass *.inc *.config *.ini *.txt *.asp *.aspx *.php *.jsp *.xml *.cgi *.bak
+findstr /si userpwd *.inc *.config *.ini *.txt *.asp *.aspx *.php *.jsp *.xml *.cgi *.bak
+findstr /si pwd *.inc *.config *.ini *.txt *.asp *.aspx *.php *.jsp *.xml *.cgi *.bak
+findstr /si login *.inc *.config *.ini *.txt *.asp *.aspx *.php *.jsp *.xml *.cgi *.bak
+findstr /si user *.inc *.config *.ini *.txt *.asp *.aspx *.php *.jsp *.xml *.cgi *.bak</code></pre>
         </div>
         <!-- .entry-content -->
         <div class="single-reward">
@@ -501,7 +526,7 @@ NetBios 137 138 139</code></pre><p>2.通过大小写判断</p>
     <div class="ins-search-mask"></div>
     <div class="ins-search-container">
         <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="Type something..."/>
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..."/>
             <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="ins-section-wrapper">
@@ -513,10 +538,10 @@ NetBios 137 138 139</code></pre><p>2.通过大小写判断</p>
 (function (window) {
     var INSIGHT_CONFIG = {
         TRANSLATION: {
-            POSTS: 'Posts',
-            // PAGES: 'Pages',
-            CATEGORIES: 'Categories',
-            TAGS: 'Tags',
+            POSTS: '文章',
+            // PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
         },
         ROOT_URL: '/',
         CONTENT_URL: '/content.json',

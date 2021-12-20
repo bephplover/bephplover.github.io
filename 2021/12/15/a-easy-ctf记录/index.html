@@ -364,10 +364,10 @@
         
         <div class="entry-content">
           <p>日常学习玩一道题，挺有意思的记录下来。</p>
-<h2><span id="fireshellctf2020screenshooter">[FireshellCTF2020]ScreenShooter</span></h2><p>buu上面随便翻得五分题，打开之后这个样子：<br><img src="C:/Users/xiongfeng/AppData/Roaming/Typora/typora-user-images/image-20211215172352825.png" alt="image-20211215172352825"></p>
+<h2><span id="fireshellctf2020screenshooter">[FireshellCTF2020]ScreenShooter</span></h2><p>buu上面随便翻得五分题，打开之后这个样子：<br><img src="/2021/12/15/a-easy-ctf记录/image-20211215172352825.png" alt="image-20211215172352825"></p>
 <p>然后点击screenshot真的会截图:</p>
-<p><img src="C:/Users/xiongfeng/AppData/Roaming/Typora/typora-user-images/image-20211215172512326.png" alt="image-20211215172512326"></p>
-<p>查看抓包信息：<br><img src="C:/Users/xiongfeng/AppData/Roaming/Typora/typora-user-images/image-20211215172635943.png" alt="image-20211215172635943"></p>
+<p><img src="/2021/12/15/a-easy-ctf记录/image-20211215172512326.png" alt="image-20211215172512326"></p>
+<p>查看抓包信息：<br><img src="/2021/12/15/a-easy-ctf记录/image-20211215172635943.png" alt="image-20211215172635943"></p>
 <p>没啥有用的。</p>
 <p>没发现什么有用的，只能尝试找到这个http请求中的内容了。</p>
 <p>尝试向自己vps上面请求，然后查看日志内容：<br><img src="C:/Users/xiongfeng/AppData/Roaming/Typora/typora-user-images/image-20211215173117277.png" alt="image-20211215173117277"></p>
@@ -375,7 +375,7 @@
 <p>应该就是提示了。百度相关漏洞。</p>
 <p>没有搜到。。然后在阿里云漏洞库获取到CVE编号为：CVE-2019-17221</p>
 <p>然后。。github上面找到了仅存的pdf写的漏洞利用详情，</p>
-<p><img src="C:/Users/xiongfeng/AppData/Roaming/Typora/typora-user-images/image-20211215174855369.png" alt="image-20211215174855369"></p>
+<p><img src="/2021/12/15/a-easy-ctf记录/image-20211215174855369.png" alt="image-20211215174855369"></p>
 <p>利用思路就是vps上面放一个恶意html文件然后让他访问触发file协议读取/etc/passwd文件，试试:</p>
 <pre><code class="html">&lt;!DOCTYPE html&gt;
 &lt;html&gt;
@@ -394,7 +394,7 @@
     &lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
-<p><img src="C:/Users/xiongfeng/AppData/Roaming/Typora/typora-user-images/image-20211215174341038.png" alt="image-20211215174341038"></p>
+<p><img src="/2021/12/15/a-easy-ctf记录/image-20211215174341038.png" alt="image-20211215174341038"></p>
 <p>hhhh快乐。然后尝试读flag。一般在根目录下改一行：</p>
 <pre><code>exp.open(&quot;GET&quot;,&quot;file:///flag&quot;);</code></pre>
         </div>
@@ -482,7 +482,7 @@
     <div class="ins-search-mask"></div>
     <div class="ins-search-container">
         <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="Type something..."/>
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..."/>
             <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="ins-section-wrapper">
@@ -494,10 +494,10 @@
 (function (window) {
     var INSIGHT_CONFIG = {
         TRANSLATION: {
-            POSTS: 'Posts',
-            // PAGES: 'Pages',
-            CATEGORIES: 'Categories',
-            TAGS: 'Tags',
+            POSTS: '文章',
+            // PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
         },
         ROOT_URL: '/',
         CONTENT_URL: '/content.json',
